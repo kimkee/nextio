@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import "./globals.scss";
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google';
+import '@/fontawesome';  // 글로벌 Font Awesome 설정 가져오기
 
 export const metadata: Metadata = {
   title: "NEXTIO",
@@ -12,15 +13,17 @@ export const metadata: Metadata = {
 export const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-})
+});
 export const roboto_mono = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap',
-})
+});
+
 export const noto_sans = Noto_Sans({
   subsets: ['latin'],
   display: 'swap',
-})
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,10 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${noto_sans.className} antialiased`}
-      >
-          
+      <body className={`${noto_sans.className} antialiased`}>
         {children}
         {process.env.SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />
