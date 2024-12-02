@@ -2,7 +2,8 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/app/supabase'; 
 import { Provider } from '@supabase/supabase-js';
-
+import '@/app/fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const runtime = 'edge';
 export default function Home() {
 
@@ -12,7 +13,7 @@ export default function Home() {
     
       <div className="container page home">
         <main className="contents">
-          <h2>Home</h2>
+          <h2><FontAwesomeIcon icon="house" /> Home </h2>
         </main>
       </div>
     
