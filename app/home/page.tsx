@@ -4,7 +4,7 @@ import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import '@/app/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-  
+export const runtime = 'edge';
 export default function Home() {
 
 
