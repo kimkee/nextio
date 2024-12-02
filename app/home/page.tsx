@@ -1,7 +1,4 @@
-import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '@/app/supabase'; 
-import { Provider } from '@supabase/supabase-js';
 import '@/app/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const runtime = 'edge';
