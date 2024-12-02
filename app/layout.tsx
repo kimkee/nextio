@@ -29,7 +29,7 @@ const noto_sans = Noto_Sans({ subsets: ['latin'], display: 'swap', });
 
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
-
+import Head from 'next/head'; // Head 컴포넌트 추가
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +38,9 @@ export default function RootLayout({
   return (
     
     <html lang="ko">
+      <Head>
+        <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6c30b2191cbf4221a2b1d4ce6f3b7530"}'></script>
+      </Head>
       <body className={`body ${inter.className} ${roboto_mono.className} ${noto_sans.className} antialiased`}>
         <div className="wrap">
           <Header />
@@ -47,7 +50,7 @@ export default function RootLayout({
         
         </div>
         {process.env.SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
-        <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />
+        <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />{/* Cloudflare Web Analytics */}
       </body>
     </html>
   );
