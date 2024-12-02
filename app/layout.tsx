@@ -4,7 +4,6 @@ import "./globals.scss";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google';
-import '@/fontawesome';  // 글로벌 Font Awesome 설정 가져오기
 
 export const metadata: Metadata = {
   title: "NEXTIO",
