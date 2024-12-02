@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <SpeedInsights />
+        {process.env.SITE_URL === 'https://nextio.vercel.app/' &&  <SpeedInsights /> }
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />
       </body>
     </html>
