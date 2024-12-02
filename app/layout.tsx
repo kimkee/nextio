@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto_sans.className} antialiased`}>
+      <body className={`${inter.className} ${roboto_mono.className} ${noto_sans.className} antialiased`}>
         {children}
         {process.env.SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />
