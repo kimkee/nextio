@@ -1,10 +1,12 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "next/typescript"
+    "next/typescript",
+    "plugin:stylelint/recommended"
   ],
   "rules": {
     "no-unused-vars": "off",
+    "stylelint/no-empty-source": null,
     "@typescript-eslint/no-explicit-any": "off",  
     "@typescript-eslint/no-unused-vars": "off" 
   }
