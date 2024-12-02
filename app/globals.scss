@@ -116,7 +116,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .header .rdt{ display: flex; align-items: center; }
 .header .logo{display: inline-flex;margin: -1rem 0rem 0rem 0rem;}
 .header .logo .btlogo{position: relative;height: 28rem; display: inline-flex; align-items: flex-end;}
-.header .logo .btlogo i{width:28rem;height: 28rem;background: url('/img/logo.png') no-repeat center;background-size: 32rem auto;font-size: 0rem;display:inline-block;vertical-align:middle;}
+.header .logo .btlogo i{width:28rem;height: 28rem;background: url('/img/logo.png') no-repeat center;background-size: 28rem auto;font-size: 0rem;display:inline-block;vertical-align:middle;}
 .header .logo .btlogo em{font-size: 26rem; line-height: 1; color:#a9a9a9; margin-left: -2rem;    margin-bottom: -2rem}
 .header .bt{width: 24rem;height: 24rem;font-size:0rem;background: no-repeat center;background-size: 24rem auto;color: #eeeeee;display: flex;align-items: center;justify-content: center;}
 .header .bt.login i{font-size: 20px;}
