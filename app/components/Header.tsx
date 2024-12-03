@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useEffect, useState } from 'react'; //useState, useEffect
 import { usePathname, useRouter } from 'next/navigation';
@@ -21,7 +22,7 @@ export default function Header() {
             {
               <h1 className="logo">
                 <Link href={`/`} className="btlogo">
-                  <i>N</i>
+                  <img src="/img/logo_next.png" alt="extio" className='w-20 h-auto' />
                   <em>extio</em>
                 </Link>
               </h1>
