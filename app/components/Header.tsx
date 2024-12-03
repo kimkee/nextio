@@ -5,21 +5,26 @@ import Link from 'next/link'
 import clsx from 'clsx';
 import '@/app/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { supabase } from '@/app/supabase.js'; 
+import { supabase } from '@/app/supabase.js';
 import Image from 'next/image';
 
 
 export default function Header() {
-  
+
   // const location = useLocation();
   const pathname = usePathname();
-    return (
+  return (
     <>
       <header className={`header`}>
         <div className="inr">
           <div className="ldt">
             {
-              <h1 className="logo"> <Link href={`/`} className="btlogo"><i>N</i> <em>extio</em></Link></h1> 
+              <h1 className="logo">
+                <Link href={`/`} className="btlogo">
+                  <i>N</i>
+                  <em>extio</em>
+                </Link>
+              </h1>
             }
           </div>
           <div className="rdt">
