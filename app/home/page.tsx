@@ -1,23 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 
 export const runtime = 'edge';
 export default function Home() {
   return (
-      <div className="container page home">
-        <main className="flex w-full flex-col items-center flex-1 justify-center">
-          
-          
-            
-            <Image
-              className=""
-              src="/img/logo_nextjs.png"
-              alt="Next.js Logo"
-              width={60}
-              height={60} style={{ width: '96remm', height: 'auto'}}
-              priority
-            />
+    <div className="container page home">
+      <main className="flex w-full flex-col items-center flex-1 justify-center">
 
-            {/* <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
+
+
+        <img className="w-16" src="/img/logo_nextjs.png" alt="Next.js Logo" />
+
+        {/* <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
@@ -28,8 +22,8 @@ export default function Home() {
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
              */}
-        </main>
-      </div>
-    
+      </main>
+    </div>
+
   );
 }

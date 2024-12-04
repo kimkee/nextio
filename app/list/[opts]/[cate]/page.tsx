@@ -26,7 +26,8 @@ export default function List() {
               <li key={idx}>
                 <Link
                   className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
-                  href={`/list/${opts}/${cateID}/${idx}/`}>
+                  href={`/list/${opts}/${cateID}/${idx}/`}
+                >
                   <p>{opts}</p>
                   <p>id-{idx}</p>
                 </Link>
