@@ -134,7 +134,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 
 /* 헤더 */
 .header{height: calc( 3.5rem + var(--safe-top) + var(--safe-watch) );text-align:center;display:block;z-index: 500;position: relative;}
-.header>.inr{display:flex;height: calc( 3.5rem + var(--safe-top) + var(--safe-watch)  );align-items: center;justify-content: space-between;align-items: center;position: fixed;left: 0;right: 0;z-index: 500;top: 0rem;background: #1c1c1c;border-bottom: #3a3a3a17 solid 1px;padding: 0rem 1.25rem;padding-top: calc(  var(--safe-top) + var(--safe-watch)  );touch-action: none;transition: background-color 0.3s;left: 50%;width: 100%;max-width: var(--mwide);transform: translateX(-50%);margin-left: calc( 0px - var(--scrPad) /2 ); overflow: hidden;}
+.header>.inr{display:flex;height: calc( 3.5rem + var(--safe-top) + var(--safe-watch)  );align-items: center;justify-content: space-between;align-items: center;position: fixed;left: 0;right: 0;z-index: 500;top: 0rem;background: #1c1c1c;border-bottom: rgb(58 58 58 / 38%) solid 1px;padding: 0rem 1.25rem;padding-top: calc(  var(--safe-top) + var(--safe-watch)  );touch-action: none;transition: background-color 0.3s;left: 50%;width: 100%;max-width: var(--mwide);transform: translateX(-50%);margin-left: calc( 0px - var(--scrPad) /2 ); overflow: hidden;}
 .header:not(.home).main>.inr,
 .header.home.trans>.inr{background: rgb(49 49 49 / 40%);backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);}
 .header.home{height: 0rem;}
@@ -151,7 +151,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .header .bt.back+.htit{margin-left: 1rem;}
 .header .rdt{ display: flex; align-items: center; }
 .header .logo{display: inline-flex;margin: 0rem 0rem 0rem 0rem;}
-.header .logo .btlogo{position: relative; padding: 0.3rem 0; display: inline-flex; align-items: flex-end;}
+.header .logo .btlogo{position: relative; width: 5rem; height: 2rem; padding: 0.3rem 0; display: inline-flex; align-items: center;}
 .header .logo .btlogo i{ width:1.75rem;height: 1.75rem;background-size: 1.75rem auto;font-size: 0rem;display:inline-block;vertical-align:middle; }
 .header .logo .btlogo img{}
 .header .logo .btlogo em{font-size: 26rem; line-height: 1; color:#a9a9a9; margin-left: -2rem;    margin-bottom: -2rem;
@@ -163,7 +163,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .header .bt+.bt{margin-left: 10rem;}
 .header .bt.back{color: #aaaaaa;}
 .header .bt.back{color: #eeeeee; background-size: 1.5rem auto;}
-.header .bt.gnb{display:block;position: relative;height: 2.1875rem;width: 2.1875rem;margin-right: -0.5rem;transition: all 0.2s;font-size:0rem;}
+.header .bt.gnb{display:block;position: relative;height: 2.1875rem;width: 2.1875rem;margin-right: 0rem;transition: all 0.2s;font-size:0rem;}
 .header .bt.gnb i{font-size: 1.5rem;}
 .header .bt.gnb::before{top: 8rem;}
 .header .bt.gnb>b{top: 16rem;}
