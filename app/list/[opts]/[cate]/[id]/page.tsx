@@ -21,7 +21,7 @@ export default function View() {
       <main className="contents">
         <h2><FontAwesomeIcon icon="house" /> List / {opts} / {cateID} / {id}</h2>
 
-        <div className="border border-white/20 p-4 mt-8 h-80 flex flex-col gap-4 justify-center items-center text-3xl uppercase"><p>{opts}</p><p>id-{id}</p></div>
+        <div className="border border-white/20 rounded-md p-4 mt-8 h-80 flex flex-col gap-4 justify-center items-center text-3xl uppercase"><p>{opts}</p><p>id-{id}</p></div>
 
       </main>
     </div>
