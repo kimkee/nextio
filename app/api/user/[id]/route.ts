@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
 export const runtime = 'nodejs'; // Node.js 런타임 지정
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: { params: { id: number } }) {
   const { id } = context.params;
 
   // num가 숫자인지 확인
