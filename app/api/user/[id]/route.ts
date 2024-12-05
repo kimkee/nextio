@@ -1,19 +1,16 @@
 // app/api/user/[id]/route.ts
-// http://localhost:9017/api/user/62
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
 import { supabase } from '@/app/supabase';
+import { NextRequest } from 'next/server';
 
-interface Context {
-  params: {
-    id: string;
-  };
-}
-
-export async function GET(request: NextRequest, { params }: Context) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const { id } = params;
 
-  const { data, error } = await supabase.from('MEMBERS').select("*").eq('id', Number(id)).order('created_at', { ascending: true });
+  const { data, error } = await supabase
+    .from('MEMBERS')
+    .select('*')
+    .eq('id', Number(id))
+    .order('created_at', { ascending: true });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -27,4 +24,3 @@ export async function GET(request: NextRequest, { params }: Context) {
 
   return NextResponse.json(filteredData[0], { status: 200 });
 }
-
