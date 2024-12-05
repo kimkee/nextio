@@ -6,7 +6,7 @@ import { supabase } from '@/app/supabase';
 
 interface Context {
   params: {
-    id: string;
+    id?: string;
   };
 }
 
