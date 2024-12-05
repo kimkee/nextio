@@ -1,10 +1,9 @@
 // app/api/user/[id]/route.ts
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
-import { NextRequest } from 'next/server';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(request: NextRequest, { query }: { query: { id: string } }) {
+  const { id } = query;
 
   const { data, error } = await supabase
     .from('MEMBERS')
