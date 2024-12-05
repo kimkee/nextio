@@ -41,7 +41,7 @@ export default function RootLayout({
       {/* <Head>
         <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6c30b2191cbf4221a2b1d4ce6f3b7530"}'></script>
       </Head> */}
-      <body className={`body ${inter.className} ${roboto_mono.className} ${noto_sans.className} antialiased`}>
+      <body className={`body ${noto_sans.className} antialiased`}>
         <div className="wrap">
           <Header />
           {children}
