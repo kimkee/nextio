@@ -3,11 +3,11 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
 export const runtime = 'nodejs'; // Node.js 런타임 지정
-export async function GET(request: NextRequest, context: { params: { num: string } }) {
-  const { num } = context.params;
+export async function GET(request: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
 
   // num가 숫자인지 확인
-  if (isNaN(Number(num))) {
+  if (isNaN(Number(id))) {
     return NextResponse.json({ error: 'Invalnum ID parameter' }, { status: 400 });
   }
 
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, context: { params: { num: string
   const { data, error } = await supabase
     .from('MEMBERS')
     .select('*')
-    .eq('id', Number(num))
+    .eq('id', Number(id))
     .order('created_at', { ascending: true });
 
   if (error) {
