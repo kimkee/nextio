@@ -1,15 +1,19 @@
 // app/api/user/[id]/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+// http://localhost:9017/api/user/62
+import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { supabase } from '@/app/supabase';
 
-export async function GET(request: NextRequest, { query }: { query: { id: string } }) {
-  const { id } = query;
+interface Context {
+  params: {
+    id: string;
+  };
+}
 
-  const { data, error } = await supabase
-    .from('MEMBERS')
-    .select('*')
-    .eq('id', Number(id))
-    .order('created_at', { ascending: true });
+export async function GET(request: NextRequest, { params }: Context) {
+  const { id } = params;
+
+  const { data, error } = await supabase.from('MEMBERS').select("*").eq('id', Number(id)).order('created_at', { ascending: true });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -23,3 +27,4 @@ export async function GET(request: NextRequest, { query }: { query: { id: string
 
   return NextResponse.json(filteredData[0], { status: 200 });
 }
+
