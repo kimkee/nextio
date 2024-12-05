@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
 export const runtime = 'nodejs'; // Node.js 런타임 지정
-export async function GET(request: NextRequest, context: { params: { id: number } }) {
-  const { id } = context.params;
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
 
   // num가 숫자인지 확인
   if (isNaN(Number(id))) {
-    return NextResponse.json({ error: 'Invalnum ID parameter' }, { status: 400 });
+    return NextResponse.json({ error: 'Invalid ID parameter' }, { status: 400 });
   }
 
   // Supabase 쿼리 실행
