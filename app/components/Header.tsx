@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 
 export default function Header() {
-  
+
   // const location = useLocation();
   const pathname = usePathname();
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function Header() {
             }
           </div>
           <div className="rdt">
-            <button onClick={() => router.push('/login')} type="button" className="bt gnb"><i><FontAwesomeIcon icon={["fas", "bars"]} /></i><b>메뉴</b></button>
+            <Link href={'/user/login'} className="bt gnb"><i><FontAwesomeIcon icon={["fas", "bars"]} /></i><b>메뉴</b></Link>
           </div>
         </div>
       </header>
