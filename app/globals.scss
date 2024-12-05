@@ -210,11 +210,38 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .floatnav.on-top .bt.top{}
 
 
-.floatnav .bt.reg{background: #35495e;box-shadow: rgb(0 0 0 / 20%) 0.125
-rem 0.125
-rem 10rem;position: relative;}
+.floatnav .bt.reg{background: #35495e;box-shadow: rgb(0 0 0 / 20%) 0.125rem 0.125rem 10rem;position: relative;}
 .floatnav .bt.reg i{font-size: 19rem;color: #e9e9e9;display: block;text-align: center;}
 
+
+.btn{
+    @apply flex-shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200 bg-gray-50 hover:bg-gray-100 disabled:bg-gray-50 aria-disabled:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 dark:aria-disabled:bg-gray-800 focus-visible:ring-2 inline-flex items-center justify-center;
+    &.btn-primary{
+        @apply  text-white bg-primary hover:bg-green-500/90  dark:bg-primary dark:hover:bg-green-600/90 ring-green-900/20
+    }
+    &-xs{
+        @apply text-[0.7rem] px-1.5 py-0.5 rounded font-normal
+    }
+    &-sm{
+        @apply text-xs px-1.5 py-1.5 rounded font-normal
+    }
+    &-md{
+        @apply text-sm px-2.5 py-1.5
+    }
+    &-lg{
+        @apply text-sm px-3.5 py-2
+    }
+    &-xl{
+        @apply text-base px-5 py-3
+    }
+    &:disabled{
+        @apply opacity-70 text-opacity-50 cursor-not-allowed;
+        
+    }
+}
+
+body.is-lock{height: 100%;overflow-y:initial;padding-right: var(--scrPad);}
+html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 
