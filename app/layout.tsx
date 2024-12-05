@@ -30,11 +30,13 @@ const noto_sans = Noto_Sans({ subsets: ['latin'], display: 'swap', });
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
 import Head from 'next/head'; // Head 컴포넌트 추가
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     
     <html lang="ko">
