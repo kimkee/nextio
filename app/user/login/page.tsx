@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 interface User {
@@ -34,7 +33,11 @@ export default function Home() {
     console.log(user);
     return { user }  // 사용자 데이터 반환
   };
-
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.log(error);
+    router.push('/');
+  }
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -48,30 +51,24 @@ export default function Home() {
 
   return (
     <div className="container items-center justify-center">
-      <main className="flex flex-col max-w-[16rem] w-full justify-center items-center py-6 -mt-12">
+      <main className="flex flex-col gap-8 row-start-2 items-center">
 
-
-        <div className="mb-1">
-          <img className="w-12" src="/img/logo.png" alt="" />
-        </div>
-        <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
-          <em className="text-primary relative px-2 z-1 bg-white dark:bg-[#0d111b]">로그인</em>
-        </div>
-        <div className="grid grid-cols-1 gap-4 w-full">
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>
-            <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google </em>
-          </button>
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
-            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github </em>
-          </button>
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
-            <i><FontAwesomeIcon icon={["fas", "comments"]} /></i><em>Kakao </em>
-          </button>
-        </div>
-
-
-        <p className="text-xs mt-6">{SITE_URL}</p>
-
+        {
+          user?.id !== undefined ?
+            <>
+              <p>사용자 ID : {user?.user_metadata.full_name || user?.user_metadata.user_name}</p>
+              <p>사용자 Email : {user?.email}</p>
+              <button onClick={signOut}>로그아웃</button>
+            </>
+            :
+            <>
+              <button onClick={() => signInWithOAuth('google')}><em>Google </em></button>
+              <button onClick={() => signInWithOAuth('github')}><em>Github </em></button>
+              <button onClick={() => signInWithOAuth('kakao')}><em>Kakao </em></button>
+            </>
+        }
+        <p>{SITE_URL}</p>
+        
       </main>
     </div>
   );
