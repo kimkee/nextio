@@ -7,6 +7,6 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",  
     "@typescript-eslint/no-unused-vars": "off", 
-    "@typescript-esline/no-img-element": "on"
+    "@typescript-esline/no-img-element": "0"
   }
 }
