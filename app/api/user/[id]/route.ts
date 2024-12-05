@@ -3,7 +3,13 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+interface Context {
+  params: {
+    id: string;
+  };
+}
+
+export async function GET(request: Request, { params }: Context) {
   const { id } = params;
 
   const { data, error } = await supabase.from('MEMBERS').select("*").eq('id', Number(id)).order('created_at', { ascending: true });
@@ -20,3 +26,4 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   return NextResponse.json(filteredData[0], { status: 200 });
 }
+
