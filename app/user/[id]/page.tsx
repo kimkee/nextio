@@ -30,35 +30,49 @@ export default function User() {
       console.table(data?.myinfo);
     });
   }, []);
+
+
+
   return (
+    <>
+      {myinfo === null ?
+        <div className="container">
+          <main className="flex flex-col items-center justify-center  flex-1">
+            <div className="rounded-md p-4  gap-4 text-sm break-all relative">loading...</div>
+          </main>
+        </div>
+        :
+        <div className="container">
+          <main className="flex flex-col items-center justify-center flex-1 px-6">
+            {
+              myinfo && myinfo.id !== undefined ?
+                <>
+                  <div className="border border-white/10 bg-white/5 rounded-md p-6 flex flex-col gap-4 text-sm break-all relative  w-full max-w-80">
+                    <p><img src={myinfo.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
+                    <p>Num : {myinfo.id}</p>
+                    <p>Username : {myinfo.username}</p>
+                    <p>Email : {myinfo.email}</p>
+                    <p>Provider : {myinfo.provider}</p>
+                    <p>Join : {myinfo.created_at}</p>
+                    <button
+                      className="btn absolute top-6 right-6"
+                      onClick={signOut}>로그아웃</button>
+                  </div>
 
-    <div className="container page movie list">
-      <main className="contents">
-        {
-          myinfo?.id !== undefined ?
-            <>
-              <div className="border border-white/20 rounded-md p-4 mt-8 flex flex-col gap-4 text-sm break-all relative">
-                <p><img src={myinfo.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
-                <p>Num : {myinfo.id}</p>
-                <p>Username : {myinfo.username}</p>
-                <p>Email : {myinfo.email}</p>
-                <p>Provider : {myinfo.provider}</p>
-                <p>Join : {myinfo.created_at}</p>
-                <button
-                  className="btn absolute top-2 right-2"
-                  onClick={signOut}>로그아웃</button>
-              </div>
-              
-            </>
-            :
-            <>
-              <button className="btn" onClick={() => router.push('/user/login')}>로그인</button>
-            </>
-        }
+                </>
+                :
+                <>
+                  <button className="btn" onClick={() => router.push('/user/login')}>로그인</button>
+                </>
+            }
+          </main>
+        </div>
 
-        
-      </main>
-    </div>
+      }
+
+
+    </>
+
 
   );
 }
