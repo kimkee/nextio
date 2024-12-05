@@ -4,8 +4,6 @@ import "./globals.scss";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google';
-import Link from 'next/link'
-import clsx from "clsx";
 import { usePathname } from "next/navigation";
 export const metadata: Metadata = {
   title: "NEXTIO",
@@ -40,9 +38,6 @@ export default function RootLayout({
   return (
     
     <html lang="ko">
-      {/* <Head>
-        <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6c30b2191cbf4221a2b1d4ce6f3b7530"}'></script>
-      </Head> */}
       <body className={`body ${noto_sans.className} antialiased`}>
         <div className="wrap">
           <Header />
