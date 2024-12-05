@@ -34,16 +34,16 @@ export default function User() {
 
     <div className="container page movie list">
       <main className="contents">
-        <h2><FontAwesomeIcon icon="house" /> User / {id} </h2>
         {
-          user?.id !== undefined ?
+          myinfo?.id !== undefined ?
             <>
               <div className="border border-white/20 rounded-md p-4 mt-8 flex flex-col gap-4 text-sm break-all relative">
-                <p><img src={myinfo?.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
-                <p>회원번호 : {myinfo?.id}</p>
-                <p>이름 : {myinfo?.username}</p>
-                <p>이메일 : {myinfo?.email}</p>
-                <p>가입일 : {myinfo?.created_at}</p>
+                <p><img src={myinfo.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
+                <p>Num : {myinfo.id}</p>
+                <p>Username : {myinfo.username}</p>
+                <p>Email : {myinfo.email}</p>
+                <p>Provider : {myinfo.provider}</p>
+                <p>Join : {myinfo.created_at}</p>
                 <button
                   className="btn absolute top-2 right-2"
                   onClick={signOut}>로그아웃</button>

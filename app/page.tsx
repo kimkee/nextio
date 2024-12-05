@@ -12,22 +12,15 @@ interface User {
 }  
 export default function Home() {
   const router = useRouter();
-  const signInWithOAuth = async (txt: Provider)=>{
-    await supabase.auth.signInWithOAuth({
-      provider: txt,
-      options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-        redirectTo: `${process.env.SITE_URL}/callback`
-      },
-    })
-  }
+
 
   useEffect( () => {
     setTimeout( () => window.location.replace(`/home`), 300);
+    supabase.auth.onAuthStateChange((state, event) => {     
+      // state === 'SIGNED_IN' ? router.push('/home') : router.push('/user/login');
+      // console.log('==========================================' + state);
 
+    }); 
     return ()=>{ }
   },[]);
 
