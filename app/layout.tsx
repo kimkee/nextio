@@ -49,7 +49,7 @@ export default function RootLayout({
           <Nav />
         
         </div>
-        {process.env.SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
+        {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />{/* Cloudflare Web Analytics */}
       </body>
     </html>

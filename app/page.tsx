@@ -20,7 +20,7 @@ export default function Home() {
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: `${process.env.VITE_SITE_URL}/callback`
+        redirectTo: `${process.env.SITE_URL}/callback`
       },
     })
   }

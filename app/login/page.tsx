@@ -5,7 +5,7 @@ import { usePathname, useRouter, useParams  } from 'next/navigation';
 import { supabase } from '@/app/supabase'; 
 import { Provider } from '@supabase/supabase-js';
 
-
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 interface User { 
   id: string;
   email: string;
@@ -20,7 +20,7 @@ export default function Home() {
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: `${process.env.VITE_SITE_URL}/callback`
+        redirectTo: `${SITE_URL}callback`
       },
     })
   }
@@ -60,6 +60,7 @@ export default function Home() {
         {
           user?.id !== undefined && <><button onClick={signOut}>로그아웃</button></>
         }
+        <p>{SITE_URL}</p>
         <Image
           className="dark:invert"
           src="/next.svg"
