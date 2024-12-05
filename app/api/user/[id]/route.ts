@@ -1,6 +1,7 @@
 // app/api/user/[id]/route.ts
 // http://localhost:9017/api/user/62
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { supabase } from '@/app/supabase';
 
 interface Context {
@@ -9,7 +10,7 @@ interface Context {
   };
 }
 
-export async function GET(request: Request, { params }: Context) {
+export async function GET(request: NextRequest, { params }: Context) {
   const { id } = params;
 
   const { data, error } = await supabase.from('MEMBERS').select("*").eq('id', Number(id)).order('created_at', { ascending: true });
