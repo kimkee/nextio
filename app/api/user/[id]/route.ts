@@ -4,10 +4,9 @@ import { NextRequest } from 'next/server';
 import { supabase } from '@/app/supabase';
 
 export const runtime = 'nodejs'; // Node.js 런타임 지정
-interface Context { params: { id: string; }; }
-export async function GET(request: NextRequest, context: Context) {
-  const { id } = context.params;
-  console.log(request);
+
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
 
   // ID가 숫자인지 확인
   if (isNaN(Number(id))) {
