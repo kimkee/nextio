@@ -4,6 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "noEmitOnError": false,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -20,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/user/login/page.jsx"],
   "exclude": ["node_modules"]
