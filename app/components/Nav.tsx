@@ -34,7 +34,8 @@ export default function Nav() {
               <Link href={`/list/tv/0/`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "tv"]} /></i><em>TV</em></Link>
             </li>
             <li className={isActive("search/")}>
-              <Link href={`/search/movie/`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "search"]} /></i><em>Search</em></Link>
+              {/* <Link href={`/search/movie/`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "search"]} /></i><em>Search</em></Link> */}
+              <Link href={`/test/movie/0//`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "search"]} /></i><em>Search</em></Link>
             </li>
             <li className={isActive("user/")}>
               

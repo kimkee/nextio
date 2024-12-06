@@ -1,6 +1,6 @@
 import '@/app/globals.scss';
 
-export const metadata = { title: 'NextGram', description: 'A sample Next.js app' };
+// export const metadata = { title: 'NextGram', description: 'A sample Next.js app' };
 
 export default function Layout(props: {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export default function Layout(props: {
         {props.children}
         {props.modal}
       </div>
-      <div id="modal-root" />
+      <div id="modal-root" className='fixed z-[9999]' />
     </>
   );
 }
