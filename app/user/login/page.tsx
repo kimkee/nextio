@@ -48,11 +48,10 @@ export default function Home() {
 
   return (
     <div className="container items-center justify-center">
-      <main className="flex flex-col max-w-[16rem] w-full justify-center items-center py-6 -mt-12">
-
+      <main className="flex flex-col max-w-[16rem] w-full justify-center items-center py-6">
 
         <div className="mb-1">
-          <img className="w-12" src="/img/logo.png" alt="" />
+          <Image width={96} height={96} className="w-12" src="/img/logo.png" alt="" />
         </div>
         <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
           <em className="text-primary relative px-2 z-1 bg-white dark:bg-[#0d111b]">로그인</em>
@@ -68,7 +67,6 @@ export default function Home() {
             <i><FontAwesomeIcon icon={["fas", "comment"]} /></i><em>Kakao </em>
           </button>
         </div>
-
 
         <p className="text-sm mt-6">{SITE_URL}</p>
 

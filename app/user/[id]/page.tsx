@@ -48,7 +48,7 @@ export default function User() {
               myinfo && myinfo.id !== undefined ?
                 <>
                   <div className="border border-white/10 bg-white/5 rounded-md p-6 flex flex-col gap-4 text-sm break-all relative  w-full max-w-80">
-                    <p><img src={myinfo.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
+                    <p><Image width={80} height={80} src={myinfo.profile_picture} alt="" className="w-10 h-10 rounded-full" /></p>
                     <p>Num : {myinfo.id}</p>
                     <p>Username : {myinfo.username}</p>
                     <p>Email : {myinfo.email}</p>
