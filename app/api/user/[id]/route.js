@@ -1,12 +1,14 @@
-// app/api/user/[id]/route.ts
+// app/api/user/[id]/route.js
 import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
+
 export const runtime = 'nodejs'; // Node.js 런타임 지정
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+
+export async function GET(request, { params }) {
   const { id } = params;
 
-  // num가 숫자인지 확인
+  // ID가 숫자인지 확인
   if (isNaN(Number(id))) {
     return NextResponse.json({ error: 'Invalid ID parameter' }, { status: 400 });
   }
