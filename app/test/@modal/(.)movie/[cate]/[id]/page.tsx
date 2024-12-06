@@ -1,5 +1,5 @@
 import { Modal } from "../../../modal";
-
+export const runtime = 'edge';
 export default async function MovieModal({
   params,
 }: {
