@@ -17,7 +17,7 @@ export default function Header() {
   const params = useParams();
   const router = useRouter();
   const isActive = (els:string) => pathname.split('/').includes(`${els}`) ? "active" : "";
-  console.log(pathname.split('/'));
+  // console.log(pathname.split('/'));
   
   return (
     <>

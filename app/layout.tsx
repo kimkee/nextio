@@ -13,11 +13,9 @@ const noto_sans = Noto_Sans({ subsets: ['latin'], display: 'swap', });
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export default function RootLayout(props: {
   children: React.ReactNode;
-}>) {
+}) {
 
   return (
 
@@ -25,7 +23,7 @@ export default function RootLayout({
       <body className={`body ${noto_sans.className} antialiased`}>
         <div className="wrap">
           <Header />
-          {children}
+          {props.children}
           <Nav />
         </div>
         {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
