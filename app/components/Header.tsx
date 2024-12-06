@@ -23,7 +23,7 @@ export default function Header() {
             {
               <h1 className="logo">
                 <Link href={`/`} className="btlogo">
-                  <img src="/img/logo_next.png" alt="extio" className='w-20 h-auto' />
+                  <Image width={256} height={54} src="/img/logo_next.png" alt="extio" className='w-20 h-auto' />
                   <em>extio</em>
                 </Link>
               </h1>
