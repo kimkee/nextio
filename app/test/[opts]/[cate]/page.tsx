@@ -8,7 +8,7 @@ export default async function Page({
 }: {
   params: Promise<{ cate: string, opts: string, id: string }>;
 }) {
-  const photos = Array.from({ length: 6 }, (_, i) => i + 1);
+  
   const cate = (await params).cate;
   const opts = (await params).opts;
   return (
@@ -27,7 +27,7 @@ export default async function Page({
 
       <p>{`/test/${opts}/${cate}`}</p>
       <ul className="grid grid-cols-2 gap-4 mt-4">
-        {photos.map((id) => (
+        {[1,2,3,4,5,6,7,8,9,10,11,12].map((id) => (
           <li key={id}>
             <Link
               className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
