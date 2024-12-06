@@ -2,7 +2,7 @@
 // http://localhost:9017/api/user/all
 import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
-
+export const runtime = 'edge';
 export async function GET() {
   const { data, error } = await supabase
     .from('MEMBERS')

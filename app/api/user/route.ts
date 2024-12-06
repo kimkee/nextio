@@ -2,7 +2,7 @@
 // http://localhost:9017/api/user?num=58
 import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
-
+export const runtime = 'edge';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const num = searchParams.get('num');

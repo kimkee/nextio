@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
 
-export const runtime = 'nodejs'; // Node.js 런타임 지정
+export const runtime = 'edge';
 
 export async function GET(request, { params }) {
   const { id } = params;
