@@ -65,12 +65,12 @@ export default function Home() {
             <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github </em>
           </button>
           <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
-            <i><FontAwesomeIcon icon={["fas", "comments"]} /></i><em>Kakao </em>
+            <i><FontAwesomeIcon icon={["fas", "comment"]} /></i><em>Kakao </em>
           </button>
         </div>
 
 
-        <p className="text-xs mt-6">{SITE_URL}</p>
+        <p className="text-sm mt-6">{SITE_URL}</p>
 
       </main>
     </div>

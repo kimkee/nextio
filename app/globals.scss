@@ -215,9 +215,18 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 
 
 .btn{
-    @apply flex-shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200 bg-gray-50 hover:bg-gray-100 disabled:bg-gray-50 aria-disabled:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 dark:aria-disabled:bg-gray-800 focus-visible:ring-2 inline-flex items-center justify-center;
+    @apply flex-shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 inline-flex items-center justify-center shadow-sm ring-1 ring-inset 
+        ring-gray-300 
+        bg-gray-50 
+        bg-white/5
+        text-gray-200
+        ring-white/10
+        hover:bg-white/10 
+        disabled:bg-gray-800 
+        aria-disabled:bg-gray-800 
+        focus-visible:ring-2;
     &.btn-primary{
-        @apply  text-white bg-primary hover:bg-green-500/90  dark:bg-primary dark:hover:bg-green-600/90 ring-green-900/20
+        @apply  text-white bg-primary/40 hover:bg-slate-700/100 ring-white/10
     }
     &-xs{
         @apply text-[0.7rem] px-1.5 py-0.5 rounded font-normal
