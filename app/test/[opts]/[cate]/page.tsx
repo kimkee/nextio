@@ -32,6 +32,7 @@ export default async function Page({
             <Link
               className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
               href={`/test/${opts}/${cate}/${id}`} passHref>
+              {opts} - 
               {id}
             </Link>
           </li>
