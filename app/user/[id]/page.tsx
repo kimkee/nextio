@@ -43,7 +43,7 @@ export default function User() {
         </div>
         :
         <div className="container">
-          <main className="flex flex-col items-center justify-center flex-1 px-6">
+          <main className="flex flex-col items-center justify-center flex-1 p-6">
             {
               myinfo && myinfo.id !== undefined ?
                 <>

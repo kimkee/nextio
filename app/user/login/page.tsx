@@ -60,11 +60,11 @@ export default function Home() {
           <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>
             <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google </em>
           </button>
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
-            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github </em>
-          </button>
           <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
             <i><FontAwesomeIcon icon={["fas", "comment"]} /></i><em>Kakao </em>
+          </button>
+          <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
+            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github </em>
           </button>
         </div>
 
