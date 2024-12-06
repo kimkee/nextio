@@ -27,12 +27,12 @@ export default async function Page({
 
       <p>{`/test/${opts}/${cate}`}</p>
       <ul className="grid grid-cols-2 gap-4 mt-4">
-        {[1,2,3,4,5,6,7,8,9,10,11,12].map((id) => (
-          <li key={id}>
+        {[1,2,3,4,5,6,7,8,9,10,11,12].map((idx) => (
+          <li key={idx}>
             <Link
               className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
-              href={`/test/${opts}/${cate}/${id}`} passHref>
-              {opts} - {id}
+              href={`/test/${opts}/${cate}/${idx}`} passHref>
+              {opts} - {idx}
             </Link>
           </li>
         ))}
