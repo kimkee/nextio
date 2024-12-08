@@ -21,6 +21,10 @@ export default function Page({
   useEffect(() => {
     setCurrentCate(cate);
     setCurrentOpts(opts);
+    // document.body.classList.remove('is-lock');
+    // document.documentElement.classList.remove('is-lock');
+    console.log("리스트");
+    
   }, [cate, opts]);
 
   return (
@@ -42,7 +46,7 @@ export default function Page({
           <li key={idx}>
             <Link
               className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
-              href={`/test/${opts}/${cate}/${idx}`} passHref>
+              href={`/test/${opts}/${cate}/${idx}`} passHref scroll={false}>
               {opts} - {idx}
             </Link>
           </li>

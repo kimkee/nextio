@@ -1,6 +1,6 @@
 'use client';
 
-import { type ElementRef, useEffect, useRef } from 'react';
+import { type ElementRef, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,12 +8,21 @@ import "./modal.scss";
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<'div'>>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     if (!dialogRef.current?.classList.contains('open')) {
       dialogRef.current?.classList.add('open');
+      document.body.classList.add('is-lock');
+      document.documentElement.classList.add('is-lock');
+      setMounted(true);
     }
-  }, []);
+    return () => {
+      console.log(mounted);
+      if(mounted) {document.body.classList.remove('is-lock');
+      document.documentElement.classList.remove('is-lock');}
+    }
+  }, [mounted]);
 
   function onDismiss() {
     router.back();

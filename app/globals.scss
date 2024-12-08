@@ -119,6 +119,10 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 }
 .body>.wrap{min-height: 100dvh;max-width: var(--mwide);margin: auto;background: #111111; display: flex; flex-direction: column;}
 
+.body.is-lock{height: 100%;overflow-y:initial;padding-right: var(--scrPad);}
+html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
+
+
 
 .container{position: relative;z-index: 100;max-width: var(--mwide);margin: auto;background: #111111; flex: 1 1 0%;display: flex;} 
 .container .contents{ display: block; margin: 0rem 0rem; padding: 0rem 0rem 0rem 0rem; padding: 1.5rem; width: 100%; flex: 1 1 0%;}
