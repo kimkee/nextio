@@ -1,3 +1,5 @@
+import Detail from "@/app/test/Detail";
+
 export const runtime = 'edge';
 export const dynamicParams = false;
 
@@ -17,6 +19,7 @@ export default async function PhotoPage({
             <p>cate : {cate}</p>
             <p>id : {id}</p>
         </div>
+        <Detail params={{ opts, cate, id }} />
     </main>
   );
 }

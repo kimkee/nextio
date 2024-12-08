@@ -1,0 +1,28 @@
+@charset "utf-8";
+.popup{
+    @apply fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center;
+}
+.popup .pbd{
+    @apply my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh ;
+}
+.popup .pbd .phd{}
+.popup .pbd .phd>.inr{
+    @apply left-0 right-0 top-0 flex items-center justify-center absolute bg-transparent backdrop-blur-sm w-full;
+    padding-top: calc(var(--safe-top) + var(--safe-watch));
+    height: calc(3.5rem + var(--safe-top) + var(--safe-watch)); 
+ }
+ .popup .pbd .phd>.inr .ptit{
+    @apply text-right pl-16 pr-5 w-full;
+ }
+.popup .pbd .pct{ 
+    @apply flex-1 flex flex-col py-8 px-6 overflow-y-auto;
+    padding-top: calc(4.5rem + var(--safe-top) + var(--safe-watch));
+}
+.popup .pbd .pct::-webkit-scrollbar{display: none}
+.popup .pbd .pct .poptents{ 
+    // @apply ;
+}
+.popup .btn-pop-close{
+    @apply h-8 w-8 text-white inline-flex items-center justify-center text-3xl  absolute top-4 left-4 z-50;
+    top: calc( 0.8rem + var(--safe-top) + var(--safe-watch)  );
+}

@@ -31,7 +31,7 @@ export default function Page({
         <Link className="btn" href={`/test/${opts}/2`}>멜로</Link>
         <Link className="btn" href={`/test/${opts}/3`}>코믹</Link>
       </div>
-      <div className='flex gap-4'>
+      <div className='flex gap-4 mt-4'>
         <Link className="btn" href={`/test/movie/${cate}`}>MOVIE</Link>
         <Link className="btn" href={`/test/tv/${cate}`}>TV</Link>
       </div>
@@ -48,7 +48,7 @@ export default function Page({
           </li>
         ))}
       </ul>
-      <button className="btn w-full mt-6" onClick={() => setDataList(prev => [...prev, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30])}>More</button>
+      <button className="btn btn-xl w-full mt-6" onClick={() => setDataList(prev => [...prev, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30])}>More</button>
     </main>
   );
 }
