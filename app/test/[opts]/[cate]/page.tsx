@@ -16,7 +16,7 @@ export default function Page({
   const router = useRouter();
   const [currentCate, setCurrentCate] = useState(cate);
   const [currentOpts, setCurrentOpts] = useState(opts);
-  const [dataList, setDataList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14]);
+  const [dataList, setDataList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
 
   useEffect(() => {
     setCurrentCate(cate);
@@ -48,7 +48,7 @@ export default function Page({
           </li>
         ))}
       </ul>
-      <button className="btn" onClick={() => setDataList( prev => [...prev, 17,18,19,20,21,22,23,24,25,26,27,28,29,30] )}>More</button>
+      <button className="btn w-full mt-6" onClick={() => setDataList(prev => [...prev, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30])}>More</button>
     </main>
   );
 }
