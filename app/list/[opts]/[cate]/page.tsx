@@ -49,8 +49,8 @@ export default function Page({
 
   return (
     <>
-      <div className="container">
-        <main className="contents">
+      <div className="container flex-col">
+        <main className="contents ">
           <div className="flex gap-4">
             <Link className="btn" href={`/list/${opts}/0`}>
               전체
