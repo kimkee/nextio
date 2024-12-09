@@ -12,6 +12,7 @@ const noto_sans = Noto_Sans({ subsets: ['latin'], display: 'swap', });
 
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
+import Ui from '@/app/components/Ui';
 
 export default function RootLayout(props: {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ export default function RootLayout(props: {
           {props.children}
           <Nav />
         </div>
+        <Ui />
         {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />{/* Cloudflare Web Analytics */}
       </body>
