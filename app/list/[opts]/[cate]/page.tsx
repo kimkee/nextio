@@ -35,10 +35,6 @@ export default function Page({
         <Link className="btn" href={`/list/${opts}/2`}>멜로</Link>
         <Link className="btn" href={`/list/${opts}/3`}>코믹</Link>
       </div>
-      <div className='flex gap-4 mt-4'>
-        <Link className="btn" href={`/list/movie/${cate}`}>MOVIE</Link>
-        <Link className="btn" href={`/list/tv/${cate}`}>TV</Link>
-      </div>
 
       {/* <p>{`/list/${opts}/${cate}`}</p> */}
       <ul className="grid grid-cols-2 gap-4 mt-4">
