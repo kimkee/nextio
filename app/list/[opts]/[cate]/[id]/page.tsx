@@ -1,30 +1,28 @@
-'use client';
-import Image from "next/image";
-import React, { useState, useEffect, useRef } from 'react';
-import { usePathname, useRouter, useParams } from 'next/navigation';
+import Detail from "@/app/list/Detail";
 
-import '@/app/fontawesome';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 export const runtime = 'edge';
-export default function View() {
+export const dynamicParams = false;
 
-  const params = useParams();
-  const opts = params.opts;
-  const cateID = params.cate;
-  const id = params.id;
-  // cateID === undefined && navigate(`/${opts}/0`) ;
+export default async function PhotoPage({
+  params,
+}: {
+  params: Promise<{ id: string, cate: string, opts: string }>;
+}) {
+  const id = (await params).id;
+  const cate = (await params).cate;
+  const opts = (await params).opts;
 
   return (
-
-    <div className="container page movie list">
-      <main className="contents">
-        <h2><FontAwesomeIcon icon="house" /> List / {opts} / {cateID} / {id}</h2>
-
-        <div className="border border-white/20 rounded-md p-4 mt-8 h-80 flex flex-col gap-4 justify-center items-center text-3xl uppercase"><p>{opts}</p><p>id-{id}</p></div>
-
-      </main>
-    </div>
-
+    <main className="contents">
+      {/* <title>{`영화 상세`}</title>
+        <meta name="description" content={`상세 정보`} /> */}
+      <h2>/list/{opts}/{cate}/{id}</h2>
+      <div className="flex flex-col">
+        <p>opts : {opts}</p>
+        <p>cate : {cate}</p>
+        <p>id : {id}</p>
+      </div>
+      <Detail params={{ opts, cate, id }} />
+    </main>
   );
 }

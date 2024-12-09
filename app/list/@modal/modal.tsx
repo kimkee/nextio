@@ -5,22 +5,21 @@ import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./modal.scss";
+import ui from "@/app/lib/ui";
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<'div'>>(null);
   const [mounted, setMounted] = useState<boolean>(false);
-
+  // const ui = window.ui;
   useEffect(() => {
     if (!dialogRef.current?.classList.contains('open')) {
       dialogRef.current?.classList.add('open');
-      document.body.classList.add('is-lock');
-      document.documentElement.classList.add('is-lock');
+      ui.lock.using(true);
       setMounted(true);
     }
     return () => {
       console.log(mounted);
-      if(mounted) {document.body.classList.remove('is-lock');
-      document.documentElement.classList.remove('is-lock');}
+      if(mounted) {ui.lock.using(false);}
     }
   }, [mounted]);
 

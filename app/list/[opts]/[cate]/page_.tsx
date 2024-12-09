@@ -15,23 +15,23 @@ export default async function Page({
     <main className="contents">
 
       <div className='flex gap-4'>
-        <Link className="btn" href={`/test/${opts}/0`}>전체</Link>
-        <Link className="btn" href={`/test/${opts}/1`}>액션</Link>
-        <Link className="btn" href={`/test/${opts}/2`}>멜로</Link>
-        <Link className="btn" href={`/test/${opts}/3`}>코믹</Link>
+        <Link className="btn" href={`/list/${opts}/0`}>전체</Link>
+        <Link className="btn" href={`/list/${opts}/1`}>액션</Link>
+        <Link className="btn" href={`/list/${opts}/2`}>멜로</Link>
+        <Link className="btn" href={`/list/${opts}/3`}>코믹</Link>
       </div>
       <div className='flex gap-4'>
-        <Link className="btn" href={`/test//movie/${cate}`}>MOVIE</Link>
-        <Link className="btn" href={`/test/tv/${cate}`}>TV</Link>
+        <Link className="btn" href={`/list//movie/${cate}`}>MOVIE</Link>
+        <Link className="btn" href={`/list/tv/${cate}`}>TV</Link>
       </div>
 
-      <p>{`/test/${opts}/${cate}`}</p>
+      <p>{`/list/${opts}/${cate}`}</p>
       <ul className="grid grid-cols-2 gap-4 mt-4">
         {[1,2,3,4,5,6,7,8,9,10,11,12].map((idx) => (
           <li key={idx}>
             <Link
               className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
-              href={`/test/${opts}/${cate}/${idx}`} passHref>
+              href={`/list/${opts}/${cate}/${idx}`} passHref>
               {opts} - {idx}
             </Link>
           </li>

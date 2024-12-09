@@ -1,7 +1,7 @@
-import Detail from "@/app/test/Detail";
+import Detail from "@/app/list/Detail";
 import { Modal } from "../../../modal";
 export const runtime = 'edge';
-export default async function MovieModal({
+export default async function TvModal({
   params,
 }: {
   params: Promise<{ id: string, cate: string, opts: string }>;
@@ -11,8 +11,8 @@ export default async function MovieModal({
   const opts = (await params).opts;
   return (
     <Modal>
-      Movie / 장르 : {cate} / 영상:{id}
-      <Detail params={{ opts, cate, id }}/>
+      <div className="block">Tv / 장르 : {cate} / 영상:{id}</div>
+      <Detail params={{ opts, cate, id }} />
     </Modal>
   );
 }
