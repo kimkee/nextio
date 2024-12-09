@@ -23,6 +23,6 @@
     // @apply ;
 }
 .popup .btn-pop-close{
-    @apply h-8 w-8 text-white inline-flex items-center justify-center text-3xl  absolute top-4 left-4 z-50;
+    @apply h-8 w-8 text-white inline-flex items-center justify-center text-3xl  absolute top-4 left-5 z-50;
     top: calc( 0.8rem + var(--safe-top) + var(--safe-watch)  );
 }

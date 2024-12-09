@@ -29,7 +29,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    <div className="popup">
+    <div className="pop-layer popup">
       <div className="pbd" ref={dialogRef} >
         <button onClick={onDismiss} className="btn-pop-close">
           <i><FontAwesomeIcon icon={["fas", "arrow-left"]} /></i>

@@ -8,6 +8,7 @@ import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import getUser from "@/app/getUser";
+import Loading from "@/app/components/Loading";
 export const runtime = 'edge';
 
 export default function User() {
@@ -35,10 +36,14 @@ export default function User() {
 
   return (
     <>
+      
       {myinfo === null ?
         <div className="container">
           <main className="flex flex-col items-center justify-center  flex-1">
-            <div className="rounded-md p-4  gap-4 text-sm break-all relative">loading...</div>
+            {/* <div className="rounded-md p-4  gap-4 text-sm break-all relative">loading...</div> */}
+            <div className="border border-white/10 bg-white/5 rounded-md p-6 flex flex-col gap-4 text-sm break-all relative  w-full max-w-80 min-h-[270px]">
+              <Loading opts={{ type: 'glx', cls: 'abs' }} />
+            </div>
           </main>
         </div>
         :

@@ -263,7 +263,7 @@ const ui = {
         ui.lock.using(true);
 
         let lyConfirm =
-        `<article class="ui-confirm ${opt.cls}" tabindex="0">
+        `<article class="ui-alert ${opt.cls}" tabindex="0">
             <div class="pbd">
                 <div class="phd"><span class="ptit">${opt.tit}</span></div>
                 <div class="pct"><div class="msg">${opt.msg}</div></div>
@@ -277,7 +277,7 @@ const ui = {
         const body = document.querySelector("body");
         body.insertAdjacentHTML("beforeend", lyConfirm);
 
-        const uiConfirm = document.querySelector(".ui-confirm");
+        const uiConfirm = document.querySelector(".ui-alert");
         body.classList.add("is-confrim");
         setTimeout(() => uiConfirm.classList.add("open"));
         if (opt.tit) {
@@ -340,7 +340,7 @@ const ui = {
             const body = document.querySelectorAll("body , html");
             const html = document.querySelector("html");
             if (opt === true && this.stat === false) {
-                document.documentElement.style.setProperty('--scrPad', `${this.gap()}rem`);
+                document.documentElement.style.setProperty('--scrPad', `${this.gap()}px`);
                 ui.lock.stat = true;
                 ui.lock.sct = window.scrollY;
                 body.forEach(body => body.classList.add("is-lock", "is-lock-end"));
@@ -356,7 +356,7 @@ const ui = {
                 setTimeout(() => {
                     body.forEach(body => body.classList.remove("is-lock-end"));
                 }, 50);
-                document.documentElement.style.setProperty('--scrPad', `0rem`);
+                document.documentElement.style.setProperty('--scrPad', `0px`);
             }
         }
     },
