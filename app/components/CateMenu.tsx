@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams  } from 'next/navigation';
 import Link from 'next/link';
 import '../style/CateMenu.scss';
-export default function CateMenu({menu, opts}:{menu:[], opts:string}) {
+export default function CateMenu({menu, opts}:{menu:any[], opts:string}) {
   const params = useParams()
   const [slideActive, slideActiveSet] = useState(0);
   const cateBoxRef = useRef<HTMLDivElement>(null);
