@@ -8,10 +8,9 @@ export default function Layout(props: {
 }) {
   return (
     <>
-      <div className="container">
-        {props.children}
-        {props.modal}
-      </div>
+      
+      {props.children}
+      {props.modal}
       <div id="modal-root" className='fixed z-[9999]' />
     </>
   );

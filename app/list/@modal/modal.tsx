@@ -18,8 +18,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
       setMounted(true);
     }
     return () => {
-      console.log(mounted);
-      if(mounted) {ui.lock.using(false);}
+      if (mounted) { ui.lock.using(false); }
     }
   }, [mounted]);
 
