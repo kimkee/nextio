@@ -8,7 +8,7 @@ import "./modal.scss";
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<'div'>>(null);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     if (!dialogRef.current?.classList.contains('open')) {
