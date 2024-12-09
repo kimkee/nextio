@@ -88,8 +88,8 @@ export default function Page({
             More
           </button>
         </main>
-      </div>
       <CateMenu menu={genrMenu} opts={opts} />
+      </div>
     </>
   );
 }

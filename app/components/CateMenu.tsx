@@ -1,3 +1,5 @@
+
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams  } from 'next/navigation';
 import Link from 'next/link';
@@ -25,7 +27,7 @@ export default function CateMenu({menu, opts}:{menu:any[], opts:string}) {
   const cateID = params.cate;
   useEffect(() => {
     goSlide(slideActive);
-    console.log(menu);
+    // console.log(menu);
     
     return () => { }
     // eslint-disable-next-line
@@ -37,13 +39,12 @@ export default function CateMenu({menu, opts}:{menu:any[], opts:string}) {
       <div className="inr" ref={cateBoxRef}>
         <ul className="list">
           <li data-index="0" className={ "0" === cateID ? "active" : '' }>
-            <Link type="button" className="bt text-xs" href={`/list/${opts}/0`} ref={cateID === "0" ? activeBtnRef : null}>전체</Link>
+            <Link className="bt text-xs" href={`/list/${opts}/0`} ref={cateID === "0" ? activeBtnRef : null}>전체</Link>
           </li>
           { menu.map( (item: { id: string; name: string;  },idx:number) => { 
             return (
               <li data-index={idx+1} key={item.id} data-cate={item.id} className={ item.id.toString() === cateID ? "active" : '' }>
                 <Link 
-                  type="button" 
                   className="bt text-xs" 
                   href={`/list/${opts}/${item.id}`}
                   ref={item.id.toString() === cateID ? activeBtnRef : null}
