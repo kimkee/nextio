@@ -3,11 +3,7 @@ import Detail from "@/app/list/Detail";
 export const runtime = 'edge';
 export const dynamicParams = false;
 
-export default async function PhotoPage({
-  params,
-}: {
-  params: Promise<{ id: string, cate: string, opts: string }>;
-}) {
+export default async function View({ params }: { params: Promise<{ id: string, cate: string, opts: string }>; }) {
   const id = (await params).id;
   const cate = (await params).cate;
   const opts = (await params).opts;
