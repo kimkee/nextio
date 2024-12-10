@@ -43,42 +43,32 @@ export default function Nav() {
           <ul className="menu">
             <li className={isActive('home')}>
               <Link href="/home/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'house']} />
-                </i>
+                <i><FontAwesomeIcon icon={['fas', 'house']} /></i>
                 <em>Home</em>
               </Link>
             </li>
             <li className={isActive('list/movie')}>
               <Link href="/list/movie/0/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'clapperboard']} />
-                </i>
+                <i><FontAwesomeIcon icon={['fas', 'clapperboard']} /></i>
                 <em>Movie</em>
               </Link>
             </li>
             <li className={isActive('list/tv')}>
               <Link href="/list/tv/0/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'tv']} />
-                </i>
+                <i><FontAwesomeIcon icon={['fas', 'tv']} /></i>
                 <em>TV</em>
               </Link>
             </li>
             <li className={isActive('search/') || isActive('test/')}>
               <Link href="/search/movie/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'search']} />
-                </i>
+                <i><FontAwesomeIcon icon={['fas', 'search']} /></i>
                 <em>Search</em>
               </Link>
               {/* <Link href={`/test/movie/0//`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "search"]} /></i><em>Search</em></Link> */}
             </li>
             <li className={isActive('user/')}>
               <Link href="/user/62" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'user']} />
-                </i>
+                <i><FontAwesomeIcon icon={['fas', 'user']} /></i>
                 <em>MY</em>
               </Link>
             </li>

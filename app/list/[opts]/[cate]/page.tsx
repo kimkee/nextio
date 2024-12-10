@@ -44,71 +44,65 @@ export default function Page({
       });
   };
 
-  const fetchMoive = async (page:any)=>{
+  const fetchMoive = async (page: any) => {
 
     const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${page}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-    await axios.get( fetchURL ).then(res =>{
-      console.log(res.data);console.log( "로드 " + page );
-      movieListSet( prevList => [...prevList, ...res.data.results] );
+    await axios.get(fetchURL).then(res => {
+      console.log(res.data); console.log("로드 " + page);
+      movieListSet(prevList => [...prevList, ...res.data.results]);
       console.log(`callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} `);
       callStat = true;
       console.log(`callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} `);
       loadErrorSet("");
-      nowPageSet({ "pge":res.data.page, "tot":res.data.total_pages });
-      if( res.data.total_pages <= page ) {
+      nowPageSet({ "pge": res.data.page, "tot": res.data.total_pages });
+      if (res.data.total_pages <= page) {
         callStat = false;
         loadHideSet(" hide");
-      }else{
+      } else {
         loadHideSet("");
       };
       loadActiveSet("");
 
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e);
       callStat = true;
       loadErrorSet(" error");
-    }); 
+    });
   }
 
-  const [nowPage, nowPageSet] = useState({ "pge":0, "tot":0 });
+  const [nowPage, nowPageSet] = useState({ "pge": 0, "tot": 0 });
   const [loadActive, loadActiveSet] = useState(``);
   const [loadHide, loadHideSet] = useState(``);
   const [loadError, loadErrorSet] = useState(``);
   let callStat = true;
-  const scrollEvent = ()=> {
+  const scrollEvent = () => {
     const wHt = ui.viewport.height();
     const docH = ui.viewport.docHeight();
     const scr = ui.viewport.scrollTop() + wHt + 300;
     // console.log(callStat +" =  "+  page);
     if (docH <= scr && callStat === true) {
       console.log();
-      console.log("바닥도착 : "+ page);
+      console.log("바닥도착 : " + page);
 
       loadActiveSet(" active");
       callStat = false;
       console.log(callStat);
       console.log(loadActive);
-      
-      if(ui.lock.stat) {
+
+      if (ui.lock.stat) {
         callStat = true;
         return
       };
-      setTimeout( ()=> {
-        // setPage( page + 1 );
+      setTimeout(() => {
         page = page + 1;
-        fetchMoive( page   );
-      } ,50 );
+        fetchMoive(page);
+      }, 300);
     }
   };
   useEffect(() => {
-    // setCurrentCate(cate);
-    // setCurrentOpts(opts);
-    // document.body.classList.remove('is-lock');
-    // document.documentElement.classList.remove('is-lock');
     console.log(movieList);
-    
-    movieListSet([])
-    window.scrollTo(0,0);
+    movieListSet([]);
+    window.scrollTo(0, 0);
     fetchMoive(1);
     getCate();
     window.addEventListener("scroll", scrollEvent);
@@ -124,21 +118,21 @@ export default function Page({
       {/* <meta name="description" content={`상세 정보`} /> */}
       <div className="container flex-col movie-list">
         <main className="p-3">
-        <div className='poster-list'>
-          
-          { !movieList.length 
-          ?
-          <ul className='list skelt'>
-            {/* <Skeleton opts={ {type: 'movie-list', num: 20} } /> */}
-            Skeleton...
-          </ul>
-          :
-          <>
-          <ul className="grid grid-cols-4 gap-3">
-            {movieList.map((data,num) => (
-              <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                <ItemB data={data} opts={opts} cate={cate} />
-                {/* <Link
+          <div className='poster-list'>
+
+            {!movieList.length
+              ?
+              <ul className='list skelt'>
+                {/* <Skeleton opts={ {type: 'movie-list', num: 20} } /> */}
+                Skeleton...
+              </ul>
+              :
+              <>
+                <ul className="grid grid-cols-4 gap-3">
+                  {movieList.map((data, num) => (
+                    <li key={data.id + '_' + num} data-id={data.id + '_' + num}>
+                      <ItemB data={data} opts={opts} cate={cate} />
+                      {/* <Link
                   className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
                   href={`/list/${opts}/${cate}/${data.id}`}
                   passHref
@@ -148,30 +142,30 @@ export default function Page({
                   <p>{opts} - {cate} - {data.id}</p>
                   <p>{data.poster_path}</p>
                 </Link> */}
-              </li>
-            ))}
-          </ul>
-          <div className={`ui-loadmore${loadActive+loadHide+loadError} mt-3`}>
-            <div className="flex justify-center h-12 items-center loading">
-              <Loading opts={{ type: 'glx' }} />
-            </div>
-            <button onClick={ (e)=>{ callStat = true; fetchMoive( page ); } } type="button" className="btn-load">
-              <i><FontAwesomeIcon icon={["fas", "rotate-right"]} /></i>
-            </button>
-          </div>
-          {/* <button
+                    </li>
+                  ))}
+                </ul>
+                <div className={`ui-loadmore${loadActive + loadHide + loadError} mt-3`}>
+                  <div className="flex justify-center h-12 items-center loading">
+                    <Loading opts={{ type: 'glx' }} />
+                  </div>
+                  <button onClick={(e) => { callStat = true; fetchMoive(page); }} type="button" className="btn-load">
+                    <i><FontAwesomeIcon icon={["fas", "rotate-right"]} /></i>
+                  </button>
+                </div>
+                {/* <button
             className="btn btn-xl w-full mt-6"
             onClick={ (e)=>{ callStat = true; fetchMoive( page ); } }
           >
             More
           </button> */}
-          </>
-          }
+              </>
+            }
           </div>
           <div className="page-set">
-          { nowPage.tot > 0 &&
-            <div className="inr"><div className="pg"><i className="p">{nowPage.pge}</i> <i className="s">/</i> <i className="t">{nowPage.tot}</i></div></div>
-          }
+            {nowPage.tot > 0 &&
+              <div className="inr"><div className="pg"><i className="p">{nowPage.pge}</i> <i className="s">/</i> <i className="t">{nowPage.tot}</i></div></div>
+            }
           </div>
         </main>
       </div>
