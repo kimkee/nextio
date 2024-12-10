@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.box{position: relative;display: block;}
+.box{position: relative;display: block; margin-bottom: 0.1rem;}
 .box .cont{position: relative;}
 .box .desc{   position: absolute; left: 0; right: 0; bottom: 0; background-image: linear-gradient(360deg, rgb(0 0 0 / 62%), transparent); padding: 4% 4%;}
 .box .tits{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
@@ -10,7 +10,7 @@
 .box .cont .pics .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #222222;}
 
 .ui-star{display: inline-flex; align-items: center;}
-.ui-star i{color: #61dafb;font-style: normal;font-weight: 900;vertical-align: middle;line-height: 1;}
+.ui-star i{color: #61dafb;font-style: normal;font-weight: 900;vertical-align: middle;line-height: 1; font-size: clamp(0.75rem,5vw,0.75rem);}
 .ui-star i::before{}
 .ui-star i::after{color:#888; opacity: 1;}
 .ui-star i.fa-star-sharp-half:after::before{}
@@ -18,4 +18,5 @@
 .ui-star i.h::before{content: "\e28c"; font-family: "Font Awesome 6 Duotone";}
 .ui-star i.e::before{content: "\e28b"; font-family: "Font Awesome 6 Duotone";}
 .ui-star i.e::after{content: "\e28b\e28b"; font-family: "Font Awesome 6 Duotone";}
-.ui-star em{ line-height: 1; margin-left: 0.2rem; font-size: 0.9rem; color: #ffffff;}
+.ui-star em{ line-height: 1; margin-left: 0.2rem; font-size: clamp(0.75rem,5vw,0.75rem); color: #ffffff;}
+

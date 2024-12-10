@@ -9,6 +9,7 @@ import { use } from 'react';
 import ui from '@/app/lib/ui';
 import Img from '@/app/components/Img';
 import ItemB from '@/app/components/ItemB';
+import './list.css'
 interface Genre {
   id: number;
   name: string;
@@ -154,6 +155,11 @@ export default function Page({
             More
           </button>
           </>
+          }
+          </div>
+          <div className="page-set">
+          { nowPage.tot > 0 &&
+            <div className="inr"><div className="pg"><i className="p">{nowPage.pge}</i> <i className="s">/</i> <i className="t">{nowPage.tot}</i></div></div>
           }
           </div>
         </main>
