@@ -22,7 +22,7 @@ export default function ItemB({data, opts, cate}: any) {
           <StarPoint point={data.vote_average} />
         </div>
       </div>
-      <div className="mt-1 text-xs line-clamp-1 overflow-hidden">{tit}</div>
+      <div className="mt-1 text-xs line-clamp-1 overflow-hidden break-all">{tit}</div>
       
     </Link>
   </>  

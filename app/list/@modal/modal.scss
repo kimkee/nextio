@@ -1,6 +1,7 @@
 @charset "utf-8";
 .popup{
     @apply fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center;
+    padding-right: var(--scrPad);
 }
 .popup .pbd{
     @apply my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh ;
