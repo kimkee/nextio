@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
-import '@/app/fontawesome';
+import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 export const runtime = 'edge';

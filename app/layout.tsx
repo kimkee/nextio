@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 // import localFont from "next/font/local";
-import "./globals.scss";
+import '@/app/style/globals.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google';
@@ -29,7 +29,7 @@ export default function RootLayout(props: {
         </div>
         <Ui />
         {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
-        <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />{/* Cloudflare Web Analytics */}
+        <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />
       </body>
     </html>
   );

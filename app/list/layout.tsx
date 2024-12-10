@@ -1,4 +1,3 @@
-import '@/app/globals.scss';
 
 // export const metadata = { title: '영화', description: '영화 A sample Next.js app' };
 

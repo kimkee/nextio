@@ -27,8 +27,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    <div className="pop-layer popup">
-      <div className="pbd" ref={dialogRef} >
+    <article className="pop-layer popup" ref={dialogRef}>
+      <div className="pbd" >
         <button onClick={onDismiss} className="btn-pop-close">
           <i><FontAwesomeIcon icon={["fas", "arrow-left"]} /></i>
         </button>
@@ -43,7 +43,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </div>
-    </div>,
+    </article>,
     document.getElementById('modal-root')!
   );
 }

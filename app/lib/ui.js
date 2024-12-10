@@ -8,8 +8,8 @@ const ui = {
         console.log("dsfafsafdsffsafasfdfas");
     },
     error:{
-        poster: e => e.target.src=`${import.meta.env.VITE_APP_PUBLIC_URL}img/common/non_poster.png`,
-        user: e => e.target.src=`${import.meta.env.VITE_APP_PUBLIC_URL}img/common/user.png`
+        poster: e => e.target.src=`${process.env.NEXT_PUBLIC_URL}img/common/non_poster.png`,
+        user: e => e.target.src=`${process.env.NEXT_PUBLIC_URL}img/common/user.png`
     },
     iosx:{ // 아이폰X 여백값
         top: ()=>    parseInt(getComputedStyle(document.documentElement).getPropertyValue("--safe-top").replace(/[^0-9]/g, "")) || 0 ,
@@ -167,34 +167,6 @@ const ui = {
         
         }
     },
-    // elip:{ // 5줄이상 내용더보기 
-	// 	init:function(){
-	// 		this.evt();
-	// 		this.set();
-	// 	},
-	// 	evt:function(){
-	// 		$(document).on("click", "[data-ui='elips'] .btn-tog", function() {
-	// 			if ($(this).closest("[data-ui='elips']").hasClass("open")) {
-	// 				$(this).closest("[data-ui='elips']").removeClass("open");
-	// 				$(this).text("내용더보기");
-	// 			} else {
-	// 				$(this).closest("[data-ui='elips']").addClass("open");
-	// 				$(this).text("내용닫기");
-	// 			}
-	// 		});
-	// 	},
-	// 	set:function(){
-	// 		$("[data-ui='elips']").each(function(){
-	// 			var txtH = $(this).find(".txt");
-				
-	// 			if(txtH.height()>105){
-	// 				txtH.closest("[data-ui='elips']").addClass("elips");
-	// 			}else{
-	// 				txtH.closest("[data-ui='elips']").removeClass("elips");
-	// 			}
-	// 		});
-	// 	}
-	// },
     alert: function (msg, params) { // 커스텀 알럿
 
         let opt = Object.assign({

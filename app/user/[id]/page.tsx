@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
-import '@/app/fontawesome';
+import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import { supabase } from '@/app/supabase';

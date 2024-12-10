@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'; //useState, useEffect
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link'
 import clsx from 'clsx';
-import '@/app/fontawesome';
+import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { supabase } from '@/app/supabase.js';
 import Image from 'next/image';
