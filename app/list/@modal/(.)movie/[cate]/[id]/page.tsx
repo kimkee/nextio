@@ -8,11 +8,11 @@ export default async function MovieModal({
 }) {
   const id = (await params).id;
   const cate = (await params).cate;
-  const opts = (await params).opts;
+  const opts = 'movie';
   return (
     <Modal>
       Movie / 장르 : {cate} / 영상:{id}
-      <Detail params={{ opts, cate, id }}/>
+      <Detail params={{ opts, cate, id }} />
     </Modal>
   );
 }

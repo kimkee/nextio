@@ -30,9 +30,8 @@ export default function Page({
 
   const getCate = async () => {
     await axios
-      .get(`https://api.themoviedb.org/3/genre/${opts}/list?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`)
+      .get(`//api.themoviedb.org/3/genre/${opts}/list?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`)
       .then((res) => {
-        console.log(res.data.genres);
         genrMenuSet(res.data.genres);
       });
   };
@@ -49,6 +48,8 @@ export default function Page({
 
   return (
     <>
+      <title>{`${opts == 'movie' ? "영화" : "TV"} 목록`}</title>
+      {/* <meta name="description" content={`상세 정보`} /> */}
       <div className="container flex-col">
         <main className="contents ">
 
