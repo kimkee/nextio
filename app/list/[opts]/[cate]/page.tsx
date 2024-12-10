@@ -10,6 +10,8 @@ import ui from '@/app/lib/ui';
 import Img from '@/app/components/Img';
 import ItemB from '@/app/components/ItemB';
 import './list.css'
+import Loading from '@/app/components/Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface Genre {
   id: number;
   name: string;
@@ -95,7 +97,7 @@ export default function Page({
         // setPage( page + 1 );
         page = page + 1;
         fetchMoive( page   );
-      } ,1400 );
+      } ,50 );
     }
   };
   useEffect(() => {
@@ -120,9 +122,10 @@ export default function Page({
     <>
       <title>{`${opts == 'movie' ? "영화" : "TV"} 목록`}</title>
       {/* <meta name="description" content={`상세 정보`} /> */}
-      <div className="container flex-col">
+      <div className="container flex-col movie-list">
         <main className="p-3">
         <div className='poster-list'>
+          
           { !movieList.length 
           ?
           <ul className='list skelt'>
@@ -148,12 +151,20 @@ export default function Page({
               </li>
             ))}
           </ul>
-          <button
+          <div className={`ui-loadmore${loadActive+loadHide+loadError} mt-3`}>
+            <div className="flex justify-center h-12 items-center loading">
+              <Loading opts={{ type: 'glx' }} />
+            </div>
+            <button onClick={ (e)=>{ callStat = true; fetchMoive( page ); } } type="button" className="btn-load">
+              <i><FontAwesomeIcon icon={["fas", "rotate-right"]} /></i>
+            </button>
+          </div>
+          {/* <button
             className="btn btn-xl w-full mt-6"
             onClick={ (e)=>{ callStat = true; fetchMoive( page ); } }
           >
             More
-          </button>
+          </button> */}
           </>
           }
           </div>
@@ -163,8 +174,8 @@ export default function Page({
           }
           </div>
         </main>
-        <CateMenu menu={genrMenu} opts={opts} />
       </div>
+      <CateMenu menu={genrMenu} opts={opts} />
     </>
   );
 }

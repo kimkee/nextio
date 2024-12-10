@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link'
 import clsx from 'clsx';
 import '@/app/lib/fontawesome';
+import ui from  '@/app/lib/ui';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { supabase } from '@/app/supabase.js'; 
@@ -14,12 +15,23 @@ export default function Nav() {
   
 
   const isActive = (els:string) => pathname.includes(`${els}`) ? "active" : "";
-  const [isOnTop, setIsOnTop] = useState('');
+  const [isOnTop, setIsOnTop] = useState(false);
+  const goTop = ()=> ui.scrollTo("body", 0 , 200 );
+  const scrollEvent = ()=> {
+    if ( ui.lock.stat ) return;
+    ui.viewport.scrollTop() > 50 ? setIsOnTop(true) : setIsOnTop(false);
+  };
+  useEffect( () => {
+    window.addEventListener("scroll", scrollEvent);
+    return ()=>{
+      window.removeEventListener("scroll", scrollEvent);
+    }
+  },[]);
   return (
     <>
-      {/* <div className={`floatnav ${ isOnTop ? `on-top` : `` }` }>
-        <button type="button" className="bt top"><i className="fa-solid fa-arrow-up"></i><em>위로</em></button>
-      </div> */}
+      <div className={`floatnav ${ isOnTop ? `on-top` : `` }` }>
+        <button type="button" onClick={goTop} className="bt top"><i className='h-6 w-6 inline-flex'><FontAwesomeIcon icon={["fas", "arrow-up"]} /></i><em>위로</em></button>
+      </div>
       
       <nav id="menubar" className="menubar">
         <div className="inr">

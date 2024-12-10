@@ -279,12 +279,12 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ui-alert>.pbd .btn-close{width: 24rem;height: 24rem;position:absolute;right: 10rem;top: 10rem;font-size: 1.125rem;overflow:hidden;}
 
 /* 로딩 갤럭시 */
-.ui-load-glx{display: inline-block;position: relative;width: 18px;height: 18px;vertical-align: middle;} 
+.ui-load-glx{display: inline-block;position: relative;width: 1.5rem;height: 1.5rem;vertical-align: middle;} 
 .ui-load-glx.abs{position: absolute;left: 0;right: 0;bottom: 0;top: 0;display: flex;width: auto;height: auto;align-items: center;justify-content: center;}
 .ui-load-glx.abs .gbx{}
 .ui-load-glx.static{position: static;}
-.ui-load-glx>.gbx{width: 18px;height: 18px;display: inline-block;}
-.ui-load-glx>.gbx .bx{animation: rotate 1.2s linear infinite;display: flex;position: relative;width: 100%;height: 100%;top: 50%;left: 50%;margin-top: -9px;margin-left: -9px;}
+.ui-load-glx>.gbx{width: 1.5rem;height: 1.5rem;display: inline-block;}
+.ui-load-glx>.gbx .bx{animation: rotate 1.2s linear infinite;display: flex;position: relative;width: 100%;height: 100%;top: 50%;left: 50%;margin-top: -0.75rem;margin-left: -0.75rem;}
 .ui-load-glx>.gbx .bx i{width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
 .ui-load-glx>.gbx .bx i::before{animation: bounce 0.5s alternate infinite;position: absolute;left: 50%;top: 50%;width: 20%;height: 20%;background: #0481ff;border-radius: 10px;display: inline-flex;content:"";}
 .ui-load-glx>.gbx .bx i:first-child::before {background: #00d593;}
@@ -304,6 +304,33 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 @keyframes rotate {
     0%{ transform: rotate(-360deg); }
 }
+.ui-loadmore .btn-load i{animation:loading-rotate 1s infinite steps(8);}
+.ui-loadmore .btn-load{position:absolute;left:-9999rem;width:100%;box-sizing:border-box;border-radius: 5rem;border:none;text-align:center;height: 3rem;padding:0 2rem;box-sizing:border-box;}
+.ui-loadmore.error .loading{display: none;}
+.ui-loadmore.hide{display: none;}
+.ui-loadmore.error .btn-load{ position:relative; left:auto; width:100%; height: 3rem; }
+@keyframes loading-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+@-webkit-keyframes loading-rotate {
+    from { -webkit-transform: rotate(0deg); } 
+    to   { -webkit-transform: rotate(360deg); }
+}
+
+
+/* 플로팅 탑버튼 글쓰기버튼 */
+.floatnav{position:fixed;text-align: right;padding: 0rem 1.25rem;left: 50%;max-width: var(--mwide);width: 100%;height: 0;z-index: 500;transition: all 0.3s;bottom: calc(4.875rem + var(--safe-bottom));transform: translate3D(-50%,5.625rem,0rem);transition: transform 0.2s;}
+.floatnav.is-top{bottom: 1.25rem;bottom: calc(1.25rem + var(--safe-bottom));transition: none;}
+.floatnav .bt{font-size: 0rem;width: 52rem;height: 3.25rem;display: inline-block;background: no-repeat #555555;background-size: 100% auto;margin: 0.875rem auto 0 auto;border-radius: 35rem;box-shadow: 0rem 0rem 6rem rgb(0 0 0 / 49%);}
+.floatnav .bt i{font-size: 1.125rem; line-height: 1;justify-content: center; align-items: center;}
+.floatnav .bt::before{}
+.floatnav .bt.top{ background: rgb(255 255 255 / 70%);border: solid rgba(0, 0, 0, 0.1) 1px;text-align: center;width: 2.8rem;height: 2.8rem;color: #000;}
+.floatnav.on-top{transform: translate3D(-50%,-3.75rem,0rem);transition: transform 0.2s;}
+.floatnav.on-top .bt.top{}
+
+.movie-list~.floatnav.on-top{bottom: calc(8.25rem + var(--safe-bottom));}
+
 
 ::-webkit-scrollbar{  width:10px;  height:10px;}
 ::-webkit-scrollbar-track{background-color: #ededed;}
