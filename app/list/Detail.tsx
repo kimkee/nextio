@@ -95,17 +95,17 @@ export default function Detail({
       {/* <p>Detail - {params.opts}</p>
       <p>{JSON.stringify(params)}</p> */}
 
+      <div className='
+          bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-sm
+          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-[30rem] after:bg-gradient-to-b from-transparent to-[#111111]'
+        style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad)' }}
+      ></div>
       <div className='movie-detail relative text-white'>
-        <div className='
-            bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-[0] max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-sm
-            after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[30rem] after:bg-gradient-to-b from-transparent to-[#111111]'
-          style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad)' }}
-        ></div>
         {!datas || !casts || !moves ? (
           // <Skeleton opts={ {type: 'movie-detail'} } />
           <Loading opts={{ type: 'glx' }} />
         ) : (
-          <div className='m-info relative'>
+          <div className='m-info relative z-1'>
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
             <meta
@@ -196,28 +196,30 @@ export default function Detail({
                 </Link>
               </div>
             </div>
+
+            <div className='grid grid-cols-4 gap-2 mt-6'>
+              <Img
+                width={300}
+                height={450}
+                src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg'
+                alt='extio'
+                srcerr='/img/common/non_poster.png'
+                className='w-full h-auto'
+              />
+            </div>
+            <div className='flex flex-col mt-4 gap-4'>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+            </div>            
           </div>
         )}
       </div>
 
-      <div className='grid grid-cols-4 gap-2 mt-6'>
-        <Img
-          width={300}
-          height={450}
-          src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg'
-          alt='extio'
-          srcerr='/img/common/non_poster.png'
-          className='w-full h-auto'
-        />
-      </div>
-      <div className='flex flex-col mt-4 gap-4'>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-      </div>
+
     </>
   );
 }
