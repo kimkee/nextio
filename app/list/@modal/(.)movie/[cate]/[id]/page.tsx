@@ -1,10 +1,10 @@
-import Detail from "@/app/list/Detail";
-import { Modal } from "../../../modal";
+import Detail from '@/app/list/Detail';
+import { Modal } from '../../../modal';
 export const runtime = 'edge';
 export default async function MovieModal({
   params,
 }: {
-  params: Promise<{ id: string, cate: string, opts: string }>;
+  params: Promise<{ id: string; cate: string; opts: string }>;
 }) {
   const id = (await params).id;
   const cate = (await params).cate;

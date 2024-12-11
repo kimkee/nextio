@@ -1,9 +1,13 @@
-import Detail from "@/app/list/Detail";
+import Detail from '@/app/list/Detail';
 
 export const runtime = 'edge';
 export const dynamicParams = false;
 
-export default async function View({ params }: { params: Promise<{ id: string, cate: string, opts: string }>; }) {
+export default async function View({
+  params,
+}: {
+  params: Promise<{ id: string; cate: string; opts: string }>;
+}) {
   const id = (await params).id;
   const cate = (await params).cate;
   const opts = (await params).opts;
@@ -11,7 +15,9 @@ export default async function View({ params }: { params: Promise<{ id: string, c
   return (
     <div className="container">
       <main className="contents">
-        <h2>/list/{opts}/{cate}/{id}</h2>
+        <h2>
+          /list/{opts}/{cate}/{id}
+        </h2>
         <div className="flex flex-col">
           <p>opts : {opts}</p>
           <p>cate : {cate}</p>

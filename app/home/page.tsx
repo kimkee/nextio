@@ -1,15 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
+import Image from 'next/image';
 
 export const runtime = 'edge';
 export default function Home() {
   return (
-    <div className="container page home">
-      <main className="flex w-full flex-col items-center flex-1 justify-center">
-
-
-
-        <Image width={128} height={128} className="w-16" src="/img/logo_nextjs.png" alt="Next.js Logo" />
+    <div className='container page home'>
+      <main className='flex w-full flex-col items-center flex-1 justify-center'>
+        <Image width={128} height={128} className='w-16' src='/img/logo_nextjs.png' alt='Next.js Logo' />
 
         {/* <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
             <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p><p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p> <p> Welcome to <a href="https://nextjs.org">Next.js!</a> </p>
@@ -24,6 +21,5 @@ export default function Home() {
              */}
       </main>
     </div>
-
   );
 }

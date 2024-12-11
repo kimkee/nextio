@@ -15,8 +15,8 @@ export default function Detail({ params }: { params: { opts: string, cate: strin
           <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
           <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
           <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
-          <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.123jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
-          <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.123jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
+          <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
+          <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
           <Img width={300} height={450}  src='http://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg' alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
         </div>
       <div className="flex flex-col mt-4 gap-4">

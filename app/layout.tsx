@@ -27,6 +27,7 @@ export default function RootLayout(props: {
           {props.children}
           <Nav />
         </div>
+        <div id='modal-root' className='fixed z-[9999]' />
         <Ui />
         {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId="G-9BBCJ4KC3Z" />

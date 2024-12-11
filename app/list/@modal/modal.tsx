@@ -4,8 +4,8 @@ import { type ElementRef, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import "./modal.scss";
-import ui from "@/app/lib/ui";
+import '@/app/style/modal.scss';
+import ui from '@/app/lib/ui';
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<'div'>>(null);
@@ -18,8 +18,10 @@ export function Modal({ children }: { children: React.ReactNode }) {
       setMounted(true);
     }
     return () => {
-      if (mounted) { ui.lock.using(false); }
-    }
+      if (mounted) {
+        ui.lock.using(false);
+      }
+    };
   }, [mounted]);
 
   function onDismiss() {
@@ -28,9 +30,11 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
   return createPortal(
     <article className="pop-layer popup" ref={dialogRef}>
-      <div className="pbd" >
+      <div className="pbd">
         <button onClick={onDismiss} className="btn-pop-close">
-          <i><FontAwesomeIcon icon={["fas", "arrow-left"]} /></i>
+          <i>
+            <FontAwesomeIcon icon={['fas', 'arrow-left']} />
+          </i>
         </button>
         <div className="phd h-0">
           <div className="inr">
@@ -38,9 +42,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="pct">
-          <div className="poptents">
-            {children}
-          </div>
+          <div className="poptents">{children}</div>
         </div>
       </div>
     </article>,

@@ -1,5 +1,5 @@
 // getUser.ts
-import { supabase } from '@/app/supabase';
+import { supabase } from "@/app/supabase";
 
 interface User {
   id: string;
