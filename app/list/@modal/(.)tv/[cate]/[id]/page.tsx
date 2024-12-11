@@ -11,7 +11,7 @@ export default async function TvModal({
   const opts = 'tv';
   return (
     <Modal>
-      <div className="block">Tv / 장르 : {cate} / 영상:{id}</div>
+      {/* <div className="block">Tv / 장르 : {cate} / 영상:{id}</div> */}
       <Detail params={{ opts, cate, id }} />
     </Modal>
   );

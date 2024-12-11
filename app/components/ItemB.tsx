@@ -13,13 +13,13 @@ export default function ItemB({ data, opts, cate }: any) {
 
   return (
     <>
-      <Link className='box block relative' href={`/list/${opts}/${cate}/${data.id}`} scroll={false}>
+      <Link className='box block relative' href={`/list/${opts}/${cate}/${data.id}`} >
         <div className="cont">
           <div className="pics">
             <img src={`${img}`} alt={tit} className='img' /* onError={ui.error.poster} */ />
           </div>
           <div className="desc">
-            <StarPoint point={data.vote_average} />
+            <StarPoint point={data.vote_average} opts={opts} />
           </div>
         </div>
         <div className="mt-1 text-xs line-clamp-1 overflow-hidden break-all">{tit}</div>

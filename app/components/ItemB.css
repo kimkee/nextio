@@ -20,3 +20,6 @@
 .ui-star i.e::after{content: "\e28b\e28b"; font-family: "Font Awesome 6 Duotone";}
 .ui-star em{ line-height: 1; margin-left: 0.2rem; font-size: clamp(0.75rem,5vw,0.75rem); color: #ffffff;}
 
+.ui-star.lg em{font-size: 0.8rem;}
+.ui-star.lg i{font-size: 0.8rem;}
+

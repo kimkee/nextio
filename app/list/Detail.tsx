@@ -10,7 +10,11 @@ import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
-export default function Detail({ params }: { params: { opts: string; cate: string; id: string } }) {
+export default function Detail({
+  params,
+}: {
+  params: { opts: string; cate: string; id: string };
+}) {
   const postID = params.id;
   const opts = params.opts;
   const cate = params.cate;
@@ -27,7 +31,9 @@ export default function Detail({ params }: { params: { opts: string; cate: strin
       .then((response) => {
         console.log('영화정보', response.data);
         setDatas(response.data);
-        const bgDm = response.data.backdrop_path ? response.data.backdrop_path : response.data.poster_path;
+        const bgDm = response.data.backdrop_path
+          ? response.data.backdrop_path
+          : response.data.poster_path;
         setBgImg('https://image.tmdb.org/t/p/w780' + bgDm);
 
         // 팝업 헤더에 제목
@@ -89,78 +95,104 @@ export default function Detail({ params }: { params: { opts: string; cate: strin
       {/* <p>Detail - {params.opts}</p>
       <p>{JSON.stringify(params)}</p> */}
 
-      <div className='movie-detail'>
-        <div className='bgs' style={{ backgroundImage: `url(${bgImg})` }}></div>
+      <div className='movie-detail relative text-white'>
+        <div className='
+            bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-[0] max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-sm
+            after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[30rem] after:bg-gradient-to-b from-transparent to-[#111111]'
+          style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad)' }}
+        ></div>
         {!datas || !casts || !moves ? (
           // <Skeleton opts={ {type: 'movie-detail'} } />
           <Loading opts={{ type: 'glx' }} />
         ) : (
-          <div className='m-info'>
+          <div className='m-info relative'>
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
-            <meta property='og:image' content={'//image.tmdb.org/t/p/w300' + datas.poster_path} />
+            <meta
+              property='og:image'
+              content={'//image.tmdb.org/t/p/w300' + datas.poster_path}
+            />
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
-            <div className='info'>
-              <div className='desc'>
-                <p className='tit'>
+            <div className='info flex flex-wrap justify-between flex-row'>
+              <div className='desc w-4/12 flex-1 mr-5'>
+                <p className='tit text-xl'>
                   {datas.title || datas.name}
                   <button className='refresh' onClick={refrashDatas}>
                     <i className='fa-solid fa-rotate'></i>
                   </button>
                 </p>
-                {datas.tagline && <p className='sit'>{datas.tagline}</p>}
-                <p className='tio'>{datas.original_title || datas.original_name}</p>
+                {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
+                <p className='tio text-xt text-[#cccccc] mt-1'>
+                  {datas.original_title || datas.original_name}
+                </p>
 
-                <div className='star'>
-                  <StarPoint point={datas.vote_average} />
+                <div className='star !text-xl mt-3'>
+                  <StarPoint point={datas.vote_average} opts={{ cls: 'lg' }}/>
                 </div>
-                <div className='cate'>
+                <div className='cate mt-4'>
                   {datas.genres.map((item: any) => (
-                    <em className='ico' key={item.id}>
+                    <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] mr-1 mt-0.5 text-xt' key={item.id}>
                       {' '}
                       {item.name}
                     </em>
                   ))}
                 </div>
-                <ul className='lst'>
-                  <li className='vot'>
-                    <i className='fa-regular fa-thumbs-up'></i> <b>평점</b> : {datas.vote_average} / 10
+                <ul className='lst mt-4'>
+                  <li className='vot text-12 text-[#53a4bb]'>
+                    <i className='fa-regular fa-thumbs-up'></i> <b>평점</b> :{' '}
+                    {datas.vote_average} / 10
                   </li>
                   {datas.release_date && (
-                    <li className='opn'>
-                      <i className=' fa-regular fa-camera-movie'></i> <b>개봉</b> : {datas.release_date}
+                    <li className='opn text-12 text-[#53a4bb]'>
+                      <i className=' fa-regular fa-camera-movie'></i>{' '}
+                      <b>개봉</b> : {datas.release_date}
                     </li>
                   )}
                   {datas.first_air_date && (
-                    <li className='opn'>
-                      <i className=' fa-regular fa-camera-movie'></i> {datas.first_air_date} ~ {datas.last_air_date}
+                    <li className='opn text-12 text-[#53a4bb]'>
+                      <i className=' fa-regular fa-camera-movie'></i>{' '}
+                      {datas.first_air_date} ~ {datas.last_air_date}
                     </li>
                   )}
 
                   {datas.runtime && (
-                    <li className='tim'>
-                      <i className='fa-regular fa-timer'></i> <b>시간</b> : {datas.runtime} 분
+                    <li className='tim text-12 text-[#53a4bb]'>
+                      <i className='fa-regular fa-timer'></i> <b>시간</b> :{' '}
+                      {datas.runtime} 분
                     </li>
                   )}
                   {datas.number_of_seasons && (
-                    <li className='tim'>
-                      <i className='fa-regular fa-timer'></i> <b>시즌</b> : {datas.number_of_seasons}개 - <b>에피소드</b> : {datas.number_of_episodes}개
+                    <li className='tim text-12 text-[#53a4bb]'>
+                      <i className='fa-regular fa-timer'></i> <b>시즌</b> :{' '}
+                      {datas.number_of_seasons}개 - <b>에피소드</b> :{' '}
+                      {datas.number_of_episodes}개
                     </li>
                   )}
                   {datas.homepage && (
-                    <li className='web'>
+                    <li className='web text-12 text-[#53a4bb] break-all'>
                       <i className='fa-regular fa-globe'></i>{' '}
-                      <a className='lk' href={datas.homepage} target='_blank' rel='noopener noreferrer'>
+                      <a
+                        className='lk text-[#53a4bb]'
+                        href={datas.homepage}
+                        target='_blank'
+                        rel='noopener noreferrer'>
                         {datas.homepage}
                       </a>
                     </li>
                   )}
                 </ul>
               </div>
-              <div className='thum'>
-                <Link href={`/list/${opts}/${cate}/${id}/poster/0`} className='pics'>
-                  <img src={'//image.tmdb.org/t/p/w300' + datas.poster_path} alt={datas.title || datas.name} className='img' onError={ui.error.poster} />
+              <div className='thum w-5/12'>
+                <Link
+                  href={`/list/${opts}/${cate}/${id}/poster/0`}
+                  className='pics block relative overflow-hidden rounded-md' style={{ paddingBottom: 'calc(1200% / 780 * 93)' }}>
+                  <img
+                    className='img absolute object-cover w-full h-full'
+                    src={'//image.tmdb.org/t/p/w300' + datas.poster_path}
+                    alt={datas.title || datas.name}
+                    onError={ui.error.poster}
+                  />
                 </Link>
               </div>
             </div>
@@ -168,7 +200,7 @@ export default function Detail({ params }: { params: { opts: string; cate: strin
         )}
       </div>
 
-      {/* <div className='grid grid-cols-4 gap-2'>
+      <div className='grid grid-cols-4 gap-2 mt-6'>
         <Img
           width={300}
           height={450}
@@ -179,13 +211,13 @@ export default function Detail({ params }: { params: { opts: string; cate: strin
         />
       </div>
       <div className='flex flex-col mt-4 gap-4'>
-        <p className='text-lg font-medium'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-          cumque consequuntur deserunt esse alias. Eligendi nobis laborum
-          quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique
-          dolores a ratione?
-        </p>
-      </div> */}
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+        <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+      </div>
     </>
   );
 }

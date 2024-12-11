@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import ui from '/src/ui.js';
 
-export default function StarPoint({ point }) {
+export default function StarPoint({ point, opts }) {
   const [res, resSet] = useState(null);
 
   const stars = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
@@ -23,7 +23,7 @@ export default function StarPoint({ point }) {
     // eslint-disable-next-line
   }, [res]);
   return (
-    <em className="ui-star">
+    <em className={`ui-star ${opts.cls}`}>
       <i>
         <FontAwesomeIcon icon={["fas", "fa-star"]} />
       </i>
