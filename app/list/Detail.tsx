@@ -10,6 +10,7 @@ import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Detail({
   params,
 }: {
@@ -116,10 +117,10 @@ export default function Detail({
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
               <div className='desc w-4/12 flex-1 mr-5'>
-                <p className='tit text-xl'>
+                <p className='tit text-xl font-bold'>
                   {datas.title || datas.name}
-                  <button className='refresh' onClick={refrashDatas}>
-                    <i className='fa-solid fa-rotate'></i>
+                  <button className='refresh ml-2' onClick={refrashDatas}>
+                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80' />
                   </button>
                 </p>
                 {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
@@ -133,45 +134,43 @@ export default function Detail({
                 <div className='cate mt-4'>
                   {datas.genres.map((item: any) => (
                     <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] mr-1 mt-0.5 text-xt' key={item.id}>
-                      {' '}
                       {item.name}
                     </em>
                   ))}
                 </div>
-                <ul className='lst mt-4'>
-                  <li className='vot text-12 text-[#53a4bb]'>
-                    <i className='fa-regular fa-thumbs-up'></i> <b>평점</b> :{' '}
-                    {datas.vote_average} / 10
+                <ul className='lst mt-4 grid gap-1'>
+                  <li className='vot text-12 text-[#53a4bb]  relative pl-4'>
+                    <FontAwesomeIcon icon={['far', 'thumbs-up']} className='absolute left-0 top-0.5' />
+                    <b>평점</b> : {datas.vote_average} / 10
                   </li>
                   {datas.release_date && (
-                    <li className='opn text-12 text-[#53a4bb]'>
-                      <i className=' fa-regular fa-camera-movie'></i>{' '}
+                    <li className='opn text-12 text-[#53a4bb]  relative pl-4'>
+                      <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
                       <b>개봉</b> : {datas.release_date}
                     </li>
                   )}
                   {datas.first_air_date && (
-                    <li className='opn text-12 text-[#53a4bb]'>
-                      <i className=' fa-regular fa-camera-movie'></i>{' '}
-                      {datas.first_air_date} ~ {datas.last_air_date}
+                    <li className='opn text-12 text-[#53a4bb]  relative pl-4'>
+                      <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
+                      <b>{datas.first_air_date} ~ {datas.last_air_date}</b>
                     </li>
                   )}
 
                   {datas.runtime && (
-                    <li className='tim text-12 text-[#53a4bb]'>
-                      <i className='fa-regular fa-timer'></i> <b>시간</b> :{' '}
-                      {datas.runtime} 분
+                    <li className='tim text-12 text-[#53a4bb]  relative pl-4'>
+                      <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
+                      <b>시간</b> : {datas.runtime} 분
                     </li>
                   )}
                   {datas.number_of_seasons && (
-                    <li className='tim text-12 text-[#53a4bb]'>
-                      <i className='fa-regular fa-timer'></i> <b>시즌</b> :{' '}
-                      {datas.number_of_seasons}개 - <b>에피소드</b> :{' '}
-                      {datas.number_of_episodes}개
+                    <li className='tim text-12 text-[#53a4bb]  relative pl-4'>
+                      <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
+                      <b>시즌</b> : {datas.number_of_seasons}개 - <b>에피소드</b> : {datas.number_of_episodes}개
                     </li>
                   )}
                   {datas.homepage && (
-                    <li className='web text-12 text-[#53a4bb] break-all'>
-                      <i className='fa-regular fa-globe'></i>{' '}
+                    <li className='web text-12 text-[#53a4bb]  relative pl-4 break-all'>
+                      <FontAwesomeIcon icon={['fas', 'globe']} className='absolute left-0 top-0.5' />
                       <a
                         className='lk text-[#53a4bb]'
                         href={datas.homepage}
@@ -198,16 +197,18 @@ export default function Detail({
             </div>
 
             <div className='grid grid-cols-4 gap-2 mt-6'>
-              <Img
+              {/* <Img
                 width={300}
                 height={450}
                 src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg'
                 alt='extio'
                 srcerr='/img/common/non_poster.png'
                 className='w-full h-auto'
-              />
+              /> */}
             </div>
             <div className='flex flex-col mt-4 gap-4'>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
               <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
               <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
               <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
