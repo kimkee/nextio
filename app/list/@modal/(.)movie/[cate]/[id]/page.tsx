@@ -11,7 +11,7 @@ export default async function MovieModal({
   const opts = 'movie';
   return (
     <Modal>
-      Movie / 장르 : {cate} / 영상:{id}
+      {/* Movie / 장르 : {cate} / 영상:{id} */}
       <Detail params={{ opts, cate, id }} />
     </Modal>
   );

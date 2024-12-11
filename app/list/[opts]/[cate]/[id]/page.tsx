@@ -13,16 +13,16 @@ export default async function View({
   const opts = (await params).opts;
 
   return (
-    <div className="container">
-      <main className="contents">
-        <h2>
+    <div className='container'>
+      <main className='contents'>
+        {/* <h2>
           /list/{opts}/{cate}/{id}
         </h2>
         <div className="flex flex-col">
           <p>opts : {opts}</p>
           <p>cate : {cate}</p>
           <p>id : {id}</p>
-        </div>
+        </div> */}
         <Detail params={{ opts, cate, id }} />
       </main>
     </div>
