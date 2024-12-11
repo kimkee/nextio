@@ -32,9 +32,7 @@ export default function Nav() {
     <>
       <div className={`floatnav ${isOnTop ? 'on-top' : ''}`}>
         <button type="button" onClick={goTop} className="bt top">
-          <i className="h-6 w-6 inline-flex">
-            <FontAwesomeIcon icon={['fas', 'arrow-up']} />
-          </i>
+          <FontAwesomeIcon icon={['fas', 'arrow-up']} className='h-[1.1rem] w-[1.1rem] inline-flex' />
           <em>위로</em>
         </button>
       </div>
@@ -44,42 +42,31 @@ export default function Nav() {
           <ul className="menu">
             <li className={isActive('home')}>
               <Link href="/home/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'house']} />
-                </i>
+                <FontAwesomeIcon icon={['fas', 'house']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em>Home</em>
               </Link>
             </li>
             <li className={isActive('list/movie')}>
               <Link href="/list/movie/0/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'clapperboard']} />
-                </i>
+                <FontAwesomeIcon icon={['fas', 'clapperboard']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em>Movie</em>
               </Link>
             </li>
             <li className={isActive('list/tv')}>
               <Link href="/list/tv/0/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'tv']} />
-                </i>
+                <FontAwesomeIcon icon={['fas', 'tv']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em>TV</em>
               </Link>
             </li>
             <li className={isActive('search/') || isActive('test/')}>
               <Link href="/search/movie/" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'search']} />
-                </i>
+                <FontAwesomeIcon icon={['fas', 'search']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em>Search</em>
               </Link>
-              {/* <Link href={`/test/movie/0//`} className={"bt"}><i><FontAwesomeIcon icon={["fas", "search"]} /></i><em>Search</em></Link> */}
             </li>
             <li className={isActive('user/')}>
               <Link href="/user/62" className="bt">
-                <i>
-                  <FontAwesomeIcon icon={['fas', 'user']} />
-                </i>
+                <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em>MY</em>
               </Link>
             </li>

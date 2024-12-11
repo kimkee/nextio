@@ -82,12 +82,10 @@ export default function Detail({
     setDatas(null);
     setCasts(null);
     setMovs(null);
-    ui.loading.show('glx');
     window.setTimeout(() => {
       fetchDatas();
       fetchCast();
       fetchMov();
-      ui.loading.hide();
     }, 500);
   };
 
