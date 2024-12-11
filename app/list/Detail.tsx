@@ -27,7 +27,7 @@ export default function Detail({ params }: { params: { opts: string; cate: strin
       .then((response) => {
         console.log('영화정보', response.data);
         setDatas(response.data);
-        let bgDm = response.data.backdrop_path ? response.data.backdrop_path : response.data.poster_path;
+        const bgDm = response.data.backdrop_path ? response.data.backdrop_path : response.data.poster_path;
         setBgImg('https://image.tmdb.org/t/p/w780' + bgDm);
 
         // 팝업 헤더에 제목
