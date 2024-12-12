@@ -125,7 +125,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .container{position: relative;z-index: 100;max-width: var(--mwide);margin: auto;background: #111111; flex: 1 1 0%;display: flex;} 
-.container .contents{ display: block; margin: 0rem 0rem; padding: 0rem 0rem 0rem 0rem; padding: 1.5rem; width: 100%; flex: 1 1 0%;}
+.container .contents{ display: block; margin: 0rem 0rem; padding: 1.25rem; width: 100%; flex: 1 1 0%;}
 .pagehead{height: 3.125rem;}
 .pagehead>.inr{height: 3.125rem;display: flex;align-items: center;justify-content: space-between;position: fixed;left: 0;right: 0;top: 0;background: #555;padding: 0rem 1.25rem;z-index: 500;}
 .pagehead .ldt{position: relative;}

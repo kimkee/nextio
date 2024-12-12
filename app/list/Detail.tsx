@@ -95,8 +95,8 @@ export default function Detail({
       <p>{JSON.stringify(params)}</p> */}
 
       <div className='
-          bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-sm
-          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-[30rem] after:bg-gradient-to-b from-transparent to-[#111111]'
+          bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
+          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-[18rem] after:bg-gradient-to-b from-transparent to-[#111111]'
         style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad)' }}
       ></div>
       <div className='movie-detail relative text-white'>
@@ -114,7 +114,7 @@ export default function Detail({
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
-              <div className='desc w-4/12 flex-1 mr-5'>
+              <div className='desc flex-1 pr-4'>
                 <p className='tit text-xl font-bold'>
                   {datas.title || datas.name}
                   <button className='refresh ml-2' onClick={refrashDatas}>
@@ -180,15 +180,17 @@ export default function Detail({
                   )}
                 </ul>
               </div>
-              <div className='thum w-5/12'>
+              <div className='thum max-w-[45%] flex-1'>
                 <Link
                   href={`/list/${opts}/${cate}/${id}/poster/0`}
-                  className='pics block relative overflow-hidden rounded-md' style={{ paddingBottom: 'calc(1200% / 780 * 93)' }}>
-                  <img
+                  className='pics block relative overflow-hidden rounded-md pb-[calc(1200%/780*93)]'>
+                  <Img
+                    width={400}
+                    height={570}
                     className='img absolute object-cover w-full h-full'
-                    src={'//image.tmdb.org/t/p/w300' + datas.poster_path}
+                    src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                     alt={datas.title || datas.name}
-                    onError={ui.error.poster}
+                    srcerr='/img/common/non_poster.png'
                   />
                 </Link>
               </div>

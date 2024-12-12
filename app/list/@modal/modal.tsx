@@ -35,8 +35,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <article ref={dialogRef} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-[var(--scrPad)]'>
       <div className='pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh'>
         
-        <button onClick={onDismiss} className='btn-pop-close h-8 w-8 text-white inline-flex items-center justify-center text-3xl  absolute  left-5 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
-          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='h-[1.3rem] w-[1.3rem] inline-flex'/>
+        <button onClick={onDismiss} className='btn-pop-close h-8 w-8 -ml-1 text-white inline-flex items-center justify-center text-3xl  absolute  left-5 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
+          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='h-[1.6rem] w-[1.6rem] inline-flex'/>
         </button>
 
         <div className={`phd h-0 z-20 ${scr > 50 ? 'trans' : ''}`}>
