@@ -183,7 +183,7 @@ export default function Detail({
               <div className='thum max-w-[45%] flex-1'>
                 <Link
                   href={`/list/${opts}/${cate}/${id}/poster/0`}
-                  className='pics block relative overflow-hidden rounded-md pb-[calc(1200%/780*93)]'>
+                  className='pics block relative overflow-hidden rounded-md pb-[calc(1200%/780*93)] bg-black'>
                   <Img
                     width={400}
                     height={570}
