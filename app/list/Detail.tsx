@@ -191,6 +191,7 @@ export default function Detail({
                     src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                     alt={datas.title || datas.name}
                     srcerr='/img/common/non_poster.png'
+                    unoptimized={true}
                   />
                 </Link>
               </div>
