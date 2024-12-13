@@ -115,12 +115,12 @@ export default function Detail({
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
               <div className='desc flex-1 pr-4'>
-                <p className='tit text-xl font-bold'>
+                <h1 className='tit text-xl font-bold'>
                   {datas.title || datas.name}
                   <button className='refresh ml-2' onClick={refrashDatas}>
                     <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80' />
                   </button>
-                </p>
+                </h1>
                 {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
                 <p className='tio text-xt text-[#cccccc] mt-1'>
                   {datas.original_title || datas.original_name}
