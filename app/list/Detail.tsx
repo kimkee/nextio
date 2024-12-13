@@ -196,6 +196,20 @@ export default function Detail({
                 </Link>
               </div>
             </div>
+            
+            <div className="dins mt-5 h-[2.25rem] flex ring-[#30363d] ring-1 rounded-[0.3125rem] justify-center overflow-hidden gap-0">
+              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
+                {false 
+                ?(<Loading opts={{type:'glx', cls:''}}/>) 
+                :(<><i className="text-white"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4' /></i><em>스크랩</em></>)}                
+              </button>
+              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
+                <i><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4' /></i><em>리뷰</em>
+              </button>
+              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
+                <i><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4' /></i><em>공유하기</em>
+              </button>
+            </div>
 
             <div className='grid grid-cols-4 gap-2 mt-6'>
               {/* <Img
