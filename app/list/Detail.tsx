@@ -1,7 +1,7 @@
 'use client';
 import type { Metadata } from 'next';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import React from 'react';
 import axios from 'axios';
@@ -89,6 +89,9 @@ export default function Detail({
     }, 500);
   };
 
+  const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(false);
+  const togOverView = () => setIsOverviewOpen( !isOverviewOpen );
+
   return (
     <>
       {/* <p>Detail - {params.opts}</p>
@@ -107,10 +110,7 @@ export default function Detail({
           <div className='m-info relative z-1'>
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
-            <meta
-              property='og:image'
-              content={'//image.tmdb.org/t/p/w300' + datas.poster_path}
-            />
+            <meta property='og:image' content={'//image.tmdb.org/t/p/w300' + datas.poster_path} />
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
@@ -201,14 +201,30 @@ export default function Detail({
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
                 {false 
                 ?(<Loading opts={{type:'glx', cls:''}}/>) 
-                :(<><i className="text-white"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4' /></i><em>스크랩</em></>)}                
+                :(<><i className="text-white"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4' /></i><em>Scrap</em></>)}                
               </button>
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4' /></i><em>리뷰</em>
+                <i><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4' /></i><em>Reviews</em>
               </button>
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4' /></i><em>공유하기</em>
+                <i><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4' /></i><em>Share</em>
               </button>
+            </div>
+
+            <div data-open={isOverviewOpen} className="my-5 relative pb-4" onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
+              <div className={`text-sm  text-[#aaa] cursor-pointer leading-normal ${isOverviewOpen ? '':'line-clamp-3'}`}>
+                {datas.overview}
+                <span
+                  className={`btn-tog inline-flex items-center justify-center
+                    ${!isOverviewOpen ? 'absolute left-1/2 -bottom-2 transform -translate-x-1/2' : ''}
+                  `}
+                >
+                  { isOverviewOpen
+                    ? <><FontAwesomeIcon icon={['fas', 'caret-up']} className='w-3 h-3 text-primary ml-1' /> <span className='sr-only'>숨기기</span></>
+                    : <span className='text-primary py-1 text-12'><span>More</span> <FontAwesomeIcon icon={['fas', 'caret-down']} className='w-3 h-3 absolute left-1/2 transform -translate-x-1/2 -bottom-1.5' /></span>
+                  }
+                </span>
+              </div>
             </div>
 
             <div className='grid grid-cols-4 gap-2 mt-6'>
