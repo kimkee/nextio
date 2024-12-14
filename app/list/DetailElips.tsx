@@ -7,26 +7,17 @@ export default function ViewElips({overview}: {overview: string}) {
 
   const overviewRef = useRef<HTMLDivElement>(null);
   const txtRef = useRef<HTMLDivElement>(null);
-  // const [txtHeight, setTxtHeight] = useState<number>(0);
-  // const [txtScrollHeight, setTxtScrollHeight] = useState<number>(0);
 
-  const [isOverFlow, setIsOverFlow] = useState<boolean>(false);
+  const [isOverFlow, setIsOverFlow] = useState<boolean | null>(null);
   const txtOverflow = () =>{
     const elipsElem = overviewRef.current;
-    console.log(elipsElem );
-    
     if (!elipsElem) {return}
     const txtElem = txtRef.current;
     if (!txtElem) {return}
     const txtHeight = txtElem.offsetHeight;
     const scrollHeight = txtElem.scrollHeight;
-
-    console.log("scrollHeight == ", scrollHeight, ".txtHeight == ", txtHeight);
-    if (txtHeight < scrollHeight) {
-      setIsOverFlow(true);
-    }else{
-      setIsOverFlow(false);
-    }
+    // console.log("scrollHeight == ", scrollHeight, ".txtHeight == ", txtHeight);
+    txtHeight < scrollHeight ? setIsOverFlow(true) : setIsOverFlow(false);
   }
   useEffect(() => {
     txtOverflow();
@@ -37,7 +28,7 @@ export default function ViewElips({overview}: {overview: string}) {
 
   return (
     <>
-    <div data-open={isOverviewOpen} ref={overviewRef} className={`my-5 relative ${isOverFlow && `pb-4`}`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
+    <div data-open={isOverviewOpen} ref={overviewRef} className={`my-5 relative pb-4`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
       <div ref={txtRef} className={`text-sm  text-[#aaa] cursor-pointer leading-normal ${isOverviewOpen ? '':' line-clamp-3 '}`}>
         {overview}
         { 

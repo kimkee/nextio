@@ -214,7 +214,7 @@ export default function Detail({
 
 
 
-            <div className='grid grid-cols-4 gap-2 mt-6'>
+            <div className='grid grid-cols-4 gap-2'>
               {/* <Img
                 width={300}
                 height={450}
