@@ -10,7 +10,7 @@ export default function ViewElips({overview}: {overview: string}) {
   // const [txtHeight, setTxtHeight] = useState<number>(0);
   // const [txtScrollHeight, setTxtScrollHeight] = useState<number>(0);
 
-  const [isOverFlow, setIsOverFlow] = useState<boolean>(true);
+  const [isOverFlow, setIsOverFlow] = useState<boolean>(false);
   const txtOverflow = () =>{
     const elipsElem = overviewRef.current;
     console.log(elipsElem );
