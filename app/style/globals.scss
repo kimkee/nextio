@@ -193,8 +193,9 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .menubar .menu>li .bt{height: 100%;display:flex;flex-direction: column;align-items: center;justify-content: center;margin: 0rem auto 0rem auto;padding: 0.1875rem 0rem 0.125rem 0rem;padding-bottom: calc(0.125rem + var(--safe-bottom));position: relative;}
 .menubar .menu>li .bt em{display:block;font-size: 0.6875rem;margin-top: 0.24rem;}
 .menubar .menu>li .bt i{font-size:1.125rem; line-height: 1;}
-.menubar .menu>li .bt.router-link-active,
-.menubar .menu>li.active .bt{color: #52a8ff;}
+.menubar .menu>li.active .bt{
+    @apply text-primary; 
+}
 .menubar .menu>li.active .bt .pic{ border-color: #52a8ff; }
 .menubar .menu>li.active .bt i,
 .menubar .menu>li .bt.router-link-active i{font-weight:900;}

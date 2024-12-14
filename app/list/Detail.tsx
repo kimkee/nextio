@@ -8,6 +8,7 @@ import axios from 'axios';
 import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
+import DetailElips from './DetailElips';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -89,8 +90,6 @@ export default function Detail({
     }, 500);
   };
 
-  const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(false);
-  const togOverView = () => setIsOverviewOpen( !isOverviewOpen );
 
   return (
     <>
@@ -114,11 +113,11 @@ export default function Detail({
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
-              <div className='desc flex-1 pr-4'>
-                <h1 className='tit text-xl font-bold'>
+              <div className='desc flex-1 pr-3'>
+                <h1 className='tit text-xx '>
                   {datas.title || datas.name}
-                  <button className='refresh ml-2' onClick={refrashDatas}>
-                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80' />
+                  <button className='refresh ml-1 w-5 h-5 leading-none p-0' onClick={refrashDatas}>
+                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4 -mt-2 align-middle' />
                   </button>
                 </h1>
                 {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
@@ -211,21 +210,9 @@ export default function Detail({
               </button>
             </div>
 
-            <div data-open={isOverviewOpen} className="my-5 relative pb-4" onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
-              <div className={`text-sm  text-[#aaa] cursor-pointer leading-normal ${isOverviewOpen ? '':'line-clamp-3'}`}>
-                {datas.overview}
-                <span
-                  className={`btn-tog inline-flex items-center justify-center
-                    ${!isOverviewOpen ? 'absolute left-1/2 -bottom-2 transform -translate-x-1/2' : ''}
-                  `}
-                >
-                  { isOverviewOpen
-                    ? <><FontAwesomeIcon icon={['fas', 'caret-up']} className='w-3 h-3 text-primary ml-1' /> <span className='sr-only'>숨기기</span></>
-                    : <span className='text-primary py-1 text-12'><span>More</span> <FontAwesomeIcon icon={['fas', 'caret-down']} className='w-3 h-3 absolute left-1/2 transform -translate-x-1/2 -bottom-1.5' /></span>
-                  }
-                </span>
-              </div>
-            </div>
+            {datas.overview && <DetailElips  overview={datas.overview} /> }
+
+
 
             <div className='grid grid-cols-4 gap-2 mt-6'>
               {/* <Img

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import '@/app/style/globals.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { Inter, Roboto_Mono, Noto_Sans } from 'next/font/google';
+import { Inter, Roboto_Mono, Noto_Sans, Noto_Sans_KR } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 export const metadata: Metadata = {
   title: 'NEXTIO',
@@ -33,7 +33,7 @@ export const viewport = {
   shrinkToFit: false,
 };
 
-const noto_sans = Noto_Sans({ subsets: ['latin'], display: 'swap' });
+const noto_sans_kr = Noto_Sans_KR({ subsets: ['latin'], display: 'swap' });
 
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
@@ -42,7 +42,7 @@ import Ui from '@/app/components/Ui';
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang='ko'>
-      <body className={`body ${noto_sans.className} antialiased`}>
+      <body className={`body ${noto_sans_kr.className} antialiased`}>
         <div className='wrap'>
           <Header />
           {props.children}
