@@ -200,13 +200,13 @@ export default function Detail({
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
                 {false 
                 ?(<Loading opts={{type:'glx', cls:''}}/>) 
-                :(<><i className="text-white"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4' /></i><em>Scrap</em></>)}                
+                :(<><i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>스크랩</em></>)}
               </button>
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4' /></i><em>Reviews</em>
+                <i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>리뷰</em>
               </button>
               <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4' /></i><em>Share</em>
+                <i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>공유</em>
               </button>
             </div>
 
