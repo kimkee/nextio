@@ -4,7 +4,7 @@ import { type ElementRef, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '@/app/style/modal.scss';
+// import '@/app/style/modal.scss';
 import ui from '@/app/lib/ui';
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -39,13 +39,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
           <FontAwesomeIcon icon={['fas', 'arrow-left']} className='h-[1.6rem] w-[1.6rem] inline-flex'/>
         </button>
 
-        <div className={`phd h-0 z-20 ${scr > 50 ? 'trans' : ''}`}>
-          <div className='inr left-0 right-0 top-0 flex items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]'>
+        <div className={`phd h-0 z-20`}>
+          <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
             <div className='ptit text-right pl-16 pr-5 w-full'>{`Title`}</div>
           </div>
         </div>
 
-        <div className='pct flex-1 flex flex-col py-8 px-5 overflow-y-auto overflow-x-hidden webkit-scrollbar-none pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
+        <div className='pct flex-1 flex flex-col py-8 px-5 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
           onScroll={scrollEvent}
         >
           <div className='poptents'>{children}</div>

@@ -14,7 +14,7 @@ export default function ItemB({ data, opts, cate }: any) {
 
   return (
     <>
-      <Link className='box block relative mb-0.5' href={`/list/${opts}/${cate}/${data.id}`} >
+      <Link className='box block relative mb-0.5' href={`/list/${opts}/${cate}/${data.id}`} scroll={false}>
         <div className="cont relative">
           <div className="pics block relative overflow-hidden pb-[calc(1200%/780*100)] bg-black">
             <Img 

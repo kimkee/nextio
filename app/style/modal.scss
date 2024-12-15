@@ -13,7 +13,7 @@
     // height: calc(3.5rem + var(--safe-top) + var(--safe-watch)); 
  }
  .popup .pbd .phd.trans>.inr{
-    @apply bg-black/50 backdrop-blur-sm;
+ 
  }
  .popup .pbd .phd>.inr .ptit{
     
@@ -22,7 +22,7 @@
     
     
 }
-.popup .pbd .pct::-webkit-scrollbar{display: none}
+.popup .pbd .pct::-webkit-scrollbar{}
 .popup .pbd .pct .poptents{ 
     // @apply ;
 }
