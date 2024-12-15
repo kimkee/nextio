@@ -10,9 +10,10 @@ interface CustomImageProps {
   height: number;
   unoptimized?: boolean;
   className?: string;
+  loading?: 'eager' | 'lazy' | undefined;
 }
 
-export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized }: CustomImageProps) {
+export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized ,loading }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
 
   return (
@@ -24,6 +25,7 @@ export default function CustomImage({ src, alt, width, height, className, srcerr
       className={className}
       unoptimized = {unoptimized} // {false} | {true}
       onError={() => setImgSrc(srcerr)}
+      loading={loading}
     />
   );
 }

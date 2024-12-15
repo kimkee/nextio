@@ -221,7 +221,7 @@ export default function Detail({
             {datas.overview && <DetailElips  overview={datas.overview} /> }
 
             {casts.cast.length ?
-            <div className="sect cast">
+            <div className="sect cast mt-5">
               <div className="hbox flex justify-between mb-1.5">
                 <h4 className="tts text-sm">출연진</h4>
                 <div className="bt-nav">
@@ -233,11 +233,12 @@ export default function Detail({
                 {
                   casts.cast.filter( (item: any, i: number) => i < 999 ).map( (b: any) => {
                     return (
-                      <Link href={`./person/${b.id}`} key={b.credit_id} className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-[0.625rem] flex-1 break-all'>
+                      <Link href={`./person/${b.id}`} key={b.credit_id} className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-[0.625rem]  break-all'>
                         <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
-                          <img className="img absolute object-cover w-full h-full" 
-                            src={`//image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name}  onError={ui.error.user} loading="lazy"
-                          />
+                          <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
+                            srcerr='/img/common/user.png' unoptimized={false} className='img absolute object-cover w-full h-full' loading='lazy'/>
+                          
+                          
                         </div>
                         <div className="name text-center text-10 -mx-2 -mb-0.5 text-[#dddddd]">{b.name}</div>
                         <div className="carc text-center text-9  -mx-2 text-[#999999]">{b.character}</div>
