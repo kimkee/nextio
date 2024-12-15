@@ -1,7 +1,7 @@
 'use client';
 import type { Metadata } from 'next';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { HtmlHTMLAttributes, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import React from 'react';
 import axios from 'axios';
@@ -90,6 +90,14 @@ export default function Detail({
     }, 500);
   };
 
+  const goScroll = (e: any)=>{
+    const scrollBox = e.currentTarget.closest(".sect").querySelector(".lst");
+    const isNext = e.currentTarget.classList.contains('next');
+    const minus = isNext  ? 1 : -1;
+    const scAmt = (scrollBox.offsetWidth - 100) * minus;
+    console.log( scAmt , scrollBox , minus);
+    scrollBox.scrollLeft += scAmt;
+  }
 
   return (
     <>
@@ -212,6 +220,34 @@ export default function Detail({
 
             {datas.overview && <DetailElips  overview={datas.overview} /> }
 
+            {casts.cast.length ?
+            <div className="sect cast">
+              <div className="hbox flex justify-between mb-1.5">
+                <h4 className="tts text-sm">출연진</h4>
+                <div className="bt-nav">
+                  <button type="button" className="bt prev" onClick={goScroll}><i className="fa-solid fa-caret-left"></i></button>
+                  <button type="button" className="bt next" onClick={goScroll}><i className="fa-solid fa-caret-right"></i></button>
+                </div>
+              </div>
+              <div className="lst flex flex-nowrap overflow-y-hidden overflow-x-auto -mx-5 px-2.5 scrollbar-hidden">
+                {
+                  casts.cast.filter( (item: any, i: number) => i < 999 ).map( (b: any) => {
+                    return (
+                      <Link href={`./person/${b.id}`} key={b.credit_id} className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-[0.625rem] flex-1 break-all'>
+                        <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
+                          <img className="img absolute object-cover w-full h-full" 
+                            src={`//image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name}  onError={ui.error.user} loading="lazy"
+                          />
+                        </div>
+                        <div className="name text-center text-10 -mx-2 -mb-0.5 text-[#dddddd]">{b.name}</div>
+                        <div className="carc text-center text-9  -mx-2 text-[#999999]">{b.character}</div>
+                      </Link>
+                    )
+                  })
+                }
+              </div>
+            </div>
+            : null}
 
 
             <div className='grid grid-cols-4 gap-2'>
@@ -225,14 +261,14 @@ export default function Detail({
               /> */}
             </div>
             <div className='flex flex-col mt-4 gap-4'>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-lg font-medium'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
+              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
             </div>            
           </div>
         )}
