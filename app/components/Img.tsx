@@ -15,16 +15,19 @@ interface CustomImageProps {
 
 export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized ,loading }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
-
+  const [isError, setIsError] = useState(false);
   return (
     <Image
       src={imgSrc}
       alt={alt}
       width={width}
       height={height}
-      className={className}
+      className={className+` ${isError ? 'opacity-60 bg-white/20' : ''}`}
       unoptimized = {unoptimized} // {false} | {true}
-      onError={() => setImgSrc(srcerr)}
+      onError={() => {
+        setImgSrc(srcerr)
+        setIsError(true)
+      }}
       loading={loading}
     />
   );

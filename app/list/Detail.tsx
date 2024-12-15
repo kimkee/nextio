@@ -9,6 +9,7 @@ import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
+import DetailCast from './DetailCast';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -90,16 +91,7 @@ export default function Detail({
     }, 500);
   };
 
-  const goScroll = (e: any)=>{
-    const scrollBox = e.currentTarget.closest(".sect").querySelector(".lst");
-    const isNext = e.currentTarget.classList.contains('next');
-    const minus = isNext  ? 1 : -1;
-    const scAmt = (scrollBox.offsetWidth - 100) * minus;
-    console.log( scAmt , scrollBox , minus);
-    scrollBox.scrollLeft += scAmt;
-  }
-
-  return (
+ return (
     <>
       {/* <p>Detail - {params.opts}</p>
       <p>{JSON.stringify(params)}</p> */}
@@ -218,37 +210,11 @@ export default function Detail({
               </button>
             </div>
 
-            {datas.overview && <DetailElips  overview={datas.overview} /> }
+            {datas.overview && <DetailElips  overview={datas.overview} />}
 
-            {casts.cast.length ?
-            <div className="sect cast mt-5">
-              <div className="hbox flex justify-between mb-1.5">
-                <h4 className="tts text-sm">출연진</h4>
-                <div className="bt-nav">
-                  <button type="button" className="bt prev" onClick={goScroll}><i className="fa-solid fa-caret-left"></i></button>
-                  <button type="button" className="bt next" onClick={goScroll}><i className="fa-solid fa-caret-right"></i></button>
-                </div>
-              </div>
-              <div className="lst flex flex-nowrap overflow-y-hidden overflow-x-auto -mx-5 px-2.5 scrollbar-hidden">
-                {
-                  casts.cast.filter( (item: any, i: number) => i < 999 ).map( (b: any) => {
-                    return (
-                      <Link href={`./person/${b.id}`} key={b.credit_id} className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-[0.625rem]  break-all'>
-                        <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
-                          <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
-                            srcerr='/img/common/user.png' unoptimized={false} className='img absolute object-cover w-full h-full' loading='lazy'/>
-                          
-                          
-                        </div>
-                        <div className="name text-center text-10 -mx-2 -mb-0.5 text-[#dddddd]">{b.name}</div>
-                        <div className="carc text-center text-9  -mx-2 text-[#999999]">{b.character}</div>
-                      </Link>
-                    )
-                  })
-                }
-              </div>
-            </div>
-            : null}
+            {casts.cast.length && <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} />}
+
+            {casts.crew.length && <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} />}
 
 
             <div className='grid grid-cols-4 gap-2'>
