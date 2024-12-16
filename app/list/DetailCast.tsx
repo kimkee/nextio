@@ -28,7 +28,7 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
 
   return (
     <>
-    <div className={`sect cast mt-5 ${props.css}`}>
+    <div className={`sect cast mt-4 ${props.css}`}>
       <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
         <h4 className="tts text-sm">{props.title}</h4>
         <div className={`bt-nav ${isNav ? '' : 'hidden'}`}>
@@ -46,8 +46,8 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
                     srcerr={'/img/common/user.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='lazy'
                   />
                 </div>
-                <div className="name text-center text-10 -mx-2 -mb-0.5 text-[#dddddd]">{b.name}</div>
-                <div className="carc text-center text-9  -mx-2 text-[#999999]">{b.character}</div>
+                <div className="name text-center text-10 -mx-2 mt-1 leading-tight -mb-0.5 text-[#dddddd]">{b.name}</div>
+                <div className="carc text-center text-9  -mx-2 mt-0.5 leading-tight text-[#999999] max-h-6 overflow-hidden">{b.character}</div>
               </Link>
             )
           })
