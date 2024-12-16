@@ -180,8 +180,8 @@ export default function Detail({
                 </ul>
               </div>
               <div className='thum max-w-[45%] flex-1'>
-                <Link
-                  href={`/list/${opts}/${cate}/${id}/poster/0`}
+                <div
+                  /* href={`/list/${opts}/${cate}/${id}/poster/0`} */
                   className='pics block relative overflow-hidden rounded-md pb-[calc(1200%/780*93)] bg-black'>
                   <Img
                     width={400}
@@ -192,7 +192,7 @@ export default function Detail({
                     srcerr='/img/common/non_poster.png'
                     unoptimized={true}
                   />
-                </Link>
+                </div>
               </div>
             </div>
             
@@ -212,9 +212,9 @@ export default function Detail({
 
             {datas.overview && <DetailElips  overview={datas.overview} />}
 
-            {casts.cast.length && <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} />}
+            {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
 
-            {casts.crew.length && <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} />}
+            {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
 
             <div className='grid grid-cols-4 gap-2'>
