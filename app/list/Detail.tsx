@@ -10,6 +10,7 @@ import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
 import DetailCast from './DetailCast';
+import DetailPoster from './DetailPoster';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -216,27 +217,9 @@ export default function Detail({
 
             {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
+            {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
-            <div className='grid grid-cols-4 gap-2'>
-              {/* <Img
-                width={300}
-                height={450}
-                src='http://image.tmdb.org/t/p/w300/zTgjeblxSLSvomt6F6UYtpiD4n7.jpg'
-                alt='extio'
-                srcerr='/img/common/non_poster.png'
-                className='w-full h-auto'
-              /> */}
-            </div>
-            <div className='flex flex-col mt-4 gap-4'>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-              <p className='text-white/60'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto cumque consequuntur deserunt esse alias. Eligendi nobis laborum quaerat nulla laboriosam aperiam quidem, dolorem sit. Vel et similique dolores a ratione? </p>
-            </div>            
+                      
           </div>
         )}
       </div>
