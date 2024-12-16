@@ -130,10 +130,10 @@ export default function Page({
         <main className='p-3'>
           <div className='poster-list'>
             {!movieList.length ? (
-              <ul className='list skelt'>
-                {/* <Skeleton opts={ {type: 'movie-list', num: 20} } /> */}
-                Skeleton...
-              </ul>
+              // <ul className='list skelt'>
+              //   <Skeleton opts={ {type: 'movie-list', num: 20} } />
+              // </ul>
+              <><Loading opts={{ type: 'glx', cls: 'full' }} /></>
             ) : (
               <>
                 <ul className='grid grid-cols-4 gap-3'>

@@ -94,18 +94,15 @@ export default function Detail({
 
  return (
     <>
-      {/* <p>Detail - {params.opts}</p>
-      <p>{JSON.stringify(params)}</p> */}
 
-      <div className='
-          bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
+      <div className='bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
           after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-[18rem] after:bg-gradient-to-b from-transparent to-[#111111]'
         style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad) / 2)' }}
       ></div>
       <div className='movie-detail relative text-white'>
-        {!datas || !casts || !moves ? (
+        {!datas || !casts || !moves ? (        
           // <Skeleton opts={ {type: 'movie-detail'} } />
-          <Loading opts={{ type: 'glx' }} />
+          <><Loading opts={{ type: 'glx', cls: 'full' }} /></>
         ) : (
           <div className='m-info relative z-1'>
             <title>{`${datas.title || datas.name} `}</title>
@@ -183,7 +180,7 @@ export default function Detail({
               <div className='thum max-w-[45%] flex-1'>
                 <div
                   /* href={`/list/${opts}/${cate}/${id}/poster/0`} */
-                  className='pics block relative overflow-hidden rounded-md pb-[calc(1200%/780*93)] bg-black'>
+                  className='pics block relative overflow-hidden rounded-sm pb-[calc(1200%/780*93)] bg-black'>
                   <Img
                     width={400}
                     height={570}
