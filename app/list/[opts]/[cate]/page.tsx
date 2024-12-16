@@ -129,6 +129,7 @@ export default function Page({
       <div className='container flex-col movie-list'>
         <main className='p-3'>
           <div className='poster-list'>
+          
             {!movieList.length ? (
               // <ul className='list skelt'>
               //   <Skeleton opts={ {type: 'movie-list', num: 20} } />
