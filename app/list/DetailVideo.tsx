@@ -41,10 +41,10 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
           props.data.filter( (item:any, i:number) => i < 100 ).reverse().map( (mov:any,idx:number) => {
             return (
               <div key={mov.id} 
-                className="box relative block w-[calc(70%-1.25rem)] min-w-[calc(70%-1.25rem)] mx-[0.3rem] pb-[calc(900%/1600*65)] break-all 
-                only:mx-[0.5rem] only:pb-[calc(900%/1600*90)] only:w-[calc(100%-0.75rem)] only:min-w-[calc(100%-0.75rem)]"
+                className="box w-[calc(70%-1.25rem)] min-w-[calc(70%-1.25rem)] mx-[0.3rem] relative block 
+                only:mx-[0.5rem] only:w-[calc(100%-0.75rem)] only:min-w-[calc(100%-0.75rem)]"
               >
-                <div /* to={`./videos/${idx+1}`} */ className="pic" >
+                <div /* to={`./videos/${idx+1}`} */ className="pic block relative pb-[calc(900%/1600*100)] break-all " >
                   <span className="msg px-2.5 py-3 absolute bottom-0 left-0 right-0 bg-black/40 z-10">
                     <span className="tit text-xs text-white/70 line-clamp-1">{mov.name}</span>
                   </span>
