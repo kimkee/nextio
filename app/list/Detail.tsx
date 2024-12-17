@@ -216,7 +216,28 @@ export default function Detail({
 
             {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
-                      
+            {datas.production_companies.length ? 
+            <>
+            <div className="sect comp flex flex-wrap mt-8 gap-1">
+              {
+                datas.production_companies.map((comp: any) => {
+                  return comp.logo_path 
+                  ? 
+                  <span key={comp.id} className='logo bg-white/70 px-2 py-0.5 rounded-full inline-flex  items-center h-7 max-w-full text-10 text-black'>
+                    <img
+                      className="img max-h-3.5 align-middle max-w-full"
+                      src={`//image.tmdb.org/t/p/w92${comp.logo_path}`} alt={comp.name}
+                    />
+                  </span> 
+                  : 
+                  <span key={comp.id} className='logo bg-white/70 px-2 py-0.5 rounded-full inline-flex  items-center h-7 max-w-full text-10 text-black'>
+                    {comp.name}
+                  </span> 
+                })
+              }
+            </div>
+            </>
+            : null}
           </div>
         )}
       </div>
