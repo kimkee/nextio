@@ -10,6 +10,7 @@ import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
 import DetailCast from './DetailCast';
+import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
@@ -211,6 +212,8 @@ export default function Detail({
             {datas.overview && <DetailElips  overview={datas.overview} />}
 
             {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
+
+            {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", data: moves.results }} /> : ''}
 
             {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
