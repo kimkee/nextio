@@ -54,8 +54,8 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
                   <Img 
                     width={300} height={160}
                     src={`https://i.ytimg.com/vi/${mov.key}/hqdefault.jpg`}
-                    srcerr=''
-                    className="img absolute object-cover w-full h-full bg-black" 
+                    srcerr={''}
+                    className={"img absolute object-cover w-full h-full bg-black"} 
                     unoptimized={true}
                     alt={mov.name} loading="lazy"
                   />

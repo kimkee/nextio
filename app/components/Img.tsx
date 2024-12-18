@@ -22,11 +22,11 @@ export default function CustomImage({ src, alt, width, height, className, srcerr
       alt={alt}
       width={width}
       height={height}
-      className={className+` ${isError ? 'opacity-60 bg-white/20' : ''}`}
-      unoptimized = {unoptimized} // {false} | {true}
+      className={className + ` ${isError ? 'opacity-60 bg-white/20' : ''}`}
+      unoptimized={unoptimized}
       onError={() => {
-        setImgSrc(srcerr)
-        setIsError(true)
+        setImgSrc(srcerr);
+        setIsError(true);
       }}
       loading={loading}
     />
