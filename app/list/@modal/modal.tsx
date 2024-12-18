@@ -41,7 +41,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`phd h-0 z-20`}>
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
-            <div className='ptit text-right pl-16 pr-5 w-full'>{`Title`}</div>
+            <div className='ptit text-right pl-16 pr-5 w-full'>{``}</div>
           </div>
         </div>
 
@@ -53,13 +53,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`floatpop 
           ${scr > 50 
-          ? 'on-top on-top translate-y-[-4.2rem]' 
+          ? 'on-top translate-y-[-4rem]' 
           : 'translate-y-[8rem]'}
           fixed text-right px-5 left-1/2 max-w-[var(--mwide)] w-full h-0 z-50 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-200 transform translate-x-[-50%]`}
         >
           <button type='button'
             className='bt top mt-3.5 mb-0 mx-auto rounded-full shadow-[0_0_6rem_rgba(0,0,0,0.49)] bg-[rgba(255,255,255,0.7)] border border-[rgba(0,0,0,0.1)] w-[2.8rem] h-[2.8rem] text-black'
-             onClick={goTop}
+            onClick={goTop}
           >
             <FontAwesomeIcon icon={['fas', 'arrow-up']} className="h-[1.1rem] w-[1.1rem] inline-flex" />
             <em className='sr-only'>위로</em>

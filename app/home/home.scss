@@ -1,0 +1,117 @@
+.swiper [class^='swiper-button']{color: #ffffff; display: none;}
+.swiper .swiper-pagination-bullet{transform: scale(0.5);opacity: 0.5;margin: 0rem 0rem !important;background-color: #dddddd;transition: all 0.3s;}
+.swiper .swiper-pagination-bullet-active{background-color: #61dafb;opacity: 1.7;transform: scale(0.8);margin: 0rem 1px !important;}
+
+
+.page.home .slide{} 
+.page.home .swiper img{  width: 100%;}
+.page.home .swiper [class^='swiper-button']{transition: all 0.2s; color: #ffffff66; transform: scale(0.6); display: block; margin-top: -2.5rem;}
+.page.home .swiper .swiper-slide{ text-align: center; }
+.page.home .swiper .swiper-button-next{right: 0.625rem;}
+.page.home .swiper .swiper-button-prev{left: 0.625rem;}
+.page.home .swiper .swiper-pagination-bullet{margin: 0rem 1px; transition: all 0.2s;}
+
+
+.page.home .sect.mnTop {
+    position: relative;
+    padding-bottom: 1.25rem;
+}
+
+.page.home .sect.mnTop>.inr {
+    position: relative;
+    height: 122.9vw;
+    max-height: 525px;
+    overflow: hidden;
+}
+
+.page.home .sect.mnTop .slide {
+    padding-bottom: 0rem;
+    overflow: visible;
+}
+
+.page.home .sect.mnTop .slide ul {}
+
+.page.home .sect.mnTop .slide ul>li {}
+
+.page.home .sect.mnTop .slide ul>li .box {
+    position: relative;
+    display: block;
+    z-index: 10;
+    height: 100%;
+}
+
+.page.home .sect.mnTop .slide ul>li .box .pics {
+    display: block;
+    position: relative;
+    padding-bottom: calc(1000% / 790 * 100);
+    width: 100%;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 0rem;
+    background: #000000;
+    /* transition: transform 0.1s; */
+}
+
+.page.home .sect.mnTop .slide ul>li .box .pics .img {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    object-fit: cover;
+    max-width: inherit;
+    min-width: 100%;
+    height: 100%;
+    background-color: #000000;
+}
+
+.page.home .sect.mnTop .slide ul>li .box .info {
+    z-index: 10;
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.page.home .sect.mnTop .slide ul>li .box .info .tit {
+    font-size: 1.125rem;
+    text-align: right;
+    line-height: 1.2;
+}
+
+.page.home .sect.mnTop .slide ul>li .box .info .star {
+    min-width: 7.5rem;
+    text-align: left;
+    font-size: 1.125rem;
+    line-height: 1;
+    padding-bottom: 0.1875rem;
+}
+
+.page.home .sect.mnTop .slide ul>li .box .info .star i {
+    min-width: 1.5rem;
+    font-size: clamp(1.125rem, 5vw, 1.5rem);
+}
+
+.page.home .sect.mnTop .swiper-pagination {
+    bottom: 10px;
+    top: auto;
+    left: 50%;
+    width: auto;
+    display: flex;
+    transform: translateX(-50%);
+}
+
+.page.home .sect.mnTop .screen {
+    position: absolute;
+    height: 12.5rem;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    bottom: 0rem;
+    background-image: linear-gradient(360deg, rgb(17 17 17), transparent);
+    padding: 4% 0;
+}

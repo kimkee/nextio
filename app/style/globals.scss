@@ -125,7 +125,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .container{position: relative;z-index: 100;max-width: var(--mwide);margin: auto;background: #111111; flex: 1 1 0%;display: flex;} 
-.container .contents{ display: block; margin: 0rem 0rem; padding: 1.25rem; width: 100%; flex: 1 1 0%;}
+.container .contents{ display: block; margin: 0rem 0rem; padding: 1.5rem 1.25rem; width: 100%; flex: 1 1 0%;}
 .pagehead{height: 3.125rem;}
 .pagehead>.inr{height: 3.125rem;display: flex;align-items: center;justify-content: space-between;position: fixed;left: 0;right: 0;top: 0;background: #555;padding: 0rem 1.25rem;z-index: 500;}
 .pagehead .ldt{position: relative;}
@@ -204,15 +204,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 
-/* 플로팅 탑버튼 글쓰기버튼 */
-.floatnav{position:fixed;text-align: right;padding: 0rem 1.25rem;left: 50%;max-width: var(--mwide);width: 100%;height: 0;z-index: 500;transition: all 0.3s;bottom: calc(18rem + var(--safe-bottom));transform: translate3D(-50%,90rem,0rem);transition: transform 0.2s;}
-.floatnav.is-top{bottom: 1.25rem;bottom: calc(1.25rem + var(--safe-bottom));transition: none;}
-.floatnav .bt{font-size: 0rem;width: 52rem;height: 52rem;display: inline-block;background: no-repeat #555555;background-size: 100% auto;margin: 10rem auto 0 auto;border-radius: 2.1875rem;box-shadow: 0rem 0rem 6rem rgb(0 0 0 / 49%);}
-.floatnav .bt i{font-size: 17rem;}
-.floatnav .bt::before{}
-.floatnav .bt.top{ background: rgb(255 255 255 / 70%);border: solid rgba(0, 0, 0, 0.1) 1rem;text-align: center;width: 45rem;height: 45rem;color: #000;}
-.floatnav.on-top{transform: translate3D(-50%,-60rem,0rem);transition: transform 0.2s;}
-.floatnav.on-top .bt.top{}
+
 
 
 .floatnav .bt.reg{background: #35495e;box-shadow: rgb(0 0 0 / 20%) 0.125rem 0.125rem 10rem;position: relative;}
@@ -327,7 +319,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .floatnav .bt i{font-size: 1.125rem; line-height: 1;justify-content: center; align-items: center;}
 .floatnav .bt::before{}
 .floatnav .bt.top{ background: rgb(255 255 255 / 70%);border: solid rgba(0, 0, 0, 0.1) 1px;text-align: center;width: 2.8rem;height: 2.8rem;color: #000;}
-.floatnav.on-top{transform: translate3D(-50%,-4.2rem,0rem);transition: transform 0.2s;}
+.floatnav.on-top{transform: translate3D(-50%,-4rem,0rem);transition: transform 0.2s;}
 .floatnav.on-top .bt.top{}
 
 .movie-list~.floatnav.on-top{bottom: calc(7.95rem + var(--safe-bottom));}
