@@ -8,6 +8,7 @@ import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { supabase } from '@/app/supabase.js';
 import Image from 'next/image';
+import Img from '@/app/components/Img';
 
 export default function Header() {
   // const location = useLocation();
@@ -34,8 +35,7 @@ export default function Header() {
             ) : (
               <h1 className='logo'>
                 <Link href={`/`} className='btlogo'>
-                  <Image width={256} height={54} src='/img/logo_next.png' alt='extio' className='w-20 h-auto' />
-                  <em>extio</em>
+                  <Img width={256} height={54} src='/img/logo_next.png'  alt='Nextio' srcerr='' className='w-20 h-auto' />
                 </Link>
               </h1>
             )}

@@ -70,7 +70,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             spaceBetween={0}
             slidesPerView={1}
             // navigation
-            loop={true}
+            loop={mlist.length > 10 ? true : false}
             effect={"fade"}
             // autoplay={false}
             autoplay={{ delay: 5000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: false}}
@@ -91,7 +91,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 const img = `https://image.tmdb.org/t/p/w780${data.poster_path}`;
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
-                    <Link className="box" href={`/list/${opts.media}/0/${data.id}`}>
+                    <Link className="box" href={`/home/${opts.media}/${data.id}`}>
                         <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
                           <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} className='img' />
                         </div>

@@ -61,8 +61,8 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   };
   useEffect(() => {
     fetchMoive();
-    isNavBtn()
-    // setTimeout(() => isNavBtn(), 1000);
+    // isNavBtn()
+    setTimeout(() => isNavBtn(), 1000);
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -97,7 +97,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               return (
                 <div key={idx} className="pbox box pt-2 pl-2 block w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] mx-[0.4rem]  break-all last:mr-3">
                   <Link className="box block relative rounded-sm w-full bg-black pb-[calc(450%/300*100)] mb-1"
-                     href={`/list/${opts.media}/${opts.cate}/${data.id}`}
+                     href={`/home/${opts.media}/${data.id}`}
                   >
                     <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} className='img img absolute object-cover w-full h-full'/>
                     <div className='absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
