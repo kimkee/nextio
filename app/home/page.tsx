@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { use } from 'react';
 import ui from '@/app/lib/ui';
 import HomeTop from "./HomeTop";
+import ListSet from "./ListSet";
 import './home.scss';
 export default function Home() {
   const scrollEvent = ()=> {
@@ -35,6 +36,23 @@ export default function Home() {
       <main className='block overflow-hidden pd-0 pb-5'>
 
         <HomeTop opts={{media:"movie"}} />
+
+        {/* <ListTop10 opts={{media:"movie", list: "trending/movie/week", cate: "0", title:"Weekly 영화 TOP 20"}} /> */}
+        
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "16", title: "영화/애니메이션"}} />
+        
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "10402", title: "영화/음악"}} />
+        
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "99", title: "영화/다큐멘터리"}} />
+
+        {/* <ListTop10 opts={{media:"tv", list: "trending/tv/week", cate: "0", title:"Weekly TV TOP 20"}} /> */}
+        
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "16", title: "TV/애니메이션"}} />
+        
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "10764", title: "TV/Reality"}} />
+        
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "80", title: "TV/범죄"}} />
+
         {/* <div className={'fds'}></div> */}
         {/* <Image width={128} height={128} className='w-16' src='/img/logo_nextjs.png' alt='Next.js Logo' /> */}
         
