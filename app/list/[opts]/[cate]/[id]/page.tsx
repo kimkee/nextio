@@ -9,7 +9,6 @@ export default async function View({
   params: Promise<{ id: string; cate: string; opts: string }>;
 }) {
   const id = (await params).id;
-  const cate = (await params).cate;
   const opts = (await params).opts;
 
   return (
@@ -23,7 +22,7 @@ export default async function View({
           <p>cate : {cate}</p>
           <p>id : {id}</p>
         </div> */}
-        <Detail params={{ opts, cate, id }} />
+        <Detail params={{ opts, id }} />
       </main>
     </div>
   );

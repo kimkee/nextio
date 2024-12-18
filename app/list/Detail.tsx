@@ -18,12 +18,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Detail({
   params,
 }: {
-  params: { opts: string; cate: string; id: string };
+  params: { opts: string; id: string };
 }) {
   const postID = params.id;
   const opts = params.opts;
-  const cate = params.cate;
-  const id = params.id;
 
   const [datas, setDatas] = useState<any>(null);
   const [casts, setCasts] = useState<any>(null);
