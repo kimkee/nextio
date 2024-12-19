@@ -99,6 +99,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                 <div key={idx} className="pbox box block w-[calc(24%-3%)] min-w-[calc(24%-3%)] mx-[0.4rem]  break-all">
                   <Link className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450%/300*100)] mb-1"
                      href={`/home/${opts.media}/${data.id}`}
+                     scroll={false}
                   >
                     <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} className='img img absolute object-cover w-full h-full'/>
                   </Link>

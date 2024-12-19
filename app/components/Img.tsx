@@ -14,7 +14,7 @@ interface CustomImageProps {
   loading?: 'eager' | 'lazy' | undefined;
 }
 
-export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized ,priority,loading }: CustomImageProps) {
+export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized ,priority, loading }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
   return (

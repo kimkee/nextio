@@ -35,7 +35,7 @@ export default function Header() {
             ) : (
               <h1 className='logo'>
                 <Link href={`/`} className='btlogo'>
-                  <Img width={256} height={54} src='/img/logo_next.png'  alt='Nextio' srcerr='' className='w-20 h-auto' />
+                  <Img width={256} height={54} src='/img/logo_next.png' unoptimized={true} alt='Nextio' srcerr='' loading='lazy' className='w-20 h-auto' />
                 </Link>
               </h1>
             )}

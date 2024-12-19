@@ -56,13 +56,8 @@ export default function Page({
         console.log(res.data);
         console.log('로드 ' + page);
         movieListSet((prevList) => [...prevList, ...res.data.results]);
-        console.log(
-          `callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} `
-        );
+        console.log( `callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} ` );
         callStat = true;
-        console.log(
-          `callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} `
-        );
         loadErrorSet('');
         nowPageSet({ pge: res.data.page, tot: res.data.total_pages });
         if (res.data.total_pages <= page) {

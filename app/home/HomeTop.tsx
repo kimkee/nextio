@@ -91,9 +91,9 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 const img = `https://image.tmdb.org/t/p/w780${data.poster_path}`;
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
-                    <Link className="box" href={`/home/${opts.media}/${data.id}`}>
+                    <Link className="box" href={`/home/${opts.media}/${data.id}`} scroll={false}>
                         <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} className='img' />
+                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' loading='lazy' unoptimized={true} className='img' />
                         </div>
                         <div className="info">
                           <div className="star">
