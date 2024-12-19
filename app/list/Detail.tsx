@@ -13,6 +13,7 @@ import DetailCtls from './DetailCtls';
 import DetailCast from './DetailCast';
 import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
+import DetailRev from './DetailRev';
 import StarPoint from '../components/StarPoint';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -205,6 +206,8 @@ export default function Detail({
             {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
             {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+
+            <DetailRev datas={datas} postID={postID} opts={opts} /* user={user} myinfo={myinfo} */ />
 
             {datas.production_companies.length ? 
             <>
