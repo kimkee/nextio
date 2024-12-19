@@ -1,8 +1,0 @@
-.cate-box{overflow:hidden;display: block;width: 100%; height: calc(3.75rem  );}
-.cate-box>.inr{display: flex;flex-wrap: nowrap;height: 3.75rem;padding: 0rem 0rem; align-items: center;border-top: rgb(107 107 107 / 10%) solid 1px;background-color: rgb(30 30 30 / 92%);position: fixed;bottom: calc(3.75rem + var(--safe-bottom) );left: 0rem;right: 0rem;z-index: 600;overflow-x: auto;/* scroll-behavior:smooth;  */left: 50%;width: 100%;max-width: var(--mwide);transform: translateX(-50%);margin-left: calc( 0px - var(--scrPad) /2 );}
-.cate-box>.inr::-webkit-scrollbar {display: none;}
-.cate-box .swiper{padding: 0rem 0rem;padding-right: 1.25rem;align-items: center;}
-.cate-box .list{display:flex;padding: 0rem 0.625rem;flex-wrap: nowrap;}
-.cate-box .list>li{width: auto;margin: 0rem 0.3125rem;padding: 0.6rem 0rem;}
-.cate-box .list>li .bt{white-space: nowrap;border: #3c3c3c solid 1px;display:inline-flex;border-radius: 2rem;padding: 0.4375rem 0.625rem;background: #1c1c1c;opacity: 0.8;color: #b7b7b7;}
-.cate-box .list>li.active .bt{background: #273c5a;border-color: #2c3a58;color: #fff;text-shadow: 0 0rem 0.125rem black;}
