@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
+import ui from '@/app/lib/ui';
 
 export default function ViewElips({overview}: {overview: string}) {
   const [isOverviewOpen, setIsOverviewOpen] = useState<boolean | null>(null);
@@ -30,20 +31,18 @@ export default function ViewElips({overview}: {overview: string}) {
     <>
     <div data-open={isOverviewOpen} ref={overviewRef} className={`my-5 relative pb-4`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
       <div ref={txtRef} className={`text-sm  text-[#aaa] leading-normal cursor-pointer ${ !isOverviewOpen && 'line-clamp-3'}`}>
-        {overview}
-        { 
-          
-          <span className={`btn-tog inline-flex items-center justify-center
-              ${!isOverviewOpen ? 'absolute left-1/2 -bottom-2 transform -translate-x-1/2' : ''}
-              ${isOverFlow ? '':'hidden'}
-            `}
-          >
-            { isOverviewOpen
-              ? <><FontAwesomeIcon icon={['fas', 'caret-up']} className='w-3 h-3 text-primary ml-1' /> <span className='sr-only'>숨기기</span></>
-              : <span className={`text-primary py-1 text-12`}><span>More</span> <FontAwesomeIcon icon={['fas', 'caret-down']} className='w-3 h-3 absolute left-1/2 transform -translate-x-1/2 -bottom-1.5' /></span>
-            }
-          </span>
-        
+        <span dangerouslySetInnerHTML={{ __html: ui.textHtml( overview, 'incode' ) }}></span>
+        {
+        <span className={`btn-tog inline-flex items-center justify-center
+            ${!isOverviewOpen ? 'absolute left-1/2 -bottom-2 transform -translate-x-1/2' : ''}
+            ${isOverFlow ? '':'hidden'}
+          `}
+        >
+          { isOverviewOpen
+            ? <><FontAwesomeIcon icon={['fas', 'caret-up']} className='w-3 h-3 text-primary ml-1' /> <span className='sr-only'>숨기기</span></>
+            : <span className={`text-primary py-1 text-12`}><span>More</span> <FontAwesomeIcon icon={['fas', 'caret-down']} className='w-3 h-3 absolute left-1/2 transform -translate-x-1/2 -bottom-1.5' /></span>
+          }
+        </span>
         }
       </div>
     </div>

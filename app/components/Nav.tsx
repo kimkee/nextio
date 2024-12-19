@@ -10,8 +10,7 @@ import ui from '@/app/lib/ui';
 export default function Nav() {
   const pathname = usePathname();
 
-  const isActive = (els: string) =>
-    pathname.includes(`${els}`) ? 'active' : '';
+  const isActive = (els: string) => pathname.includes(`${els}`) ? 'active' : '';
   const [isOnTop, setIsOnTop] = useState(false);
 
   const goTop = () => ui.scrollTo('body', 0, 200);

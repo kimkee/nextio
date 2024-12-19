@@ -9,6 +9,7 @@ import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
+import DetailCtls from './DetailCtls';
 import DetailCast from './DetailCast';
 import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
@@ -193,19 +194,7 @@ export default function Detail({
               </div>
             </div>
             
-            <div className="dins mt-5 h-[2.25rem] flex ring-[#30363d] ring-1 rounded-[0.3125rem] justify-center overflow-hidden gap-0">
-              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                {false 
-                ?(<Loading opts={{type:'glx', cls:''}}/>) 
-                :(<><i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['far', 'bookmark']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>스크랩</em></>)}
-              </button>
-              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['far', 'pen-to-square']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>리뷰</em>
-              </button>
-              <button type="button" className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-[#30363d] ring-1 px-3">
-                <i className="w-5 h-5 -mt-1"><FontAwesomeIcon icon={['fas', 'share-nodes']} className='w-4 h-4 align-middle' /></i><em className='-mt-0.5'>공유</em>
-              </button>
-            </div>
+            <DetailCtls   datas={datas} postID={postID} opts={opts} />
 
             {datas.overview && <DetailElips  overview={datas.overview} />}
 
