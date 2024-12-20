@@ -160,21 +160,21 @@ export default function Page() {
     window.history.replaceState(null, '', `/search/${opts}?search=${txt}`);
     // setMlist([]);
     // fetchMoive( 1,txt );
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     url.searchParams.set("search", txt);
     // keyWordBox.current.classList.remove("open");
   }
   // 검색어 입력란에 입력할때마다 실행되는 debounce 함수
   // wait ms 만큼 기다렸다가 func를 실행
   const debounce = (func: any, wait: number) => {
-    let timeout;
-    return function (...args) {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    return function (this: any, ...args: any[]) {
       const context = this;
       const later = function () {
         timeout = null;
         func.apply(context, args);
       };
-      clearTimeout(timeout);
+      if (timeout !== null) { clearTimeout(timeout); }
       timeout = setTimeout(later, wait);
     };
   };
@@ -186,7 +186,7 @@ export default function Page() {
     // schList state를 초기화
     schListSet([]);
     // url의 search string을 변경
-    const url = new URL(window.location);
+    const url = new URL(window.location.href);
     url.searchParams.set("search", event.target.value);
     // console.log(url);
     // 브라우저의 주소를 변경
@@ -196,11 +196,11 @@ export default function Page() {
 
   const keyWordBox = useRef(null);
   const schsForm = useRef(null);
-  const [keywordList, keywordListSet] = useState([]);
+  const [keywordList, keywordListSet] = useState<string[]>([]);
   const saveKwdStorage =(k:string) =>{
     const keyArr = JSON.parse( localStorage.getItem("keyword") || '["스타워즈","포레스트 검프"]' );
     k.trim() !== '' ? keyArr.unshift(k) : null;
-    const nkeyArr = [...new Set(keyArr)].slice(0, 10);
+    const nkeyArr = [...new Set(keyArr)].slice(0, 10) as string[];
     localStorage.setItem("keyword", JSON.stringify( nkeyArr ) )
     keywordListSet(nkeyArr );
   }
@@ -283,7 +283,7 @@ export default function Page() {
       </div>
       }
 
-      <div className='movie-list p-6' tabIndex="-1">
+      <div className='movie-list p-6' tabIndex={-1}>
       { 
       
       schList.length <= 0  ? 
