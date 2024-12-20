@@ -12,6 +12,7 @@ import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
 import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ItemA from '@/app/components/ItemA';
 // export const runtime = 'edge';
 // export const dynamicParams = false;
 
@@ -293,13 +294,12 @@ export default function Page() {
         </div>
         :
         <>
-        <ul className='list'>
+        <ul className='list grid grid-cols-4 gap-4'>
         {
           schList.map((data:any, num:number) =>{
             return(
               <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                {/* <ItemA data={data} cate={cate} /> */}
-                {data.title || data.name}
+                <ItemA data={data} opts={opts} />
               </li>
             )
           })
