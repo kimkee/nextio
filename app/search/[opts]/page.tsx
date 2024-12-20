@@ -289,7 +289,7 @@ export default function Page() {
         { 
         
         schList.length <= 0  ? 
-          <div className="nodata flex flex-col justify-center items-center min-h-56 gap-6 text-sm">
+          <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm pt-[calc(50vh-12rem)]">
             <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 !h-8 align-middle' />
             { keyword ? <p><span className='uppercase'>{opts}</span> : ‟{keyword}” 검색 결과가 없습니다.</p> : <p> 검색어를 입력하세요.</p> } 
           </div>

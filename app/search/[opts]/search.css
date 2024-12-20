@@ -23,7 +23,7 @@
 .recent-kwds .lst{display: flex;flex-wrap: nowrap;margin: 0px 0rem;}
 .recent-kwds .lst>li{display: inline-block; margin: 2rem 0.1875rem;position: relative;width: auto;margin: 0rem 0.1875rem;}
 .recent-kwds .lst>li+li{ }
-.recent-kwds .lst>li .kwd{padding: 0.3rem 1.5rem 0.3rem 0.6875rem;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align: left;font-size: 0.8125rem;border-radius: 0.25rem;border: #111111 solid 1px;background: #262626;}
+.recent-kwds .lst>li .kwd{padding: 0.25rem 1.5rem 0.3rem 0.6875rem; max-width: 10rem; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-align: left;font-size: 0.8125rem;border-radius: 0.25rem;border: #111111 solid 1px;background: #262626;}
 .recent-kwds .lst>li .del{width: 1.5rem;height: 1.5rem;position: absolute;right: 0.1rem;top: 50%;margin-top: -0.8rem; display: flex;align-items: center;justify-content: center;}
 .recent-kwds .nodata{padding: 1.875rem 0rem !important;}
 
