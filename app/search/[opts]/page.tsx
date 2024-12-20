@@ -192,7 +192,7 @@ export default function Page() {
     // 브라우저의 주소를 변경
     window.history.replaceState(null, '', `/search/${opts}?search=${event.target.value}`);
     // // keyWordBox.current.classList.remove("open");
-  }, 100);
+  }, 200);
 
   const keyWordBox = useRef(null);
   const schsForm = useRef(null);
