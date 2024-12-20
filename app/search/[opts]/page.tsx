@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { useParams, useRouter, useSearchParams  } from 'next/navigation';
+import { useParams, useRouter, usePathname, useSearchParams  } from 'next/navigation';
 import { HtmlHTMLAttributes, useEffect, useRef, useState  } from 'react';
 import { use } from 'react';
 import Image from 'next/image';
@@ -236,116 +236,118 @@ export default function Page() {
   
   console.log(  inputRef.current?.value );
   
-
-
+  const pathname = usePathname();
+  const isActive = (els: string) => pathname.includes(`${els}`) ? 'active' : '';
 
   return (
-    <main className='p-0'>
-      <div className="schs-form" ref={schsForm}>
-        <div className="inr">
-          <form className="form" onSubmit={ goSearch }>
-            <div className="bts">
-              <Link className="bt" href={`/search/movie?search=${keyword}`}>Movie</Link>
-              <Link className="bt" href={`/search/tv?search=${keyword}`}>TV</Link>
-            </div>
-            <span className="input">
-              <input type="text" placeholder="검색어를 입력하세요." 
-                ref={inputRef}
-                required maxLength={12}
-                onChange={onChange}
-                onInvalid={ (e)=> e.preventDefault() }
-              />
-              <button type="button" className="bt-del" title='삭제' onClick={delFormText} >
-                <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 !h-4 align-middle' />
+    <div className='container flex-col search-list'>
+      <main className='p-0 search-list'>
+        <div className="schs-form" ref={schsForm}>
+          <div className="inr">
+            <form className="form" onSubmit={ goSearch }>
+              <div className="bts">
+                <Link className={`bt ${isActive('movie') ? 'active' : ''}`} href={`/search/movie?search=${keyword}`}>Movie</Link>
+                <Link className={`bt ${isActive('tv') ? 'active' : ''}`} href={`/search/tv?search=${keyword}`}>TV</Link>
+              </div>
+              <span className="input">
+                <input type="text" placeholder="검색어를 입력하기." 
+                  ref={inputRef}
+                  required maxLength={12}
+                  onChange={onChange}
+                  onInvalid={ (e)=> e.preventDefault() }
+                />
+                <button type="button" className="bt-del" title='삭제' onClick={delFormText} >
+                  <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 !h-4 align-middle' />
+                </button>
+              </span>
+              <button type="submit" className="bt-sch" title='검색'>
+                <FontAwesomeIcon icon={['fas', 'search']} className='w-5 !h-5 align-middle' />
               </button>
-            </span>
-            <button type="submit" className="bt-sch" title='검색'>
-              <FontAwesomeIcon icon={['fas', 'search']} className='w-5 !h-5 align-middle' />
-            </button>
-            
-          </form>
+              
+            </form>
+          </div>
         </div>
-      </div>
-      
+        
 
 
-      {keywordList.length > 0 &&
-      <div className={`recent-kwds`} ref={keyWordBox}>
-        <ul className="lst">
-        { keywordList.map( kwd => {
-          return (
-            <li key={kwd}>
-              <button className="kwd" type="button" onClick={ ()=> goRecentSearch(kwd) }>{kwd}</button>
-              <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 !h-4 align-middle' /></button>
-            </li>
-          )
-        }) }
-        </ul>
-      </div>
-      }
-
-      <div className='movie-list p-6' tabIndex={-1}>
-      { 
-      
-      schList.length <= 0  ? 
-        <div className="nodata">
-          <i className="fa-solid fa-file-magnifying-glass"></i>
-          { keyword ? <p> ‟{keyword}” 검색 결과가 없습니다.</p> : <p> 검색어를 입력하세요.</p> } 
-        </div>
-        :
-        <>
-        <ul className='list grid grid-cols-4 gap-4'>
-        {
-          schList.map((data:any, num:number) =>{
-            return(
-              <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                <ItemA data={data} opts={opts} />
+        {keywordList.length > 0 &&
+        <div className={`recent-kwds`} ref={keyWordBox}>
+          <ul className="lst">
+          { keywordList.map( kwd => {
+            return (
+              <li key={kwd}>
+                <button className="kwd" type="button" onClick={ ()=> goRecentSearch(kwd) }>{kwd}</button>
+                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 !h-4 align-middle' /></button>
               </li>
             )
-          })
-        }
-        </ul>
-
-        { schList.length > 0 &&
-        <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError}`}>
-          <em><i className="fa-duotone fa-spinner"></i></em>
-          <button onClick={ ()=>{
-            callStat = true;
-            fetchMoive(page);
-          }} type="button" className="btn-load" title="불러오기"><i className="fa-regular fa-rotate-right"></i></button>
+          }) }
+          </ul>
         </div>
         }
-        </>
-      }     
-      </div>
-              
-      <div className="page-set">
-      { schList.length > 0 &&
-          <div className="inr"><div className="pg"><i className="p">{nowPage.pge}</i> <i className="s">/</i> <i className="t">{nowPage.tot}</i></div></div>
-      }
-      </div>
+
+        <div className='search-list p-3' tabIndex={-1}>
+        { 
+        
+        schList.length <= 0  ? 
+          <div className="nodata flex flex-col justify-center items-center min-h-56 gap-6 text-sm">
+            <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 !h-8 align-middle' />
+            { keyword ? <p><span className='uppercase'>{opts}</span> : ‟{keyword}” 검색 결과가 없습니다.</p> : <p> 검색어를 입력하세요.</p> } 
+          </div>
+          :
+          <>
+          <ul className='list grid grid-cols-4 gap-3'>
+          {
+            schList.map((data:any, num:number) =>{
+              return(
+                <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
+                  <ItemA data={data} opts={opts} />
+                </li>
+              )
+            })
+          }
+          </ul>
+
+          { schList.length > 0 &&
+          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError}`}>
+            <em><i className="fa-duotone fa-spinner"></i></em>
+            <button onClick={ ()=>{
+              callStat = true;
+              fetchMoive(page);
+            }} type="button" className="btn-load" title="불러오기"><i className="fa-regular fa-rotate-right"></i></button>
+          </div>
+          }
+          </>
+        }     
+        </div>
+                
+        <div className="page-set">
+        { schList.length > 0 &&
+            <div className="inr"><div className="pg"><i className="p">{nowPage.pge}</i> <i className="s">/</i> <i className="t">{nowPage.tot}</i></div></div>
+        }
+        </div>
 
 
-      {/* <div className='flex gap-4'>{opts}
-        <Link className='btn' href={`/search/movie/`}>MOVIE</Link>
-        <Link className='btn' href={`/search/tv/`}>TV</Link>
-      </div>
+        {/* <div className='flex gap-4'>{opts}
+          <Link className='btn' href={`/search/movie/`}>MOVIE</Link>
+          <Link className='btn' href={`/search/tv/`}>TV</Link>
+        </div>
 
-      <p>{`/search/${opts}`}</p>
-      <ul className='grid grid-cols-2 gap-4 mt-4'>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((idx) => (
-          <li key={idx}>
-            <Link
-              className='border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase'
-              href={`/search/${opts}/${idx}`}
-              passHref
-              scroll={false}
-            >
-              {opts} - {idx}
-            </Link>
-          </li>
-        ))}
-      </ul> */}
-    </main>
+        <p>{`/search/${opts}`}</p>
+        <ul className='grid grid-cols-2 gap-4 mt-4'>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((idx) => (
+            <li key={idx}>
+              <Link
+                className='border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase'
+                href={`/search/${opts}/${idx}`}
+                passHref
+                scroll={false}
+              >
+                {opts} - {idx}
+              </Link>
+            </li>
+          ))}
+        </ul> */}
+      </main>
+    </div>
   );
 }

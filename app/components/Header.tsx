@@ -18,9 +18,11 @@ export default function Header() {
   const isActive = (els: string) => (pathname.split('/').includes(`${els}`) ? 'active' : '');
   // console.log(pathname.split('/'));
 
+  // if(isActive('search')) return;
+  
   return (
     <>
-      <header className={`header h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] flex items-center justify-between z-[500] relative`}>
+      <header className={`header h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] flex items-center justify-between z-[500] relative ${isActive('search')?'!sr-only':''}`}>
         <div className='inr backdrop-blur-sm flex w-full h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] items-center justify-between fixed right-0 top-0 z-[500] 
           bg-[rgb(50_50_50_/33%)] border-b border-[rgb(58_58_58_/38%)] 
           py-[calc(var(--safe-top)+var(--safe-watch))] px-5 pt-[calc(var(--safe-top)+var(--safe-watch))] max-w-[var(--mwide)] ml-[calc(0px-var(--scrPad)/2)] overflow-hidden
