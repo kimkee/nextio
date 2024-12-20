@@ -45,7 +45,7 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
       <div className={`cate-box overflow-hidden block w-full h-14 ${cateID}`}>
         <div className="inr h-14 flex flex-nowrap items-center border border-t border-[#6b6b6b]/10 bg-[rgb(30_30_30_/92%)] fixed z-[600]
           bottom-[calc(3.75rem+var(--safe-bottom))] w-full z-600 overflow-x-auto scrollbar-hidden
-          left-1/2 translate-x-[-50%] max-w-[var(--mwide)] ml-[calc( 0px - var(--scrPad) /2 )]"
+          left-1/2 translate-x-[-50%] max-w-[var(--mwide)] ml-[calc(0px-var(--scrPad)/2)]"
           ref={cateBoxRef}
           onMouseEnter={ ()=>cateBoxRef.current?.addEventListener('wheel', handleWheel) }
           onMouseLeave={ ()=>cateBoxRef.current?.removeEventListener('wheel', handleWheel) }
