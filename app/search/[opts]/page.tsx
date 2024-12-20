@@ -13,6 +13,7 @@ import ui from '@/app/lib/ui';
 import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ItemA from '@/app/components/ItemA';
+import Loading from '@/app/components/Loading';
 // export const runtime = 'edge';
 // export const dynamicParams = false;
 
@@ -129,7 +130,7 @@ export default function Page() {
         // setPage( page + 1 );
         page = page + 1;
         fetchMoive( page );
-      } ,400 );
+      } ,1000 );
     }
   };
   
@@ -242,6 +243,7 @@ export default function Page() {
   return (
     <div className='container flex-col search-list'>
       <main className='p-0 search-list'>
+      
         <div className="schs-form" ref={schsForm}>
           <div className="inr">
             <form className="form" onSubmit={ goSearch }>
@@ -267,8 +269,6 @@ export default function Page() {
             </form>
           </div>
         </div>
-        
-
 
         {keywordList.length > 0 &&
         <div className={`recent-kwds`} ref={keyWordBox}>
@@ -285,37 +285,38 @@ export default function Page() {
         </div>
         }
 
-        <div className='search-list p-3' tabIndex={-1}>
-        { 
-        
-        schList.length <= 0  ? 
+        <div className='search-list p-0' tabIndex={-1}>
+        { schList.length <= 0  ? 
           <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
             <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 !h-8 align-middle' />
             { keyword ? <p><span className='uppercase'>{opts}</span> : ‟{keyword}” 검색 결과가 없습니다.</p> : <p> 검색어를 입력하세요.</p> } 
           </div>
           :
           <>
-          <ul className='list grid grid-cols-4 gap-3'>
-          {
-            schList.map((data:any, num:number) =>{
+          <ul className='list '>
+            { schList.map((data:any, num:number) =>{
               return(
                 <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                  <ItemA data={data} opts={opts} />
+                  <ItemA data={data} opts={opts} cate={cate} />
                 </li>
               )
-            })
-          }
+            })}
           </ul>
 
           { schList.length > 0 &&
-          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError}`}>
-            <em><i className="fa-duotone fa-spinner"></i></em>
+          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError} mt-3`}>
+            <div className='flex justify-center h-12 items-center loading'>
+              <Loading opts={{ type: 'glx' }} />
+            </div>
             <button onClick={ ()=>{
               callStat = true;
               fetchMoive(page);
-            }} type="button" className="btn-load" title="불러오기"><i className="fa-regular fa-rotate-right"></i></button>
-          </div>
-          }
+            }} type="button" className="btn-load" title="불러오기">
+              <i>
+                <FontAwesomeIcon icon={['fas', 'rotate-right']} />
+              </i>
+            </button>
+          </div> }
           </>
         }     
         </div>

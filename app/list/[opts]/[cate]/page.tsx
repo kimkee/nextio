@@ -149,10 +149,7 @@ export default function Page({
                     </li>
                   ))}
                 </ul>
-                <div
-                  className={`ui-loadmore${
-                    loadActive + loadHide + loadError
-                  } mt-3`}>
+                <div className={`ui-loadmore${ loadActive + loadHide + loadError } mt-3`}>
                   <div className='flex justify-center h-12 items-center loading'>
                     <Loading opts={{ type: 'glx' }} />
                   </div>
@@ -160,9 +157,7 @@ export default function Page({
                     onClick={(e) => {
                       callStat = true;
                       fetchMoive(page);
-                    }}
-                    type='button'
-                    className='btn-load'>
+                    }} type='button' className='btn-load'>
                     <i>
                       <FontAwesomeIcon icon={['fas', 'rotate-right']} />
                     </i>

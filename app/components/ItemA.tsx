@@ -4,10 +4,57 @@ import Link from 'next/link';  // useParams , Outlet, useSearchParams, useLocati
 import './ItemB.css';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Movie, TV 검색결과 유닛
-export default function ItemA({ data, opts }: any) {
+export default function ItemA({ data, opts, cate }: any) {
 
+// console.log(data);
+  // console.log(cate);
+  const imgpath = '//image.tmdb.org/t/p/w200';
+  const img = imgpath + data.poster_path;
+  const bgs = data.backdrop_path ? imgpath + data.backdrop_path : imgpath + data.poster_path;
+  const tit = data.title || data.name;
+  if(!data){return}
+  return (
+  <>
+    {/* {JSON.stringify(cate)} */}
+    <Link className="box block p-4 relative" href={`/search/${opts}/${data.id}`} scroll={false}>
+      <div className="cont">
+        <div className="pics"><img src={`${img}`} alt={tit} className='img'/></div>
+        <div className="desc">
+          <div className="tits">{tit}</div>
+          <div className="text">{data.overview}</div>
+        </div>
+      </div>
+      <div className="info flex justify-between items-center pt-2">
+        <div className="dd">
+          <div className="cate">
+            <span className="txt flex gap-1">
+              {data.genre_ids.map( (item: number) => {
+                return <em className="ico bg-[#333] rounded-full inline-flex items-center justify-center px-1 py-0.5 text-[#aaa]" key={item}> {  cate[item] } </em>
+              })}
+            </span>
+          </div>
+        </div>
+        <div className="dd gap-1 items-center">
+          <div className="hits inline-flex items-center gap-1">
+            <StarPoint point={data.vote_average} opts={{cls:'-mt-1'}} />
+            <em><FontAwesomeIcon icon={['far', 'heart']} className='w-3 !h-3 align-middle' /> <b>{data.vote_average}</b></em>
+          </div>
+          <div className="date inline-flex items-center gap-1">
+            {/* <i className="fa-regular fa-calendar-days"></i> */}
+            <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 !h-3 align-middle' />
+            <b>{data.release_date || data.first_air_date}</b>
+          </div>
+        </div>
+      </div>
+      <div className="bgs" style={{backgroundImage: `url(${bgs})`}}></div>
+    </Link>
+  </>  
+  )
+
+  /*   
   const img = `https://image.tmdb.org/t/p/w200/${data.poster_path}`;
   const tit = data.title || data.name;
 
@@ -29,5 +76,6 @@ export default function ItemA({ data, opts }: any) {
 
       </Link>
     </>
-  )
+  ) 
+  */
 }
