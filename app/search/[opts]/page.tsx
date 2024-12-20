@@ -166,18 +166,18 @@ export default function Page() {
   }
   // 검색어 입력란에 입력할때마다 실행되는 debounce 함수
   // wait ms 만큼 기다렸다가 func를 실행
-  const debounce = (func: any, wait: number) => {
+  const debounce = (func: (...args: any[]) => void, wait: number) => {
     let timeout: ReturnType<typeof setTimeout> | null = null;
-    return function (this: any, ...args: any[]) {
-      const context = this;
-      const later = function () {
+    return function(...args: any[]) {
+      const later = () => {
         timeout = null;
-        func.apply(context, args);
+        func(...args);
       };
       if (timeout !== null) { clearTimeout(timeout); }
       timeout = setTimeout(later, wait);
     };
   };
+  
   // 입력란에 입력할때마다 실행되는 함수
   // 100ms만큼 기다렸다가 실행
   const onChange = debounce((event: any) => {
