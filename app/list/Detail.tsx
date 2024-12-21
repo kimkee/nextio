@@ -185,7 +185,7 @@ export default function Detail({
                   <Img
                     width={400}
                     height={570}
-                    className='img absolute object-cover w-full h-full opacity-100'
+                    className='img absolute object-cover w-full h-full !opacity-100'
                     src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                     alt={datas.title || datas.name}
                     srcerr='/img/common/non_poster.png'
