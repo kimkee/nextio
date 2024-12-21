@@ -20,11 +20,17 @@ export default function ItemA({ data, opts, cate }: any) {
   <>
     {/* {JSON.stringify(cate)} */}
     <Link className="box block p-4 relative" href={`/search/${opts}/${data.id}`} scroll={false}>
-      <div className="cont">
-        <div className="pics"><img src={`${img}`} alt={tit} className='img'/></div>
+      <div className="cont flex items-center">
+        <div className="pics flex-none relative w-20 pb-[calc(430%/300*19)] mr-4 overflow-hidden  bg-[#203140]">
+          {/* <img src={`${img}`} alt={tit} className='img'/> */}
+          <Img 
+            width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
+            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
+          />  
+        </div>
         <div className="desc">
           <div className="tits">{tit}</div>
-          <div className="text">{data.overview}</div>
+          <div className="text line-clamp-5 text-ss text-[#777777]">{data.overview}</div>
         </div>
       </div>
       <div className="info flex justify-between items-center pt-2">
