@@ -217,9 +217,10 @@ export default function Detail({
                   return comp.logo_path 
                   ? 
                   <span key={comp.id} className='logo bg-white/70 px-2 py-0.5 rounded-full inline-flex  items-center h-7 max-w-full text-10 text-black'>
-                    <img
-                      className="img max-h-3.5 align-middle max-w-full"
-                      src={`//image.tmdb.org/t/p/w92${comp.logo_path}`} alt={comp.name}
+                    <Img 
+                      width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
+                      className='img max-h-3.5 align-middle max-w-full'
+                      alt={comp.name} srcerr='/img/common/non_poster.png' unoptimized={true}
                     />
                   </span> 
                   : 
