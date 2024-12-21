@@ -30,15 +30,15 @@ export default function ItemA({ data, opts, cate }: any) {
         </div>
         <div className="desc">
           <div className="tits">{tit}</div>
-          <div className="text line-clamp-5 text-ss text-[#777777]">{data.overview}</div>
+          <div className="text line-clamp-5 text-12 text-[#888888]">{data.overview}</div>
         </div>
       </div>
-      <div className="info flex justify-between items-center pt-2">
+      <div className="info flex justify-between items-start pt-2">
         <div className="dd">
           <div className="cate">
-            <span className="txt flex gap-1">
+            <span className="txt flex flex-wrap gap-1">
               {data.genre_ids.map( (item: number) => {
-                return <em className="ico bg-[#333] rounded-full inline-flex items-center justify-center px-1 py-0.5 text-[#aaa]" key={item}> {  cate[item] } </em>
+                return <em className="ico bg-[#333] rounded-full inline-flex items-center justify-center px-1.5 py-0.5 text-[#aaa] text-10" key={item}> {  cate[item] } </em>
               })}
             </span>
           </div>
