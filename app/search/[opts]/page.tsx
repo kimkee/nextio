@@ -302,7 +302,9 @@ export default function Page() {
           <ul className='list '>
             { schList.map((data:any, num:number) =>{
               return(
-                <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
+                <li
+                  className='border-b border-[#242b3688]'
+                  key={data.id+'_'+num} data-id={data.id+'_'+num}>
                   <ItemA data={data} opts={opts} cate={cate} />
                 </li>
               )

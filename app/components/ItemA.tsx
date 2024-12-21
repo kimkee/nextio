@@ -29,11 +29,11 @@ export default function ItemA({ data, opts, cate }: any) {
           />  
         </div>
         <div className="desc">
-          <div className="tits">{tit}</div>
-          <div className="text line-clamp-5 text-12 text-[#888888]">{data.overview}</div>
+          <div className="tits text-[#bbbbbb] text-sm mb-1 line-clamp-1">{tit}</div>
+          <div className="text line-clamp-5 text-12 text-[#888888] mb-2">{data.overview}</div>
         </div>
       </div>
-      <div className="info flex justify-between items-start pt-2">
+      <div className="info flex justify-between items-start pt-2 gap-3">
         <div className="dd">
           <div className="cate">
             <span className="txt flex flex-wrap gap-1">
@@ -43,19 +43,22 @@ export default function ItemA({ data, opts, cate }: any) {
             </span>
           </div>
         </div>
-        <div className="dd gap-1 items-center">
-          <div className="hits inline-flex items-center gap-1">
+        <div className="dd items-center flex text-[#707887] gap-2">
+          <div className="hits inline-flex items-center gap-2 text-xt whitespace-nowrap">
             <StarPoint point={data.vote_average} opts={{cls:'-mt-1'}} />
-            <em><FontAwesomeIcon icon={['far', 'heart']} className='w-3 !h-3 align-middle' /> <b>{data.vote_average}</b></em>
+            <em className="ico inline-flex items-center gap-1 ">
+              <FontAwesomeIcon icon={['far', 'heart']} className='w-3 !h-3 align-middle' />
+              <b>{data.vote_average}</b>
+            </em>
           </div>
-          <div className="date inline-flex items-center gap-1">
+          <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
             {/* <i className="fa-regular fa-calendar-days"></i> */}
             <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 !h-3 align-middle' />
             <b>{data.release_date || data.first_air_date}</b>
           </div>
         </div>
       </div>
-      <div className="bgs" style={{backgroundImage: `url(${bgs})`}}></div>
+      <div className="bgs bg-cover bg-position-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-10 " style={{backgroundImage: `url(${bgs})`}}></div>
     </Link>
   </>  
   )

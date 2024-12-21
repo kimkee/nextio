@@ -47,7 +47,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     const box = scrollBoxRef.current;
     if(!box) return;
     const amt = Math.ceil(box.scrollLeft / (box.scrollWidth - box.offsetWidth)*100 || 0);
-    console.log( amt );
+    // console.log( amt );
     setIsNavPrev( amt <= 0 ? true : false);
     setIsNavNext( amt >= 100 ? true : false);
   }
@@ -85,7 +85,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
         </div>
 
         <div ref={scrollBoxRef}
-          className="inr flex flex-nowrap overflow-y-hidden overflow-x-auto px-1 scrollbar-hidden scroll-smooth"
+          className="inr flex flex-nowrap overflow-y-hidden overflow-x-auto px-1 scrollbar-hidden"
           onMouseEnter={ ()=>scrollBoxRef.current?.addEventListener('wheel', handleWheel) }
           onMouseLeave={ ()=>scrollBoxRef.current?.removeEventListener('wheel', handleWheel) }
           onScroll={ handeScroll }

@@ -16,7 +16,7 @@ export default function Header() {
   const params = useParams();
   const router = useRouter();
   const isActive = (els: string) => (pathname.split('/').includes(`${els}`) ? 'active' : '');
-  console.log( params );
+  // console.log( params );
 
   // if(isActive('search')) return;
   const [isVal, setIsVal] = useState(false); 

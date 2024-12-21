@@ -47,7 +47,7 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
           bottom-[calc(3.75rem+var(--safe-bottom))] w-full z-600 overflow-x-auto scrollbar-hidden
           left-1/2 translate-x-[-50%] max-w-[var(--mwide)] ml-[calc(0px-var(--scrPad)/2)]"
           ref={cateBoxRef}
-          onMouseEnter={ ()=>cateBoxRef.current?.addEventListener('wheel', handleWheel) }
+          onMouseOver={  ()=>cateBoxRef.current?.addEventListener('wheel', handleWheel) }
           onMouseLeave={ ()=>cateBoxRef.current?.removeEventListener('wheel', handleWheel) }
         >
           {
