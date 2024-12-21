@@ -130,7 +130,7 @@ export default function Page() {
         // setPage( page + 1 );
         page = page + 1;
         fetchMoive( page );
-      } ,50000 );
+      } ,500 );
     }
   };
   
