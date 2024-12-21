@@ -58,7 +58,7 @@ export default function ItemA({ data, opts, cate }: any) {
           </div>
         </div>
       </div>
-      <div className="bgs bg-cover bg-position-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-10 " style={{backgroundImage: `url(${bgs})`}}></div>
+      <div className="bgs bg-cover bg-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-5 " style={{backgroundImage: `url(${bgs})`}}></div>
     </Link>
   </>  
   )

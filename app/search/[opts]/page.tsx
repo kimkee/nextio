@@ -130,7 +130,7 @@ export default function Page() {
         // setPage( page + 1 );
         page = page + 1;
         fetchMoive( page );
-      } ,1000 );
+      } ,50000 );
     }
   };
   
@@ -312,7 +312,7 @@ export default function Page() {
           </ul>
 
           { schList.length > 0 &&
-          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError} mt-3`}>
+          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError} mt-1`}>
             <div className='flex justify-center h-12 items-center loading'>
               <Loading opts={{ type: 'glx' }} />
             </div>
