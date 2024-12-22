@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <>
       <header className={`header h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] flex items-center justify-between z-[500] relative 
-        ${ isVal ?'!sr-only':''}
+        ${ isVal ?'!sr-only hidden':''}
       `}>
         <div className='inr backdrop-blur-sm flex w-full h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] items-center justify-between fixed right-0 top-0 z-[500] 
           bg-[rgb(50_50_50_/33%)] border-b border-[rgb(58_58_58_/38%)] 
