@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Img from '@/app/components/Img';
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import '@/app/lib/fontawesome';
@@ -50,7 +51,11 @@ export default function User() {
               <>
                 <div className='border border-white/10 bg-white/5 rounded-md p-6 flex flex-col gap-4 text-sm break-all relative  w-full max-w-80'>
                   <p>
-                    <Image width={80} height={80} src={myinfo.profile_picture} alt='' className='w-10 h-10 rounded-full' />
+                    <Img
+                      width={80} height={80} src={myinfo.profile_picture}
+                      alt={`${myinfo.username}`} srcerr='/img/common/user.png'
+                      unoptimized={true} className='w-10 h-10 rounded-full'
+                    />
                   </p>
                   <p>Num : {myinfo.id}</p>
                   <p>Username : {myinfo.username}</p>
@@ -58,7 +63,8 @@ export default function User() {
                   <p>Provider : {myinfo.provider}</p>
                   <p>Join : {myinfo.created_at}</p>
                   <button className='btn absolute top-6 right-6' onClick={signOut}>
-                    로그아웃
+                    <FontAwesomeIcon icon={['fas', 'arrow-right-from-bracket']} />
+                    <em>로그아웃</em>
                   </button>
                 </div>
               </>

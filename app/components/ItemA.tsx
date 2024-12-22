@@ -21,7 +21,7 @@ export default function ItemA({ data, opts, cate }: any) {
     {/* {JSON.stringify(cate)} */}
     <Link className="box block p-4 relative" href={`/search/${opts}/${data.id}`} scroll={false}>
       <div className="cont flex items-center">
-        <div className="pics flex-none relative w-[5rem] pb-[7.5rem] mr-4 overflow-hidden  bg-[#203140]">
+        <div className="pics flex-none relative w-[5rem] pb-[7.5rem] mr-4 overflow-hidden  bg-black">
           {/* <img src={`${img}`} alt={tit} className='img'/> */}
           <Img 
             width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
