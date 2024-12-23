@@ -24,8 +24,8 @@ import StarPoint from '@/app/components/StarPoint';
 
 export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
 
-  const [scrapMV, setScrapMV] = useState<any>([]);
-  const [scrapTV, setScrapTV] = useState<any>([]);
+  const [scrapMV, setScrapMV] = useState<any>(null);
+  const [scrapTV, setScrapTV] = useState<any>(null);
   const [media, setMedia] = useState<'movie' | 'tv'>('movie');
 
   const [swiper, setSwiper] = useState(null as any);
@@ -168,7 +168,9 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
           >
               
             <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
-              {scrapMV.length > 999 ?
+            {scrapMV === null ? <Loading opts={{ type: 'glx', cls: 'abs' }} /> : 
+            <>
+              {scrapMV.length ?
               <>
               <ul className='list grid grid-cols-2'>
                 {scrapMV.map((data:any,num:number) =>{
@@ -223,8 +225,13 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 <p> 스크랩된 컨텐츠가 없습니다.</p>
               </div>
               }
+            </>
+            }
             </SwiperSlide>
+
             <SwiperSlide tag="section" className="tablike tv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+            {scrapTV === null ? <Loading opts={{ type: 'glx', cls: 'abs' }} /> : 
+            <>
               {scrapTV.length ?
               <>
               <ul className='list grid grid-cols-2'>
@@ -280,6 +287,8 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 <p> 스크랩된 컨텐츠가 없습니다.</p>
               </div>
               }
+            </>
+            }
             </SwiperSlide>
           </Swiper>
 
