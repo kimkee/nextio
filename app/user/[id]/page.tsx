@@ -70,6 +70,7 @@ export default function User() {
 
     });
     viewUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [param_id,swiper]);
 
   return (
@@ -91,7 +92,13 @@ export default function User() {
                 <div className="profile pt-8 pb-4 relative">
                   <div className="user flex items-center mb-5 mx-5">
                     <Link href={'/user/'+param_id} className="pic flex-none relative w-[80px] pb-[80px] mr-4 overflow-hidden">
-                      <img src={uInfo.profile_picture} className="img w-[80px] h-[80px] rounded-full absolute left-0 top-0 bg-[#424242]"/>
+                      <Img className={`img w-[80px] h-[80px] rounded-full absolute left-0 top-0 bg-[#424242]`}
+                        width={80} height={80}
+                        src={uInfo.profile_picture}
+                        alt={uInfo.username}
+                        srcerr='/img/common/user.png'
+                        unoptimized={true}
+                      />
                       <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
                         {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}
                         {uInfo.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 !h-3" />}
