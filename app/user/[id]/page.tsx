@@ -12,6 +12,18 @@ import { Provider } from '@supabase/supabase-js';
 import getUser from '@/app/getUser';
 import Loading from '@/app/components/Loading';
 import ui from '@/app/lib/ui';
+
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
+import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-fade';
+
 export const runtime = 'edge';
 
 export default function User() {
@@ -19,7 +31,7 @@ export default function User() {
   const [user, setUser] = useState<UserType | null>(null);
   const [myinfo, setMyinfo] = useState<MyinfoType | null>(null);
   const params = useParams();
-  const parm_id = params.id as string;
+  const param_id = params.id as string;
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -29,14 +41,21 @@ export default function User() {
 
   const [uInfo, setUInfo] = useState<any>();
   const viewUser = async ()=> {
-    console.log(parm_id);
-    const { data , error }  = await supabase.from('MEMBERS').select("*").eq('id', parm_id).order('created_at', { ascending: true });
+    console.log(param_id);
+    const { data , error }  = await supabase.from('MEMBERS').select("*").eq('id', param_id).order('created_at', { ascending: true });
     if(data){
       setUInfo(data[0]);
       // console.log(data[0]);
       // console.log(user);
     }
     if(error) console.log(error);
+  }
+
+  const [swiper, setSwiper] = useState(null as any);
+  const [spIdx, setSpIdx] = useState<number | null>(null);
+  const gotoSlide = (num: number)=>{
+    console.log(num);
+    swiper.slideToLoop(num);
   }
 
   useEffect(() => {
@@ -51,7 +70,7 @@ export default function User() {
 
     });
     viewUser()
-  }, []);
+  }, [param_id,swiper]);
 
   return (
     <>
@@ -71,7 +90,7 @@ export default function User() {
               <>
                 <div className="profile pt-8 pb-4 relative">
                   <div className="user flex items-center mb-5 mx-5">
-                    <Link href={'/user/'+parm_id} className="pic flex-none relative w-[80px] pb-[80px] mr-4 overflow-hidden">
+                    <Link href={'/user/'+param_id} className="pic flex-none relative w-[80px] pb-[80px] mr-4 overflow-hidden">
                       <img src={uInfo.profile_picture} className="img w-[80px] h-[80px] rounded-full absolute left-0 top-0 bg-[#424242]"/>
                       <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
                         {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}
@@ -105,6 +124,81 @@ export default function User() {
                     </div>
                   }  
                 </div>
+
+                {/* <p>{uInfo.user_id}</p>
+                <p>{user?.id}</p> */}
+  
+                <div className="user-post">
+                  <ul className="
+                    menu sticky top-[calc(3.375rem+var(--safe-top))] h-14 flex w-full 
+                    border-b border-b-[#242b36] z-[100] bg-[#111111]"
+                  >
+                    <li className={`${spIdx == 0 ? "active text-primary" : ""} flex-1 relative`}>
+                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(0)}>
+                        <FontAwesomeIcon icon={['fas', 'bookmark']} />
+                      </button>
+                      {spIdx == 0 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
+                    </li>
+                    <li className={`${spIdx == 1 ? "active text-primary" : ""} flex-1 relative`}>
+                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(1)}>
+                        <FontAwesomeIcon icon={['fas', 'list']} />
+                      </button>
+                      {spIdx == 1 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
+                    </li>
+                    <li className={`${spIdx == 2 ? "active text-primary" : ""} flex-1 relative`}>
+                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(2)}>
+                        <FontAwesomeIcon icon={['fas', 'users']} />
+                      </button>
+                      {spIdx == 2 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
+                    </li>
+                  </ul>
+                  <Swiper className="swiper-wrapper swiper pctn " 
+                    // install Swiper modules
+                    modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]} //EffectFade,
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    // navigation
+                    loop={false}
+                    // effect={"fade"}
+                    autoplay={false}
+                    // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: false}}
+                    wrapperTag="div"
+                    // pagination={{ clickable: true }}
+                    // scrollbar={{ draggable: true }}
+                    initialSlide={ 0 } // 0 ~ 9
+                    autoHeight={true}
+                    watchOverflow={true}
+                    observer={true}
+                    observeSlideChildren={true}
+                    observeParents={true}
+                    onSwiper={(swiper) => {
+                      console.log("initialize swiper", swiper);
+                      setSwiper(swiper);
+                      setSpIdx(0)
+                      // updateSwiper();
+                      // swiper.slideTo( Math.floor( Math.random() *10 ) );
+                    }}
+                    onSlideChange={(swiper) => {
+                      console.log('slide change' , swiper.realIndex , swiper.activeIndex);
+                      setSpIdx(swiper.realIndex)
+                      // updateSwiper();
+                      // gotoSlide(swiper.realIndex);
+                    }}
+                  >
+                    <SwiperSlide tag="section" className="ctn like min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                      Like
+                      {/* <UserLike uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
+                    </SwiperSlide>
+                    <SwiperSlide tag="section" className="ctn post min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                      Post
+                      {/* <UserPost uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
+                    </SwiperSlide>
+                    <SwiperSlide tag="section" className="ctn repl min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                      Mems
+                      {/* <UserFolw uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
+                    </SwiperSlide>
+                  </Swiper>
+                </div>  
               </>
             ) : (
               <>
