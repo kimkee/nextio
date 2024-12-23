@@ -108,6 +108,7 @@ export default function Detail({
           <div className='m-info relative z-1'>
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
+            <meta property='og:url' content={window.location.href} />
             <meta property='og:image' content={'//image.tmdb.org/t/p/w300' + datas.poster_path} />
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
