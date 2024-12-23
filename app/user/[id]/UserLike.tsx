@@ -130,14 +130,14 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       <div className="movie-list user">
         <button onClick={()=>{updateSwiper()}} className='btn sm hidden'>S</button>
         
-        <div className="tabs flex justify-center border-b border-[#202020] mb-2.5 h-12" role="tablist">
-          <button className={`w-full text-sm ${media == 'movie' ? 'active text-primary':''}`} onClick={()=>gotoSlide(0)}>
+        <div className="tabs flex justify-center border-b border-[#202020] h-12" role="tablist">
+          <button className={`w-full text-xs ${media == 'movie' ? 'active text-primary font-bold':''}`} onClick={()=>gotoSlide(0)}>
             <em>Movie</em>
-            <i className={`text-xt bg-white/50 rounded-full px-1 text-black`}>{scrapMvTot}</i>
+            <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
           </button>
-          <button className={`w-full text-sm ${media == 'tv' ? 'active text-primary':''}`} onClick={()=>gotoSlide(1)}>
+          <button className={`w-full text-xs ${media == 'tv' ? 'active text-primary':''}`} onClick={()=>gotoSlide(1)}>
             <em>TV</em>
-            <i className={`text-xt bg-white/50 rounded-full px-1 text-black`}>{scrapTvTot}</i>
+            <i className={`${media == 'tv' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapTvTot}</i>
           </button>
         </div>
         <Swiper className="swiper-wrapper swiper pctn " 
@@ -167,8 +167,8 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
             }}
           >
               
-            <SwiperSlide tag="section" className="tablike mv">
-              {scrapMV.length ?
+            <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+              {scrapMV.length > 999 ?
               <>
               <ul className='list grid grid-cols-2'>
                 {scrapMV.map((data:any,num:number) =>{
@@ -176,28 +176,28 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                     const img = imgpath + data.poster_path;
                     const tit = data.title || data.name;
                     return(
-                      <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                        <div className="box">
-                          <Link className="cont"  href={`${data.mvtv}/${data.idmvtv}`}>
-                            <div className="pics">
+                      <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
+                        <div className="box relative">
+                          <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
+                            <div className="pics w-14 flex-none bg-[#203140] relative mr-3">
                               <Img 
                                 width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
-                                className='img block w-12 h-16 object-cover '
+                                className='img block object-cover   w-full h-full '
                               />
                             </div>
-                            <div className="dd">
-                            <div className="tits">{data.title || data.name}</div>
-                              <div className="hits">
+                            <div className="dd flex-1">
+                              <div className="tits mb-2">{data.title || data.name}</div>
+                              <div className="hits flex flex-col gap-2">
                                 <StarPoint point={data.vote_average} opts={{ cls: 'sm' }} />
-                                <em><i className="fa-regular fa-thumbs-up"></i> <b>{data.vote_average}</b></em>
+                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <b>{data.vote_average}</b></em>
                               </div>
-                              <div className="date"><b>{data.release_date || data.first_air_date}</b></div>
+                              <div className="date mt-2 text-white/40"><b>{data.release_date || data.first_air_date}</b></div>
                             </div>
                           </Link>
-                          <div className="bts">
+                          <div className="bts absolute right-3 bottom-2">
                             { uInfo?.user_id == user?.id &&
-                              <button type="button" className="bt" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
-                                <span><i className="fa-solid fa-trash-can"></i></span>
+                              <button type="button" className="bt text-white/40" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
+                                <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
                               </button>
                             }
                           </div>
@@ -208,49 +208,53 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 
               </ul>
               { scrapMV.length < scrapMvTot &&
-              <div className="loading"><button type="button" onClick={()=>{getMyScrap(uInfo.id,'movie',scrapMV.length+pagingAmount)}} className='btn'>
-                <b>More</b> <i className="fa-solid fa-caret-down"></i></button>
+              <div className="loading border-b border-[#202020]">
+                <button type="button"  className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
+                  onClick={()=>{getMyScrap(uInfo.id,'movie',scrapMV.length+pagingAmount)}}
+                >
+                  <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 !h-3' />
+                </button>
               </div>
               }
               </>
               :
-              <div className="nodata">
-                <i className="fa-solid fa-file-magnifying-glass"></i>
+              <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
+                <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
                 <p> 스크랩된 컨텐츠가 없습니다.</p>
               </div>
               }
             </SwiperSlide>
-            <SwiperSlide tag="section" className="tablike tv">
+            <SwiperSlide tag="section" className="tablike tv min-h-[calc(100vh-25rem-var(--safe-top)-var(--safe-bottom))] pb-20">
               {scrapTV.length ?
               <>
-              <ul className='list'>
+              <ul className='list grid grid-cols-2'>
                 {scrapTV.map((data:any,num:number) =>{
                     const imgpath = '//image.tmdb.org/t/p/w92';
                     const img = imgpath + data.poster_path;
                     const tit = data.title || data.name;
                     return(
-                      <li key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                        <div className="box">
-                          <Link className="cont"  href={`${data.mvtv}/${data.idmvtv}`}>
-                            <div className="pics">
+                      <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
+                        <div className="box relative">
+                          <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
+                            <div className="pics w-14 flex-none bg-[#203140] relative mr-3">
                               <Img 
                                 width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
-                                className='img block w-12 h-16 object-cover '
+                                className='img block object-cover   w-full h-full '
                               />
                             </div>
-                            <div className="dd">
-                              <div className="tits">{data.title || data.name}</div>
-                              <div className="hits">
+                            <div className="dd flex-1">
+                              <div className="tits mb-2">{data.title || data.name}</div>
+                              <div className="hits flex flex-col gap-2">
                                 <StarPoint point={data.vote_average} opts={{ cls: 'sm' }} />
-                                <em><i className="fa-regular fa-thumbs-up"></i> <b>{data.vote_average}</b></em>
+                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <b>{data.vote_average}</b></em>
                               </div>
-                              <div className="date"><b>{data.release_date || data.first_air_date}</b></div>
+                              <div className="date mt-2 text-white/40"><b>{data.release_date || data.first_air_date}</b></div>
                             </div>
                           </Link>
-                          <div className="bts">
+                          <div className="bts absolute right-3 bottom-2">
                             { uInfo?.user_id == user?.id &&
-                              <button type="button" className="bt" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
-                                <span><i className="fa-solid fa-trash-can"></i></span>
+                              <button type="button" className="bt text-white/40" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
+                                <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
                               </button>
                             }
                           </div>
@@ -261,14 +265,18 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 
               </ul>
               { scrapTV.length < scrapTvTot &&
-              <div className="loading"><button type="button" onClick={()=>{getMyScrap(uInfo.id,'tv',scrapTV.length+pagingAmount)}} className='btn'>
-                <b>More</b> <i className="fa-solid fa-caret-down"></i></button>
+              <div className="loading border-b border-[#202020]">
+                <button type="button"  className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
+                  onClick={()=>{getMyScrap(uInfo.id,'tv',scrapTV.length+pagingAmount)}}
+                >
+                  <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 !h-3' />
+                </button>
               </div>
               }
               </>
               :
-              <div className="nodata">
-                <i className="fa-solid fa-file-magnifying-glass"></i>
+              <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
+                <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
                 <p> 스크랩된 컨텐츠가 없습니다.</p>
               </div>
               }

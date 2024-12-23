@@ -139,7 +139,7 @@ export default function User() {
   
                 <div className="user-post">
                   <ul className="
-                    menu sticky top-[calc(3.375rem+var(--safe-top))] h-12 flex w-full 
+                    menu sticky top-[calc(3.375rem+var(--safe-top))] h-14 flex w-full 
                     border-b border-b-[#242b36] z-[100] bg-[#111111]"
                   >
                     <li className={`${spIdx == 0 ? "active text-primary" : ""} flex-1 relative`}>
