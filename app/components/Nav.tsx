@@ -79,10 +79,11 @@ export default function Nav() {
               </Link>
             </li>
             <li className={`flex-1`}>
+              <>
               {  myinfo?.id 
               ?
               <Link href={`/user/${myinfo?.id}`} className={`${isActive('user/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <span className="pic w-7 h-7 block relative border-[0.1875rem] border-inherit rounded-full overflow-hidden -mb-1">
+                <span className="pic w-[1.625rem] h-[1.625rem] block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1.5">
                   
                   <Img className="img absolute w-full h-full left-0  top-0 object-cover"
                     alt={myinfo.username} width={32} height={32}
@@ -94,12 +95,12 @@ export default function Nav() {
                 <em className='text-xt mt-1'>MY</em>
               </Link>
               :
-              <Link href="/user/login" className={`${isActive('user/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href={`${myinfo === null ? '' : '/user/login'} `} className={`${isActive('user/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Login</em>
               </Link>
               }
-              
+              </>
             </li>
           </ul>
         </div>

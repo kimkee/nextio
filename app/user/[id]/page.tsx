@@ -23,6 +23,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
+import UserLike from './UserLike';
 
 export const runtime = 'edge';
 
@@ -194,8 +195,7 @@ export default function User() {
                     }}
                   >
                     <SwiperSlide tag="section" className="ctn like min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
-                      Like
-                      {/* <UserLike uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
+                      <UserLike uInfo={uInfo} user={user} swiper1dep={swiper} />
                     </SwiperSlide>
                     <SwiperSlide tag="section" className="ctn post min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
                       Post
