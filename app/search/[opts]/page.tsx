@@ -96,7 +96,7 @@ export default function Page() {
     fetchMoive(page);
     
     schListSet([]);
-    !keyword && !document.querySelector(".pop-layer") && inputRef.current?.focus();
+    !keyword && inputRef.current?.focus();
     window.addEventListener("scroll", scrollEvent);
     window.scrollTo(0, 0);
     showKwdList()
