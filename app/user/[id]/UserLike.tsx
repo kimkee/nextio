@@ -167,7 +167,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
             }}
           >
               
-            <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+            <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
               {scrapMV.length > 999 ?
               <>
               <ul className='list grid grid-cols-2'>
@@ -224,7 +224,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
               </div>
               }
             </SwiperSlide>
-            <SwiperSlide tag="section" className="tablike tv min-h-[calc(100vh-25rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+            <SwiperSlide tag="section" className="tablike tv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
               {scrapTV.length ?
               <>
               <ul className='list grid grid-cols-2'>
