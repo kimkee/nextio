@@ -48,7 +48,7 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
                   <span className="msg px-2.5 py-3 absolute bottom-0 left-0 right-0 bg-black/40 z-10">
                     <span className="tit text-xs text-white/70 line-clamp-1">{mov.name}</span>
                   </span>
-                  <i className="ico bg-gradient-to-tl from-white/30 to-white/10 rounded-full shadow-lg w-12 h-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 inline-flex items-center justify-center">
+                  <i className="ico bg-gradient-to-tl from-white/30 to-white/10 rounded-full shadow-lg w-12 h-12 absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 inline-flex items-center justify-center">
                     <FontAwesomeIcon icon={['fas', 'play']} className='text-black/70 w-4 h-4 ml-0.5' />
                   </i>
                   <Img 

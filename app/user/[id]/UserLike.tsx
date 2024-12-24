@@ -86,9 +86,12 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       console.table("내 스크랩 조회 성공");
       opts == 'movie' && setScrapMV(data);
       opts == 'tv'    && setScrapTV(data);
+      ui.loading.hide();
     }
-    if(error) console.log(error);
-    ui.loading.hide();
+    if(error) {
+      console.log(error)
+      ui.loading.hide();
+    };
     // console.log(data);
     
   }
