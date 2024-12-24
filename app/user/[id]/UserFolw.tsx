@@ -1,6 +1,7 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Img from '@/app/components/Img';
-import {usePathname, useRouter, useParams } from 'next/navigation';
+import { usePathname, useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,32 +12,23 @@ import getUser from '@/app/getUser';
 import Loading from '@/app/components/Loading';
 import ui from '@/app/lib/ui';
 
-
-// import axios from 'axios';
-
-
-
-
-
-export default function UserFolw({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
+export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user: any, swiper1dep: any }) {
   const router = useRouter();
   const [member, setMember] = useState<any>(null);
-  const members = async ()=>{
-    const { data, error }  = await supabase.from('MEMBERS').select("*").order('created_at', { ascending: true });
+  const members = async () => {
+    const { data, error } = await supabase.from('MEMBERS').select('*').order('created_at', { ascending: true });
     setMember(data);
-  }  
-  const goPage = (link:any)=>{
+  };
+  const goPage = (link: any) => {
     router.push(`/user/${link}`);
     console.log(link);
-  }
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     members();
-    return ()=>{
-
-    }
+    return () => {};
     // eslint-disable-next-line
-  },[uInfo]);
+  }, [uInfo]);
 
   if(!member) return
   return (
