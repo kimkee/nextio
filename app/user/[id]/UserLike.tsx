@@ -71,6 +71,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
   }
   const pagingAmount = 40;
   const getMyScrap = async (user_id: any, opts: string, num: number)=> {
+    ui.loading.show('glx');
     console.log(user_id);
     num = (num || pagingAmount) - 1;
     const {data:data, error:error} = await supabase
@@ -87,7 +88,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       opts == 'tv'    && setScrapTV(data);
     }
     if(error) console.log(error);
-    
+    ui.loading.hide();
     // console.log(data);
     
   }
