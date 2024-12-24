@@ -24,6 +24,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 import UserLike from './UserLike';
+import UserFolw from './UserFolw';
 
 export const runtime = 'edge';
 
@@ -202,8 +203,7 @@ export default function User() {
                       {/* <UserPost uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
                     </SwiperSlide>
                     <SwiperSlide tag="section" className="ctn repl min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
-                      Mems
-                      {/* <UserFolw uInfo={uInfo} user={user} swiper1dep={swiper} /> */}
+                      <UserFolw uInfo={uInfo} user={user} swiper1dep={swiper} />
                     </SwiperSlide>
                   </Swiper>
                 </div>  

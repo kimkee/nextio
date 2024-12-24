@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Img from '@/app/components/Img';
 import {usePathname, useRouter, useParams } from 'next/navigation';
