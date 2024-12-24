@@ -181,19 +181,21 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                       <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                         <div className="box relative">
                           <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
-                            <div className="pics w-14 flex-none bg-[#203140] relative mr-3">
-                              <Img 
-                                width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
-                                className='img block object-cover   w-full h-full '
-                              />
+                            <div className="w-14 mr-3">
+                              <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
+                                <Img 
+                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
+                                  className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
+                                />
+                              </div>
                             </div>
                             <div className="dd flex-1">
-                              <div className="tits mb-2">{data.title || data.name}</div>
+                              <div className="tits mb-2 line-clamp-1">{data.title || data.name}</div>
                               <div className="hits flex flex-col gap-2">
                                 <StarPoint point={data.vote_average} opts={{ cls: 'sm' }} />
-                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <b>{data.vote_average}</b></em>
+                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <span>{data.vote_average}</span></em>
                               </div>
-                              <div className="date mt-2 text-white/40"><b>{data.release_date || data.first_air_date}</b></div>
+                              <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
                             </div>
                           </Link>
                           <div className="bts absolute right-3 bottom-2">
@@ -243,19 +245,21 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                       <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                         <div className="box relative">
                           <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
-                            <div className="pics w-14 flex-none bg-[#203140] relative mr-3">
-                              <Img 
-                                width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
-                                className='img block object-cover   w-full h-full '
-                              />
+                            <div className="w-14 mr-3">
+                              <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
+                                <Img 
+                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
+                                  className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
+                                />
+                              </div>
                             </div>
                             <div className="dd flex-1">
-                              <div className="tits mb-2">{data.title || data.name}</div>
+                              <div className="tits mb-2 line-clamp-1">{data.title || data.name}</div>
                               <div className="hits flex flex-col gap-2">
                                 <StarPoint point={data.vote_average} opts={{ cls: 'sm' }} />
-                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <b>{data.vote_average}</b></em>
+                                <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <span>{data.vote_average}</span></em>
                               </div>
-                              <div className="date mt-2 text-white/40"><b>{data.release_date || data.first_air_date}</b></div>
+                              <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
                             </div>
                           </Link>
                           <div className="bts absolute right-3 bottom-2">
