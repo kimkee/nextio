@@ -180,7 +180,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                     return(
                       <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                         <div className="box relative">
-                          <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
+                          <div className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" /* href={`${data.mvtv}/${data.idmvtv}`} */>
                             <div className="w-14 mr-3">
                               <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                                 <Img 
@@ -197,7 +197,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                               </div>
                               <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
                             </div>
-                          </Link>
+                          </div>
                           <div className="bts absolute right-3 bottom-2">
                             { uInfo?.user_id == user?.id &&
                               <button type="button" className="bt text-white/40" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
@@ -244,7 +244,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                     return(
                       <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                         <div className="box relative">
-                          <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`${data.mvtv}/${data.idmvtv}`}>
+                          <div className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" /* href={`${data.mvtv}/${data.idmvtv}`} */>
                             <div className="w-14 mr-3">
                               <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                                 <Img 
@@ -261,7 +261,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                               </div>
                               <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
                             </div>
-                          </Link>
+                          </div>
                           <div className="bts absolute right-3 bottom-2">
                             { uInfo?.user_id == user?.id &&
                               <button type="button" className="bt text-white/40" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
