@@ -23,10 +23,10 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
       } 
     });
     resSet(r); // r의 타입이 number임을 보장
-    console.log(n, r);
+    // console.log(n, r);
   };
   
-  console.log(res);
+  // console.log(res);
   
 
   const S_Dimm = ()=> <span className="relative flex text-gray-500"><FontAwesomeIcon icon={["fas", "star"]} /></span>
