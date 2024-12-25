@@ -25,7 +25,7 @@ export default function ItemA({ data, opts, cate }: any) {
           {/* <img src={`${img}`} alt={tit} className='img'/> */}
           <Img 
             width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
-            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
+            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full !opacity-100'
           />  
         </div>
         <div className="desc">

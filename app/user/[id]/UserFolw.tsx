@@ -42,7 +42,7 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
               key={data.id+'_'+num} data-id={data.id+'_'+num}
             >
               <button onClick={()=>goPage(data.id)} className='box max-w-16 inline-block'>
-                <span className="pic relative">
+                <span className="pic relative block">
                   <Img className="img rounded-full"
                     width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' unoptimized={true}loading="eager"
                   />
