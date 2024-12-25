@@ -37,10 +37,10 @@ export default function User() {
   const param_id = params.uid as string;
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) console.log(error);
-    setUser(null);
-    router.push('/');
+    router.push('/user/logout');
+    // const { error } = await supabase.auth.signOut();
+    // if (error) console.log(error);
+    // setUser(null);
   };
 
   const [uInfo, setUInfo] = useState<any>();
