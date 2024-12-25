@@ -19,7 +19,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
     stars.reverse().forEach(p => { 
       if (n <= p) {
         r = p;
-        return;
+        
       } 
     });
     resSet(r); // r의 타입이 number임을 보장
@@ -41,7 +41,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
   useEffect(() => {
     setPoint();
     // eslint-disable-next-line
-  }, [res]);
+  });
 
 
   if(res === null) return <><em className={`ui-star ${opts.cls}`}></em></>;
@@ -62,7 +62,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
   return (
     <>
       <em className={`ui-star ${opts.cls}`}>
-
+        
         {res === 0   ? <> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
         {res === 0.5 ? <> <S_Half /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
         {res === 1   ? <> <S_Full /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
@@ -74,13 +74,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
         {res === 4   ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Dimm /> </> : null}
         {res === 4.5 ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Half /> </> : null}
         {res === 5   ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Full /> </> : null}
-        {/* <em>{res}</em> */}
-        
-        {/* <div className="">
-          <S_Full />
-          <S_Half />
-          <S_Dimm />
-        </div> */}
+
       </em>
     </>
   )
