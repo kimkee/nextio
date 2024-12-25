@@ -34,7 +34,7 @@ export default function User() {
   const [user, setUser] = useState<UserType | null>(null);
   const [myinfo, setMyinfo] = useState<MyinfoType | null>(null);
   const params = useParams();
-  const param_id = params.id as string;
+  const param_id = params.uid as string;
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
