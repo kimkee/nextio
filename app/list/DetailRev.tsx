@@ -29,7 +29,7 @@ export default function ViewCtls({datas, postID, opts}: {datas: any, postID: str
   return (
     <>
       {review.length ?
-      <div className="sect revw mt-2">
+      <div className="sect revw mt-2" id="writeRev">
         <div className="ut-reply">
           <div className="rplist">
             
