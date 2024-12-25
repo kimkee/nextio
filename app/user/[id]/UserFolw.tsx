@@ -44,7 +44,7 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
               <button onClick={()=>goPage(data.id)} className='box max-w-16 inline-block'>
                 <span className="pic relative">
                   <Img className="img rounded-full"
-                    width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' unoptimized={true}
+                    width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' unoptimized={true}loading="eager"
                   />
                   <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
                     {data.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}

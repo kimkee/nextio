@@ -179,7 +179,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
               <>
               <ul className='list grid grid-cols-2'>
                 {scrapMV.map((data:any,num:number) =>{
-                    const imgpath = '//image.tmdb.org/t/p/w92';
+                    const imgpath = 'https://image.tmdb.org/t/p/w92';
                     const img = imgpath + data.poster_path;
                     const tit = data.title || data.name;
                     return(
@@ -189,7 +189,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                             <div className="w-14 mr-3">
                               <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                                 <Img 
-                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
+                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
                                   className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
                                 />
                               </div>
@@ -243,7 +243,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
               <>
               <ul className='list grid grid-cols-2'>
                 {scrapTV.map((data:any,num:number) =>{
-                    const imgpath = '//image.tmdb.org/t/p/w92';
+                    const imgpath = 'https://image.tmdb.org/t/p/w92';
                     const img = imgpath + data.poster_path;
                     const tit = data.title || data.name;
                     return(
@@ -253,7 +253,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                             <div className="w-14 mr-3">
                               <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                                 <Img 
-                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
+                                  width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
                                   className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
                                 />
                               </div>

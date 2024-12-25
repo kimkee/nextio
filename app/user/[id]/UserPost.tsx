@@ -78,7 +78,7 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
                   <div className="w-9 flex-none mr-3">
                     <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                       <Img 
-                        width={92} height={138} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true}
+                        width={92} height={138} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
                         className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
                       />
                     </div>
