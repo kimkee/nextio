@@ -1,5 +1,5 @@
 @charset "utf-8";
-.ui-star{display: inline-flex; align-items: center;}
+.ui-star{display: inline-flex; align-items: center; min-height: 9%;}
 .ui-star i{color: #61dafb;font-style: normal;font-weight: 900;vertical-align: middle;line-height: 1; font-size: clamp(0.75rem,5vw,0.75rem);}
 .ui-star i::before{}
 .ui-star i::after{color:#888; opacity: 1;}

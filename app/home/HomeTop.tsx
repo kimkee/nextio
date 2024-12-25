@@ -97,7 +97,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                         </div>
                         <div className="info">
                           <div className="star">
-                            <StarPoint point={data.vote_average} opts={{ cls: 'lg' }} />
+                            <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                           </div>
                           <div className="tit">{data.title}</div>
                         </div>

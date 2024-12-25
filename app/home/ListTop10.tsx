@@ -102,7 +102,9 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                   >
                     <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} className='img img absolute object-cover w-full h-full'/>
                     <div className='absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
-                    <div className="info absolute left-0 bottom-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1"><StarPoint point={data.vote_average} opts={{cls:'lg'}} /></div>
+                    <div className="info absolute left-0 bottom-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
+                      <StarPoint point={data.vote_average} opts={{cls:'text-sm'}} />
+                    </div>
                   </Link>
                 </div>
               )

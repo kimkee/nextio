@@ -23,7 +23,7 @@ export default function ItemB({ data, opts, cate }: any) {
             />
           </div>
           <div className="desc absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
-            <StarPoint point={data.vote_average} opts={opts} />
+            <StarPoint point={data.vote_average} opts={{ cls: 'text-xs' }} />
           </div>
         </div>
         <div className="mt-1 text-xs line-clamp-1 overflow-hidden break-all">{tit}</div>

@@ -14,7 +14,7 @@ import DetailCast from './DetailCast';
 import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
 import DetailRev from './DetailRev';
-import StarPoint from '../components/StarPoint';
+import StarPoint from '@/app/components/StarPoint';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Detail({
