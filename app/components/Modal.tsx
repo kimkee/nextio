@@ -45,7 +45,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className='pct flex-1 flex flex-col py-8 px-5 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
+        <div className='pct flex-1 flex flex-col py-8 px-5 pb-9 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
           onScroll={scrollEvent}
         >
           <div className='poptents'>{children}</div>

@@ -217,10 +217,10 @@ export default function Detail({
                 datas.production_companies.map((comp: any) => {
                   return comp.logo_path 
                   ? 
-                  <span key={comp.id} className='logo bg-white/70 px-2 py-0.5 rounded-full inline-flex  items-center h-7 max-w-full text-10 text-black'>
+                  <span key={comp.id} className='logo bg-white/50 px-2 py-0.5 rounded-full inline-flex  items-center h-7 max-w-full text-10 text-black'>
                     <Img 
                       width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
-                      className='img max-h-3.5 align-middle max-w-full'
+                      className='img max-h-3 align-middle max-w-full w-auto h-auto'
                       alt={comp.name} srcerr='/img/common/non_poster.png' unoptimized={true}
                     />
                   </span> 
