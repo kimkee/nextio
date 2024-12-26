@@ -206,7 +206,7 @@ export default function Detail({
 
             {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
-            {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+            {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
             <DetailRev datas={datas} postID={postID} opts={opts} /* user={user} myinfo={myinfo} */ />
 

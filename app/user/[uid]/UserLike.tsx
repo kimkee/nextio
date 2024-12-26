@@ -101,6 +101,8 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
         getMyScrap(uInfo.id,'movie',pagingAmount);
         getMyScrap(uInfo.id,'tv',pagingAmount);
+        getMyScrapTotal(uInfo.id,'movie');
+        getMyScrapTotal(uInfo.id,'tv');
         console.log(`${tableName} 업데이트`);
       })
       .subscribe((status) => {
