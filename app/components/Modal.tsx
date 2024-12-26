@@ -41,7 +41,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`phd h-0 z-20`}>
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
-            <div className='ptit text-right pl-16 pr-5 w-full'>{`NEXT.JS`}</div>
+            <div className='ptit text-right pl-16 pr-5 w-full'>{`NEXT.js`}</div>
           </div>
         </div>
 

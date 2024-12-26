@@ -52,7 +52,7 @@ export default function Nav() {
 
       <nav id="menubar" className="menubar h-[calc(3.75rem+var(--safe-bottom))]">
         <div className="inr fixed 
-          left-1/2 bottom-0 z-[500] h-[calc(3.75rem+var(--safe-bottom))] bg-[#1c1c1c] border border-t border-[#2e2e2e] 
+          left-1/2 bottom-0 z-[500] h-[calc(3.75rem+var(--safe-bottom))] bg-[#1c1c1c] border-t border-[#2e2e2e] 
           w-full max-w-[var(--mwide)] transition-transform duration-200 transform translate-x-[-50%] ml-[calc(0px-var(--scrPad)/2)]"
         >
           <ul className="menu w-full h-full items-center flex justify-between px-5">
