@@ -87,8 +87,8 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
                   <div className="dd flex-1 ">
                     <div className="tits mb-2 min-h-6 text-sm">{ui.textHtml(data.content,'decode')}</div>
                     <div className="hits flex gap-2">
-                      <StarPoint point={data.vote_average} opts={{ cls: 'sm' }} />
-                      <span className="date mt-0 text-white/40"> {ui.dateForm(data.created_at,'short')}</span>
+                      <StarPoint point={data.vote_average} opts={{ cls: 'text-10' }} />
+                      <span className="date mt-0 text-white/40 text-xt"> {ui.dateForm(data.created_at,'short')}</span>
                     </div>
                   </div>
                 </Link>

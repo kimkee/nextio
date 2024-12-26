@@ -158,8 +158,8 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                         </div>
                         <div className="dd flex-1">
                           <div className="tits mb-2 line-clamp-1">{data.title || data.name}</div>
-                          <div className="hits flex flex-col gap-2">
-                            <StarPoint point={data.vote_average} opts={{ cls: 'text-xs' }} />
+                          <div className="hits flex flex-col gap-2 relative pt-4">
+                            <StarPoint point={data.vote_average} opts={{ cls: 'text-10 absolute top-0 left-0' }} />
                             <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <span>{data.vote_average}</span></em>
                           </div>
                           <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
