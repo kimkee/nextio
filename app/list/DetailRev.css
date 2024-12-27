@@ -1,3 +1,14 @@
+.movie-detail .revw .tts{}
+.sect.revk{ margin: 1.25rem 0rem 0rem 0rem; }
+.sect.revk .tts{}
+.sect.revk .form{position: relative;border: 1px solid #333333;background-color: rgb(40 40 41 / 13%);border-radius: 0.25rem;min-height: 2.5rem;padding: 0.5rem 0.625rem 0.625rem 0.625rem;}
+.sect.revk .form .rtext{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 13.25rem;-webkit-appearance: none;outline: none;word-break: break-all;height: 1.5rem;background: transparent;color: #999;min-height: 3.125rem;font-size: 0.8125rem;}
+.sect.revk .form .num{position: absolute;right: 0rem;top: -1.875rem; color: #999;}
+.sect.revk .form .num .i{font-size: 0.75rem;}
+.sect.revk .form .num .n{font-size: 0.75rem; font-weight: normal;}
+.sect.revk .form .num .n:before{content: "/"; margin: 0rem 0.15rem 0rem 0.15rem;}
+.sect.revk .bts{margin-top: 0.5rem;}
+.sect.revk .bts .btsend{width: 100%;background: rgb(0 0 0 / 38%);border-color: rgb(152 152 152 / 20%);}
 
 
 /* 댓글 */
@@ -18,15 +29,13 @@
 .ut-reply .rplist ul.rlist>li .rpset .infs .name{display: flex;align-items: center;padding: 0rem 0 0  0;min-height: 1.5rem;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .name .nm{font-size: 0.75rem;font-weight: 700;line-height:1.1;color: #dddddd;}
 .ut-reply .rplist ul.rlist>li.my .rpset .infs .name .nm{color: #61dafb;}
-.ut-reply .rplist ul.rlist>li .rpset .infs .name .mb{font-size: 9rem; margin: 0rem 0rem 0rem 8rem;overflow: hidden;}
-.ut-reply .rplist ul.rlist>li .rpset .infs .desc{display: flex;position:absolute;right: 0rem;top:0rem;text-align: right;gap: 6rem;}
+.ut-reply .rplist ul.rlist>li .rpset .infs .name .mb{font-size: 0.75rem; margin: 0rem 0rem 0rem 0.5rem;overflow: hidden;}
+.ut-reply .rplist ul.rlist>li .rpset .infs .desc{display: flex;position:absolute;right: 0rem;top:0.2rem;text-align: right;gap: 0.2rem; align-items: center;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc em{}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .loct{font-size: 0.75rem;color: #666666;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .loct::before{width:9rem;height:11rem;background: no-repeat center;background-size:9rem auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';margin: -2rem 3rem 0rem 0rem;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .time{font-size: 0.625rem;color: #999999;text-align: right}
-.ut-reply .rplist ul.rlist>li .rpset .infs .desc .bt{ font-size: 0.75rem; }
-.ut-reply .rplist ul.rlist>li .rpset .infs .desc .bt.mod{margin-left: 0.25rem;}
-.ut-reply .rplist ul.rlist>li .rpset .infs .desc .bt.del{ margin-left: 0.25rem; }
+.ut-reply .rplist ul.rlist>li .rpset .infs .desc .bt{ font-size: 0.75rem; width: 1rem; height: 1rem; }
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox {padding-bottom: 0.25rem;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox .ment{font-size: 0.75rem;line-height: 1.4;margin: 0.25rem 0 0 0;word-break: break-all;-webkit-line-clamp: 2;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox .ment br{}
@@ -34,11 +43,11 @@
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox .ment::-webkit-scrollbar-track{background-color: transparent; box-shadow: none;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox .btn-tog{font-size:12rem;position: absolute;left: auto;right: 0rem;color: #999;bottom: 0rem;padding: 0rem 0rem 0rem 0.625rem;transform: none;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .mbox .btn-tog i{ left: 0; transform: none; bottom: 2px; }
-.ut-reply .rplist ul.rlist>li .rpset .infs .medit{display: none; border: none; padding: 0.625rem 6rem 6rem 6rem; margin: 0rem -6rem; border-radius: 0; background: #ffffff12; }
+.ut-reply .rplist ul.rlist>li .rpset .infs .medit{display: none; border: none; padding: 0.4rem 0.4rem ; margin:0.5rem -0.4rem 0rem -0.4rem; border-radius: 0; background: #ffffff12; }
 .ut-reply .rplist ul.rlist>li .rpset .infs.show .medit{display: block;}
 .ut-reply .rplist ul.rlist>li .rpset .infs.show .mbox{display: none;}
 .ut-reply .rplist ul.rlist>li .rpset .infs.show .bt.mod{display: none;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .medit textarea{ min-height: initial;font-size: 0.75rem; line-height: 1.4;background-color: rgb(40 40 41 / 13%); }
-.ut-reply .rplist ul.rlist>li .rpset .infs .bts{display: grid;grid-template-columns:  repeat(2, minmax(0, 1fr));gap: 6rem;margin-top: 0.625rem;}
+.ut-reply .rplist ul.rlist>li .rpset .infs .bts{}
 .ut-reply .rplist ul.rlist>li .rpset .infs .btsend{width: 100%;background: rgb(0 0 0 / 38%);border-color: rgb(152 152 152 / 20%);}
 

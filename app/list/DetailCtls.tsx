@@ -144,11 +144,11 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
   }
   useEffect(() => {
     getUser().then((data) => {
-      console.log(data?.myinfo); // 얻은 사용자 데이터를 사용하세요
+      // console.log(data?.myinfo); // 얻은 사용자 데이터를 사용하세요
       setMyinfo(data?.myinfo);
       return data?.myinfo
     }).then(data => {
-      console.log(data);
+      // console.log(data);
       getMyScrap(data?.id, postID);
     });
     return () => { };

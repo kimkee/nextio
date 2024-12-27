@@ -7,6 +7,7 @@ import React from 'react';
 import axios from 'axios';
 import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
+import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
 import DetailCtls from './DetailCtls';
@@ -16,6 +17,7 @@ import DetailPoster from './DetailPoster';
 import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
 import Link from 'next/link';
+import getUser from '@/app/getUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Detail({
   params,
@@ -73,11 +75,20 @@ export default function Detail({
         console.log(e);
       });
   };
+
+  const [user, setUser] = useState<UserType>(null as any);
+  const [myinfo, setMyinfo] = useState<MyinfoType>(null as any);
   useEffect(() => {
     // goTop();
     fetchDatas();
     fetchCast();
     fetchMov();
+    getUser().then((data: any) => {
+      if(data?.user?.id){
+        setUser(data?.user);
+        setMyinfo(data?.myinfo);
+      }
+    });
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
@@ -208,7 +219,7 @@ export default function Detail({
 
             {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
-            <DetailRev datas={datas} postID={postID} opts={opts} /* user={user} myinfo={myinfo} */ />
+            <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
             {datas.production_companies.length ? 
             <>
