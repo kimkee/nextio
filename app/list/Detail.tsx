@@ -109,7 +109,7 @@ export default function Detail({
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
             <meta property='og:url' content={window.location.href} />
-            <meta property='og:image' content={'//image.tmdb.org/t/p/w300' + datas.poster_path} />
+            <meta property='og:image' content={'https://image.tmdb.org/t/p/w300' + datas.poster_path} />
             <meta property='og:image:width' content='300' />
             <meta property='og:image:height' content='400' />
             <div className='info flex flex-wrap justify-between flex-row'>
