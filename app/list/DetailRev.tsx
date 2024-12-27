@@ -12,6 +12,7 @@ import getUser from '@/app/getUser';
 
 import Loading from '@/app/components/Loading';
 import axios from 'axios';
+import DetailRevSet from './DetailRevSet';
 import DetailRevTxt from './DetailRevTxt';
 import './DetailRev.css';
 export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: any, postID: string, opts: any, user: any, myinfo: any}) {
@@ -133,6 +134,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       gethRevs();
     }
   }
+/*  
   const myRvText = useRef<HTMLTextAreaElement>(null);
   
   const editMode = (rvTxt: string, rvID: number) => {
@@ -189,6 +191,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       editCancel()
     }
   }
+*/
 
   useEffect(() => {
     fetchReview();
@@ -221,7 +224,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           </div>
         </div>
       </div>
-      <div className="sect revw" ref={revListBox} tabIndex={-1}>
+      <div className="sect revw  mt-2" ref={revListBox} tabIndex={-1}>
         {reviewArr ?
         <div className="ut-reply">
           <div className="rplist">
@@ -231,9 +234,14 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
               reviewArr.map((rev:any,idx:number) => {
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
-                <li key={idx} data-idx={rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
+                  <li key={idx+'_'+rev.id} data-idx={rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
+                  <DetailRevSet 
+                    key={idx} rev={rev} datas={datas} opts={opts} 
+                    rvTxt={rvTxt} postID={postID} user={user} myinfo={myinfo} 
+                    autoheight={autoheight} gethRevs={gethRevs}
+                  />
                 
-                  <div className="rpset">
+                  {/* <div className="rpset">
                     <Link href={`/user/${rev.user_num}`} className="user">
                       <span className="pic">
                         <Img width={45} height={45} src={rev.profile_picture} srcerr='/img/common/user.png' alt="사진"  className="img" unoptimized={true} loading="eager" />
@@ -276,7 +284,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </li>
               )
             })}
@@ -291,7 +299,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
 
 
       {review.length ?
-      <div className="sect revw mt-2" id="writeRev">
+      <div className="sect revw" id="writeRev">
         <div className="ut-reply">
           <div className="rplist">
             
