@@ -56,36 +56,36 @@ export default function Nav() {
           w-full max-w-[var(--mwide)] transition-transform duration-200 transform translate-x-[-50%] ml-[calc(0px-var(--scrPad)/2)]"
         >
           <ul className="menu w-full h-full items-center flex justify-between px-5">
-            <li className={` flex-1`}>
-              <Link href="/home/" className={`${isActive('home')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+            <li className={`flex-1 h-full`}>
+              <Link href="/home/" className={`${isActive('home')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'house']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Home</em>
               </Link>
             </li>
-            <li className={` flex-1`}>
-              <Link href="/list/movie/0/" className={`${isActive('list/movie')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+            <li className={`flex-1 h-full`}>
+              <Link href="/list/movie/0/" className={`${isActive('list/movie')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'clapperboard']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Movie</em>
               </Link>
             </li>
-            <li className={` flex-1`}>
-              <Link href="/list/tv/0/" className={`${isActive('list/tv')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+            <li className={`flex-1 h-full`}>
+              <Link href="/list/tv/0/" className={`${isActive('list/tv')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'tv']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>TV</em>
               </Link>
             </li>
-            <li className={`flex-1`}>
-              <Link href="/search/movie/" className={`${isActive('search/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+            <li className={`flex-1 h-full`}>
+              <Link href="/search/movie/" className={`${isActive('search/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'search']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Search</em>
               </Link>
             </li>
-            <li className={`flex-1`}>
+            <li className={`flex-1 h-full`}>
               <>
               {  myinfo?.id !== undefined
               ?
-              <Link href={`/user/${myinfo?.id}`} className={`${isActive('user/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <span className="pic w-[1.625rem] h-[1.625rem] block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1.5">
+              <Link href={`/user/${myinfo?.id}`} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+                <span className="pic w-[1.625rem] h-[1.625rem] block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1">
                   
                   <Img className="img absolute w-full h-full left-0  top-0 object-cover"
                     alt={myinfo.username} width={32} height={32}
@@ -97,7 +97,7 @@ export default function Nav() {
                 <em className='text-xt mt-1'>MY</em>
               </Link>
               :
-              <Link href={`${myinfo?.id === null ? '' : '/user/login'} `} className={`${isActive('user/')} bt w-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href={`${myinfo?.id === null ? '' : '/user/login'} `} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Login</em>
               </Link>

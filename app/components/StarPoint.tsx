@@ -61,7 +61,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
   // )
   return (
     <>
-      <em className={`ui-star ${opts.cls}`}>
+      <em className={`ui-star ${opts.cls} inline-flex align-items-center min-h-[9%]`}>
         
         {res === 0   ? <> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
         {res === 0.5 ? <> <S_Half /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
