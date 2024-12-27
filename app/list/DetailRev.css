@@ -2,12 +2,12 @@
 .sect.revk{ margin: 1.25rem 0rem 0rem 0rem; }
 .sect.revk .tts{}
 .sect.revk .form{position: relative;border: 1px solid #333333;background-color: rgb(40 40 41 / 13%);border-radius: 0.25rem;min-height: 2.5rem;padding: 0.5rem 0.625rem 0.625rem 0.625rem;}
-.sect.revk .form .rtext{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 13.25rem;-webkit-appearance: none;outline: none;word-break: break-all;height: 1.5rem;background: transparent;color: #999;min-height: 3.125rem;font-size: 0.8125rem;}
+.sect.revk .form .rtext{border: none; vertical-align: middle; resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 13.25rem;-webkit-appearance: none;outline: none;word-break: break-all;height: 1.5rem;background: transparent;color: #999;min-height: 3.125rem;font-size: 0.8125rem;}
 .sect.revk .form .num{position: absolute;right: 0rem;top: -1.875rem; color: #999;}
 .sect.revk .form .num .i{font-size: 0.75rem;}
 .sect.revk .form .num .n{font-size: 0.75rem; font-weight: normal;}
 .sect.revk .form .num .n:before{content: "/"; margin: 0rem 0.15rem 0rem 0.15rem;}
-.sect.revk .bts{margin-top: 0.5rem;}
+.sect.revk .bts{}
 .sect.revk .bts .btsend{width: 100%;background: rgb(0 0 0 / 38%);border-color: rgb(152 152 152 / 20%);}
 
 

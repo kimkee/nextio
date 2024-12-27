@@ -33,9 +33,8 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   const [revNumNow, setRevNumNow] = useState(0)
   const autoheight = (e: any)=>{
     const $els = e.target;
-    let tboxS;
     $els.style.height = "1px";
-    tboxS = $els.scrollHeight;
+    const tboxS = $els.scrollHeight;
     $els.style.height = tboxS + "px";
     if(!revText.current) return
     const revTxtNow = revText.current?.value;
@@ -215,7 +214,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
         <div className="form textarea">
           <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? '감상평을 남겨보세요. (최대200자)':'로그인 후 감상평을 남겨보세요. (최대200자)'}`}></textarea>
           <span className="num"><i className="i">{revNumNow}</i><b className="n">{ui.commas.add(revNumMax)}</b></span>
-          <div className="bts">
+          <div className="bts mt-1">
             <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
               <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
             </button>
