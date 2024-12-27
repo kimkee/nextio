@@ -29,7 +29,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
 
   const revText = useRef<HTMLTextAreaElement>(null);
   const revListBox = useRef<HTMLDivElement>(null);
-  const revNumMax = 200;
+  const revNumMax = 500;
   const [revNumNow, setRevNumNow] = useState(0)
   const autoheight = (e: any)=>{
     const $els = e.target;
@@ -44,7 +44,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     if ( revTxtNow.length > revNumMax ) {
       $els.value = $els.value.slice(0, revNumMax );
       setRevNumNow( ui.commas.add(revText.current?.value.length) );
-      ui.alert(`감상평은 1,000글자 까지 입니다.`,{
+      ui.alert(`감상평은 ${revNumMax}글자 까지 입니다.`,{
         ycb: () => {}
       });      
     }
@@ -212,7 +212,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       <div className="sect revk" id='writeRev'>
         <h4 className="tts">리뷰</h4>
         <div className="form textarea">
-          <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? '감상평을 남겨보세요. (최대200자)':'로그인 후 감상평을 남겨보세요. (최대200자)'}`}></textarea>
+          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? '감상평을 남겨보세요. (최대200자)':'로그인 후 감상평을 남겨보세요. (최대200자)'}`}></textarea>
           <span className="num"><i className="i">{revNumNow}</i><b className="n">{ui.commas.add(revNumMax)}</b></span>
           <div className="bts mt-1">
             <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
@@ -232,11 +232,6 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
                 <li key={idx} data-idx={rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
-                  {/* <p>{rev.id} : {rev.user_num} : {rev.user_name}</p>
-                  <p>{ui.dateForm(rev.created_at)} =  {ui.dateForm(rev.updated_at)}</p>
-                  <p>{rvTxt}</p>
-                  <p><img src={rev.profile_picture} alt="" style={{width:"32px"}} /> {rev.provider} : {rev.email}</p>
-                 */}
                 
                   <div className="rpset">
                     <Link href={`/user/${rev.user_num}`} className="user">
