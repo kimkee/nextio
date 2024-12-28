@@ -85,8 +85,11 @@ export default function Detail({
     fetchMov();
     getUser().then((data: any) => {
       if(data?.user?.id){
-        setUser(data?.user);
-        setMyinfo(data?.myinfo);
+        setUser(data.user);
+        setMyinfo(data.myinfo);
+      }else{
+        setUser(data);
+        setMyinfo(data);
       }
     });
     return () => {};

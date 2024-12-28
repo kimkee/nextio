@@ -194,6 +194,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   }
 */
 
+console.log(myinfo);
   useEffect(() => {
     fetchReview();
     console.log(postID);
@@ -212,20 +213,30 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   if(!review) return null;
   return (
     <>
-
-      <div className="sect revk" id='writeRev'>
-        <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
+      
+      <div className="sect revk mt-4" id='writeRev'>
+        <div className="hbox flex justify-between items-end min-h-6 mb-2.5 leading-none">
           <h4 className="tts text-sm">리뷰</h4>
-          <span className="num text-ss font-normal text-white/40"><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
+          <span className="num text-ss font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
-        <div className="form textarea" data-user={`${myinfo?.id}`}>
-          <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  
-            placeholder={`${myinfo?.id ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
-          ></textarea>
-          <div className="bts mt-1">
-            <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
-              <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
-            </button>
+        <div className="relative">
+          {/* <div className="user absolute left-0 top-0">
+            <span className="pic w-7 h-7 rounded-full overflow-hidden block">
+              <Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`}  className="img w-full h-full" />
+            </span>
+          </div> */}
+          <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0_/_20%)] rounded-md min-h-[2.5rem] p-2 pt-0.5rem ml-0"
+            data-user={`${myinfo?.id}`}
+          >
+            <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} 
+              className="rtext max-h-60 border-nome align-middle resize-none w-full leading-normal -webkit-appearance-none outline-none  break-all bg-transparent text-[#999999] min-h-10 text-12" 
+              placeholder={`${myinfo?.id ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
+            ></textarea>
+            <div className="bts mt-2">
+              <button type="button" className="btn sm btsend !text-12" disabled={ revNumNow < 1 } onClick={sendReview}>
+                <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -239,59 +250,15 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
               reviewArr.map((rev:any,idx:number) => {
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
-                  <li key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
+                  <li
+                    className={`py-2.5 border-b border-b-white/10 ${rev?.user_id == user?.id ? "my" : ""}`}
+                    key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} 
+                  >
                   <DetailRevSet 
                     key={idx} rev={rev} datas={datas} opts={opts} 
                     rvTxt={rvTxt} postID={postID} user={user} myinfo={myinfo} 
                     autoheight={autoheight} gethRevs={gethRevs}
                   />
-                
-                  {
-                  /* <div className="rpset">
-                    <Link href={`/user/${rev.user_num}`} className="user">
-                      <span className="pic">
-                        <Img width={45} height={45} src={rev.profile_picture} srcerr='/img/common/user.png' alt="사진"  className="img" unoptimized={true} loading="eager" />
-                      </span>
-                    </Link>
-                    <div className="infs">
-                      <div className="name">
-                        <Link href={`/user/${rev.user_num}`} className="nm">{rev.user_name}</Link>
-                        <em className="mb">
-                          { ui.postIsMod(rev.created_at, rev.updated_at) ? ui.timeForm(rev.updated_at,true) +' 수정됨' : ui.timeForm(rev.updated_at,true)}
-                        </em>
-                      </div>
-                      <div className="desc">
-                        <em className="time">{ui.dateForm(rev.created_at,'short')}</em>
-                        { rev?.user_id == user?.id &&
-                        <>
-                        <button type="button" className="bt mod flex items-center justify-center" onClick={ ()=> { editMode(rvTxt, rev.id) } }>
-                          <FontAwesomeIcon icon={['fas', 'edit']} />
-                        </button>
-                        <button type="button" className="bt del flex items-center justify-center" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(opts, rev.id)}) }>
-                          <FontAwesomeIcon icon={['far', 'trash-can']} />
-                        </button>
-                        </>
-                        }
-                      </div>
-                      <div data-ui="elips" className="mbox">
-                        <div className="ment txt" dangerouslySetInnerHTML={{ __html: rvTxt }} ></div>
-                      </div>
-                      <div className={`medit textarea`}>
-                        <textarea className="resize-none w-full outline-none" ref={myRvText}
-                          onFocus={autoheight} onInput={ autoheight} id={`myRvTex_${rev.id}`}
-                        ></textarea>
-                        <div className="bts flex gap-1">
-                          <button type="button" className="btn btn-xs btsend flex-1 w-full" onClick={ editCancel }>
-                            <FontAwesomeIcon icon={['fas', 'close']} /> <em>취소</em>
-                          </button>
-                          <button type="button" className="btn btn-xs btsend flex-1 w-full" onClick={ ()=>{editReview(opts, rev.id)} } >
-                            <FontAwesomeIcon icon={['fas', 'edit']} /> <em>수정</em>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */
-                  }
                 </li>
               )
             })}
@@ -318,7 +285,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                 const nImg = 'https://image.tmdb.org/t/p/w45_and_h45_face/'+avatar ;
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
-                <li key={idx}>
+                <li key={idx} className={`py-2.5 border-b border-b-white/10`}>
                   <div className="rpset">
                     <div className="user">
                       <span className="pic">
