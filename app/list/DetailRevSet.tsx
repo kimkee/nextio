@@ -141,7 +141,7 @@ export default function ViewElips({datas, opts, rvTxt, rev, postID, user, myinfo
           ></div>
         </div>
         <div className={`medit textarea`}>
-          <textarea className="resize-none w-full outline-none" ref={myRvText}
+          <textarea className="resize-none w-full outline-none align-middle mb-2" ref={myRvText}
             onFocus={autoheight} onInput={ autoheight} id={`myRvTex_${rev.id}`}
           ></textarea>
           <div className="bts flex gap-1">

@@ -213,10 +213,12 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     <>
 
       <div className="sect revk" id='writeRev'>
-        <h4 className="tts">리뷰</h4>
+        <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
+          <h4 className="tts text-sm">리뷰</h4>
+          <span className="num text-ss font-normal text-white/40"><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
+        </div>
         <div className="form textarea">
-          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? '감상평을 남겨보세요. (최대200자)':'로그인 후 감상평을 남겨보세요. (최대200자)'}`}></textarea>
-          <span className="num"><i className="i">{revNumNow}</i><b className="n">{ui.commas.add(revNumMax)}</b></span>
+          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요. (최대${revNumMax}자)`}`}></textarea>
           <div className="bts mt-1">
             <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
               <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
