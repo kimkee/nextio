@@ -59,9 +59,7 @@ export default function ViewElips({datas, opts, rvTxt, rev, postID, user, myinfo
     const content = ui.textHtml( text.value, "incode" );
     if (text.value.trim() == '') {
       ui.alert("댓글을 입력하세요", {
-        ycb: () => {
-          text.focus();
-        }
+        ycb: () =>  text.focus() 
       });
       return;
     }
@@ -125,7 +123,7 @@ export default function ViewElips({datas, opts, rvTxt, rev, postID, user, myinfo
           <button type="button" className="bt mod flex items-center justify-center" onClick={ ()=> { editMode(rvTxt, rev.id) } }>
             <FontAwesomeIcon icon={['fas', 'edit']} />
           </button>
-          <button type="button" className="bt del flex items-center justify-center" onClick={ ()=> ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(opts, rev.id)}) }>
+          <button type="button" className="bt del flex items-center justify-center" onClick={ ()=> ui.confirm('리뷰를 삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(opts, rev.id)}) }>
             <FontAwesomeIcon icon={['far', 'trash-can']} />
           </button>
           </>

@@ -124,6 +124,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
         }
       });
   };
+/* 
   const deleteReview = async (opts: string, postID: number) => {
     console.log(opts, postID);
     const { data, error }  = await supabase.from('TMDB_REVIEW').delete().eq('id', postID);
@@ -134,7 +135,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       gethRevs();
     }
   }
-/*  
+  
   const myRvText = useRef<HTMLTextAreaElement>(null);
   
   const editMode = (rvTxt: string, rvID: number) => {
@@ -218,7 +219,9 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           <span className="num text-ss font-normal text-white/40"><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="form textarea">
-          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  placeholder={`${user?.email ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요. (최대${revNumMax}자)`}`}></textarea>
+          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  
+            placeholder={`${user?.email ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
+          ></textarea>
           <div className="bts mt-1">
             <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
               <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
@@ -236,14 +239,15 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
               reviewArr.map((rev:any,idx:number) => {
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
-                  <li key={idx+'_'+rev.id} data-idx={rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
+                  <li key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} className={rev?.user_id == user?.id ? "my" : ""}>
                   <DetailRevSet 
                     key={idx} rev={rev} datas={datas} opts={opts} 
                     rvTxt={rvTxt} postID={postID} user={user} myinfo={myinfo} 
                     autoheight={autoheight} gethRevs={gethRevs}
                   />
                 
-                  {/* <div className="rpset">
+                  {
+                  /* <div className="rpset">
                     <Link href={`/user/${rev.user_num}`} className="user">
                       <span className="pic">
                         <Img width={45} height={45} src={rev.profile_picture} srcerr='/img/common/user.png' alt="사진"  className="img" unoptimized={true} loading="eager" />
@@ -286,7 +290,8 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                         </div>
                       </div>
                     </div>
-                  </div> */}
+                  </div> */
+                  }
                 </li>
               )
             })}
