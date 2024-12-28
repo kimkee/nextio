@@ -4,11 +4,11 @@
 .sect.revk .form{/* position: relative;border: 1px solid #333333;background-color: rgb(40 40 41 / 13%);border-radius: 0.25rem;min-height: 2.5rem;padding: 0.5rem 0.625rem 0.625rem 0.625rem; */}
 .sect.revk .form .rtext{/* border: none; vertical-align: middle; resize: none;width: 100%;line-height: 1.46;-webkit-appearance: none;outline: none;word-break: break-all; background: transparent;color: #999;min-height: 2.8rem;font-size: 0.8125rem; */}
 .sect.revk .form .num{}
-.sect.revk .form .num .i{font-size: 0.75rem;}
-.sect.revk .form .num .n{font-size: 0.75rem; font-weight: normal;}
-.sect.revk .form .num .n:before{content: "/"; margin: 0rem 0.15rem 0rem 0.15rem;}
+.sect.revk .form .num .i{/* font-size: 0.75rem; */}
+.sect.revk .form .num .n{/* font-size: 0.75rem; font-weight: normal; */}
+.sect.revk .form .num .n:before{/* content: "/"; margin: 0rem 0.15rem 0rem 0.15rem; */}
 .sect.revk .bts{}
-.sect.revk .bts .btsend{width: 100%;background: rgb(0 0 0 / 38%);border-color: rgb(152 152 152 / 20%);}
+.sect.revk .bts .btsend{/* width: 100%;background: rgb(0 0 0 / 38%);border-color: rgb(152 152 152 / 20%); */}
 
 
 /* 댓글 */
