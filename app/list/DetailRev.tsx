@@ -218,9 +218,9 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           <h4 className="tts text-sm">리뷰</h4>
           <span className="num text-ss font-normal text-white/40"><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
-        <div className="form textarea">
-          <textarea disabled={user===null} onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  
-            placeholder={`${user?.email ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
+        <div className="form textarea" data-user={`${myinfo?.id}`}>
+          <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} className="rtext"  
+            placeholder={`${myinfo?.id ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
           ></textarea>
           <div className="bts mt-1">
             <button type="button" className="btn sm btsend" disabled={ revNumNow < 1 } onClick={sendReview}>
