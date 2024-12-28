@@ -194,7 +194,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   }
 */
 
-console.log(myinfo);
+  console.log(myinfo);
   useEffect(() => {
     fetchReview();
     console.log(postID);
@@ -220,12 +220,19 @@ console.log(myinfo);
           <span className="num text-ss font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">
-          {/* <div className="user absolute left-0 top-0">
-            <span className="pic w-7 h-7 rounded-full overflow-hidden block">
+          {myinfo &&
+          <div className="user absolute left-0 top-0">
+            {<span className="pic w-7 h-7 rounded-full overflow-hidden block">
               <Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`}  className="img w-full h-full" />
+            </span> }
+          </div> }
+          {!myinfo && 
+          <div className="user absolute left-0 top-0">
+            <span className="pic w-7 h-7 rounded-full overflow-hidden block">
+              <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' className="img w-full h-full bg-white/10 !opacity-100" />
             </span>
-          </div> */}
-          <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0_/_20%)] rounded-md min-h-[2.5rem] p-2 pt-0.5rem ml-0"
+          </div> }
+          <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0_/_20%)] rounded-md min-h-[2.5rem] p-2 pt-0.5rem ml-9"
             data-user={`${myinfo?.id}`}
           >
             <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} 
