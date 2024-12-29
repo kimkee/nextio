@@ -220,18 +220,13 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           <span className="num text-ss font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">
-          {myinfo &&
           <div className="user absolute left-0 top-0">
             {<span className="pic w-7 h-7 rounded-full overflow-hidden block">
-              <Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`}  className="img w-full h-full" />
+              {myinfo  &&<Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`}  className="img w-full h-full" />}
+              {!myinfo &&<Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' className="img w-full h-full bg-white/10 !opacity-100" />}
             </span> }
-          </div> }
-          {!myinfo && 
-          <div className="user absolute left-0 top-0">
-            <span className="pic w-7 h-7 rounded-full overflow-hidden block">
-              <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' className="img w-full h-full bg-white/10 !opacity-100" />
-            </span>
-          </div> }
+          </div> 
+          
           <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0_/_20%)] rounded-md min-h-[2.5rem] p-2 pt-0.5rem ml-9"
             data-user={`${myinfo?.id}`}
           >
@@ -258,14 +253,13 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
               reviewArr.map((rev:any,idx:number) => {
                 const rvTxt = rev.content.replace(/\n/g, "<br>");
                 return(
-                  <li
-                    className={`py-2.5 border-b border-b-white/10 ${rev?.user_id == user?.id ? "my" : ""}`}
-                    key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} 
-                  >
+                <li
+                  className={`py-2.5 border-b border-b-white/10 ${rev?.user_id == user?.id ? "my" : ""}`}
+                  key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} 
+                >
                   <DetailRevSet 
-                    key={idx} rev={rev} datas={datas} opts={opts} 
-                    rvTxt={rvTxt} postID={postID} user={user} myinfo={myinfo} 
-                    autoheight={autoheight} gethRevs={gethRevs}
+                    key={idx} rev={rev} datas={datas} opts={opts} rvTxt={rvTxt} postID={postID} 
+                    user={user} myinfo={myinfo} autoheight={autoheight} gethRevs={gethRevs}
                   />
                 </li>
               )
