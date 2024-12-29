@@ -123,9 +123,9 @@ export default function Detail({
             <title>{`${datas.title || datas.name} `}</title>
             <meta name='description' content={datas.overview} />
             <meta property='og:url' content={window.location.href} />
-            <meta property='og:image' content={'https://image.tmdb.org/t/p/w300' + datas.poster_path} />
-            <meta property='og:image:width' content='300' />
-            <meta property='og:image:height' content='400' />
+            <meta property='og:image' content={bgImg} />
+            <meta property='og:image:width' content='780' />
+            <meta property='og:image:height' content='430' />
             <div className='info flex flex-wrap justify-between flex-row'>
               <div className='desc flex-1 pr-3'>
                 <h1 className='tit text-xx '>
