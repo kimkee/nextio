@@ -217,13 +217,17 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       <div className="sect revk mt-4" id='writeRev'>
         <div className="hbox flex justify-between items-end min-h-6 mb-2.5 leading-none">
           <h4 className="tts text-sm">리뷰</h4>
-          <span className="num text-ss font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
+          <span className="num text-xs font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">
-          <div className="user absolute left-0 top-0">
-            {<span className="pic w-7 h-7 rounded-full overflow-hidden block">
-              {myinfo  &&<Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`}  className="img w-full h-full" />}
-              {!myinfo &&<Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' className="img w-full h-full bg-white/10 !opacity-100" />}
+          <div className="user absolute left-0 top-2">
+            {myinfo  &&
+            <Link className="pic w-7 h-7 rounded-full overflow-hidden block" href={`/user/${myinfo?.id}`}>
+              <Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`} unoptimized={true} className="img w-full h-full" />
+            </Link> }
+            {!myinfo  &&
+            <span className="pic w-7 h-7 rounded-full overflow-hidden block">
+              <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' unoptimized={true} className="img w-full h-full bg-white/10 !opacity-100" />
             </span> }
           </div> 
           
