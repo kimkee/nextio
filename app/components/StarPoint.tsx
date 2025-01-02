@@ -19,7 +19,6 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
     stars.reverse().forEach(p => { 
       if (n <= p) {
         r = p;
-        
       } 
     });
     resSet(r); // r의 타입이 number임을 보장
