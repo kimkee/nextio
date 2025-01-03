@@ -9,7 +9,7 @@ import ui from '@/app/lib/ui';
 import HomeTop from "./HomeTop";
 import ListSet from "./ListSet";
 import ListTop10 from "./ListTop10";
-import './home.scss';
+
 export default function Home() {
   const scrollEvent = ()=> {
     const header = document.querySelector('.header');

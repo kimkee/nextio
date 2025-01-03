@@ -13,10 +13,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
-
+import './HomeTop.scss';
 import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default  function HomeTop({opts}:{opts:{media:string }}) {
   // console.log(opts);
   const page = Math.floor( Math.random() *3 )+1;
@@ -54,13 +55,20 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
 
   const [topVal, setTopVal] = useState(0);
   const scrollHome = ()=> setTopVal(  ui.viewport.scrollTop() * 0.2 ) ;
-
+  
   // console.log(MY_GLOBAL_VARIABLE);
+
+  const togglePlayStop = () => {
+    setPlayStop( !playStop );
+    if(playStop) swiper.autoplay.start();
+    else swiper.autoplay.stop();
+  }
+  const [playStop, setPlayStop] = useState(false);
 
   return(
     <>
       
-      <section className="sect mnTop">
+      <section className={`sect mnTop`}>
 
         <div className="inr" id="slide">
           
@@ -75,7 +83,10 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             // autoplay={false}
             autoplay={{ delay: 5000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: false}}
             wrapperTag="ul"
-            pagination={{ clickable: true }}
+            pagination={{ 
+              el: ".custom-pagination",
+              clickable: true
+             }}
             // scrollbar={{ draggable: true }}
             // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
             autoHeight={false}
@@ -107,6 +118,17 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 )
               })
             }
+            <div className="flex z-30 absolute bottom-1 left-0 right-0 items-center justify-center gap-2">
+              <div className="custom-pagination !w-auto leading-none flex items-center"></div>
+              <div className="flex items-center">
+                <button className="play w-4 h-4 ring-1 ring-white/20 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/30 hover:ring-primary hover:text-primary" 
+                  onClick={togglePlayStop}
+                  title={ playStop ? 'play' : 'pause' }
+                >
+                  {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2 h-2 ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2 h-2' /> }
+                </button> 
+              </div>
+            </div>
           </Swiper>
         </div>
       </section>
