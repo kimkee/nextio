@@ -259,7 +259,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                 return(
                 <li
                   className={`py-2.5 border-b border-b-white/10 ${rev?.user_id == user?.id ? "my" : ""}`}
-                  key={idx+'_'+rev.id} data-idx={idx+'_'+rev.id}  data-user-num={rev.user_num} 
+                  key={idx+'_'+rev.id} data-idx={rev.id}  data-user-num={rev.user_num} 
                 >
                   <DetailRevSet 
                     key={idx} rev={rev} datas={datas} opts={opts} rvTxt={rvTxt} postID={postID} 

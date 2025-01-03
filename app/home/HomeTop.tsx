@@ -131,6 +131,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 </button> 
               </div> }
             </div>
+            
           </Swiper>
         </div>
       </section>
