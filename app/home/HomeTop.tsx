@@ -118,16 +118,18 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 )
               })
             }
+            
             <div className="flex z-30 absolute bottom-1 left-0 right-0 items-center justify-center gap-2">
               <div className="custom-pagination !w-auto leading-none flex items-center"></div>
+              { mlist.length > 1 &&
               <div className="flex items-center">
-                <button className="play w-4 h-4 ring-1 ring-white/20 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/30 hover:ring-primary hover:text-primary" 
+                <button className="play w-4 h-4 ring-1 ring-white/30 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/60" 
                   onClick={togglePlayStop}
                   title={ playStop ? 'play' : 'pause' }
                 >
                   {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2 h-2 ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2 h-2' /> }
                 </button> 
-              </div>
+              </div> }
             </div>
           </Swiper>
         </div>
