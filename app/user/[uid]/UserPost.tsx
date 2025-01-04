@@ -103,9 +103,9 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
             </li>
           )
         }):
-        <div className="nodata">
-          <i className="fa-solid fa-person-digging"></i>
-          <p>작성하신 리뷰가 없습니다</p>
+        <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
+            <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
+            <p>작성하신 리뷰가 없습니다</p>
         </div>}
       </ul>
       
