@@ -69,7 +69,7 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
       <ul className="mrvlist pb-20">
         
         {myReview.length > 0 ? myReview.map((data:any, num: number)=>{
-          const imgpath = '//image.tmdb.org/t/p/w92';
+          const imgpath = 'https://image.tmdb.org/t/p/w92';
           const img = imgpath + data.poster_path;
           return (
             <li key={num} data-idmvtv={data.idmvtv} className="border-b border-[#202020]">
