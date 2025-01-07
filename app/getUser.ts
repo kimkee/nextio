@@ -23,6 +23,7 @@ interface Member {
   profile_picture: string;
   level: number;
   created_at: Date;
+  join_url: string;
 }
 
 const getUser = async () => {
@@ -66,6 +67,7 @@ const addUserToDatabase = async (user: User) => {
       profile_picture: user.user_metadata.avatar_url || '',
       level: 10,
       created_at: new Date(),
+      join_url: process.env.NEXT_PUBLIC_SITE_URL || '',
     };
 
     const { data: insertData, error: insertError } = await supabase.from('MEMBERS').insert([newUser]);
