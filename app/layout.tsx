@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 // import localFont from "next/font/local";
 import '@/app/style/globals.scss';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter, Roboto_Mono, Noto_Sans, Noto_Sans_KR } from 'next/font/google';
 import { usePathname } from 'next/navigation';
@@ -52,6 +53,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <Ui />
         {process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/' && <SpeedInsights />}
         <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />
+        <Analytics />
       </body>
     </html>
   );
