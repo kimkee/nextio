@@ -14,6 +14,7 @@ export type Myinfo = {
   user_id: string;
   provider: string;
   level: number;
+  join_url: string;
   tmdb_movie_scrap?: {
     id: number;
     title: string;
