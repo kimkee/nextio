@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       {
         url: `${process.env.NEXT_PUBLIC_SITE_URL}img/ogimage.png`,
         width: 1200,
-        height: 6300,
+        height: 630,
         alt: 'NEXTIO',
       },
     ],
