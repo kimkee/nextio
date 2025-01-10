@@ -17,11 +17,7 @@ export default function SignOut() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     signOut();
-    return () => {
-      // window.removeEventListener("scroll", scrollEvent);
-    };
     // eslint-disable-next-line
   });
 
