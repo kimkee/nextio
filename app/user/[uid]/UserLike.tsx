@@ -197,7 +197,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
             </div>
             }
           </>
-          }      
+          }
       </>
     )
   }
