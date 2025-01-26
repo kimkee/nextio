@@ -149,7 +149,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 return(
                   <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                     <div className="box relative">
-                      <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`}>
+                      <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`} scroll={false}>
                         <div className="w-14 mr-3">
                           <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                             <Img 
