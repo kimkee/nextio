@@ -102,7 +102,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
       } else {
         setTimeout(() => {
           console.table("SCRAP 입력 성공");
-          console.table(data);
+          console.table(data[0]);
           setIsScrap(true);
           setIsDimBtn(false);
         }, 500);
