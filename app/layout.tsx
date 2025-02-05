@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 // import localFont from "next/font/local";
-import '@/app/style/globals.scss';
+import '@/app/style/globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google';

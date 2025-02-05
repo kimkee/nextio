@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
-import './HomeTop.scss';
+import './HomeTop.css';
 import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';

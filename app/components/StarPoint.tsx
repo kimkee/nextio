@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'; //useState, useEffect
 
 import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '@/app/style/StarPoint.scss';
+import '@/app/style/StarPoint.css';
 // import ui from '/src/ui.js';
 
 export default function StarPoint({ point: point, opts: opts }: { point: number, opts: any }) {

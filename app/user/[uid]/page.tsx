@@ -128,9 +128,9 @@ export default function User() {
                   {
                     uInfo.user_id == user?.id &&
                     <div className="bts absolute bottom-5 right-6">
-                      <button type="button" onClick={signOut} className="btn sm logout">
+                      <button type="button" onClick={signOut} className="btn btn-md btn-primary logout">
                         <FontAwesomeIcon icon={['fas', 'power-off']} />
-                        <em className='text-xt'>Logout</em>
+                        <em className='text-xt uppercase'>Logout</em>
                       </button>
                     </div>
                   }  
