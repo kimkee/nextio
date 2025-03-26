@@ -20,7 +20,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
-    "next": "^15.1.2",
+    "next": "^15.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.81.0",
