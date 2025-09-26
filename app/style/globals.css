@@ -83,9 +83,9 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .body::after{
     content: "";
     height: 100dvh;
-    width: 100dvw;
     position: fixed;
     left: 0;
+    right: calc( 0px + var(--scrPad) );
     top: 0;
     z-index: -2;
     opacity: 0.5;
@@ -103,9 +103,9 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
     content: "";
     --ds-background-200: #000;
     height: 100dvh;
-    width: 100dvw;
     position: fixed;
     left: 0;
+    right: calc( 0px + var(--scrPad) );
     top: 0;
     z-index: -1;
     --angle: 180deg;
