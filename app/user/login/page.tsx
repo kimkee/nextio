@@ -18,11 +18,11 @@ export default function Home() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: txt,
       options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-        redirectTo: `${SITE_URL}callback`
+        // queryParams: {
+        //   access_type: 'offline',
+        //   prompt: 'consent',
+        // },
+        redirectTo: `${SITE_URL}`
       },
     })
   }
