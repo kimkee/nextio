@@ -14,7 +14,7 @@ import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ItemA from '@/app/components/ItemA';
 import Loading from '@/app/components/Loading';
-export const runtime = 'edge';
+// export const runtime = 'edge';
 // export const dynamicParams = false;
 
 export default function Page() {
