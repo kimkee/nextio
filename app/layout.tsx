@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter, Roboto_Mono, Noto_Sans, Noto_Sans_KR } from 'next/font/google';
-
+import { usePathname } from 'next/navigation';
 export const metadata: Metadata = {
   title: 'NEXTIO',
   description: '최신 영화 정보, 리뷰, 트레일러, 인기 영화 검색 서비스. 영화 팬들을 위한 완벽한 정보 검색 앱! 방대한 영화 데이터베이스에서 영화 정보를 검색하세요. 평점, 리뷰, 감독 정보, 출연진 등 다양한 정보를 제공합니다.',
