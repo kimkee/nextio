@@ -3,6 +3,7 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 export async function GET() {
   const { data, error } = await supabase
     .from('MEMBERS')
