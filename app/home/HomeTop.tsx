@@ -98,7 +98,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             onSlideChange={() => {/* console.log('slide change') */}}
           >
             {
-              mlist.filter( (item:any, i:number) => i < 10 ).map( (data:any, idx:number) => {
+              mlist.filter( (item:any, i:number) => i < 7 ).map( (data:any, idx:number) => {
                 const img = `https://image.tmdb.org/t/p/w780${data.poster_path}`;
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
@@ -119,8 +119,8 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               })
             }
             
-            <div className="flex z-30 absolute bottom-1 left-0 right-0 items-center justify-center gap-2">
-              <div className="custom-pagination !w-auto leading-none flex items-center"></div>
+            <div className="flex z-30 absolute bottom-1 left-0 right-0 items-center justify-center gap-2.5">
+              <div className="custom-pagination !w-auto leading-none flex items-center gap-1.5"></div>
               { mlist.length > 1 &&
               <div className="flex items-center">
                 <button className="play w-4 h-4 ring-1 ring-white/30 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/60" 

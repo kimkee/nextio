@@ -1,6 +1,6 @@
  .page.home .swiper [class^='swiper-button']{color: #ffffff; display: none;}
- .page.home .swiper .swiper-pagination-bullet{transform: scale(0.5);opacity: 0.5;margin: 0rem 0rem !important;background-color: #dddddd;transition: all 0.3s;}
- .page.home .swiper .swiper-pagination-bullet-active{background-color: #61dafb;opacity: 1.7;transform: scale(0.8);margin: 0rem 1px !important;}
+ .page.home .swiper .swiper-pagination-bullet{transform: scale(1);opacity: 0.8;margin: 0rem 0rem !important;background-color: #dddddd;transition: all 0.3s; border-radius: 1rem;}
+ .page.home .swiper .swiper-pagination-bullet-active{background-color: #61dafb;opacity: 1.7;transform: scale(1); width: 1.5rem; margin: 0rem 1px !important;}
 
 
  .page.home .slide{} 

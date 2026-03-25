@@ -95,13 +95,13 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               const img = `https://image.tmdb.org/t/p/w154${data.poster_path}` ;
               const tit = data.title || data.name;
               return (
-                <div key={idx} className="pbox box pt-2 pl-2 block w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] mx-[0.4rem]  break-all last:mr-3">
+                <div key={idx} className={`pbox box pt-2 pl-2 block w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] mx-[0.4rem]  break-all last:mr-3 ${idx<3 ? '[&_.num]:text-primary' : ''}`}>
                   <Link className="box block relative rounded-sm w-full bg-black pb-[calc(450%/300*100)] mb-1"
                      href={`/home/${opts.media}/${data.id}`}
                      scroll={false}
                   >
+                    <div className='num absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
                     <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} className='img img absolute object-cover w-full h-full'/>
-                    <div className='absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
                     <div className="info absolute left-0 bottom-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
                       <StarPoint point={data.vote_average} opts={{cls:'text-sm'}} />
                     </div>
