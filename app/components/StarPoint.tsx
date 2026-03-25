@@ -27,15 +27,9 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
   
   // console.log(res);
   
-
-  const S_Dimm = ()=> <span className="relative flex text-gray-500"><FontAwesomeIcon icon={["fas", "star"]} /></span>
-  const S_Full = ()=> <span className="relative flex text-primary"><FontAwesomeIcon icon={["fas", "star"]} /></span>
-  const S_Half = ()=> (
-    <span className="relative flex">
-      <FontAwesomeIcon icon={["fas", "star"]} className="text-primary z-1" style={{clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0% 100%)', zIndex: 1}}/>
-      <FontAwesomeIcon icon={["fas", "star"]} className="absolute text-gray-500" style={{zIndex: 0}} />
-    </span>
-  )
+  const S_Dimm = ()=> <FontAwesomeIcon icon={["fas", "star"     ]} className="relative inline-flex text-gray-400" />
+  const S_Full = ()=> <FontAwesomeIcon icon={["fas", "star"     ]} className="relative inline-flex text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" />
+  const S_Half = ()=> <FontAwesomeIcon icon={["fas", "star-half"]} className="relative inline-flex text-primary drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] z-10" />
 
   useEffect(() => {
     setPoint();
@@ -45,6 +39,21 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
 
   if(res === null) return <><em className={`ui-star ${opts.cls}`}></em></>;
   if(res === 5) return <><em className={`ui-star ${opts.cls}`}></em></>;
+
+
+  const renderStars = (rating:number = 0) => {
+    const elements = [];
+    for (let i = 0; i < Math.floor(rating); i++) {
+      elements.push(<S_Full key={`full-${i}`} />);
+    }
+    if (rating % 1 !== 0) {
+      elements.push(<S_Half key={`half`} />);
+    }
+    return elements;
+  };
+
+  
+
 
   // return (
   //   <em className={`ui-star ${opts.cls}`}>
@@ -60,20 +69,13 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
   // )
   return (
     <>
-      <em className={`ui-star ${opts.cls} inline-flex align-items-center min-h-[9%]`}>
-        
-        {res === 0   ? <> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 0.5 ? <> <S_Half /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 1   ? <> <S_Full /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 1.5 ? <> <S_Full /> <S_Half /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 2   ? <> <S_Full /> <S_Full /> <S_Dimm /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 2.5 ? <> <S_Full /> <S_Full /> <S_Half /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 3   ? <> <S_Full /> <S_Full /> <S_Full /> <S_Dimm /> <S_Dimm /> </> : null}
-        {res === 3.5 ? <> <S_Full /> <S_Full /> <S_Full /> <S_Half /> <S_Dimm /> </> : null}
-        {res === 4   ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Dimm /> </> : null}
-        {res === 4.5 ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Half /> </> : null}
-        {res === 5   ? <> <S_Full /> <S_Full /> <S_Full /> <S_Full /> <S_Full /> </> : null}
-
+      <em className={`ui-star ${opts.cls} relative inline-flex align-middle align-items-center min-h-[9%] leading-none after:content-['.'] after:align-middle after:opacity-0`} data-point={`${point}`} data-star={`${res}`}>
+        <span className="absolute left-0 top-0 z-10 align-middle whitespace-nowrap inline-flex">
+          {renderStars(res)}
+        </span>
+        <span className='relative inline-flex z-0 align-middle'>
+          <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm /> <S_Dimm />
+        </span>
       </em>
     </>
   )

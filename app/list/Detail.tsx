@@ -130,8 +130,8 @@ export default function Detail({
               <div className='desc flex-1 pr-3'>
                 <h1 className='tit text-xx '>
                   {datas.title || datas.name}
-                  <button className='refresh ml-1 w-5 h-5 leading-none p-0' onClick={refrashDatas}>
-                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4 -mt-2 align-middle' />
+                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1' onClick={refrashDatas}>
+                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 !w-4 !h-4  align-middle leading-none' />
                   </button>
                 </h1>
                 {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
@@ -139,10 +139,10 @@ export default function Detail({
                   {datas.original_title || datas.original_name}
                 </p>
 
-                <div className='star !text-xl mt-3'>
+                <div className='star text-xl mt-3 leading-none min-h-6'>
                   <StarPoint point={datas.vote_average} opts={{ cls: 'lg' }}/>
                 </div>
-                <div className='cate mt-4'>
+                <div className='cate mt-4 leading-none min-h-6'>
                   {datas.genres.map((item: any) => (
                     <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] mr-1 mt-0.5 text-xt' key={item.id}>
                       {item.name}
