@@ -58,13 +58,13 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 gap-4 w-full">
           <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>
-            <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google </em>
+            <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google</em>
           </button>
           <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
-            <i><FontAwesomeIcon icon={["fas", "comment"]} /></i><em>Kakao </em>
+            <i><FontAwesomeIcon icon={["fab", "kakao-talk"]} /></i><em>Kakao</em>
           </button>
           <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
-            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github </em>
+            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github</em>
           </button>
         </div>
 
