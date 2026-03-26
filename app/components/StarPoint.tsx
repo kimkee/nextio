@@ -34,7 +34,7 @@ export default function StarPoint({ point: point, opts: opts }: { point: number,
 
   return (
     <>
-      <em className={`ui-star ${opts.cls} relative inline-flex align-middle align-items-center min-h-[9%] leading-none after:content-['.'] after:align-middle after:opacity-0`} data-point={`${point}`} data-star={`${res}`}>
+      <em role="img" aria-label={`평점 ${point}/10점 만점`} className={`ui-star ${opts.cls} relative inline-flex align-middle align-items-center min-h-[9%] leading-none after:content-['.'] after:align-middle after:opacity-0`} data-point={`${point}`} data-star={`${res}`}>
         <span className="absolute left-0 top-0 z-10 align-middle whitespace-nowrap inline-flex">
           {renderStars(res)}
         </span>
