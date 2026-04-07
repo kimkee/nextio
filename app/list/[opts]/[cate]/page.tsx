@@ -17,7 +17,7 @@ interface Genre {
   name: string;
 }
 
-export const runtime = 'edge';
+
 
 export default function Page({
   params,

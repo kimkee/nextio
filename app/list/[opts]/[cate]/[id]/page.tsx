@@ -1,7 +1,6 @@
 import Detail from '@/app/list/Detail';
 
-export const runtime = 'edge';
-export const dynamicParams = false;
+
 
 export default async function View({
   params,
