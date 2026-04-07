@@ -27,7 +27,6 @@ import UserLike from './UserLike';
 import UserFolw from './UserFolw';
 import UserPost from './UserPost';
 
-export const runtime = 'edge';
 
 export default function User() {
   const router = useRouter();

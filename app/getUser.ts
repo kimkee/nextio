@@ -26,20 +26,39 @@ interface Member {
   join_url: string;
 }
 
+let cachedUserPromise: Promise<any> | null = null;
 const getUser = async () => {
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) return;
-  await addUserToDatabase(user);
-
-  const { data, error } = await supabase.from('MEMBERS').select("*").eq('user_id', user.id).order('created_at', { ascending: true });
-
-  if (error) {
-    console.error('Error fetching user info:', error);
-    return;
+  if (cachedUserPromise) {
+    return cachedUserPromise;
   }
 
-  return { user, myinfo: data[0] };
+  cachedUserPromise = (async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        return null;
+      }
+      
+      await addUserToDatabase(user);
+
+      const { data, error } = await supabase.from('MEMBERS').select("*").eq('user_id', user.id).order('created_at', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching user info:', error);
+        cachedUserPromise = null;
+        return null;
+      }
+
+      return { user, myinfo: data[0] };
+    } catch (e) {
+      cachedUserPromise = null;
+      console.error(e);
+      return null;
+    }
+  })();
+
+  return cachedUserPromise;
 };
 
 const addUserToDatabase = async (user: User) => {
