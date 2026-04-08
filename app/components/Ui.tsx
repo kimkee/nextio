@@ -41,7 +41,7 @@ export default function Ui() {
             timeoutRef.current = setTimeout(() => {
               ui.loading.hide();
               console.log('Loading timed out after 5s');
-            }, 2000);
+            }, 5000);
           } else {
             // 로딩 끝남 -> 타이머 제거
             if (timeoutRef.current) {
