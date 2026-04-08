@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
 
@@ -19,6 +20,7 @@ import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default  function HomeTop({opts}:{opts:{media:string }}) {
+  const pathname = usePathname();
   // console.log(opts);
   const page = Math.floor( Math.random() *3 )+1;
   const [mlist, setMlist] = useState<[any] | any>([]);
@@ -39,6 +41,17 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   const [swiper, setSwiper] = useState(null as any);
   const nexto = () => {
     if(swiper) swiper.slideTo( Math.floor( Math.random() *10 ) , 0 );
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const targetUrl = e.currentTarget.getAttribute('href');
+    if (!targetUrl) return;
+
+    if (pathname === targetUrl) return;
+
+    ui.loading.show('glx');
   };
 
   useEffect(() => {
@@ -100,11 +113,17 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             {
               mlist.filter( (item:any, i:number) => i < 7 ).map( (data:any, idx:number) => {
                 const img = `https://image.tmdb.org/t/p/w780${data.poster_path}`;
+                const targetUrl = `/home/${opts.media}/${data.id}`;
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
-                    <Link className="box" href={`/home/${opts.media}/${data.id}`} scroll={false}>
+                    <Link 
+                      className="box" 
+                      href={targetUrl} 
+                      scroll={false}
+                      onClick={handleLinkClick}
+                    >
                         <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' loading='lazy' unoptimized={true} className='img' />
+                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' loading='lazy' className='img' />
                         </div>
                         <div className="info">
                           <div className="star">

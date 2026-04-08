@@ -1,27 +1,30 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Img from '@/app/components/Img';
-import { usePathname, useRouter, useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import { supabase } from '@/app/supabase';
-import { Provider } from '@supabase/supabase-js';
-import getUser from '@/app/getUser';
-import Loading from '@/app/components/Loading';
 import ui from '@/app/lib/ui';
 
 export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user: any, swiper1dep: any }) {
-  const router = useRouter();
+  const pathname = usePathname();
   const [member, setMember] = useState<any>(null);
   const members = async () => {
     const { data, error } = await supabase.from('MEMBERS').select('*').order('created_at', { ascending: true });
     setMember(data);
   };
-  const goPage = (link: any) => {
-    router.push(`/user/${link}`);
-    console.log(link);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const targetUrl = e.currentTarget.getAttribute('href');
+    if (!targetUrl) return;
+
+    if (pathname === targetUrl) return;
+
+    ui.loading.show('glx');
   };
 
   useEffect(() => {
@@ -36,15 +39,20 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
       <div className="members p-5 pb-20">
         <ul className="mlist flex flex-wrap justify-start gap-6 pt-5">
           {member.length > 0 ? member.map((data:any,num:number) =>{
+          const targetUrl = `/user/${data.id}`;
           return(
             <li
               className="w-[calc(100%/4-1.13rem)] text-center"
               key={data.id+'_'+num} data-id={data.id+'_'+num}
             >
-              <button onClick={()=>goPage(data.id)} className='box max-w-16 inline-block'>
+              <Link 
+                href={targetUrl} 
+                className='box max-w-16 inline-block'
+                onClick={handleLinkClick}
+              >
                 <span className="pic relative block">
                   <Img className="img rounded-full"
-                    width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' unoptimized={true}loading="eager"
+                    width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' loading="eager"
                   />
                   <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
                     {data.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}
@@ -53,7 +61,7 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
                   </span>
                 </span>
                 <div className="name text-sm">{data.username}</div>
-              </button>
+              </Link>
             </li>)
           })
           :

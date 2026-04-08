@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@/app/lib/fontawesome';
 import ui from '@/app/lib/ui';
 import Img from '@/app/components/Img';
-import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
+import { Myinfo as MyinfoType } from '@/app/types';
+
 export default function Nav() {
   const pathname = usePathname();
 
@@ -23,6 +24,21 @@ export default function Nav() {
   };
   const [myinfo, setMyinfo] = useState<MyinfoType | null>(null);
   
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const targetUrl = e.currentTarget.getAttribute('href');
+    if (!targetUrl) return;
+
+    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
+    
+    if (currentPath === checkUrl) location.reload();
+
+    ui.loading.show('glx');
+  };
+
   useEffect(() => {
     getUser().then((data: any) => {
       console.log('로긴정보 = ' + data?.user?.id);
@@ -35,8 +51,6 @@ export default function Nav() {
       window.removeEventListener('scroll', scrollEvent);
     };
   }, []);
-
-  // console.log(myinfo?.id);
 
   return (
     <>
@@ -57,52 +71,47 @@ export default function Nav() {
         >
           <ul className="menu w-full h-full items-center flex justify-between px-5">
             <li className={`flex-1 h-full`}>
-              <Link href="/home/" className={`${isActive('home')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href="/home/" onClick={handleLinkClick} className={`${isActive('home')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'house']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Home</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/list/movie/0/" className={`${isActive('list/movie')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href="/list/movie/0/" onClick={handleLinkClick} className={`${isActive('list/movie')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'clapperboard']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Movie</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/list/tv/0/" className={`${isActive('list/tv')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href="/list/tv/0/" onClick={handleLinkClick} className={`${isActive('list/tv')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'tv']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>TV</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/search/movie/" className={`${isActive('search/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+              <Link href="/search/movie/" onClick={handleLinkClick} className={`${isActive('search/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                 <FontAwesomeIcon icon={['fas', 'search']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                 <em className='text-xt mt-1'>Search</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <>
-              {  myinfo?.id !== undefined
-              ?
-              <Link href={`/user/${myinfo?.id}`} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <span className="pic w-[1.625rem] h-[1.625rem] block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1">
-                  
-                  <Img className="img absolute w-full h-full left-0  top-0 object-cover"
-                    alt={myinfo.username} width={32} height={32}
-                    unoptimized={true}
-                    src={ myinfo.profile_picture} 
-                    srcerr='/img/common/user.png'
-                  />
-                </span>
-                <em className='text-xt mt-1'>MY</em>
-              </Link>
-              :
-              <Link href={`${myinfo?.id === null ? '' : '/user/login'} `} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
-                <em className='text-xt mt-1'>Login</em>
-              </Link>
-              }
-              </>
+              { myinfo?.id !== undefined ? (
+                <Link href={`/user/${myinfo?.id}`} onClick={handleLinkClick} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
+                  <span className="pic w-[1.625rem] h-[1.625rem] block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1">
+                    <Img className="img absolute w-full h-full left-0 top-0 object-cover"
+                      alt={myinfo.username} width={32} height={32}
+                      src={myinfo.profile_picture} 
+                      srcerr='/img/common/user.png'
+                    />
+                  </span>
+                  <em className='text-xt mt-1'>MY</em>
+                </Link>
+              ) : (
+                <Link href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`} onClick={handleLinkClick}>
+                  <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
+                  <em className='text-xt mt-1'>Login</em>
+                </Link>
+              )}
             </li>
           </ul>
         </div>

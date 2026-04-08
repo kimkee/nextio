@@ -14,7 +14,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
   const params = useParams();
   const router = useRouter();
   const shareLink = ()=> {
-    const surl = `${location.href}`;
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}${opts}/${postID}`;
     navigator.clipboard.writeText(surl);
     // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
     const datatitle = datas.title || datas.name;

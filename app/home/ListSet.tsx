@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
 import ui from '@/app/lib/ui';
@@ -8,13 +9,13 @@ import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default  function ListSet({opts}:{opts:{media:string, list:string, cate:string, title:string }}){
-  
+  const pathname = usePathname();
   const [mlist, setMlist] = useState<any>(null);
  
   const cateList = opts.cate !== '0' ? `&with_genres=${opts.cate}` : ``;
   
   const fetchMoive = ()=>{
-    const fetchURL = `//api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     axios.get( fetchURL ).then(res =>{
       console.log(res.data);
       setMlist( res.data.results );
@@ -59,6 +60,22 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     if (!el) return;
     setIsNav(el?.scrollWidth > el?.clientWidth);
   };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const targetUrl = e.currentTarget.getAttribute('href');
+    if (!targetUrl) return;
+
+    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
+    
+    if (currentPath === checkUrl) return;
+
+    ui.loading.show('glx');
+  };
+
   useEffect(() => {
     fetchMoive();
     // isNavBtn()
@@ -75,7 +92,11 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       <section className="sect mnList mb-3">
 
         <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none px-5">
-          <Link className="link inline-flex items-center" href={`/list/${opts.media}/${opts.cate || 0}`}>
+          <Link 
+            className="link inline-flex items-center" 
+            href={`/list/${opts.media}/${opts.cate || 0}`} 
+            onClick={handleLinkClick}
+          >
             <h4 className="tts text-sm">{opts.title}</h4>
             <FontAwesomeIcon icon={['fas', 'chevron-right']} className='w-3 h-3 ml-1'/>
           </Link>
@@ -95,13 +116,16 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
           { mlist.filter( (item: any, i: number) => i < 20 ).map( (data: any, idx: number) => {
               const img = `https://image.tmdb.org/t/p/w154${data.poster_path}` ;
               const tit = data.title || data.name;
+              const detailUrl = `/home/${opts.media}/${data.id}`;
               return (
                 <div key={idx} className="pbox box block w-[calc(24%-3%)] min-w-[calc(24%-3%)] mx-[0.4rem]  break-all">
-                  <Link className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450%/300*100)] mb-1"
-                     href={`/home/${opts.media}/${data.id}`}
+                  <Link 
+                     className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450%/300*100)] mb-1"
+                     href={detailUrl}
                      scroll={false}
+                     onClick={handleLinkClick}
                   >
-                    <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} className='img img absolute object-cover w-full h-full'/>
+                    <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
                   </Link>
                 </div>
               )

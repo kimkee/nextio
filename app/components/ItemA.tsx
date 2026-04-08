@@ -1,30 +1,47 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';  // useParams , Outlet, useSearchParams, useLocation
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import './ItemB.css';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
+import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Movie, TV 검색결과 유닛
 export default function ItemA({ data, opts, cate }: any) {
-
-// console.log(data);
-  // console.log(cate);
-  const imgpath = '//image.tmdb.org/t/p/w200';
+  const pathname = usePathname();
+  const imgpath = 'https://image.tmdb.org/t/p/w200';
   const img = imgpath + data.poster_path;
   const bgs = data.backdrop_path ? imgpath + data.backdrop_path : imgpath + data.poster_path;
   const tit = data.title || data.name;
+
   if(!data){return}
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const targetUrl = e.currentTarget.getAttribute('href');
+    if (!targetUrl) return;
+
+    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    if (pathname === targetUrl) return;
+
+    ui.loading.show('glx');
+  };
+
   return (
   <>
-    {/* {JSON.stringify(cate)} */}
-    <Link className="box block p-4 relative" href={`/search/${opts}/${data.id}`} scroll={false}>
+    <Link 
+      className="box block p-4 relative" 
+      href={`/search/${opts}/${data.id}`} 
+      scroll={false}
+      onClick={handleLinkClick}
+    >
       <div className="cont flex items-center">
         <div className="pics flex-none relative w-[5rem] pb-[7.5rem] mr-4 overflow-hidden  bg-black">
-          {/* <img src={`${img}`} alt={tit} className='img'/> */}
           <Img 
-            width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
+            width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' 
             className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full !opacity-100'
           />  
         </div>
@@ -52,7 +69,6 @@ export default function ItemA({ data, opts, cate }: any) {
             </em>
           </div>
           <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
-            {/* <i className="fa-regular fa-calendar-days"></i> */}
             <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 !h-3 align-middle' />
             <b>{data.release_date || data.first_air_date}</b>
           </div>
@@ -62,29 +78,4 @@ export default function ItemA({ data, opts, cate }: any) {
     </Link>
   </>  
   )
-
-  /*   
-  const img = `https://image.tmdb.org/t/p/w200/${data.poster_path}`;
-  const tit = data.title || data.name;
-
-  return (
-    <>
-      <Link className='box block relative mb-0.5' href={`/search/${opts}/${data.id}`} scroll={false}>
-        <div className="cont relative">
-          <div className="pics block relative overflow-hidden pb-[calc(1200%/780*100)] bg-black">
-            <Img 
-              width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true}
-              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
-            />
-          </div>
-          <div className="desc absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
-            <StarPoint point={data.vote_average} opts={opts} />
-          </div>
-        </div>
-        <div className="mt-1 text-xs line-clamp-1 overflow-hidden break-all">{tit}</div>
-
-      </Link>
-    </>
-  ) 
-  */
 }

@@ -1,14 +1,11 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Img from '@/app/components/Img';
-import {usePathname, useRouter, useParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import { supabase } from '@/app/supabase';
-import { Provider } from '@supabase/supabase-js';
-import getUser from '@/app/getUser';
 import Loading from '@/app/components/Loading';
 import ui from '@/app/lib/ui';
 // import Swiper core and required modules
@@ -24,7 +21,8 @@ import 'swiper/css/effect-fade';
 import StarPoint from '@/app/components/StarPoint';
 
 export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
-
+  const pathname = usePathname();
+  const router = useRouter();
   const [scrapMV, setScrapMV] = useState<any>(null);
   const [scrapTV, setScrapTV] = useState<any>(null);
   const [media, setMedia] = useState<'movie' | 'tv'>('movie');
@@ -112,7 +110,17 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       });
   };
 
-  
+  const handleLinkClick = (e: React.MouseEvent, targetUrl: string) => {
+    if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    
+    const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
+    
+    if (currentPath === checkUrl) return;
+
+    ui.loading.show('glx');
+  };
+
   useEffect( () => {
     console.log(uInfo , user);
     getMyScrap(uInfo.id,'movie',pagingAmount);
@@ -146,14 +154,20 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                 const imgpath = 'https://image.tmdb.org/t/p/w92';
                 const img = imgpath + data.poster_path;
                 const tit = data.title || data.name;
+                const detailUrl = `/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`;
                 return(
                   <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
                     <div className="box relative">
-                      <Link className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" href={`/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`} scroll={false}>
+                      <Link 
+                        className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" 
+                        href={detailUrl}
+                        scroll={false}
+                        onClick={(e) => handleLinkClick(e, detailUrl)}
+                      >
                         <div className="w-14 mr-3">
                           <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
                             <Img 
-                              width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' unoptimized={true} loading="eager"
+                              width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' loading="eager"
                               className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
                             />
                           </div>
@@ -169,7 +183,10 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                       </Link>
                       <div className="bts absolute right-3 bottom-2">
                         { uInfo?.user_id == user?.id &&
-                          <button type="button" className="bt text-white/40" onClick={ ()=> ui.confirm(`'${data.title || data.name}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) }>
+                          <button type="button" className="bt text-white/40" onClick={ (e)=> {
+                            e.stopPropagation();
+                            ui.confirm(`'${data.title || data.name}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
+                          } }>
                             <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
                           </button>
                         }
