@@ -104,14 +104,14 @@ export default function ViewElips({datas, opts, rvTxt, rev, postID, user, myinfo
     <>
     
     <div className="rpset">
-      <Link href={`/user/${rev.user_num}`} className="user">
+      <a href={`/user/${rev.user_num}`} className="user">
         <span className="pic">
-          <Img width={45} height={45} src={rev.profile_picture} srcerr='/img/common/user.png' alt="사진"  className="img" unoptimized={true} loading="eager" />
+          <Img priority={true} width={45} height={45} src={rev.profile_picture} srcerr='/img/common/user.png' alt={rev.user_name}  className="img" unoptimized={true} loading="eager" />
         </span>
-      </Link>
+      </a>
       <div className="infs">
         <div className="name">
-          <Link href={`/user/${rev.user_num}`} className="nm">{rev.user_name}</Link>
+          <a href={`/user/${rev.user_num}`} className="nm">{rev.user_name}</a>
           <em className="mb">
             { ui.postIsMod(rev.created_at, rev.updated_at) ? ui.timeForm(rev.updated_at,true) +' 수정됨' : ui.timeForm(rev.updated_at,true)}
           </em>
