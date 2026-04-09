@@ -46,12 +46,12 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    if (pathname === targetUrl) return;
+    // if (pathname === targetUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   useEffect(() => {
@@ -120,6 +120,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                       className="box" 
                       href={targetUrl} 
                       scroll={false}
+                      prefetch={true}
                       onClick={handleLinkClick}
                     >
                         <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>

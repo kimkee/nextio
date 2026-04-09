@@ -64,13 +64,13 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
-    if (pathname === targetUrl) return;
+    // // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    // if (pathname === targetUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   useEffect(() => {
@@ -115,6 +115,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      className="box block relative rounded-sm w-full bg-black pb-[calc(450%/300*100)] mb-1"
                      href={detailUrl}
                      scroll={false}
+                     prefetch={true}
                      onClick={handleLinkClick}
                   >
                     <div className='num absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>

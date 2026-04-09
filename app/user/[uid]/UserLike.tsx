@@ -113,12 +113,12 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
   const handleLinkClick = (e: React.MouseEvent, targetUrl: string) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
-    const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
+    // const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    // const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
     
-    if (currentPath === checkUrl) return;
+    // if (currentPath === checkUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   useEffect( () => {
@@ -162,6 +162,7 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
                         className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" 
                         href={detailUrl}
                         scroll={false}
+                        prefetch={true}
                         onClick={(e) => handleLinkClick(e, detailUrl)}
                       >
                         <div className="w-14 mr-3">

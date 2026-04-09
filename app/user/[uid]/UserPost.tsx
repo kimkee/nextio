@@ -53,12 +53,12 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    if (pathname === targetUrl) return;
+    // if (pathname === targetUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   useEffect( () => {
@@ -87,6 +87,7 @@ export default function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:
                   className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5" 
                   href={detailUrl}
                   scroll={false}
+                  prefetch={true}
                   onClick={handleLinkClick}
                 >
                   <div className="w-9 flex-none mr-3">

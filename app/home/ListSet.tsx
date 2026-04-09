@@ -64,16 +64,16 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
-    const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
-    const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
+    // // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    // const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+    // const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
     
-    if (currentPath === checkUrl) return;
+    // if (currentPath === checkUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   useEffect(() => {
@@ -95,6 +95,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
           <Link 
             className="link inline-flex items-center" 
             href={`/list/${opts.media}/${opts.cate || 0}`} 
+            prefetch={true}
             onClick={handleLinkClick}
           >
             <h4 className="tts text-sm">{opts.title}</h4>
@@ -123,6 +124,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450%/300*100)] mb-1"
                      href={detailUrl}
                      scroll={false}
+                     prefetch={true}
                      onClick={handleLinkClick}
                   >
                     <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>

@@ -1,34 +1,8 @@
 import Detail from '@/app/list/Detail';
-import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ id: string; cate: string; opts: string }>;
 };
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id, opts } = await params;
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-  
-  try {
-    const res = await fetch(fetchURL);
-    const data = await res.json();
-    const title = data.title || data.name;
-    const description = data.overview;
-    const image = `https://image.tmdb.org/t/p/w780${data.backdrop_path || data.poster_path}`;
-
-    return {
-      title: `${title} - NEXTIO`,
-      description,
-      openGraph: {
-        title,
-        description,
-        images: [image],
-      },
-    };
-  } catch (e) {
-    return { title: '영화 상세 정보 - NEXTIO' };
-  }
-}
 
 export default async function View({ params }: Props) {
   const { id, opts } = await params;

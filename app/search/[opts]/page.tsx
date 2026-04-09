@@ -244,12 +244,12 @@ export default function Page() {
     <div className='container flex-col search-list'>
       <main className='p-0 search-list'>
       
-        <div className="schs-form flex h-[calc(4.625rem+var(--safe-top)+var(--safe-watch))] jusptify-between"
+        <div className="schs-form flex h-[calc(4.625rem)] jusptify-between z-20 sticky top-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]"
          ref={schsForm}
         >
-          <div className="inr ml-[calc(0px-var(--scrPad)/2)] fixed left-1/2 top-0 -translate-x-1/2 z-[600] max-w-[var(--mwide)] flex items-center
-            h-[calc(4.625rem+var(--safe-top)+var(--safe-watch))] jusptify-between bg-[#1c1c1c]
-            px-[calc(0.75rem+var(--scrPad)/2)] pt-[calc(0rem+var(--safe-top)+var(--safe-watch))]
+          <div className="inr ml-[calc(0px-var(--scrPad)/2)]  top-0  z-[600] max-w-[var(--mwide)] flex items-center
+            jusptify-between bg-[#1c1c1c] backdrop-blur-sm
+            px-[calc(0.75rem+var(--scrPad)/2)] ]
             border-b border-[rgb(58_58_58_/38%)] w-full"
           >
             <form className="form" onSubmit={ goSearch }>

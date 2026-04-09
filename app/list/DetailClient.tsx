@@ -15,41 +15,64 @@ import getUser from '@/app/getUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface DetailClientProps {
-  datas: any;
-  casts: any;
-  moves: any;
   opts: string;
   postID: string;
 }
 
-export default function DetailClient({ datas, casts, moves, opts, postID }: DetailClientProps) {
+export default function DetailClient({ opts, postID }: DetailClientProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
   const [user, setUser] = useState<UserType>(null as any);
   const [myinfo, setMyinfo] = useState<MyinfoType>(null as any);
-  
-  const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
-  const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
+
+  const fetchMovieData = async () => {
+    setData(null);
+    const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
+    const castURL = `https://api.themoviedb.org/3/${opts}/${postID}/credits?&region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+
+    try {
+      const [datasRes, castRes, movRes] = await Promise.all([
+        fetch(fetchURL),
+        fetch(castURL),
+        fetch(movURL)
+      ]);
+
+      if (!datasRes.ok) throw new Error('Failed to fetch movie data');
+
+      setData({
+        datas: await datasRes.json(),
+        casts: await castRes.json(),
+        moves: await movRes.json()
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
-    getUser().then((data: any) => {
-      if(data?.user?.id){
-        setUser(data.user);
-        setMyinfo(data.myinfo);
+    fetchMovieData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opts, postID]);
+
+  useEffect(() => {
+    getUser().then((d: any) => {
+      if(d?.user?.id){
+        setUser(d.user);
+        setMyinfo(d.myinfo);
       }else{
-        setUser(data);
-        setMyinfo(data);
+        setUser(d);
+        setMyinfo(d);
       }
     });
   }, []);
 
   const refrashDatas = () => {
-    startTransition(() => {
-      router.refresh();
-    });
+    fetchMovieData();
   };
 
-  if (isPending) {
+  if (isPending || !data) {
     return (
       <div className='movie-detail relative text-white animate-pulse'>
         <div className='m-info relative z-1'>
@@ -120,6 +143,10 @@ export default function DetailClient({ datas, casts, moves, opts, postID }: Deta
       </div>
     );
   }
+
+  const { datas, casts, moves } = data;
+  const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
+  const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
 
   return (
     <>

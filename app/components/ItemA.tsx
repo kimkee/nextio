@@ -21,13 +21,13 @@ export default function ItemA({ data, opts, cate }: any) {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
-    if (pathname === targetUrl) return;
+    // // 현재 경로와 클릭한 경로가 같으면 로딩바를 띄우지 않음
+    // if (pathname === targetUrl) return;
 
-    ui.loading.show('glx');
+    // ui.loading.show('glx');
   };
 
   return (
@@ -36,6 +36,7 @@ export default function ItemA({ data, opts, cate }: any) {
       className="box block p-4 relative" 
       href={`/search/${opts}/${data.id}`} 
       scroll={false}
+      prefetch={true}
       onClick={handleLinkClick}
     >
       <div className="cont flex items-center">

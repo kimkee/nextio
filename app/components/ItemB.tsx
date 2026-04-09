@@ -18,12 +18,13 @@ export default function ItemB({ data, opts, cate }: any) {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
     
-    const targetUrl = e.currentTarget.getAttribute('href');
-    if (!targetUrl) return;
+    // const targetUrl = e.currentTarget.getAttribute('href');
+    // if (!targetUrl) return;
 
-    if (pathname === targetUrl) return;
+    // if (pathname === targetUrl) return;
 
-    ui.loading.show('glx');
+    // 상세페이지가 모달로 뜨면서 자체 스켈레톤을 가지므로, 여기서 전역 로딩을 부를 필요가 없음
+    // ui.loading.show('glx'); 
   };
 
   return (
@@ -32,6 +33,7 @@ export default function ItemB({ data, opts, cate }: any) {
         className='box block relative mb-0.5' 
         href={`/list/${opts}/${cate}/${data.id}`} 
         scroll={false}
+        prefetch={true}
         onClick={handleLinkClick}
       >
         <div className="cont relative">
