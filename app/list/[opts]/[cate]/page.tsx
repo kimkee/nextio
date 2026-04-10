@@ -11,6 +11,7 @@ import Img from '@/app/components/Img';
 import ItemB from '@/app/components/ItemB';
 import './list.css';
 import Loading from '@/app/components/Loading';
+import ListSkeleton from '@/app/components/ListSkeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface Genre {
   id: number;
@@ -126,10 +127,7 @@ export default function Page({
           <div className='poster-list'>
           
             {!movieList.length ? (
-              // <ul className='list skelt'>
-              //   <Skeleton opts={ {type: 'movie-list', num: 20} } />
-              // </ul>
-              <><Loading opts={{ type: 'glx', cls: 'full' }} /></>
+              <ListSkeleton count={20} />
             ) : (
               <>
                 <ul className='grid grid-cols-4 gap-3'>

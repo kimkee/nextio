@@ -24,6 +24,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   // console.log(opts);
   const page = Math.floor( Math.random() *3 )+1;
   const [mlist, setMlist] = useState<[any] | any>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const fetchMoive = (page:number)=>{
     ui.loading.show(`glx`);
    
@@ -31,9 +32,11 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
     axios.get( fetchURL ).then(res =>{
       console.log(res.data.results);
       setMlist( (prev:any) => [ ...prev , ...res.data.results ] );
+      setIsLoading(false);
       ui.loading.hide();
     }).catch(e=>{
       console.log(e);
+      setIsLoading(false);
       ui.loading.hide();
     }); 
   }
@@ -78,7 +81,38 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   }
   const [playStop, setPlayStop] = useState(false);
 
-  return(
+  if (isLoading) {
+    return (
+      <section className="sect mnTop">
+        <div className="inr" id="slide">
+          {/* 슬라이더 스켈레톤: mnTop 실제 높이 = 122.9vw / max 525px */}
+          <div className="animate-pulse relative w-full bg-white/5" style={{ height: 'min(122.9vw, 525px)' }}>
+            {/* 하단 정보 영역 스켈레톤 */}
+            <div className="absolute bottom-10 left-5 right-5 flex justify-between items-end">
+              {/* 별점 */}
+              <div className="flex gap-1">
+                {[1,2,3,4,5].map(i => (
+                  <div key={i} className="w-4 h-4 rounded-sm bg-white/20" />
+                ))}
+              </div>
+              {/* 제목 */}
+              <div className="flex flex-col items-end gap-1.5">
+                <div className="h-3 w-28 rounded bg-white/20" />
+                <div className="h-3 w-20 rounded bg-white/20" />
+              </div>
+            </div>
+            {/* 페이지네이션 도트 */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {[1,2,3,4,5].map(i => (
+                <div key={i} className={`h-1.5 rounded-full bg-white/30 ${i === 1 ? 'w-5' : 'w-1.5'}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  return (
     <>
       
       <section className={`sect mnTop`}>

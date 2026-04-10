@@ -81,7 +81,26 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (mlist === null) { return }
+  if (mlist === null) {
+    return (
+      <section className="sect mnList mb-4 animate-pulse">
+        {/* 섹션 헤더 스켈레톤 - ListTop10은 이탤릭 대형 제목 */}
+        <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none px-5 py-2">
+          <div className="h-5 w-44 rounded bg-white/15" />
+        </div>
+        {/* 가로 스크롤 포스터 행 - Top10은 30% 너비 카드 */}
+        <div className="flex flex-nowrap overflow-hidden px-1 gap-0">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex-none w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] pt-2 pl-2 mx-[0.4rem]">
+               
+              {/* 포스터 */}
+              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-white/10" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return(
     <>
@@ -112,7 +131,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               return (
                 <div key={idx} className={`pbox box pt-2 pl-2 block w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] mx-[0.4rem]  break-all last:mr-3 ${idx<3 ? '[&_.num]:text-primary' : ''}`}>
                   <Link 
-                     className="box block relative rounded-sm w-full bg-black pb-[calc(450%/300*100)] mb-1"
+                     className="box block relative rounded-sm w-full bg-black pb-[calc(1200%/780*100)] mb-1"
                      href={detailUrl}
                      scroll={false}
                      prefetch={true}
