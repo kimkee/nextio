@@ -1,6 +1,5 @@
 
 import Link from 'next/link';
-export const runtime = 'edge';
 export const dynamicParams = false;
 
 export default async function Page({

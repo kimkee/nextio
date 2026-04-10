@@ -1,6 +1,5 @@
 import Detail from "@/app/list/Detail";
 import { Modal } from '@/app/components/Modal';
-export const runtime = 'edge';
 export default async function TvModal({
   params,
 }: {
