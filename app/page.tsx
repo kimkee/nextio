@@ -14,7 +14,17 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => window.location.replace(`/home`), 300);
+    const lastActiveRoute = localStorage.getItem('last_active_route');
+
+    setTimeout(() => {
+      if (lastActiveRoute) {
+        localStorage.removeItem('last_active_route');
+        window.location.replace(lastActiveRoute);
+      } else {
+        window.location.replace(`/home`);
+      }
+    }, 400);
+
     supabase.auth.onAuthStateChange((state, event) => {
       // state === 'SIGNED_IN' ? router.push('/home') : router.push('/user/login');
       // console.log('==========================================' + state);

@@ -49,6 +49,8 @@ export const viewport: Viewport = {
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
 import Ui from '@/app/components/Ui';
+import RouteTracker from '@/app/components/RouteTracker';
+import { Suspense } from 'react';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/';
@@ -60,6 +62,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <link rel="dns-prefetch" href="https://image.tmdb.org" />
       </head>
       <body className={`body ${noto_sans_kr.className} antialiased`}>
+        <Suspense fallback={null}>
+          <RouteTracker />
+        </Suspense>
         <div className='wrap'>
           <Header />
           {props.children}
