@@ -222,9 +222,9 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
         <div className="relative">
           <div className="user absolute left-0 top-2">
             {myinfo  &&
-            <Link className="pic w-7 h-7 rounded-full overflow-hidden block" href={`/user/${myinfo?.id}`}>
-              <Img width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`} unoptimized={true} className="img w-full h-full" />
-            </Link> }
+            <a className="qqq pic w-7 h-7 rounded-full overflow-hidden block" href={`/user/${myinfo?.id}`}>
+              <Img priority={true} width={45} height={45} src={myinfo?.profile_picture} srcerr='/img/common/user.png' alt={`${myinfo?.username}`} unoptimized={true} className="img w-full h-full" />
+            </a> }
             {!myinfo  &&
             <span className="pic w-7 h-7 rounded-full overflow-hidden block">
               <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' unoptimized={true} className="img w-full h-full bg-white/10 !opacity-100" />
@@ -295,7 +295,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
                   <div className="rpset">
                     <div className="user">
                       <span className="pic">
-                        <Img width={45} height={45} src={nImg} srcerr='/img/common/user.png' alt="사진"  className="img" />
+                        <Img width={45} height={45} src={nImg} srcerr='/img/common/user.png' alt={rev.author_details.name || rev.author_details.username}  className="img" />
                       </span>
                     </div>
                     <div className="infs">
