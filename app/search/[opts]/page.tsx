@@ -27,6 +27,7 @@ export default function Page() {
   
   const [keyword, keywordSet] = useState(searchParams.get('search') || '');
   const [schList, schListSet] = useState<any>([]);
+  const [isSearching, setIsSearching] = useState(false);
   // const [page, setPage] = useState(1);
   let page = 1;
   const [cate, setCate] = useState<any>({});
@@ -67,13 +68,15 @@ export default function Page() {
     
     const fetchURL = `https://api.themoviedb.org/3/search/${opts}?language=ko&region=kr&page=${page}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
 
+    setIsSearching(true);
     axios.get( fetchURL ).then(res =>{
       console.log(res.data);
       schListSet( (prevList:any) => [...prevList,...res.data.results] );
       console.log(page + "=== " + res.data.total_pages );
       callStat = true;
       console.log(callStat);
-      ui.loading.hide();
+      // ui.loading.hide();
+      setIsSearching(false);
       nowPageSet({ "pge":res.data.page, "tot":res.data.total_pages });
       if( res.data.total_pages <= page ) {
         callStat = false;
@@ -85,14 +88,15 @@ export default function Page() {
       
     }).catch(e=>{
       console.log(e);
-      ui.loading.hide();
+      // ui.loading.hide();
+      setIsSearching(false);
       loadErrorSet("error");
     }); 
   }
 
   useEffect(() => {
     getCate();
-    ui.loading.show(`glx`);
+    // ui.loading.show(`glx`);
     fetchMoive(page);
     
     schListSet([]);
@@ -150,10 +154,10 @@ export default function Page() {
     keywordSet( inputRef.current?.value );
     window.history.replaceState(null, '', `/search/${opts}?search=${inputRef.current?.value}`);
     schListSet([]);
+    setIsSearching(true);
     fetchMoive( 1 );
     e.preventDefault();
     saveKwdStorage(inputRef.current?.value);
-    // keyWordBox.current.classList.remove("open");
   }
   const goRecentSearch = (txt:string)=>{
     if(!inputRef.current)return
@@ -240,6 +244,44 @@ export default function Page() {
   const pathname = usePathname();
   const isActive = (els: string) => pathname.includes(`${els}`) ? 'active' : '';
 
+  // 검색 결과 영역 렌더 함수 - 중첩 삼항 대신 명확한 if/return으로 분기
+  const renderSearchBody = () => {
+    if (isSearching) {
+      return (
+        <div className="flex justify-center items-center py-[10vh]">
+          <Loading opts={{ type: 'glx', cls: 'abs scale-[2]' }} />
+        </div>
+      );
+    }
+    if (schList.length === 0) {
+      return (
+        <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
+          <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 !h-8 align-middle' />
+          {keyword ? <p><span className='uppercase'>{opts}</span> : “{keyword}” 검색 결과가 없습니다.</p> : <p>검색어를 입력하세요.</p>}
+        </div>
+      );
+    }
+    return (
+      <>
+        <ul className='list'>
+          {schList.map((data: any, num: number) => (
+            <li className='border-b border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
+              <ItemA data={data} opts={opts} cate={cate} />
+            </li>
+          ))}
+        </ul>
+        <div className={`ui-loadmore ${loadActive} ${loadHide} ${loadError} mt-1`}>
+          <div className='flex justify-center h-12 items-center loading'>
+            <Loading opts={{ type: 'glx' }} />
+          </div>
+          <button onClick={() => { callStat = true; fetchMoive(page); }} type="button" className="btn-load" title="불러오기">
+            <i><FontAwesomeIcon icon={['fas', 'rotate-right']} /></i>
+          </button>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className='container flex-col search-list'>
       <main className='p-0 search-list'>
@@ -292,41 +334,7 @@ export default function Page() {
         }
 
         <div className='search-list p-0' tabIndex={-1}>
-        { schList.length <= 0  ? 
-          <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
-            <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 !h-8 align-middle' />
-            { keyword ? <p><span className='uppercase'>{opts}</span> : ‟{keyword}” 검색 결과가 없습니다.</p> : <p> 검색어를 입력하세요.</p> } 
-          </div>
-          :
-          <>
-          <ul className='list '>
-            { schList.map((data:any, num:number) =>{
-              return(
-                <li
-                  className='border-b border-[#242b3688]'
-                  key={data.id+'_'+num} data-id={data.id+'_'+num}>
-                  <ItemA data={data} opts={opts} cate={cate} />
-                </li>
-              )
-            })}
-          </ul>
-
-          { schList.length > 0 &&
-          <div className={`ui-loadmore ${loadActive} ${loadHide}  ${loadError} mt-1`}>
-            <div className='flex justify-center h-12 items-center loading'>
-              <Loading opts={{ type: 'glx' }} />
-            </div>
-            <button onClick={ ()=>{
-              callStat = true;
-              fetchMoive(page);
-            }} type="button" className="btn-load" title="불러오기">
-              <i>
-                <FontAwesomeIcon icon={['fas', 'rotate-right']} />
-              </i>
-            </button>
-          </div> }
-          </>
-        }     
+          {renderSearchBody()}
         </div>
                 
         <div className="page-set">
