@@ -52,10 +52,10 @@ export default function Header() {
 
           <div className='rdt flex items-center'>
             {/* {pathname} */}
-            <Link href={'/user/login'} className='bt gnb bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
+            <a href={'/user/login'} className='bt gnb bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
               <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 !h-5 flex text-white'  />
               <b className='sr-only'>Menu</b>
-            </Link>
+            </a>
           </div>
 
         </div>

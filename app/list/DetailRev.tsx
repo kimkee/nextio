@@ -53,7 +53,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   const checkLogin = ()=> { 
     if (user?.email) { return; }
     ui.confirm("로그인이 필요합니다.", {
-      ycb: () => { router.push('/user/login'); return; },
+      ycb: () => { window.location.href = '/user/login'; return; },
       ccb: () => { return; },
       ybt: "로그인 하기",
       nbt: "닫기",

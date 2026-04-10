@@ -1,19 +1,30 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from 'react';
-import { usePathname, useRouter, useParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
-interface User {
-  user_metadata: any;
-  id: string;
-  email: string;
-}
-export default function Home() {
+
+export default function LoginPage() {
   const router = useRouter();
+  // 세션 로딩 중 여부 (true일 때는 UI를 아예 그리지 않아 깜빡임 방지)
+  const [authChecking, setAuthChecking] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user?.id) {
+        // 이미 로그인된 상태 → 히스토리에 로그인 페이지를 남기지 않고 홈으로 교체
+        window.location.replace('/home');
+      } else {
+        // 비로그인 상태 확인 완료 → 로그인 UI 표시
+        setAuthChecking(false);
+      }
+    });
+  }, []);
+
   const signInWithOAuth = async (txt: Provider) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: txt,
@@ -24,27 +35,11 @@ export default function Home() {
         // },
         redirectTo: `${SITE_URL}`
       },
-    })
-  }
-
-
-
-  const getUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    console.log(user);
-    return { user }  // 사용자 데이터 반환
+    });
   };
 
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    getUser().then((data: any) => {
-      setUser(data.user)
-      console.log('로긴정보 = ' + data?.user?.id);
-    })
-
-    return () => { }
-  }, []);
+  // 세션 확인 중엔 아무것도 렌더링하지 않음 (깜빡임 방지)
+  if (authChecking) return null;
 
   return (
     <div className="container items-center justify-center">

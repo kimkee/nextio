@@ -107,10 +107,10 @@ export default function Nav() {
                   <em className='text-xt mt-1'>MY</em>
                 </Link>
               ) : (
-                <Link href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`} onClick={handleLinkClick}>
+                <a href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                   <FontAwesomeIcon icon={['fas', 'user']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
                   <em className='text-xt mt-1'>Login</em>
-                </Link>
+                </a>
               )}
             </li>
           </ul>
