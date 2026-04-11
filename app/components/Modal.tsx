@@ -6,13 +6,24 @@ import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import '@/app/style/modal.scss';
 import ui from '@/app/lib/ui';
+import Link from 'next/link';
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const dialogRef = useRef<ElementRef<'div'>>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const pctRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState<boolean>(false);
   const goTop = () => ui.scrollTo('.popup .pct', 0, 200);
   const [scr, setScr] = useState(0);
   const scrollEvent = (e: any) => setScr(parseInt(e.target.scrollTop));
+
+  // article 전체 영역 휠 → pct 스크롤로 위임
+  // shift+wheel은 출연진/영상 등 가로 스크롤 영역이 처리하도록 통과
+  const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
+    if (e.shiftKey) return;
+    const pct = pctRef.current;
+    if (!pct) return;
+    pct.scrollTop += e.deltaY;
+  };
   // const ui = window.ui;
   useEffect(() => {
     if (!dialogRef.current?.classList.contains('open')) {
@@ -32,8 +43,14 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    <article ref={dialogRef} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-[var(--scrPad)]'>
-      <div className='pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh'>
+    <article ref={dialogRef} onWheel={handleWheel} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-[var(--scrPad)]'>
+      <div 
+        className={`
+          pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh
+          transition-[transform,opacity] duration-300 ease-out
+          ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-80 opacity-100'}
+        `}
+      >
         
         <button onClick={onDismiss} className='btn-pop-close h-8 w-8 -ml-1 text-white inline-flex items-center justify-center text-3xl  absolute  left-5 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
           <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 !h-5 flex text-white'/>
@@ -41,11 +58,11 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`phd h-0 z-20`}>
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
-            <div className='ptit text-right pl-16 pr-5 w-full'>{`NEXT.js`}</div>
+            <Link href='/home' className='ptit text-primary font-bold text-right pl-16 pr-5 w-full'>{`NETIO`}</Link>
           </div>
         </div>
 
-        <div className='pct flex-1 flex flex-col py-8 px-5 pb-9 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
+        <div ref={pctRef} className='pct flex-1 flex flex-col py-8 px-5 pb-9 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-[calc(4.2rem+var(--safe-top)+var(--safe-watch))]'
           onScroll={scrollEvent}
         >
           <div className='poptents'>{children}</div>
