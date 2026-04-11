@@ -14,11 +14,11 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const lastActiveRoute = localStorage.getItem('last_active_route');
+    const lastActiveRoute = sessionStorage.getItem('last_active_route');
 
     setTimeout(() => {
       if (lastActiveRoute) {
-        localStorage.removeItem('last_active_route');
+        sessionStorage.removeItem('last_active_route');
         window.location.replace(lastActiveRoute);
       } else {
         window.location.replace(`/home`);

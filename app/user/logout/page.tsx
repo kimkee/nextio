@@ -11,7 +11,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
 export default function SignOut() {
   const signOut = async () => {
-    localStorage.removeItem('last_active_route');
+    sessionStorage.removeItem('last_active_route');
     const { error } = await supabase.auth.signOut();
     if (error) console.log(error);
     window.location.replace('/');

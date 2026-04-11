@@ -19,7 +19,7 @@ export default function RouteTracker() {
       const qs = searchParams.toString();
       const currentUrl = pathname + (qs ? `?${qs}` : '');
       // 개발 환경에서 여러차례 세팅되는 것을 대비해 최신 주소를 안전하게 갈아끼웁니다.
-      localStorage.setItem('last_active_route', currentUrl);
+      sessionStorage.setItem('last_active_route', currentUrl);
     }
   }, [pathname, searchParams]);
 
