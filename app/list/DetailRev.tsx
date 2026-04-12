@@ -227,11 +227,11 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
             </a> }
             {!myinfo  &&
             <span className="pic w-7 h-7 rounded-full overflow-hidden block">
-              <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' unoptimized={true} className="img w-full h-full bg-white/10 !opacity-100" />
+              <Img width={45} height={45} src='/img/common/user.png' alt='user' srcerr='/img/common/user.png' unoptimized={true} className="img w-full h-full bg-white/10 opacity-100!" />
             </span> }
           </div> 
           
-          <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0_/_20%)] rounded-md min-h-[2.5rem] p-2 pt-0.5rem ml-9"
+          <div className="form textarea relative border border-white/10 bg-[rgb(0_0_0/20%)] rounded-md min-h-10 p-2 pt-0.5rem ml-9"
             data-user={`${myinfo?.id}`}
           >
             <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} 
@@ -239,7 +239,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
               placeholder={`${myinfo?.id ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
             ></textarea>
             <div className="bts mt-2">
-              <button type="button" className="btn btn-sm btsend !text-12 w-full bg-[rgb(0_0_0_/_38%)] border-white/10 disabled:bg-[rgb(0_0_0_/_20%)] rounded-md" 
+              <button type="button" className="btn btn-sm btsend text-12! w-full bg-[rgb(0_0_0/38%)] border-white/10 disabled:bg-[rgb(0_0_0/20%)] rounded-md" 
                 disabled={ revNumNow < 1 } onClick={sendReview}>
                 <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
               </button>

@@ -38,7 +38,7 @@ const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any)
           onClick={(e) => handleLinkClick(e, detailUrl)}
         >
           <div className="w-14 mr-3">
-            <div className="pics w-full flex-none bg-black relative overflow-hidden pb-[calc(450%/300*100)]">
+            <div className="pics w-full flex-none bg-black relative overflow-hidden pb-[calc(450/300*100%)]">
               <Img 
                 width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' loading="eager"
                 className='img block object-cover w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
@@ -62,7 +62,7 @@ const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any)
               e.stopPropagation();
               ui.confirm(`'${tit}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
             } }>
-              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
+              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3!' /></span>
             </button>
           }
         </div>
@@ -77,7 +77,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
   if (data === null) return <Loading opts={{ type: 'glx', cls: 'abs' }} />;
   if (!data.length) return (
     <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
-      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
+      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6!' />
       <p> 스크랩된 컨텐츠가 없습니다.</p>
     </div>
   );
@@ -101,7 +101,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
           <button type="button" className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
             onClick={getMore}
           >
-            <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 !h-3' />
+            <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 h-3!' />
           </button>
         </div>
       }
@@ -230,11 +230,11 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
       <div className="tabs flex justify-center border-b border-[#202020] h-12" role="tablist">
         <button onClick={()=>gotoSlide(0)} className={`w-full text-xs ${media == 'movie' ? 'active text-primary font-bold':''}`}>
           <em>Movie</em>
-          <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
+          <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} not-italic text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
         </button>
         <button onClick={()=>gotoSlide(1)} className={`w-full text-xs ${media == 'tv' ? 'active text-primary':''}`}>
           <em>TV</em>
-          <i className={`${media == 'tv' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapTvTot}</i>
+          <i className={`${media == 'tv' ? 'bg-primary':'bg-white/50'} not-italic text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapTvTot}</i>
         </button>
       </div>
 

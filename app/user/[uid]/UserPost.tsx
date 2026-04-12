@@ -25,7 +25,7 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
           onClick={handleLinkClick}
         >
           <div className="w-9 flex-none mr-3">
-            <div className="pics w-full flex-none bg-black relative overflow-hidden pb-[calc(450%/300*100)]">
+            <div className="pics w-full flex-none bg-black relative overflow-hidden pb-[calc(450/300*100%)]">
               <Img 
                 width={92} height={138} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' loading="eager"
                 className='img block object-cover w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
@@ -46,7 +46,7 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
             e.stopPropagation();
             ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(data.mvtv, data.id)}) 
           } }>
-            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
+            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3!' /></span>
           </button>
         </div>
         }
@@ -59,7 +59,7 @@ ReviewItem.displayName = 'ReviewItem';
 const ReviewList = memo(({ items, uInfo, user, handleLinkClick, deleteReview }: any) => {
   if (!items.length) return (
     <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
-      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
+      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6!' />
       <p>작성하신 리뷰가 없습니다</p>
     </div>
   );

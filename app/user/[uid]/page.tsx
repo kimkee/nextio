@@ -76,14 +76,14 @@ export default function User() {
           </main>
         </div>
       ) : (
-        <div className='container !block'>
+        <div className='container block!'>
           <main className='flex flex-col'>
             { uInfo && uInfo.id !== undefined ? (
               <>
                 <div className="profile pt-8 pb-4 relative">
                   <div className="user flex items-center mb-5 mx-5">
-                    <Link href={'/user/'+param_id} className="pic flex-none relative w-[80px] pb-[80px] mr-4 overflow-hidden">
-                      <Img className={`img w-[80px] h-[80px] rounded-full absolute left-0 top-0 bg-[#424242]`}
+                    <Link href={'/user/'+param_id} className="pic flex-none relative w-20 pb-20 mr-4 overflow-hidden">
+                      <Img className={`img w-20 h-20 rounded-full absolute left-0 top-0 bg-[#424242]`}
                         width={80} height={80}
                         src={uInfo.profile_picture}
                         alt={uInfo.username}
@@ -91,9 +91,9 @@ export default function User() {
                         unoptimized={true}
                       />
                       <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
-                        {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}
-                        {uInfo.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 !h-3" />}
-                        {uInfo.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 !h-3" />}
+                        {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 h-3!" />}
+                        {uInfo.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 h-3!" />}
+                        {uInfo.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 h-3!" />}
                       </span>
                     </Link>
                     <div className="info flex w-full px-5 text-sm">
@@ -126,7 +126,7 @@ export default function User() {
                 <div className="user-post">
                   <ul className="
                     menu sticky top-[calc(3.375rem+var(--safe-top))] h-14 flex w-full 
-                    border-b border-b-[#242b36] z-[100] bg-[#111111]"
+                    border-b border-b-[#242b36] z-100 bg-[#111111]"
                   >
                     {[
                       { idx: 0, icon: 'bookmark' },

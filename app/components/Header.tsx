@@ -22,13 +22,11 @@ export default function Header() {
   const isVal = pathname?.includes('search') ?? false;
   return (
     <>
-      <header className={`header h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] flex items-center justify-between z-[500] relative 
-        
-      `}>
-        <div className={`inr backdrop-blur-sm flex w-full h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] items-center justify-between fixed right-0 top-0 z-[500] 
+      <header className={`header h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] flex items-center justify-between z-500 relative`}>
+        <div className={`inr backdrop-blur-sm flex w-full h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))] items-center justify-between fixed right-0 top-0 z-500 
           ${isActive('user') ?'bg-[#1c1c1c]':'bg-[rgb(50_50_50_/33%)]'}  
-          ${ isVal ?'!bg-[#1c1c1c] !backdrop-blur-none':''}
-          border-b border-[rgb(58_58_58_/38%)] px-5 pt-[calc(var(--safe-top)+var(--safe-watch))] max-w-[var(--mwide)] ml-[calc(0px-var(--scrPad)/2)] overflow-hidden
+          ${ isVal ?'bg-[#1c1c1c]! backdrop-blur-none!':''}
+          border-b border-[rgb(58_58_58_/38%)] px-5 pt-[calc(var(--safe-top)+var(--safe-watch))] max-w-(--mwide) ml-[calc(0px-var(--scrPad)/2)] overflow-hidden
           left-1/2 translate-x-[-50%] transition-colors duration-300 w-full`}
           
         >
@@ -37,7 +35,7 @@ export default function Header() {
             {/* isActive('user') */ false ? (
               <>
                 <button onClick={() => router.back()} type='button' className='bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
-                  <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 !h-5 flex' />
+                  <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5! flex' />
                   <b className='sr-only'>GoBack</b>
                 </button>
               </>
@@ -53,7 +51,7 @@ export default function Header() {
           <div className='rdt flex items-center'>
             {/* {pathname} */}
             <a href={'/user/login'} className='bt gnb bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
-              <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 !h-5 flex text-white'  />
+              <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 h-5! flex text-white'  />
               <b className='sr-only'>Menu</b>
             </a>
           </div>

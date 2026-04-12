@@ -94,7 +94,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
             <div key={i} className="flex-none w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] pt-2 pl-2 mx-[0.4rem]">
                
               {/* 포스터 */}
-              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-black" />
+              <div className="pb-[calc(1200/780*100%)] w-full rounded-sm bg-black" />
             </div>
           ))}
         </div>
@@ -131,7 +131,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               return (
                 <div key={idx} className={`pbox box pt-2 pl-2 block w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] mx-[0.4rem]  break-all last:mr-3 ${idx<3 ? '[&_.num]:text-primary' : ''}`}>
                   <Link 
-                     className="box block relative rounded-sm w-full bg-black pb-[calc(1200%/780*100)] mb-1"
+                     className="box block relative rounded-sm w-full bg-black pb-[calc(1200/780*100%)] mb-1"
                      href={detailUrl}
                      scroll={false}
                      prefetch={true}
@@ -139,7 +139,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                   >
                     <div className='num absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
                     <Img width={300} height={450} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
-                    <div className="info absolute left-0 bottom-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
+                    <div className="info absolute left-0 bottom-0 right-0 bg-linear-to-t from-black/62 to-transparent p-1">
                       <StarPoint point={data.vote_average} opts={{cls:'text-sm'}} />
                     </div>
                   </Link>

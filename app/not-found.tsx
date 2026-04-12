@@ -18,11 +18,11 @@ export default function NotFound() {
             Sorry!!
           </p> */}
           <div className="flex gap-2 mt-8 justify-center">
-              <button type="button" className="btn btn-sm !px-3" onClick={ ()=>{router.back()} }>
+              <button type="button" className="btn btn-sm px-3!" onClick={ ()=>{router.back()} }>
                 <FontAwesomeIcon icon={['fas', 'arrow-left']} />
                 <em>Back</em>
               </button>
-              <button type="button" className="btn btn-sm !px-3" onClick={ ()=>{router.push(`/`)} }>
+              <button type="button" className="btn btn-sm px-3!" onClick={ ()=>{router.push(`/`)} }>
                 <FontAwesomeIcon icon={['fas', 'home']} />
                 <em>Home</em>
               </button>

@@ -66,9 +66,9 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
                     width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' loading="eager"
                   />
                   <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
-                    {data.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 !h-3" />}
-                    {data.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 !h-3" />}
-                    {data.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 !h-3" />}
+                    {data.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 h-3!" />}
+                    {data.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 h-3!" />}
+                    {data.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 h-3!" />}
                   </span>
                 </span>
                 <div className="name text-sm">{data.username}</div>

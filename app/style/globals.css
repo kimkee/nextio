@@ -1,75 +1,95 @@
-@charset "utf-8";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* reset */ 
-* {margin: 0px;padding: 0;box-sizing: border-box;}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
-section { display: block; }
-body { line-height: 1.6; }
-h1, h2, h3, h4, h5, h6, input, select, textarea, option, label, button {font-weight: normal;}
-fieldset, img, abbr, acronym { border: 0 none; }
-ol, ul { list-style: none; }
-table { border-collapse: collapse; border-spacing: 0; }
-em {font-style: normal;}
-p {vertical-align: baseline;}
-hr { display: none; } 
-.hidden{position: fixed; left: -99999rem; top: -99999rem;}
-html, body {line-height: 1.6;font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
-input , textarea{font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
-html{font-size: 1px;}
-@media screen and ( max-width:340px ) { 
-    html{font-size: 0.9px;}    
-}
-@media screen and ( min-width:450px ) {
-    html{font-size: 1px;}    
-}
-@media screen and ( min-width:600px ) {
-    html{font-size: 1px;}    
-}
-body{overflow-y: scroll;background-color: #000000;color: #aaaaaa;}
-body:not(.is-dark){}
-a{color: #aaaaaa;text-decoration: none;}
-button{cursor:pointer;background: none;border: none;padding: 0; color: #aaaaaa;}
-select::-ms-expand {display:none;}
-caption{display:none;}
+@import "tailwindcss";
 
-[tabindex]{}
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #61dafb;
+  --color-secondary: #facc15;
 
-input::-webkit-input-placeholder {color: #666666; font-weight: normal;}
-input:-ms-input-placeholder {color: #666666; font-weight: normal;}
-textarea::-webkit-input-placeholder {color: #666666; font-weight: normal;} 
-textarea:-ms-input-placeholder {color: #666666; font-weight: normal;} 
+  --text-9: 0.5625rem;
+  --text-9--line-height: 1.4;
+  --text-10: 0.625rem;
+  --text-10--line-height: 1.4;
+  --text-xt: 0.6875rem;
+  --text-xt--line-height: 1.4;
+  --text-12: 0.75rem;
+  --text-12--line-height: 1.4;
+  --text-ss: 0.8125rem;
+  --text-ss--line-height: 1.4;
+  --text-md: 0.9375rem;
+  --text-md--line-height: 1.4;
+  --text-14: 0.875rem;
+  --text-14--line-height: 1.4;
+  --text-xx: 1.375rem;
+  --text-xx--line-height: 1.4;
+}
+@layer base {
+  /* reset */ 
+  * {margin: 0px;padding: 0;box-sizing: border-box;}
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
+  section { display: block; }
+  body { line-height: 1.6; }
+  h1, h2, h3, h4, h5, h6, input, select, textarea, option, label, button {font-weight: normal;}
+  fieldset, img, abbr, acronym { border: 0 none; }
+  ol, ul { list-style: none; }
+  table { border-collapse: collapse; border-spacing: 0; }
+  em {font-style: normal;}
+  p {vertical-align: baseline;}
+  hr { display: none; } 
+  .hidden{position: fixed; left: -99999rem; top: -99999rem;}
+  html, body {line-height: 1.6;font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
+  input , textarea{font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
+  html{font-size: 1px;}
+  @media screen and ( max-width:340px ) { 
+      html{font-size: 0.9px;}    
+  }
+  @media screen and ( min-width:450px ) {
+      html{font-size: 1px;}    
+  }
+  @media screen and ( min-width:600px ) {
+      html{font-size: 1px;}    
+  }
+  body{overflow-y: scroll;background-color: #000000;color: #aaaaaa;}
+  body:not(.is-dark){}
+  a{color: #aaaaaa;text-decoration: none;}
+  button{cursor:pointer;background: none;border: none;padding: 0; color: #aaaaaa;}
+  select::-ms-expand {display:none;}
+  caption{display:none;}
 
-:root {
-    --safe-top: env(safe-area-inset-top) ;
-    --safe-bottom: env(safe-area-inset-bottom) ;
-	--safe-watch: 0px;
+  [tabindex]{}
+
+  input::-webkit-input-placeholder {color: #666666; font-weight: normal;}
+  input:-ms-input-placeholder {color: #666666; font-weight: normal;}
+  textarea::-webkit-input-placeholder {color: #666666; font-weight: normal;} 
+  textarea:-ms-input-placeholder {color: #666666; font-weight: normal;} 
+
+  :root {
+      --safe-top: env(safe-area-inset-top) ;
+      --safe-bottom: env(safe-area-inset-bottom) ;
+  	--safe-watch: 0px;
+      --mwide: 480px;
+      --scrPad: 0rem;
+  }
+
+
+
+  #app{margin: 0rem 0rem;text-align: left;}
+  a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
+  :root {
+    --safe-top: calc(env(safe-area-inset-top));
+    --safe-bottom: calc(env(safe-area-inset-bottom));
+    --safe-watch: 0px;
+    /* --mwide: 30rem; */
     --mwide: 480px;
-    --scrPad: 0rem;
+    --scrPad: 0px;
+    --active-color: #3ecf8e;
+    --inpu-bgc: #0c0c0c;
+    --inpu-bdc: #303030;
+    --inpu-bdr: 4px
+  }
+
+  html{font-size: 16px;}
 }
-
-
-
-#app{margin: 0rem 0rem;text-align: left;}
-a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
-:root {
-  --safe-top: calc(env(safe-area-inset-top));
-  --safe-bottom: calc(env(safe-area-inset-bottom));
-  --safe-watch: 0px;
-  /* --mwide: 30rem; */
-  --mwide: 480px;
-  --scrPad: 0px;
-  --active-color: #3ecf8e;
-  --inpu-bgc: #0c0c0c;
-  --inpu-bdc: #303030;
-  --inpu-bdr: 4px
-}
-
-i,em{
-  @apply not-italic
-}
-html{font-size: 16px;}
 
 
 .header{ height: calc(3.5rem + var(--safe-top));}
@@ -185,9 +205,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .btn{
-    @apply flex-shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 inline-flex items-center justify-center shadow-sm ring-1 ring-inset 
-        ring-gray-300 
-        bg-gray-50 
+    @apply shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 inline-flex items-center justify-center shadow-sm ring-1 ring-inset 
         bg-white/5
         text-gray-200
         ring-white/10
@@ -196,13 +214,13 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
         aria-disabled:bg-gray-800 
         focus-visible:ring-2;
     }
-.btn.btn-primary{ @apply  text-white bg-primary/40 hover:bg-slate-700/100 ring-white/10; }
+.btn.btn-primary{ @apply  text-white bg-primary/40 hover:bg-slate-700 ring-white/10; }
 .btn.btn-xs{ @apply text-[0.7rem] px-2 py-0.5 rounded font-normal }
 .btn.btn-sm{ @apply text-xs px-1.5 py-1.5 rounded font-normal }
 .btn.btn-md{ @apply text-sm px-2.5 py-1.5 }
 .btn.btn-lg{ @apply text-sm px-3.5 py-2 }
 .btn.btn-xl{ @apply text-base px-5 py-3 }
-.btn:disabled{ @apply opacity-70 text-opacity-50 cursor-not-allowed; }
+.btn:disabled{ @apply opacity-60 cursor-not-allowed; }
 
 body.is-lock{height: 100%;overflow-y:initial;padding-right: var(--scrPad);}
 html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
@@ -237,7 +255,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ui-load-glx>.gbx{width: 1.2rem;height: 1.2rem;display: inline-block;}
 .ui-load-glx>.gbx .bx{animation: rotate 1.2s linear infinite;display: flex;position: relative;width: 100%;height: 100%;}
 .ui-load-glx>.gbx .bx i{width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
-.ui-load-glx>.gbx .bx i::before{animation: bounce 0.5s alternate infinite;position: absolute;left: 50%;top: 50%;width: 20%;height: 20%;background: #0481ff;border-radius: 10px;display: inline-flex;content:"";}
+.ui-load-glx>.gbx .bx i::before{animation: bounce-glx 0.5s alternate infinite;position: absolute;left: 50%;top: 50%;width: 20%;height: 20%;background: #0481ff;border-radius: 10px;display: inline-flex;content:""; box-sizing: border-box;}
 .ui-load-glx>.gbx .bx i:first-child::before {background: #00d593;}
 .ui-load-glx>.gbx .bx i:nth-child(1){transform: rotate(0deg);}
 .ui-load-glx>.gbx .bx i:nth-child(2){transform: rotate(90deg);}
@@ -247,7 +265,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ui-load-glx.full{position: fixed;left: 0;right: 0;top: 0;bottom: 0;z-index: 2000;background: transparent;width: auto;height: auto; padding-right: calc(0px - var(--scrPad) / 2)}
 .ui-load-glx.full>.gbx{position: absolute;left: 50%;top: 50%; width: 3rem; height: 3rem; transform:scale(1) translate3d(-50%, -50%, 0);}
 .ui-load-glx.full>.gbx .bx{  }
-@keyframes bounce {
+@keyframes bounce-glx {
     0%{   transform: translateY(20%) ; }
     30%{  transform: translateY(30%) ; }
     100%{ transform: translateY(100%); }

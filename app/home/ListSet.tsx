@@ -96,7 +96,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
           {Array.from({ length: 7 }).map((_, i) => (
             <div key={i} className="flex-none w-[calc(24%-3%)] min-w-[calc(24%-3%)]">
               {/* 포스터 - pb로 비율 유지 (450/300) */}
-              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-black" />
+              <div className="pb-[calc(1200/780*100%)] w-full rounded-sm bg-black" />
             </div>
           ))}
         </div>
@@ -139,7 +139,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               return (
                 <div key={idx} className="pbox box block w-[calc(24%-3%)] min-w-[calc(24%-3%)] mx-[0.4rem]  break-all">
                   <Link 
-                     className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(1200%/780*100)] mb-1"
+                     className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(1200/780*100%)] mb-1"
                      href={detailUrl}
                      scroll={false}
                      prefetch={true}

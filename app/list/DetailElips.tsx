@@ -35,7 +35,7 @@ export default function ViewElips({overview}: {overview: string}) {
         {
         <span className={`btn-tog inline-flex items-center justify-center
             ${!isOverviewOpen ? 'absolute left-1/2 -bottom-2 transform -translate-x-1/2' : ''}
-            ${isOverFlow ? '':'hidden'}
+            ${isOverFlow ? '':'hidden!'}
           `}
         >
           { isOverviewOpen

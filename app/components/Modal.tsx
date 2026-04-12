@@ -52,17 +52,17 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   return createPortal(
-    <article ref={dialogRef} onWheel={handleWheel} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-[var(--scrPad)]'>
+    <article ref={dialogRef} onWheel={handleWheel} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad)'>
       <div 
         className={`
-          pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-[480px] flex flex-col h-dvh
+          pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
           transition-[transform,opacity] duration-300 ease-out
           ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-80 opacity-100'}
         `}
       >
         
         <button onClick={onDismiss} className='btn-pop-close h-8 w-8 -ml-1 text-white inline-flex items-center justify-center text-3xl  absolute  left-5 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
-          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 !h-5 flex text-white'/>
+          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5! flex text-white'/>
         </button>
 
         <div className={`phd h-0 z-20`}>
@@ -84,9 +84,9 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`floatpop 
           ${scr > 50 
-          ? 'on-top translate-y-[-4rem]' 
-          : 'translate-y-[8rem]'}
-          fixed text-right px-5 left-1/2 max-w-[var(--mwide)] w-full h-0 z-50 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-200 transform translate-x-[-50%]`}
+          ? 'on-top -translate-y-16' 
+          : 'translate-y-32'}
+          fixed text-right px-5 left-1/2 max-w-(--mwide) w-full h-0 z-50 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-200 transform translate-x-[-50%]`}
         >
           <button type='button'
             className='bt top mt-3.5 mb-0 mx-auto rounded-full inline-flex items-center justify-center shadow-[0_0_6rem_rgba(0,0,0,0.49)] bg-[rgba(255,255,255,0.7)] border border-[rgba(0,0,0,0.1)] w-[2.8rem] h-[2.8rem] text-black'

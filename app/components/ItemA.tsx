@@ -40,10 +40,10 @@ export default function ItemA({ data, opts, cate }: any) {
       onClick={handleLinkClick}
     >
       <div className="cont flex items-center">
-        <div className="pics flex-none relative w-[5rem] pb-[7.5rem] mr-4 overflow-hidden  bg-black">
+        <div className="pics flex-none relative w-20 pb-30 mr-4 overflow-hidden  bg-black">
           <Img 
             width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 
-            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full !opacity-100'
+            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-100!'
           />  
         </div>
         <div className="desc">
@@ -65,12 +65,12 @@ export default function ItemA({ data, opts, cate }: any) {
           <div className="hits inline-flex items-center gap-2 text-xt whitespace-nowrap">
             <StarPoint point={data.vote_average} opts={{cls:'-mt-1'}} />
             <em className="ico inline-flex items-center gap-1 ">
-              <FontAwesomeIcon icon={['far', 'heart']} className='w-3 !h-3 align-middle' />
+              <FontAwesomeIcon icon={['far', 'heart']} className='w-3 h-3! align-middle' />
               <b>{data.vote_average}</b>
             </em>
           </div>
           <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
-            <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 !h-3 align-middle' />
+            <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 h-3! align-middle' />
             <b>{data.release_date || data.first_air_date}</b>
           </div>
         </div>

@@ -105,7 +105,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               </div>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <div className='aspect-[2/3] bg-black rounded-sm' />
+              <div className='aspect-2/3 bg-black rounded-sm' />
             </div>
           </div>
 
@@ -161,8 +161,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
   return (
     <>
-      <div className='bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat z-2 max-w-[480px] max-h-[470px] right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
-          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-[18rem] after:bg-gradient-to-b from-transparent to-[#111111]'
+      <div className='bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat max-w-(--mwide) max-h-120 right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
+          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-[#111111]'
         style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad) / 2)' }}
       ></div>
       <div className='movie-detail relative text-white'>
@@ -172,7 +172,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               <h1 className='tit text-xx '>
                 {datas.title || datas.name}
                 <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1' onClick={refrashDatas}>
-                  <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 !w-4 !h-4  align-middle leading-none' />
+                  <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4! h-4!  align-middle leading-none' />
                 </button>
               </h1>
               {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}
@@ -235,11 +235,11 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               </ul>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <div className='pics block relative overflow-hidden rounded-sm pb-[calc(450%/300*100)] bg-black'>
+              <div className='pics block relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black'>
                 <Img
                   width={400}
                   height={570}
-                  className='img absolute object-cover w-full h-full !opacity-100'
+                  className='img absolute object-cover w-full h-full opacity-100!'
                   unoptimized={true}
                   src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                   alt={datas.title || datas.name}
