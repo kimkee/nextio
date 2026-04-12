@@ -28,9 +28,13 @@ export default function Page() {
   const [keyword, keywordSet] = useState(searchParams.get('search') || '');
   const [schList, schListSet] = useState<any>([]);
   const [isSearching, setIsSearching] = useState(false);
-  // const [page, setPage] = useState(1);
-  let page = 1;
+  const [isInitialLoading, setIsInitialLoading] = useState(false);
+  
+  const pageRef = useRef(1);
+  const callStatRef = useRef(true);
+  
   const [cate, setCate] = useState<any>({});
+
   // const total;
   const getCate = async ()=>{
     
@@ -58,85 +62,90 @@ export default function Page() {
   const [loadError, loadErrorSet] = useState(``);
   const inputRef = useRef<HTMLInputElement>(null);
   
-  const fetchMoive = (page:number )=>{
-
-    console.log( "검색어 " +keyword);
-    console.log( "로드 " + page );
-    if(!inputRef.current)return
-    inputRef.current.value = keyword;
+  const fetchMoive = (p: number, isInitial = false) => {
+    if (!inputRef.current) return;
     const kwd = keyword || '';
-    
-    const fetchURL = `https://api.themoviedb.org/3/search/${opts}?language=ko&region=kr&page=${page}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    if (!kwd) {
+      schListSet([]);
+      setIsSearching(false);
+      setIsInitialLoading(false);
+      return;
+    }
 
-    setIsSearching(true);
-    axios.get( fetchURL ).then(res =>{
-      console.log(res.data);
-      schListSet( (prevList:any) => [...prevList,...res.data.results] );
-      console.log(page + "=== " + res.data.total_pages );
-      callStat = true;
-      console.log(callStat);
-      // ui.loading.hide();
-      setIsSearching(false);
-      nowPageSet({ "pge":res.data.page, "tot":res.data.total_pages });
-      if( res.data.total_pages <= page ) {
-        callStat = false;
-        loadHideSet("hide");
-      }else{
-        loadHideSet("");
-      };
-      loadActiveSet("");
+    const fetchURL = `https://api.themoviedb.org/3/search/${opts}?language=ko&region=kr&page=${p}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+
+    if (isInitial) {
+      setIsInitialLoading(true);
+      schListSet([]);
+    } else {
+      setIsSearching(true);
+    }
+
+    axios.get(fetchURL).then(res => {
+      if (isInitial) {
+        schListSet(res.data.results);
+      } else {
+        schListSet((prevList: any) => [...prevList, ...res.data.results]);
+      }
       
-    }).catch(e=>{
-      console.log(e);
-      // ui.loading.hide();
+      callStatRef.current = true;
       setIsSearching(false);
+      setIsInitialLoading(false);
+      nowPageSet({ "pge": res.data.page, "tot": res.data.total_pages });
+      
+      if (res.data.total_pages <= p) {
+        callStatRef.current = false;
+        loadHideSet("hide");
+      } else {
+        loadHideSet("");
+      }
+      loadActiveSet("");
+    }).catch(e => {
+      console.error(e);
+      setIsSearching(false);
+      setIsInitialLoading(false);
       loadErrorSet("error");
-    }); 
-  }
+    });
+  };
 
   useEffect(() => {
     getCate();
-    // ui.loading.show(`glx`);
-    fetchMoive(page);
+    pageRef.current = 1;
+    callStatRef.current = true;
+    fetchMoive(1, true);
     
-    schListSet([]);
     !keyword && inputRef.current?.focus();
     window.addEventListener("scroll", scrollEvent);
     window.scrollTo(0, 0);
-    showKwdList()
+    showKwdList();
 
-    return ()=>{
-      
+    return () => {
       window.removeEventListener("scroll", scrollEvent);
-    }
+    };
     // eslint-disable-next-line
-  },[keyword,opts]);
+  }, [keyword, opts]);
 
-
-  // const [callStat, callStatSet] = useState(true);
-  let callStat = true;
-  const scrollEvent = ()=> {
+  const scrollEvent = () => {
     const wHt = ui.viewport.height();
     const docH = ui.viewport.docHeight();
     const scr = ui.viewport.scrollTop() + wHt + 10;
-    console.log(callStat +" =  "+  page);
-    if (docH <= scr && callStat === true) {
-      console.log("바닥도착");
-      // console.log( page);
+    
+    if (docH <= scr && callStatRef.current === true) {
       loadActiveSet("active");
-      callStat = false;
-      // console.log(callStat);
-      if(ui.lock.stat) {
-        callStat = true;
-        return
-      };
-      setTimeout( ()=> {
-        // setPage( page + 1 );
-        page = page + 1;
-        fetchMoive( page );
-      } ,500 );
+      callStatRef.current = false;
+      
+      if (ui.lock.stat) {
+        callStatRef.current = true;
+        return;
+      }
+      
+      setTimeout(() => {
+        pageRef.current += 1;
+        fetchMoive(pageRef.current);
+      }, 500);
     }
   };
+
   
 
   // console.log(datas);
@@ -153,12 +162,13 @@ export default function Page() {
     if(!inputRef.current)return
     keywordSet( inputRef.current?.value );
     window.history.replaceState(null, '', `/search/${opts}?search=${inputRef.current?.value}`);
-    schListSet([]);
-    setIsSearching(true);
-    fetchMoive( 1 );
+    pageRef.current = 1;
+    callStatRef.current = true;
+    fetchMoive( 1, true );
     e.preventDefault();
     saveKwdStorage(inputRef.current?.value);
   }
+
   const goRecentSearch = (txt:string)=>{
     if(!inputRef.current)return
     inputRef.current.value = txt;
@@ -246,7 +256,7 @@ export default function Page() {
 
   // 검색 결과 영역 렌더 함수 - 중첩 삼항 대신 명확한 if/return으로 분기
   const renderSearchBody = () => {
-    if (isSearching) {
+    if (isInitialLoading) {
       return (
         <div className="flex justify-center items-center py-[10vh]">
           <Loading opts={{ type: 'glx', cls: 'abs scale-[2]' }} />
@@ -261,6 +271,7 @@ export default function Page() {
         </div>
       );
     }
+
     return (
       <>
         <ul className='list'>
@@ -274,10 +285,11 @@ export default function Page() {
           <div className='flex justify-center h-12 items-center loading'>
             <Loading opts={{ type: 'glx' }} />
           </div>
-          <button onClick={() => { callStat = true; fetchMoive(page); }} type="button" className="btn-load" title="불러오기">
+          <button onClick={() => { callStatRef.current = true; fetchMoive(pageRef.current); }} type="button" className="btn-load" title="불러오기">
             <i><FontAwesomeIcon icon={['fas', 'rotate-right']} /></i>
           </button>
         </div>
+
       </>
     );
   };
