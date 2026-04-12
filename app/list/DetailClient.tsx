@@ -13,6 +13,8 @@ import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
 import getUser from '@/app/getUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSetAtom } from 'jotai';
+import { modalTitleAtom } from '@/app/store/modal';
 
 interface DetailClientProps {
   opts: string;
@@ -21,6 +23,7 @@ interface DetailClientProps {
 
 export default function DetailClient({ opts, postID }: DetailClientProps) {
   const router = useRouter();
+  const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
   const [user, setUser] = useState<UserType>(null as any);
@@ -55,6 +58,14 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
     fetchMovieData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opts, postID]);
+
+  useEffect(() => {
+    if (data?.datas) {
+      const newTitle = data.datas.title || data.datas.name;
+      setTitle(newTitle);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   useEffect(() => {
     getUser().then((d: any) => {

@@ -7,8 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import '@/app/style/modal.scss';
 import ui from '@/app/lib/ui';
 import Link from 'next/link';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { modalTitleAtom } from '@/app/store/modal';
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const modalTitle = useAtomValue(modalTitleAtom);
+  const setTitle = useSetAtom(modalTitleAtom);
+
+  useEffect(() => {
+    return () => setTitle(''); // 모달 닫힐 때 제목 초기화
+  }, [setTitle]);
+
   const dialogRef = useRef<HTMLDivElement>(null);
   const pctRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState<boolean>(false);
@@ -58,7 +67,12 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
         <div className={`phd h-0 z-20`}>
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
-            <Link href='/home' className='ptit text-primary font-bold text-right pl-16 pr-5 w-full'>{`NETIO`}</Link>
+            <div className='ptit text-right pl-16 pr-5 w-full'>
+              <Link className={`${scr > 50 ? 'hidden' : ''} text-primary font-bold `} href='/home'>{`NETIO`}</Link> 
+              <div  className={`${scr > 50 ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'} text-base transition-opacity duration-300`}>
+                {modalTitle}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -88,3 +102,4 @@ export function Modal({ children }: { children: React.ReactNode }) {
     document.getElementById('modal-root')!
   );
 }
+
