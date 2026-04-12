@@ -4,7 +4,8 @@ import axios from 'axios';
 import CateMenu from '@/app/components/CateMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+
 import { use } from 'react';
 import ui from '@/app/lib/ui';
 import Img from '@/app/components/Img';
@@ -38,7 +39,9 @@ export default function Page({
   const [movieList, movieListSet] = useState<any[]>([]);
   const cateID = cate;
   const cateList = cateID !== '0' ? `&with_genres=${cateID}` : ``;
-  let page = 1;
+  const pageRef = useRef(1);
+  const callStatRef = useRef(true);
+
   const getCate = async () => {
     await axios
       .get(
@@ -49,20 +52,17 @@ export default function Page({
       });
   };
 
-  const fetchMoive = async (page: any) => {
-    const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${page}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const fetchMoive = async (p: any) => {
+    const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${p}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     await axios
       .get(fetchURL)
       .then((res) => {
-        console.log(res.data);
-        console.log('로드 ' + page);
         movieListSet((prevList) => [...prevList, ...res.data.results]);
-        console.log( `callStat : ${callStat} , page : ${page} , res.data.total_pages :  ${res.data.total_pages} ` );
-        callStat = true;
+        callStatRef.current = true;
         loadErrorSet('');
         nowPageSet({ pge: res.data.page, tot: res.data.total_pages });
-        if (res.data.total_pages <= page) {
-          callStat = false;
+        if (res.data.total_pages <= p) {
+          callStatRef.current = false;
           loadHideSet(' hide');
         } else {
           loadHideSet('');
@@ -70,43 +70,41 @@ export default function Page({
         loadActiveSet('');
       })
       .catch((e) => {
-        console.log(e);
-        callStat = true;
+        console.error(e);
+        callStatRef.current = true;
         loadErrorSet(' error');
       });
   };
+
 
   const [nowPage, nowPageSet] = useState({ pge: 0, tot: 0 });
   const [loadActive, loadActiveSet] = useState(``);
   const [loadHide, loadHideSet] = useState(``);
   const [loadError, loadErrorSet] = useState(``);
-  let callStat = true;
+
   const scrollEvent = () => {
     const wHt = ui.viewport.height();
     const docH = ui.viewport.docHeight();
     const scr = ui.viewport.scrollTop() + wHt + 300;
-    // console.log(callStat +" =  "+  page);
-    if (docH <= scr && callStat === true) {
-      console.log();
-      console.log('바닥도착 : ' + page);
-
+    
+    if (docH <= scr && callStatRef.current === true) {
       loadActiveSet(' active');
-      callStat = false;
-      console.log(callStat);
-      console.log(loadActive);
+      callStatRef.current = false;
 
       if (ui.lock.stat) {
-        callStat = true;
+        callStatRef.current = true;
         return;
       }
       setTimeout(() => {
-        page = page + 1;
-        fetchMoive(page);
+        pageRef.current += 1;
+        fetchMoive(pageRef.current);
       }, 300);
     }
   };
+
   useEffect(() => {
-    console.log(movieList);
+    pageRef.current = 1;
+    callStatRef.current = true;
     movieListSet([]);
     window.scrollTo(0, 0);
     fetchMoive(1);
@@ -117,6 +115,7 @@ export default function Page({
     };
     // eslint-disable-next-line
   }, [cate, opts]);
+
 
   return (
     <>
@@ -153,13 +152,14 @@ export default function Page({
                   </div>
                   <button
                     onClick={(e) => {
-                      callStat = true;
-                      fetchMoive(page);
+                      callStatRef.current = true;
+                      fetchMoive(pageRef.current);
                     }} type='button' className='btn-load'>
                     <i>
                       <FontAwesomeIcon icon={['fas', 'rotate-right']} />
                     </i>
                   </button>
+
                 </div>
                 {/* <button
             className="btn btn-xl w-full mt-6"
