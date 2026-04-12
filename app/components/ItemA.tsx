@@ -42,7 +42,7 @@ export default function ItemA({ data, opts, cate }: any) {
       <div className="cont flex items-center">
         <div className="pics flex-none relative w-[5rem] pb-[7.5rem] mr-4 overflow-hidden  bg-black">
           <Img 
-            width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' 
+            width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 
             className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full !opacity-100'
           />  
         </div>

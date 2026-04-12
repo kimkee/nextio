@@ -158,7 +158,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                       onClick={handleLinkClick}
                     >
                         <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' loading='lazy' className='img' />
+                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className='img' />
                         </div>
                         <div className="info">
                           <div className="star">

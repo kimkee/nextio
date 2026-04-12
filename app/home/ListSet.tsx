@@ -145,7 +145,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      prefetch={true}
                      onClick={handleLinkClick}
                   >
-                    <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
+                    <Img width={300} height={450} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
                   </Link>
                 </div>
               )

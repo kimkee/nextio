@@ -138,7 +138,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      onClick={handleLinkClick}
                   >
                     <div className='num absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
-                    <Img width={300} height={450} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
+                    <Img width={300} height={450} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
                     <div className="info absolute left-0 bottom-0 right-0 bg-gradient-to-t from-black/62 to-transparent p-1">
                       <StarPoint point={data.vote_average} opts={{cls:'text-sm'}} />
                     </div>

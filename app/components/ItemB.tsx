@@ -39,7 +39,7 @@ export default function ItemB({ data, opts, cate }: any) {
         <div className="cont relative">
           <div className="pics block relative overflow-hidden pb-[calc(1200%/780*100)] bg-black">
             <Img 
-              width={200} height={300} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' loading="eager"
+              width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' loading="eager"
               className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full !opacity-100'
             />
           </div>

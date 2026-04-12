@@ -44,7 +44,7 @@ export default function Header() {
             ) : (
               <h1 className='logo'>
                 <Link href={`/`} className='btlogo py-1 flex'>
-                  <Img priority={true} width={256} height={54} src='/img/logo_next.png' unoptimized={true} alt='Nextio' srcerr='' className='w-20 h-auto' />
+                  <Img priority={true} width={256} height={54} src={'/img/logo_next.png'} unoptimized={true} alt='Nextio' srcerr='' className='w-20 h-auto' />
                 </Link>
               </h1>
             )}

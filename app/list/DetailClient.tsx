@@ -240,6 +240,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                   width={400}
                   height={570}
                   className='img absolute object-cover w-full h-full !opacity-100'
+                  unoptimized={true}
                   src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                   alt={datas.title || datas.name}
                   srcerr='/img/common/non_poster.png'
