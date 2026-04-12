@@ -57,6 +57,7 @@ export default function Page({
     await axios
       .get(fetchURL)
       .then((res) => {
+        console.log(res.data.results);
         movieListSet((prevList) => [...prevList, ...res.data.results]);
         callStatRef.current = true;
         loadErrorSet('');
@@ -97,7 +98,7 @@ export default function Page({
       }
       setTimeout(() => {
         pageRef.current += 1;
-        fetchMoive(pageRef.current);
+        fetchMoive(pageRef.current);        
       }, 300);
     }
   };
@@ -119,8 +120,6 @@ export default function Page({
 
   return (
     <>
-      <title>{`${opts == 'movie' ? '영화' : 'TV'} 목록`}</title>
-      {/* <meta name="description" content={`상세 정보`} /> */}
       <div className='container flex-col movie-list'>
         <main className='p-3'>
           <div className='poster-list'>
@@ -133,16 +132,6 @@ export default function Page({
                   {movieList.map((data, num) => (
                     <li key={data.id + '_' + num} data-id={data.id + '_' + num}>
                       <ItemB data={data} opts={opts} cate={cate} />
-                      {/* <Link
-                  className="border border-white/20 rounded-md p-4 h-40 flex flex-col gap-1 justify-center items-center text-md uppercase"
-                  href={`/list/${opts}/${cate}/${data.id}`}
-                  passHref
-                  scroll={false}
-                >
-                  <Img width={300} height={450}  src={`https://image.tmdb.org/t/p/w200${data.poster_path}`} alt='extio' srcerr='/img/common/non_poster.png' className='w-full h-auto' />
-                  <p>{opts} - {cate} - {data.id}</p>
-                  <p>{data.poster_path}</p>
-                </Link> */}
                     </li>
                   ))}
                 </ul>
@@ -161,12 +150,6 @@ export default function Page({
                   </button>
 
                 </div>
-                {/* <button
-            className="btn btn-xl w-full mt-6"
-            onClick={ (e)=>{ callStat = true; fetchMoive( page ); } }
-          >
-            More
-          </button> */}
               </>
             )}
           </div>
