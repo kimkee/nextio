@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Img from '@/app/components/Img';
-import React, { useState, useEffect, useRef } from 'react';
-import {usePathname, useRouter, useParams } from 'next/navigation';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { usePathname, useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import '@/app/lib/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,56 +35,44 @@ export default function User() {
   const params = useParams();
   const param_id = params.uid as string;
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     router.push('/user/logout');
-    // const { error } = await supabase.auth.signOut();
-    // if (error) console.log(error);
-    // setUser(null);
-  };
+  }, [router]);
 
   const [uInfo, setUInfo] = useState<any>();
-  const viewUser = async ()=> {
-    console.log(param_id);
+  const viewUser = useCallback(async ()=> {
     const { data , error }  = await supabase.from('MEMBERS').select("*").eq('id', param_id).order('created_at', { ascending: true });
     if(data){
       setUInfo(data[0]);
-      // console.log(data[0]);
-      // console.log(user);
     }
     if(error) console.log(error);
-  }
+  }, [param_id]);
 
   const [swiper, setSwiper] = useState(null as any);
-  const [spIdx, setSpIdx] = useState<number | null>(null);
-  const gotoSlide = (num: number)=>{
-    console.log(num);
-    swiper.slideToLoop(num);
-  }
+  const [spIdx, setSpIdx] = useState<number>(0);
+  
+  const gotoSlide = useCallback((num: number)=>{
+    swiper?.slideTo(num);
+  }, [swiper]);
 
   useEffect(() => {
     getUser().then((data) => {
       setUser(data?.user as UserType);
       setMyinfo(data?.myinfo as MyinfoType);
-      // console.log(data?.user);
-      // console.table(data?.myinfo);
-    }).then((data) => {
-      console.log(user);
-      console.log(myinfo);
-
     });
     viewUser()
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
-  }, [param_id,swiper]);
+  }, [param_id, viewUser]);
+
+  const slideHeightClass = "min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]";
 
   return (
     <>
-      {uInfo === null ? (
+      {uInfo === undefined? (
         <div className='container'>
           <main className='flex flex-col items-center justify-center  flex-1'>
-            {/* <div className="rounded-md p-4  gap-4 text-sm break-all relative">loading...</div> */}
-            <div className='border border-white/10 bg-white/5 rounded-md p-6 flex flex-col gap-4 text-sm break-all relative  w-full max-w-80 min-h-[270px]'>
+            
               <Loading opts={{ type: 'glx', cls: 'abs' }} />
-            </div>
+            
           </main>
         </div>
       ) : (
@@ -134,83 +122,53 @@ export default function User() {
                     </div>
                   }  
                 </div>
-
-                {/* <p>{uInfo.user_id}</p>
-                <p>{user?.id}</p> */}
   
                 <div className="user-post">
                   <ul className="
                     menu sticky top-[calc(3.375rem+var(--safe-top))] h-14 flex w-full 
                     border-b border-b-[#242b36] z-[100] bg-[#111111]"
                   >
-                    <li className={`${spIdx == 0 ? "active text-primary" : ""} flex-1 relative`}>
-                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(0)}>
-                        <FontAwesomeIcon icon={['fas', 'bookmark']} />
-                      </button>
-                      {spIdx == 0 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
-                    </li>
-                    <li className={`${spIdx == 1 ? "active text-primary" : ""} flex-1 relative`}>
-                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(1)}>
-                        <FontAwesomeIcon icon={['fas', 'list']} />
-                      </button>
-                      {spIdx == 1 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
-                    </li>
-                    <li className={`${spIdx == 2 ? "active text-primary" : ""} flex-1 relative`}>
-                      <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(2)}>
-                        <FontAwesomeIcon icon={['fas', 'users']} />
-                      </button>
-                      {spIdx == 2 &&<i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
-                    </li>
+                    {[
+                      { idx: 0, icon: 'bookmark' },
+                      { idx: 1, icon: 'list' },
+                      { idx: 2, icon: 'users' }
+                    ].map((item) => (
+                      <li key={item.idx} className={`${spIdx === item.idx ? "active text-primary" : ""} flex-1 relative`}>
+                        <button type="button" className="bt h-full w-full text-center text-inherit" onClick={()=>gotoSlide(item.idx)}>
+                          <FontAwesomeIcon icon={['fas', item.icon as any]} />
+                        </button>
+                        {spIdx === item.idx && <i className="bar absolute left-0 bottom-0 right-0 h-0.5 bg-primary"></i>}
+                      </li>
+                    ))}
                   </ul>
-                  <Swiper className="swiper-wrapper swiper pctn " 
-                    // install Swiper modules
-                    modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]} //EffectFade,
+                  <Swiper 
+                    className="swiper-wrapper swiper pctn" 
+                    modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
                     spaceBetween={0}
                     slidesPerView={1}
-                    // navigation
                     loop={false}
-                    // effect={"fade"}
                     autoplay={false}
-                    // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: false}}
-                    wrapperTag="div"
-                    // pagination={{ clickable: true }}
-                    // scrollbar={{ draggable: true }}
-                    initialSlide={ 0 } // 0 ~ 9
+                    initialSlide={0}
                     autoHeight={true}
+                    // 성능 최적화: 필요한 관찰 설정만 유지
                     watchOverflow={true}
-                    observer={true}
-                    observeSlideChildren={true}
-                    observeParents={true}
-                    onSwiper={(swiper) => {
-                      console.log("initialize swiper", swiper);
-                      setSwiper(swiper);
-                      setSpIdx(0)
-                      // updateSwiper();
-                      // swiper.slideTo( Math.floor( Math.random() *10 ) );
-                    }}
-                    onSlideChange={(swiper) => {
-                      console.log('slide change' , swiper.realIndex , swiper.activeIndex);
-                      setSpIdx(swiper.realIndex)
-                      // updateSwiper();
-                      // gotoSlide(swiper.realIndex);
-                    }}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setSpIdx(s.activeIndex)}
                   >
-                    <SwiperSlide tag="section" className="ctn like min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                    <SwiperSlide tag="section" className={`ctn like ${slideHeightClass}`}>
                       <UserLike uInfo={uInfo} user={user} swiper1dep={swiper} />
                     </SwiperSlide>
-                    <SwiperSlide tag="section" className="ctn post min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                    <SwiperSlide tag="section" className={`ctn post ${slideHeightClass}`}>
                       <UserPost uInfo={uInfo} user={user} swiper={swiper} />
                     </SwiperSlide>
-                    <SwiperSlide tag="section" className="ctn repl min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]">
+                    <SwiperSlide tag="section" className={`ctn repl ${slideHeightClass}`}>
                       <UserFolw uInfo={uInfo} user={user} swiper1dep={swiper} />
                     </SwiperSlide>
                   </Swiper>
                 </div>  
               </>
             ) : (
-              <>
-                <Loading opts={{ type: 'glx', cls: 'full' }} />
-              </>
+              <Loading opts={{ type: 'glx', cls: 'full' }} />
             )}
           </main>
         </div>

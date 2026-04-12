@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo, useCallback } from 'react';
 import Img from '@/app/components/Img';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -20,7 +20,97 @@ import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 import StarPoint from '@/app/components/StarPoint';
 
-export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
+// 개별 아이템 메모이제이션
+const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any) => {
+  const tit = data.title || data.name;
+  const detailUrl = `/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`;
+  const imgpath = 'https://image.tmdb.org/t/p/w92';
+  const img = imgpath + data.poster_path;
+
+  return (
+    <li className="odd:border-r border-b border-[#202020]">
+      <div className="box relative">
+        <Link 
+          className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5" 
+          href={detailUrl}
+          scroll={false}
+          prefetch={true}
+          onClick={(e) => handleLinkClick(e, detailUrl)}
+        >
+          <div className="w-14 mr-3">
+            <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
+              <Img 
+                width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' loading="eager"
+                className='img block object-cover w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
+              />
+            </div>
+          </div>
+          <div className="dd flex-1">
+            <div className="tits mb-2 line-clamp-1">{tit}</div>
+            <div className="hits flex flex-col gap-2 relative">
+              <div className="relative inline-flex">
+                <StarPoint point={data.vote_average} opts={{ cls: 'text-10 absolute top-0 left-0' }} />
+              </div>
+              <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <span>{data.vote_average}</span></em>
+            </div>
+            <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
+          </div>
+        </Link>
+        <div className="bts absolute right-3 bottom-2">
+          { uInfo?.user_id == user?.id &&
+            <button type="button" className="bt text-white/40" onClick={ (e)=> {
+              e.stopPropagation();
+              ui.confirm(`'${tit}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
+            } }>
+              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
+            </button>
+          }
+        </div>
+      </div>
+    </li>
+  );
+});
+LikeItem.displayName = 'LikeItem';
+
+// 리스트 전체 메모이제이션
+const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap, getMore }: any) => {
+  if (data === null) return <Loading opts={{ type: 'glx', cls: 'abs' }} />;
+  if (!data.length) return (
+    <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
+      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
+      <p> 스크랩된 컨텐츠가 없습니다.</p>
+    </div>
+  );
+
+  return (
+    <>
+      <ul className='list grid grid-cols-2'>
+        {data.map((item: any, num: number) => (
+          <LikeItem 
+            key={`${item.id}_${num}`} 
+            data={item} 
+            uInfo={uInfo} 
+            user={user} 
+            handleLinkClick={handleLinkClick} 
+            deleteScrap={deleteScrap} 
+          />
+        ))}
+      </ul>
+      { data.length < total &&
+        <div className="loading border-b border-[#202020]">
+          <button type="button" className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
+            onClick={getMore}
+          >
+            <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 !h-3' />
+          </button>
+        </div>
+      }
+    </>
+  );
+});
+LikeList.displayName = 'LikeList';
+
+function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
   const pathname = usePathname();
   const router = useRouter();
   const [scrapMV, setScrapMV] = useState<any>(null);
@@ -28,30 +118,32 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
   const [media, setMedia] = useState<'movie' | 'tv'>('movie');
 
   const [swiper, setSwiper] = useState(null as any);
-  const updateSwiper = ()=> setTimeout(() => {
+  
+  const updateSwiper = useCallback(() => setTimeout(() => {
     // swiper1dep?.update();
     // swiper1dep?.updateAutoHeight();
-  }, 500);
+  }, 500), []);
 
-  const mdChange = (num:number)=>{
+  const mdChange = useCallback((num:number)=>{
     setMedia(num == 0 ? 'movie' : 'tv')   
     updateSwiper()
-  }
-  const deleteScrap = async (opts: string, id: number) => {
+  }, [updateSwiper]);
+
+  const deleteScrap = useCallback(async (opts: string, id: number) => {
     ui.loading.show('glx');
-    console.log(opts, id); 
     const { error } = await supabase.from('TMDB_SCRAP').delete().eq('id', id).eq('mvtv', opts);
     if (error) {
       console.error("SCRAP 삭제 에러 :", error.message);
-    }else{
+    } else {
       console.table("SCRAP 삭제 성공");
     }
     ui.loading.hide();
-  };
+  }, []);
 
   const [scrapMvTot, setScrapMvTot] = useState<number>(0);
   const [scrapTvTot, setScrapTvTot] = useState<number>(0);
-  const getMyScrapTotal = async (user_id: any, opts: string)=> {
+  
+  const getMyScrapTotal = useCallback(async (user_id: any, opts: string)=> {
     const { count, error } = await supabase
     .from('TMDB_SCRAP')
     .select('*', { count: 'exact', head: true })
@@ -61,15 +153,14 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       console.error("행 수 조회 에러", error.message);
     } else {
       if(!count) return
-      console.log("총 행 수:", count);
       opts == 'movie' && setScrapMvTot(count);
       opts == 'tv'    && setScrapTvTot(count);
     }
-  }
+  }, []);
+
   const pagingAmount = 40;
-  const getMyScrap = async (user_id: any, opts: string, num: number)=> {
+  const getMyScrap = useCallback(async (user_id: any, opts: string, num: number)=> {
     ui.loading.show('glx');
-    console.log(user_id);
     num = (num || pagingAmount) - 1;
     const {data:data, error:error} = await supabase
       .from('TMDB_SCRAP')
@@ -79,8 +170,6 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       .eq('mvtv', opts)
       .range(0,num);
     if(data){
-      console.log(data) 
-      console.table("내 스크랩 조회 성공");
       opts == 'movie' && setScrapMV(data);
       opts == 'tv'    && setScrapTV(data);
       ui.loading.hide();
@@ -89,40 +178,25 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
       console.log(error)
       ui.loading.hide();
     };
-    // console.log(data);
-    
-  }
+  }, []);
+
   const realtimeChannel = useRef<any>(null);
-  const setupRealtimeListener = (tableName: string) => {
-    
+  const setupRealtimeListener = useCallback((tableName: string) => {
     realtimeChannel.current = supabase.channel(`public:${tableName}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
         getMyScrap(uInfo.id,'movie',pagingAmount);
         getMyScrap(uInfo.id,'tv',pagingAmount);
         getMyScrapTotal(uInfo.id,'movie');
         getMyScrapTotal(uInfo.id,'tv');
-        console.log(`${tableName} 업데이트`);
       })
-      .subscribe((status) => {
-        if (status === 'SUBSCRIBED') {
-          console.log(`Subscribed to ${tableName} changes`);
-        }
-      });
-  };
+      .subscribe();
+  }, [getMyScrap, getMyScrapTotal, uInfo.id]);
 
-  const handleLinkClick = (e: React.MouseEvent, targetUrl: string) => {
+  const handleLinkClick = useCallback((e: React.MouseEvent, targetUrl: string) => {
     if (e.button !== 0 || e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
-    
-    // const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
-    // const checkUrl = targetUrl.endsWith('/') ? targetUrl : `${targetUrl}/`;
-    
-    // if (currentPath === checkUrl) return;
+  }, []);
 
-    // ui.loading.show('glx');
-  };
-
-  useEffect( () => {
-    console.log(uInfo , user);
+  useEffect(() => {
     getMyScrap(uInfo.id,'movie',pagingAmount);
     getMyScrap(uInfo.id,'tv',pagingAmount);
     getMyScrapTotal(uInfo.id,'movie');
@@ -132,141 +206,61 @@ export default function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swi
     return ()=>{
       realtimeChannel.current?.unsubscribe();
     }
-    // eslint-disable-next-line
-  },[uInfo,swiper]);
-  const gotoSlide = (num: number)=>{
-    console.log(num);
-    swiper.slideToLoop(num);
-  }
+  },[uInfo.id, getMyScrap, getMyScrapTotal, setupRealtimeListener]);
 
-
-  function LikeList({props}:{props: {data: any, total: number}}) {
-    const data = props.data || null;
-    const total = props.total || 0;
-    return (
-      <>
-        {data === null ? <Loading opts={{ type: 'glx', cls: 'abs' }} /> : 
-          <>
-            {data.length ?
-            <>
-            <ul className='list grid grid-cols-2'>
-              {data.map((data:any,num:number) =>{
-                const imgpath = 'https://image.tmdb.org/t/p/w92';
-                const img = imgpath + data.poster_path;
-                const tit = data.title || data.name;
-                const detailUrl = `/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`;
-                return(
-                  <li key={data.id+'_'+num} data-id={data.id+'_'+num} className="odd:border-r border-b border-[#202020]">
-                    <div className="box relative">
-                      <Link 
-                        className="cont  flex justify-between w-full text-xs py-3 pl-4 pr-5" 
-                        href={detailUrl}
-                        scroll={false}
-                        prefetch={true}
-                        onClick={(e) => handleLinkClick(e, detailUrl)}
-                      >
-                        <div className="w-14 mr-3">
-                          <div className="pics w-full flex-none bg-[#203140] relative overflow-hidden pb-[calc(450%/300*100)]">
-                            <Img 
-                              width={92} height={138} src={`${img}`} alt={tit} srcerr='/img/common/non_poster.png' loading="eager"
-                              className='img block object-cover   w-full h-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'
-                            />
-                          </div>
-                        </div>
-                        <div className="dd flex-1">
-                          <div className="tits mb-2 line-clamp-1">{data.title || data.name}</div>
-                          <div className="hits flex flex-col gap-2 relative">
-                            <StarPoint point={data.vote_average} opts={{ cls: 'text-10 absolute top-0 left-0' }} />
-                            <em><FontAwesomeIcon icon={["far", "thumbs-up"]} /> <span>{data.vote_average}</span></em>
-                          </div>
-                          <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
-                        </div>
-                      </Link>
-                      <div className="bts absolute right-3 bottom-2">
-                        { uInfo?.user_id == user?.id &&
-                          <button type="button" className="bt text-white/40" onClick={ (e)=> {
-                            e.stopPropagation();
-                            ui.confirm(`'${data.title || data.name}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
-                          } }>
-                            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 !h-3' /></span>
-                          </button>
-                        }
-                      </div>
-                    </div>
-                  </li>
-                )
-              })}
-              
-            </ul>
-            { data.length < total &&
-            <div className="loading border-b border-[#202020]">
-              <button type="button"  className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
-                onClick={()=>{getMyScrap(uInfo.id,'movie',data.length+pagingAmount)}}
-              >
-                <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 !h-3' />
-              </button>
-            </div>
-            }
-            </>
-            :
-            <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
-              <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 !h-6' />
-              <p> 스크랩된 컨텐츠가 없습니다.</p>
-            </div>
-            }
-          </>
-          }
-      </>
-    )
-  }
-
+  const gotoSlide = useCallback((num: number)=>{
+    swiper?.slideTo(num);
+  }, [swiper]);
 
   return (
-    <>
-      <div className="movie-list user">
-        
-        <div className="tabs flex justify-center border-b border-[#202020] h-12" role="tablist">
-          <button onClick={()=>gotoSlide(0)} className={`w-full text-xs ${media == 'movie' ? 'active text-primary font-bold':''}`}>
-            <em>Movie</em>
-            <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
-          </button>
-          <button onClick={()=>gotoSlide(1)} className={`w-full text-xs ${media == 'tv' ? 'active text-primary':''}`}>
-            <em>TV</em>
-            <i className={`${media == 'tv' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapTvTot}</i>
-          </button>
-        </div>
-
-        <Swiper className="swiper-wrapper swiper pctn" 
-            modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
-            slidesPerView={1}
-            loop={false}
-            autoplay={false}
-            initialSlide={0}
-            autoHeight={true}
-            observer={true} observeSlideChildren={true} observeParents={true} watchOverflow={true} wrapperTag="div"
-            onSwiper={(swiper) => {
-              console.log("initialize swiper", swiper);
-              setSwiper(swiper);
-              mdChange(swiper.realIndex)
-            }}
-            onSlideChange={(swiper) => {
-              console.log('slide change' , swiper.realIndex , swiper.activeIndex);
-              mdChange(swiper.realIndex)
-            }}
-          >
-            <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
-              <LikeList props={ { data: scrapMV, total: scrapMvTot } } />
-            </SwiperSlide>
-            
-            <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
-              <LikeList props={ { data: scrapTV, total: scrapTvTot } } />
-            </SwiperSlide>
-
-          </Swiper>
-
-
-        
+    <div className="movie-list user">
+      <div className="tabs flex justify-center border-b border-[#202020] h-12" role="tablist">
+        <button onClick={()=>gotoSlide(0)} className={`w-full text-xs ${media == 'movie' ? 'active text-primary font-bold':''}`}>
+          <em>Movie</em>
+          <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
+        </button>
+        <button onClick={()=>gotoSlide(1)} className={`w-full text-xs ${media == 'tv' ? 'active text-primary':''}`}>
+          <em>TV</em>
+          <i className={`${media == 'tv' ? 'bg-primary':'bg-white/50'} text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapTvTot}</i>
+        </button>
       </div>
-    </>
-  )
+
+      <Swiper className="swiper-wrapper swiper pctn" 
+          modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+          slidesPerView={1}
+          loop={false}
+          autoHeight={true}
+          // 성능 최적화: 가벼운 관찰 옵션만 유지
+          watchOverflow={true}
+          onSwiper={setSwiper}
+          onSlideChange={(s) => mdChange(s.activeIndex)}
+        >
+          <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+            <LikeList 
+              data={scrapMV} 
+              total={scrapMvTot} 
+              uInfo={uInfo} 
+              user={user} 
+              handleLinkClick={handleLinkClick} 
+              deleteScrap={deleteScrap}
+              getMore={() => getMyScrap(uInfo.id, 'movie', scrapMV.length + pagingAmount)}
+            />
+          </SwiperSlide>
+          
+          <SwiperSlide tag="section" className="tablike mv min-h-[calc(100vh-25.5rem-var(--safe-top)-var(--safe-bottom))] pb-20">
+            <LikeList 
+              data={scrapTV} 
+              total={scrapTvTot} 
+              uInfo={uInfo} 
+              user={user} 
+              handleLinkClick={handleLinkClick} 
+              deleteScrap={deleteScrap}
+              getMore={() => getMyScrap(uInfo.id, 'tv', scrapTV.length + pagingAmount)}
+            />
+          </SwiperSlide>
+        </Swiper>
+    </div>
+  );
 }
+
+export default memo(UserLike);
