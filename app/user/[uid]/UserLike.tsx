@@ -119,10 +119,19 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
 
   const [swiper, setSwiper] = useState(null as any);
   
-  const updateSwiper = useCallback(() => setTimeout(() => {
-    // swiper1dep?.update();
-    // swiper1dep?.updateAutoHeight();
-  }, 500), []);
+  const updateSwiper = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    // 다중 타임아웃을 사용하여 렌더링 완료 시점을 더 확실히 잡음
+    const update = () => {
+      swiper?.update();
+      swiper?.updateAutoHeight();
+      swiper1dep?.update();
+      swiper1dep?.updateAutoHeight();
+    };
+    
+    setTimeout(update, 100);
+    setTimeout(update, 400); // 이미지 로드나 긴 리스트 렌더링 대비
+  }, [swiper, swiper1dep]);
 
   const mdChange = useCallback((num:number)=>{
     setMedia(num == 0 ? 'movie' : 'tv')   
@@ -211,6 +220,10 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
   const gotoSlide = useCallback((num: number)=>{
     swiper?.slideTo(num);
   }, [swiper]);
+
+  useEffect(() => {
+    updateSwiper();
+  }, [scrapMV, scrapTV, updateSwiper]);
 
   return (
     <div className="movie-list user">

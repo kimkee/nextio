@@ -126,7 +126,16 @@ function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:any}) {
     return ()=>{
       realtimeChannel.current?.unsubscribe();
     }
-  },[getMyReviews, setupRealtimeListener]);
+  }, [getMyReviews, setupRealtimeListener]);
+
+  useEffect(() => {
+    if (myReview) {
+      setTimeout(() => {
+        swiper?.update();
+        swiper?.updateAutoHeight();
+      }, 100);
+    }
+  }, [myReview, swiper]);
 
   if(!myReview) return null;
   

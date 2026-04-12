@@ -29,9 +29,20 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
 
   useEffect(() => {
     members();
-    return () => {};
-    // eslint-disable-next-line
   }, [uInfo]);
+
+  useEffect(() => {
+    if (member) {
+      setTimeout(() => {
+        swiper1dep?.update();
+        swiper1dep?.updateAutoHeight();
+      }, 100);
+      setTimeout(() => {
+        swiper1dep?.update();
+        swiper1dep?.updateAutoHeight();
+      }, 400);
+    }
+  }, [member, swiper1dep]);
 
   if(!member) return
   return (
