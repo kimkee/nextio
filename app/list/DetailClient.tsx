@@ -79,39 +79,39 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           {/* 상단 기본 정보 영역 */}
           <div className='info flex flex-wrap justify-between flex-row'>
             <div className='desc flex-1 pr-3'>
-              <div className='h-8 bg-white/10 rounded w-3/4 mb-4' />
-              <div className='h-4 bg-white/10 rounded w-1/2 mb-6' />
-              <div className='h-6 bg-white/10 rounded w-1/3 mb-4' />
+              <div className='h-8 bg-black rounded w-3/4 mb-4' />
+              <div className='h-4 bg-black rounded w-1/2 mb-6' />
+              <div className='h-6 bg-black rounded w-1/3 mb-4' />
               <div className='flex gap-2 mb-6'>
-                <div className='h-5 bg-white/10 rounded-full w-12' />
-                <div className='h-5 bg-white/10 rounded-full w-12' />
-                <div className='h-5 bg-white/10 rounded-full w-12' />
+                <div className='h-5 bg-black rounded-full w-12' />
+                <div className='h-5 bg-black rounded-full w-12' />
+                <div className='h-5 bg-black rounded-full w-12' />
               </div>
               <div className='space-y-2'>
-                <div className='h-3 bg-white/10 rounded w-1/4' />
-                <div className='h-3 bg-white/10 rounded w-1/4' />
-                <div className='h-3 bg-white/10 rounded w-1/4' />
+                <div className='h-3 bg-black rounded w-1/4' />
+                <div className='h-3 bg-black rounded w-1/4' />
+                <div className='h-3 bg-black rounded w-1/4' />
               </div>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <div className='aspect-[2/3] bg-white/10 rounded-sm' />
+              <div className='aspect-[2/3] bg-black rounded-sm' />
             </div>
           </div>
 
           {/* 컨트롤 바 영역 */}
-          <div className='mt-8 h-10 bg-white/10 rounded' />
+          <div className='mt-8 h-10 bg-black rounded' />
           
           {/* 줄거리 영역 */}
-          <div className='mt-8 h-24 bg-white/10 rounded' />
+          <div className='mt-8 h-24 bg-black rounded' />
 
           {/* 출연진 영역 (원형) */}
           <div className='sect mt-10'>
-            <div className='h-6 bg-white/10 rounded w-20 mb-4' />
+            <div className='h-6 bg-black rounded w-20 mb-4' />
             <div className='flex gap-4 overflow-hidden'>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className='flex-none'>
-                  <div className='w-16 h-16 bg-white/10 rounded-full mb-2' />
-                  <div className='h-2 bg-white/10 rounded w-12 mx-auto' />
+                  <div className='w-16 h-16 bg-black rounded-full mb-2' />
+                  <div className='h-2 bg-black rounded w-12 mx-auto' />
                 </div>
               ))}
             </div>
@@ -119,22 +119,22 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {/* 영상 영역 (16:9 사각형) */}
           <div className='sect mt-10'>
-            <div className='h-6 bg-white/10 rounded w-16 mb-4' />
+            <div className='h-6 bg-black rounded w-16 mb-4' />
             <div className='flex gap-4 overflow-hidden'>
               {[1, 2, 3].map((i) => (
-                <div key={i} className='flex-none w-40 aspect-video bg-white/10 rounded' />
+                <div key={i} className='flex-none w-40 aspect-video bg-black rounded' />
               ))}
             </div>
           </div>
 
           {/* 제작진 영역 (원형) */}
           <div className='sect mt-10'>
-            <div className='h-6 bg-white/10 rounded w-20 mb-4' />
+            <div className='h-6 bg-black rounded w-20 mb-4' />
             <div className='flex gap-4 overflow-hidden'>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className='flex-none'>
-                  <div className='w-16 h-16 bg-white/10 rounded-full mb-2' />
-                  <div className='h-2 bg-white/10 rounded w-12 mx-auto' />
+                  <div className='w-16 h-16 bg-black rounded-full mb-2' />
+                  <div className='h-2 bg-black rounded w-12 mx-auto' />
                 </div>
               ))}
             </div>

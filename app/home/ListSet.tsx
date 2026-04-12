@@ -89,14 +89,14 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       <section className="sect mnList mb-3 animate-pulse">
         {/* 섹션 헤더 스켈레톤 */}
         <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none px-5">
-          <div className="h-3.5 w-28 rounded bg-white/15" />
+          <div className="h-3.5 w-28 rounded bg-black" />
         </div>
         {/* 가로 스크롤 포스터 행 스켈레톤 */}
         <div className="flex flex-nowrap overflow-hidden px-3 pl-5 gap-[0.8rem]">
           {Array.from({ length: 7 }).map((_, i) => (
             <div key={i} className="flex-none w-[calc(24%-3%)] min-w-[calc(24%-3%)]">
               {/* 포스터 - pb로 비율 유지 (450/300) */}
-              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-white/10" />
+              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-black" />
             </div>
           ))}
         </div>

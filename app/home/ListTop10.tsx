@@ -86,7 +86,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       <section className="sect mnList mb-4 animate-pulse">
         {/* 섹션 헤더 스켈레톤 - ListTop10은 이탤릭 대형 제목 */}
         <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none px-5 py-2">
-          <div className="h-5 w-44 rounded bg-white/15" />
+          <div className="h-5 w-44 rounded bg-black" />
         </div>
         {/* 가로 스크롤 포스터 행 - Top10은 30% 너비 카드 */}
         <div className="flex flex-nowrap overflow-hidden px-1 gap-0">
@@ -94,7 +94,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
             <div key={i} className="flex-none w-[calc(30%-0.625rem)] min-w-[calc(30%-0.625rem)] pt-2 pl-2 mx-[0.4rem]">
                
               {/* 포스터 */}
-              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-white/10" />
+              <div className="pb-[calc(1200%/780*100)] w-full rounded-sm bg-black" />
             </div>
           ))}
         </div>

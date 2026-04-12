@@ -86,7 +86,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
       <section className="sect mnTop">
         <div className="inr" id="slide">
           {/* 슬라이더 스켈레톤: mnTop 실제 높이 = 122.9vw / max 525px */}
-          <div className="animate-pulse relative w-full bg-white/5" style={{ height: 'min(122.9vw, 525px)' }}>
+          <div className="animate-pulse relative w-full bg-black" style={{ height: 'min(122.9vw, 525px)' }}>
             {/* 하단 정보 영역 스켈레톤 */}
             <div className="absolute bottom-10 left-5 right-5 flex justify-between items-end">
               {/* 별점 */}
