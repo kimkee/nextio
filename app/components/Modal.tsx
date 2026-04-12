@@ -56,7 +56,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
       <div 
         className={`
           pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
-          transition-[transform,opacity,translate] ease-out duration-400
+          transition-[transform,opacity,translate] ease-out duration-200
           ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-90 opacity-100'}
         `}
       >
