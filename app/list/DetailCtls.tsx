@@ -164,13 +164,13 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
         onClick={likeTog} disabled={isDimBtn}
       >
         {false ?(<Loading opts={{type:'glx', cls:''}}/>) 
-        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4! align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>스크랩</em></>)}
+        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4 align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>스크랩</em></>)}
       </button>
       <button type="button" onClick={inputReply} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4! align-middle`} /><em className='-mt-0.5'>리뷰</em>
+        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>리뷰</em>
       </button>
       <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4! align-middle`} /><em className='-mt-0.5'>공유</em>
+        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>공유</em>
       </button>
     </div>
     </>

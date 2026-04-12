@@ -62,7 +62,7 @@ const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any)
               e.stopPropagation();
               ui.confirm(`'${tit}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
             } }>
-              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3!' /></span>
+              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' /></span>
             </button>
           }
         </div>
@@ -77,7 +77,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
   if (data === null) return <Loading opts={{ type: 'glx', cls: 'abs' }} />;
   if (!data.length) return (
     <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
-      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6!' />
+      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6' />
       <p> 스크랩된 컨텐츠가 없습니다.</p>
     </div>
   );
@@ -101,7 +101,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
           <button type="button" className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
             onClick={getMore}
           >
-            <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 h-3!' />
+            <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 h-3' />
           </button>
         </div>
       }

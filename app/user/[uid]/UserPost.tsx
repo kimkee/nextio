@@ -46,7 +46,7 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
             e.stopPropagation();
             ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(data.mvtv, data.id)}) 
           } }>
-            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3!' /></span>
+            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' /></span>
           </button>
         </div>
         }
@@ -59,7 +59,7 @@ ReviewItem.displayName = 'ReviewItem';
 const ReviewList = memo(({ items, uInfo, user, handleLinkClick, deleteReview }: any) => {
   if (!items.length) return (
     <div className="nodata py-20 flex flex-col items-center justify-center gap-4 text-sm">
-      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6!' />
+      <FontAwesomeIcon icon={["fas", "comment-dots"]} className='w-6 h-6' />
       <p>작성하신 리뷰가 없습니다</p>
     </div>
   );

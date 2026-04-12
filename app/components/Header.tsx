@@ -35,13 +35,17 @@ export default function Header() {
             {/* isActive('user') */ false ? (
               <>
                 <button onClick={() => router.back()} type='button' className='bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
-                  <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5! flex' />
+                  <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5 flex' />
                   <b className='sr-only'>GoBack</b>
                 </button>
               </>
             ) : (
               <h1 className='logo'>
-                <Link href={`/`} className='btlogo py-1 flex'>
+                <Link 
+                  href={`/home/`} 
+                  className='btlogo py-1 flex'
+                  
+                >
                   <Img priority={true} width={256} height={54} src={'/img/logo_next.png'} unoptimized={true} alt='Nextio' srcerr='' className='w-20 h-auto' />
                 </Link>
               </h1>
@@ -51,7 +55,7 @@ export default function Header() {
           <div className='rdt flex items-center'>
             {/* {pathname} */}
             <a href={'/user/login'} className='bt gnb bt w-8 h-8 inline-flex items-center justify-center -mx-0.5 text-white hover:text-primary'>
-              <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 h-5! flex text-white'  />
+              <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 h-5 flex text-white'  />
               <b className='sr-only'>Menu</b>
             </a>
           </div>

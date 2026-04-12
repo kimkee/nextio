@@ -65,12 +65,12 @@ export default function ItemA({ data, opts, cate }: any) {
           <div className="hits inline-flex items-center gap-2 text-xt whitespace-nowrap">
             <StarPoint point={data.vote_average} opts={{cls:'-mt-1'}} />
             <em className="ico inline-flex items-center gap-1 ">
-              <FontAwesomeIcon icon={['far', 'heart']} className='w-3 h-3! align-middle' />
+              <FontAwesomeIcon icon={['far', 'heart']} className='w-3 h-3 align-middle' />
               <b>{data.vote_average}</b>
             </em>
           </div>
           <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
-            <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 h-3! align-middle' />
+            <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 h-3 align-middle' />
             <b>{data.release_date || data.first_air_date}</b>
           </div>
         </div>

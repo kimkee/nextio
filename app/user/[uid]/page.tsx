@@ -91,9 +91,9 @@ export default function User() {
                         unoptimized={true}
                       />
                       <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
-                        {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 h-3!" />}
-                        {uInfo.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 h-3!" />}
-                        {uInfo.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 h-3!" />}
+                        {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 h-3" />}
+                        {uInfo.provider == 'github' && <FontAwesomeIcon icon={['fab', 'github']}  className="text-black w-3 h-3" />}
+                        {uInfo.provider == 'kakao'  && <FontAwesomeIcon icon={['fas', 'comment']} className="text-black w-3 h-3" />}
                       </span>
                     </Link>
                     <div className="info flex w-full px-5 text-sm">

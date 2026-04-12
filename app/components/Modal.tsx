@@ -56,17 +56,17 @@ export function Modal({ children }: { children: React.ReactNode }) {
       <div 
         className={`
           pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
-          transition-[transform,opacity] duration-300 ease-out
-          ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-80 opacity-100'}
+          transition-[transform,opacity,translate] ease-out duration-400
+          ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-90 opacity-100'}
         `}
       >
         
         <button onClick={onDismiss} className='btn-pop-close h-8 w-8 -ml-1 text-white inline-flex items-center justify-center text-3xl  absolute  left-5 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
-          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5! flex text-white'/>
+          <FontAwesomeIcon icon={['fas', 'arrow-left']} className='w-5 h-5 flex text-white'/>
         </button>
 
         <div className={`phd h-0 z-20`}>
-          <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
+          <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm border-b border-[rgb(58_58_58_/28%)]' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
             <div className='ptit text-right pl-16 pr-5 w-full'>
               <Link className={`${scr > 50 ? 'hidden' : ''} text-primary font-bold `} href='/home'>{`NETIO`}</Link> 
               <div  className={`${scr > 50 ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'} text-base transition-opacity duration-300`}>

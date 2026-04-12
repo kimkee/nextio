@@ -181,7 +181,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                   onClick={togglePlayStop}
                   title={ playStop ? 'play' : 'pause' }
                 >
-                  {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2! h-2! ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2! h-2!' /> }
+                  {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2 h-2 ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2 h-2' /> }
                 </button> 
               </div> }
             </div>

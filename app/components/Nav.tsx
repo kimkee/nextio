@@ -109,7 +109,7 @@ export default function Nav() {
               ) : (
                 <a href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
                   <span className="pic w-6.5 h-6.5 relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1 inline-flex items-center justify-center">
-                    <FontAwesomeIcon icon={['fas', 'user']} className='h-3.5! w-3.5! inline-flex' />
+                    <FontAwesomeIcon icon={['fas', 'user']} className='h-3.5 w-3.5 inline-flex' />
                   </span>
                   <em className='text-xt mt-1'>MY</em>
                 </a>

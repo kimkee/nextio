@@ -70,7 +70,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           {props.children}
           <Nav />
         </div>
-        <div id='modal-root' className='fixed z-[1000]' />
+        <div id='modal-root' className='fixed z-1000' />
         <Ui />
         {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
         <Analytics />

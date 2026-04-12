@@ -172,7 +172,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               <h1 className='tit text-xx '>
                 {datas.title || datas.name}
                 <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1' onClick={refrashDatas}>
-                  <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4! h-4!  align-middle leading-none' />
+                  <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
                 </button>
               </h1>
               {datas.tagline && <p className='sit text-14 text-[#cccccc] mt-2'>{datas.tagline}</p>}

@@ -266,7 +266,7 @@ export default function Page() {
     if (schList.length === 0) {
       return (
         <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
-          <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 h-8! align-middle' />
+          <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 h-8 align-middle' />
           {keyword ? <p><span className='uppercase'>{opts}</span> : “{keyword}” 검색 결과가 없습니다.</p> : <p>검색어를 입력하세요.</p>}
         </div>
       );
@@ -319,11 +319,11 @@ export default function Page() {
                   onInvalid={ (e)=> e.preventDefault() }
                 />
                 <button type="button" className="bt-del" title='삭제' onClick={delFormText} >
-                  <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4! align-middle' />
+                  <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 align-middle' />
                 </button>
               </span>
               <button type="submit" className="bt-sch" title='검색'>
-                <FontAwesomeIcon icon={['fas', 'search']} className='w-5 h-5! align-middle' />
+                <FontAwesomeIcon icon={['fas', 'search']} className='w-5 h-5 align-middle' />
               </button>
               
             </form>
@@ -337,7 +337,7 @@ export default function Page() {
             return (
               <li key={kwd}>
                 <button className="kwd" type="button" onClick={ ()=> goRecentSearch(kwd) }>{kwd}</button>
-                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4! align-middle' /></button>
+                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 align-middle' /></button>
               </li>
             )
           }) }
