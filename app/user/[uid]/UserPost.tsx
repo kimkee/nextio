@@ -98,7 +98,7 @@ function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:any}) {
 
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = useCallback((tableName: string) => {
-    realtimeChannel.current = supabase.channel(`public:${tableName}`)
+    realtimeChannel.current = supabase.channel(`public:${tableName}:user:${uInfo.user_id}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
         getMyReviews();
       })
@@ -124,7 +124,9 @@ function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:any}) {
     getMyReviews();
     setupRealtimeListener('TMDB_REVIEW');
     return ()=>{
-      realtimeChannel.current?.unsubscribe();
+      if (realtimeChannel.current) {
+        supabase.removeChannel(realtimeChannel.current);
+      }
     }
   }, [getMyReviews, setupRealtimeListener]);
 
