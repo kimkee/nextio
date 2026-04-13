@@ -198,40 +198,40 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                 ))}
               </div>
               <ul className='lst mt-4 grid gap-1'>
-                <li className='vot text-12 text-[#53a4bb]  relative pl-4'>
+                <li className='vot text-12 text-primary/90  relative pl-4'>
                   <FontAwesomeIcon icon={['far', 'thumbs-up']} className='absolute left-0 top-0.5' />
                   <b>평점</b> : {datas.vote_average} / 10
                 </li>
                 {datas.release_date ? (
-                  <li className='opn text-12 text-[#53a4bb]  relative pl-4'>
+                  <li className='opn text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
                     <b>개봉</b> : {datas.release_date}
                   </li>
                 ):null}
                 {datas.first_air_date ? (
-                  <li className='opn text-12 text-[#53a4bb]  relative pl-4'>
+                  <li className='opn text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
                     <b>{datas.first_air_date} ~ {datas.last_air_date}</b>
                   </li>
                 ):null}
 
                 {datas.runtime ? (
-                  <li className='tim text-12 text-[#53a4bb]  relative pl-4'>
+                  <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
                     <b>시간</b> : {datas.runtime} 분
                   </li>
                 ):null}
                 {datas.number_of_seasons ? (
-                  <li className='tim text-12 text-[#53a4bb]  relative pl-4'>
+                  <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
                     <b>시즌</b> : {datas.number_of_seasons}개 - <b>에피소드</b> : {datas.number_of_episodes}개
                   </li>
                 ):null}
                 {datas.homepage ? (
-                  <li className='web text-12 text-[#53a4bb]  relative pl-4 break-all'>
+                  <li className='web text-12 text-primary/90  relative pl-4 break-all'>
                     <FontAwesomeIcon icon={['fas', 'globe']} className='absolute left-0 top-0.5' />
                     <a
-                      className='lk text-[#53a4bb]'
+                      className='lk text-primary/90'
                       href={datas.homepage}
                       target='_blank'
                       rel='noopener noreferrer'>

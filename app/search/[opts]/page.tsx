@@ -337,7 +337,7 @@ export default function Page() {
             return (
               <li key={kwd}>
                 <button className="kwd" type="button" onClick={ ()=> goRecentSearch(kwd) }>{kwd}</button>
-                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 align-middle' /></button>
+                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) }><FontAwesomeIcon icon={['fas', 'xmark']} className='w-3 h-3 align-middle' /></button>
               </li>
             )
           }) }

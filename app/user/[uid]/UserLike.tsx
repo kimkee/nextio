@@ -98,7 +98,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
       </ul>
       { data.length < total &&
         <div className="loading border-b border-[#202020]">
-          <button type="button" className='bg-[#111111] text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
+          <button type="button" className='text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
             onClick={getMore}
           >
             <b>More</b><FontAwesomeIcon icon={["fas", "caret-down"]} className='w-3 h-3' />
