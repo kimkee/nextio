@@ -16,6 +16,7 @@ export default function Header() {
   const params = useParams();
   const router = useRouter();
   const isActive = (els: string) => (pathname.split('/').includes(`${els}`) ? 'active' : '');
+  const PUBLIC_ENV = process.env.NEXT_PUBLIC_ENV == 'PRD' ? '' : process.env.NEXT_PUBLIC_ENV
   // console.log( params );
 
   // usePathname() 을 이용하여 SSR과 CSR 사이에 일치하도록 isVal 계산 (Hydration Mismatch 방지)
@@ -40,7 +41,7 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <h1 className='logo'>
+              <h1 className='logo flex gap-2 items-baseline'>
                 <Link 
                   href={`/home/`} 
                   className='btlogo py-1 flex'
@@ -48,6 +49,7 @@ export default function Header() {
                 >
                   <Img priority={true} width={256} height={54} src={'/img/logo_next.png'} unoptimized={true} alt='Nextio' srcerr='' className='w-20 h-auto' />
                 </Link>
+                <span className='text-xt'>{PUBLIC_ENV}</span>
               </h1>
             )}
           </div>
