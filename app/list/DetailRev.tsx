@@ -113,7 +113,8 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   }
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = (tableName:string) => {
-    realtimeChannel.current = supabase.channel(`public:${tableName}`)
+    // 채널 이름을 고유하게 지정하여 다른 컴포넌트(UserPost 등)와 충돌을 방지함
+    realtimeChannel.current = supabase.channel(`public:${tableName}:detail:${postID}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
         gethRevs();
         console.log(`${tableName} 업데이트`);
@@ -202,7 +203,9 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     gethRevs();
     setupRealtimeListener('TMDB_REVIEW');
     return () => {
-      realtimeChannel.current.unsubscribe();
+      if (realtimeChannel.current) {
+        supabase.removeChannel(realtimeChannel.current);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[postID]);
