@@ -33,13 +33,13 @@ export default function ItemA({ data, opts, cate }: any) {
   return (
   <>
     <Link 
-      className="box block p-4 relative" 
+      className="box block p-4 relative group" 
       href={`/search/${opts}/${data.id}`} 
       scroll={false}
       prefetch={true}
       onClick={handleLinkClick}
     >
-      <div className="cont flex items-center">
+      <div className="cont flex items-center group-active:scale-98 group-active:opacity-80 transition-transform">
         <div className="pics flex-none relative w-20 pb-30 mr-4 overflow-hidden  bg-black">
           <Img 
             width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 

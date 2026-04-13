@@ -61,6 +61,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
   useEffect(() => {
     if (data?.datas) {
+      console.log(data?.datas);
       const newTitle = data.datas.title || data.datas.name;
       setTitle(newTitle);
     }
@@ -161,9 +162,15 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
   return (
     <>
-      <div className='bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat max-w-(--mwide) max-h-120 right-0 left-[50%] top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
-          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-[#111111]'
-        style={{ backgroundImage: `url(${bgImg})`, marginLeft: 'calc(0px - var(--scrPad) / 2)' }}
+      <div 
+        className={`
+          bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat max-w-(--mwide) max-h-120 right-0 left-1/2 top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
+          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-[#111111]
+        `}
+        style={{ 
+          backgroundImage: `url(${bgImg})`,
+          // marginLeft: 'calc(0px - var(--scrPad) / 2)' 
+        }}
       ></div>
       <div className='movie-detail relative text-white'>
         <div className='m-info relative z-1'>
@@ -255,7 +262,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
 
-          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", data: moves.results }} /> : ''}
+          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", data: moves.results, defaultImg: bgImg }} /> : ''}
 
           {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 

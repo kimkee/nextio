@@ -38,7 +38,7 @@ export default function ViewPoster({props}: {props: {title: string, name: string
       </div>
       <div ref={scrollBoxRef} className="lst flex flex-nowrap overflow-y-hidden overflow-x-auto -mx-5 px-3 scrollbar-hidden scroll-smooth">
         <div data-index={0} className='box block w-[calc(30%-1.25rem)] min-w-[calc(30%-1.25rem)] mx-[0.4rem]  break-all'>
-          <div /* href={`./poster/0`} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450_/_300_*_100%)] mb-1'>
+          <div /* href={`./poster/0`} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450/300*100%)] mb-1'>
             <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${props.poster}`} alt={props.name} 
               srcerr={'/img/common/non_poster.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='eager'
             />
@@ -48,7 +48,7 @@ export default function ViewPoster({props}: {props: {title: string, name: string
         props.data.map((img: any,idx: number) => {
           return(
           <div key={idx} data-index={idx+1} className='box block w-[calc(30%-1.25rem)] min-w-[calc(30%-1.25rem)] mx-[0.4rem]  break-all'>
-            <div /* href={`./poster/${idx+1}`} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450_/_300_*_100%)] mb-1'>
+            <div /* href={`./poster/${idx+1}`} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450/300*100%)] mb-1'>
               <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${img.file_path}`} alt={props.name +'-Poster-'+ (idx+1)} 
                 srcerr={'/img/common/non_poster.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='eager'
               />

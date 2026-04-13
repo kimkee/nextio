@@ -18,7 +18,7 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
     <li data-idmvtv={data.idmvtv} className="border-b border-[#202020]">
       <div className="box relative">
         <Link 
-          className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5" 
+          className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5 active:scale-95 active:opacity-80 transition-transform" 
           href={detailUrl}
           scroll={false}
           prefetch={true}

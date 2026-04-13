@@ -53,11 +53,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
 
   return createPortal(
     <article ref={dialogRef} onWheel={handleWheel} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad)'>
-      <div 
-        className={`
-          pbd my-0 bg-[#111111] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
+      <div className={`
+          pbd my-0 bg-[#181818] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
           transition-[transform,opacity,translate] ease-out duration-200
-          ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-90 opacity-100'}
+          ${mounted 
+            ? 'max-[471px]:translate-x-0 min-[471px]:translate-y-0   '
+            : 'max-[471px]:translate-x-90 min-[471px]:translate-y-90 '
+          }
         `}
       >
         
@@ -69,7 +71,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm border-b border-[rgb(58_58_58_/28%)]' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
             <div className='ptit text-right pl-16 pr-5 w-full'>
               <Link className={`${scr > 50 ? 'hidden' : ''} text-primary font-bold `} href='/home'>{`NETIO`}</Link> 
-              <div  className={`${scr > 50 ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'} text-base transition-opacity duration-300`}>
+              <div  className={`${scr > 50 ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'} text-base transition-opacity duration-300 text-shadow-[0px_0px_2px_#000000]`}>
                 {modalTitle}
               </div>
             </div>

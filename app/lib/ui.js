@@ -188,7 +188,7 @@ const ui = {
                 <div class="phd"><span class="ptit">${opt.tit}</span></div>
                 <div class="pct"><div class="msg">${opt.msg}</div></div>
                 <div class="pbt">
-                    <button type="button" class="btn btn-confirm">${opt.ybt}</button>
+                    <button type="button" class="btn active:scale-100! btn-confirm">${opt.ybt}</button>
                 </div>
                 <!-- <button type="button" class="btn-close"><i class="fa-regular fa-xmark"></i></button> -->
             </div>
@@ -240,8 +240,8 @@ const ui = {
                 <div class="phd"><span class="ptit">${opt.tit}</span></div>
                 <div class="pct"><div class="msg">${opt.msg}</div></div>
                 <div class="pbt">
-                    <button type="button" class="btn btn-cancel">${opt.nbt}</button>
-                    <button type="button" class="btn btn-confirm">${opt.ybt}</button>
+                    <button type="button" class="btn active:scale-100! btn-cancel">${opt.nbt}</button>
+                    <button type="button" class="btn active:scale-100! btn-confirm">${opt.ybt}</button>
                 </div>
                 <!-- <button type="button" class="btn-close"><i class="fa-regular fa-xmark"></i></button> -->
             </div>

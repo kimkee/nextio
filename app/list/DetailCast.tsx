@@ -41,7 +41,7 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
           props.data.filter( (item: any, i: number) => i < 999 ).map( (b: any) => {
             return (
               <div /* href={`./person/${b.id}`} */ key={b.credit_id} 
-                className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-[0.625rem]  break-all'>
+                className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all'>
                 <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
                   <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
                     srcerr={'/img/common/user.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='lazy'

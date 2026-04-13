@@ -30,17 +30,17 @@ export default function ItemB({ data, opts, cate }: any) {
   return (
     <>
       <Link 
-        className='box block relative mb-0.5' 
+        className='box block relative mb-0.5 group' 
         href={`/list/${opts}/${cate}/${data.id}`} 
         scroll={false}
         prefetch={true}
         onClick={handleLinkClick}
       >
         <div className="cont relative">
-          <div className="pics block relative overflow-hidden pb-[calc(1200/780*100%)] bg-black">
+          <div className="pics block relative overflow-hidden pb-[calc(1200/780*100%)] bg-black group-active:scale-95 group-active:opacity-80 transition-transform">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' loading="eager"
-              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-100!'
+              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
             />
           </div>
           <div className="desc absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/62 to-transparent p-1">

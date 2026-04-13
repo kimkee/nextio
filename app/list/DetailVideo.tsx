@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import Img from '@/app/components/Img';
 
-export default function ViewVideo({props}: {props: {title: string, css: string, data: any}}) {
+export default function ViewVideo({props}: {props: {title: string, css: string, data: any, defaultImg: any}}) {
   const goScroll = (els: string, e?: any) => {
     const scrollBox = scrollBoxRef.current;
     const isNext = els === 'next' ? true : false;
@@ -22,6 +22,8 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
   };
   useEffect(() => {
     isNavBtn();
+    console.log(props.defaultImg);
+    
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,19 +44,20 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
             return (
               <div key={mov.id} 
                 className="box w-[calc(70%-1.25rem)] min-w-[calc(70%-1.25rem)] mx-[0.3rem] relative block 
-                only:mx-[0.5rem] only:w-[calc(100%-1rem)] only:min-w-[calc(100%-1rem)]"
+                only:mx-2 only:w-[calc(100%-1rem)] only:min-w-[calc(100%-1rem)]"
               >
-                <div /* to={`./videos/${idx+1}`} */ className="pic block relative pb-[calc(900_/_1600_*_100%)] break-all " >
+                <div /* to={`./videos/${idx+1}`} */ className="pic block relative pb-[calc(900/1600*100%)] break-all " >
                   <span className="msg px-2.5 py-3 absolute bottom-0 left-0 right-0 bg-black/40 z-10">
                     <span className="tit text-xs text-white/70 line-clamp-1">{mov.name}</span>
                   </span>
-                  <i className="ico bg-gradient-to-tl from-white/30 to-white/10 rounded-full shadow-lg w-12 h-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center">
+                  <i className="ico bg-linear-to-tl from-white/30 to-white/10 rounded-full shadow-lg w-12 h-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center">
                     <FontAwesomeIcon icon={['fas', 'play']} className='text-black/70 w-4 h-4 ml-0.5' />
                   </i>
                   <Img 
                     width={300} height={160}
                     src={`https://i.ytimg.com/vi/${mov.key}/hqdefault.jpg`}
-                    srcerr={''}
+                    // YouTube 썸네일이 없을 경우 대체할 이미지 주소입니다.
+                    srcerr={props.defaultImg}
                     className={"img absolute object-cover w-full h-full bg-black"} 
                     unoptimized={true}
                     alt={mov.name} loading="lazy"

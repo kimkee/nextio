@@ -25,4 +25,4 @@
  .page.home .sect.mnTop .slide ul>li .box .info .star { min-width: 7.5rem; text-align: left; font-size: 1.125rem; line-height: 1; padding-bottom: 0.1875rem; }
  .page.home .sect.mnTop .slide ul>li .box .info .star i { min-width: 1.5rem; font-size: clamp(1.125rem, 5vw, 1.5rem); }
  .page.home .sect.mnTop .swiper-pagination { bottom: 10px; top: auto; left: 50%; width: auto; display: flex; transform: translateX(-50%); }
- .page.home .sect.mnTop .screen { position: absolute; height: 12.5rem; z-index: 9; left: 0; right: 0; bottom: 0rem; background-image: linear-gradient(360deg, rgb(17 17 17), transparent); padding: 4% 0; }
+ .page.home .sect.mnTop .screen { position: absolute; height: 12.5rem; z-index: 9; left: 0; right: 0; bottom: 0rem; background-image: linear-gradient(360deg, rgb(24 24 24), transparent); padding: 4% 0; }

@@ -82,13 +82,14 @@ export default function User() {
               <>
                 <div className="profile pt-8 pb-4 relative">
                   <div className="user flex items-center mb-5 mx-5">
-                    <Link href={'/user/'+param_id} className="pic flex-none relative w-20 pb-20 mr-4 overflow-hidden">
+                    <Link href={'/user/'+param_id} className="pic flex-none relative w-20 pb-20 mr-4 overflow-hidden active:scale-95 active:opacity-80 transition-transform">
                       <Img className={`img w-20 h-20 rounded-full absolute left-0 top-0 bg-[#424242]`}
                         width={80} height={80}
                         src={uInfo.profile_picture}
                         alt={uInfo.username}
                         srcerr='/img/common/user.png'
                         unoptimized={true}
+                        loading={`eager`}
                       />
                       <span className="ico absolute right-0 bottom-0 w-5 h-5 inline-flex items-center justify-center rounded-full bg-white/50">
                         {uInfo.provider == 'google' && <FontAwesomeIcon icon={['fab', 'google']}  className="text-black w-3 h-3" />}

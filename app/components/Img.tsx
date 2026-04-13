@@ -17,6 +17,20 @@ interface CustomImageProps {
 export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized ,priority, loading }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
+
+  // Handle image load to detect YouTube placeholder (gray image)
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    // YouTube returns a 120x90 image if the thumbnail is not available.
+    // hqdefault should be 480x360.
+    if (src.includes('ytimg.com') && target.naturalWidth <= 120) {
+      if (srcerr) {
+        setImgSrc(srcerr);
+        setIsError(true);
+      }
+    }
+  };
+
   return (
     <Image
       src={imgSrc}
@@ -30,6 +44,7 @@ export default function CustomImage({ src, alt, width, height, className, srcerr
         setImgSrc(srcerr);
         setIsError(true);
       }}
+      onLoad={handleLoad}
       loading={loading}
     />
   );

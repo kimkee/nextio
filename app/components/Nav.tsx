@@ -55,9 +55,9 @@ export default function Nav() {
   return (
     <>
       <div className={`floatnav ${isOnTop 
-          ? 'on-top ' 
+          ? 'on-top  bottom-[calc(5rem+var(--safe-bottom))] transition -translate-y-16 duration-400' 
           : 'translate-y-32'}
-          fixed text-right px-5 left-1/2 max-w-(--mwide) w-full h-0 z-50 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-200 transform `}>
+          fixed text-right px-5 left-1/2 -translate-x-1/2 max-w-(--mwide) w-full h-0 z-500 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-400 transform `}>
         <button type="button" onClick={goTop} className="bt top mt-3.5 mb-0 mx-auto rounded-full inline-flex items-center justify-center shadow-[0_0_6rem_rgba(0,0,0,0.49)] bg-[rgba(255,255,255,0.7)] border border-[rgba(0,0,0,0.1)] w-[2.8rem] h-[2.8rem] text-black">
           <FontAwesomeIcon icon={['fas', 'arrow-up']} className="h-[1.1rem] w-[1.1rem] inline-flex" />
           <em className='sr-only'>위로</em>
@@ -71,33 +71,33 @@ export default function Nav() {
         >
           <ul className="menu w-full h-full items-center flex justify-between px-5">
             <li className={`flex-1 h-full`}>
-              <Link href="/home/" onClick={handleLinkClick} className={`${isActive('home')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <FontAwesomeIcon icon={['fas', 'house']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
+              <Link href="/home/" onClick={handleLinkClick} className={`${isActive('home')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                <FontAwesomeIcon icon={['fas', 'house']} className='h-[1.2rem] w-[1.2rem] inline-flex group-active:scale-90 group-active:opacity-80 transition-transform' />
                 <em className='text-xt mt-1'>Home</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/list/movie/0/" onClick={handleLinkClick} className={`${isActive('list/movie')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <FontAwesomeIcon icon={['fas', 'clapperboard']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
+              <Link href="/list/movie/0/" onClick={handleLinkClick} className={`${isActive('list/movie')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                <FontAwesomeIcon icon={['fas', 'clapperboard']} className='h-[1.2rem] w-[1.2rem] inline-flex group-active:scale-90 group-active:opacity-80 transition-transform' />
                 <em className='text-xt mt-1'>Movie</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/list/tv/0/" onClick={handleLinkClick} className={`${isActive('list/tv')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <FontAwesomeIcon icon={['fas', 'tv']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
+              <Link href="/list/tv/0/" onClick={handleLinkClick} className={`${isActive('list/tv')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                <FontAwesomeIcon icon={['fas', 'tv']} className='h-[1.2rem] w-[1.2rem] inline-flex group-active:scale-90 group-active:opacity-80 transition-transform' />
                 <em className='text-xt mt-1'>TV</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
-              <Link href="/search/movie/" onClick={handleLinkClick} className={`${isActive('search/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                <FontAwesomeIcon icon={['fas', 'search']} className='h-[1.2rem] w-[1.2rem] inline-flex' />
+              <Link href="/search/movie/" onClick={handleLinkClick} className={`${isActive('search/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                <FontAwesomeIcon icon={['fas', 'search']} className='h-[1.2rem] w-[1.2rem] inline-flex group-active:scale-90 group-active:opacity-80 transition-transform' />
                 <em className='text-xt mt-1'>Search</em>
               </Link>
             </li>
             <li className={`flex-1 h-full`}>
               { myinfo?.id !== undefined ? (
-                <Link href={`/user/${myinfo?.id}`} onClick={handleLinkClick} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                  <span className="pic w-6.5 h-6.5 block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1">
+                <Link href={`/user/${myinfo?.id}`} onClick={handleLinkClick} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                  <span className="pic w-6.5 h-6.5 block relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1 group-active:scale-90 group-active:opacity-80 transition-transform">
                     <Img className="img absolute w-full h-full left-0 top-0 object-cover"
                       alt={myinfo.username} width={32} height={32}
                       src={myinfo.profile_picture} 
@@ -107,8 +107,8 @@ export default function Nav() {
                   <em className='text-xt mt-1'>MY</em>
                 </Link>
               ) : (
-                <a href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa]`}>
-                  <span className="pic w-6.5 h-6.5 relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1 inline-flex items-center justify-center">
+                <a href={myinfo?.id === null ? '' : '/user/login'} className={`${isActive('user/')} bt w-full h-full flex flex-col items-center justify-center pt-1 px-1 pb-[calc(0.125rem+var(--safe-bottom))] border-[#aaaaaa] group`}>
+                  <span className="pic w-6.5 h-6.5 relative border-[0.15rem] border-inherit rounded-full overflow-hidden -mt-1 -mb-1 inline-flex items-center justify-center  group-active:scale-90 group-active:opacity-80 transition-transform">
                     <FontAwesomeIcon icon={['fas', 'user']} className='h-3.5 w-3.5 inline-flex' />
                   </span>
                   <em className='text-xt mt-1'>MY</em>

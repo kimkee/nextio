@@ -139,7 +139,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
               return (
                 <div key={idx} className="pbox box block w-[calc(24%-3%)] min-w-[calc(24%-3%)] mx-[0.4rem]  break-all">
                   <Link 
-                     className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(1200/780*100%)] mb-1"
+                     className="box block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(1200/780*100%)] mb-1 active:scale-95 active:opacity-80 transition-transform"
                      href={detailUrl}
                      scroll={false}
                      prefetch={true}

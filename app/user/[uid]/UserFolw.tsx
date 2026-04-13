@@ -58,10 +58,10 @@ export default function UserFolw({ uInfo, user, swiper1dep }: { uInfo: any, user
             >
               <Link 
                 href={targetUrl} 
-                className='box max-w-16 inline-block'
+                className='box max-w-16 inline-block group'
                 onClick={handleLinkClick}
               >
-                <span className="pic relative block">
+                <span className="pic relative block  group-active:scale-95 group-active:opacity-80 transition-transform">
                   <Img className="img rounded-full"
                     width={100} height={100} src={`${data.profile_picture}`} alt={data.username} srcerr='/img/common/user.png' loading="eager"
                   />
