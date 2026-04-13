@@ -49,7 +49,7 @@ export default function Header() {
                 >
                   <Img priority={true} width={256} height={54} src={'/img/logo_next.png'} unoptimized={true} alt='Nextio' srcerr='' className='w-20 h-auto' />
                 </Link>
-                <span className='text-xt'>{PUBLIC_ENV}</span>
+                <span className='text-xt text-white'>{PUBLIC_ENV}</span>
               </h1>
             )}
           </div>
