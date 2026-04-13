@@ -70,7 +70,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
     if (!myinfo?.email) {
       ui.confirm(`로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까? `,{
         ycb: () => {
-          router.push(`/user/login?returnUrl=${location.href}`);
+          router.push(`/user/login`);
         },
         ncb: () => { }
       });
