@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
-  const ENV = !(process.env.NEXT_PUBLIC_ENV == 'PRD') && ':'+process.env.NEXT_PUBLIC_ENV 
+  const ENV = !(process.env.NEXT_PUBLIC_ENV == 'PRD') ? ':'+process.env.NEXT_PUBLIC_ENV : '';
   return {
     name: `NEXTIO${ENV}`,
     short_name: `NEXTIO${ENV}`,
