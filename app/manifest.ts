@@ -1,9 +1,10 @@
 import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
+  const ENV = !(process.env.NEXT_PUBLIC_ENV == 'PRD') && ':'+process.env.NEXT_PUBLIC_ENV 
   return {
-    name: 'NEXTIO',
-    short_name: 'NEXTIO',
+    name: `NEXTIO${ENV}`,
+    short_name: `NEXTIO${ENV}`,
     description: 'NEXTIO = Supabase + Nest.js',
     start_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
     display: 'standalone',
