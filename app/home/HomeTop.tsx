@@ -15,6 +15,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 import './HomeTop.css';
+import styles from './HomeTop.module.css';
 import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
@@ -83,7 +84,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
 
   if (isLoading) {
     return (
-      <section className="sect mnTop">
+      <section className={`sect mnTop ${styles}`}>
         <div className="inr" id="slide">
           {/* 슬라이더 스켈레톤: mnTop 실제 높이 = 122.9vw / max 525px */}
           <div className="animate-pulse relative w-full bg-black" style={{ height: 'min(122.9vw, 525px)' }}>
@@ -115,11 +116,10 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   return (
     <>
       
-      <section className={`sect mnTop`}>
-
-        <div className="inr" id="slide">
+      <section className={`sect mnTop ${styles.mnTop}`}>
+        <div className={`inr ${styles.mnTop_inr}`} id="slide">
           
-          <Swiper className="swiper-wrapper swiper slide" 
+          <Swiper className={`swiper-wrapper ${styles.slide} slide`} 
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]} //EffectFade,
             spaceBetween={0}
@@ -151,22 +151,22 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
                     <Link 
-                      className="box" 
+                      className={`${styles.box}`} 
                       href={targetUrl} 
                       scroll={false}
                       prefetch={true}
                       onClick={handleLinkClick}
                     >
-                        <div className="pics" style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className='img' />
+                        <div className={`${styles.pics}`} style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
+                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className={`${styles.img}`} />
                         </div>
-                        <div className="info">
-                          <div className="star">
+                        <div className={`${styles.info}`}>
+                          <div className={`${styles.star}`}>
                             <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                           </div>
-                          <div className="tit">{data.title}</div>
+                          <div className={`${styles.tit}`}>{data.title}</div>
                         </div>
-                        <div className="screen"></div>
+                        <div className={`${styles.screen}`}></div>
                     </Link>
                   </SwiperSlide>
                 )

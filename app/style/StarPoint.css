@@ -1,7 +1,7 @@
 @charset "utf-8";
 .ui-star { display: inline-flex; position: relative; line-height: 1.2; vertical-align: middle; padding: 2px 0 2px 0; }
 .ui-star .star-bg { display: flex; color: #aaaaaa; white-space: nowrap; }
-.ui-star .star-fg { display: flex; position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; white-space: nowrap; transition: width 0.3s ease-out; align-items: center; box-shadow:rgba(0,0,0,0.4) 2px 2px 5px;}
+.ui-star .star-fg { display: flex; position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; white-space: nowrap; transition: width 0.3s ease-out; align-items: center; box-shadow:rgba(0,0,0,0.4) 2px 2px 5px; box-shadow:none;}
 .ui-star .star-fg svg { flex-shrink: 0; }
 .ui-star em { margin-left: 4px; font-style: normal; }
 
