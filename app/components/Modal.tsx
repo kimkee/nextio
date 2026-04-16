@@ -70,7 +70,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
         <div className={`phd h-0 z-20`}>
           <div className={`inr left-0 right-0 top-0 flex ${scr > 50 ? 'bg-black/50 backdrop-blur-sm border-b border-[rgb(58_58_58_/28%)]' : ''} items-center justify-center absolute bg-transparent pt-[calc(var(--safe-top)+var(--safe-watch))] h-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]`}>
             <div className='ptit text-right pl-16 pr-5 w-full'>
-              <Link className={`${scr > 50 ? 'hidden' : ''} text-primary font-bold `} href='/home'>{`NETIO`}</Link> 
+              <Link className={`${scr > 50 ? 'hidden' : ''} text-primary font-bold `} href='/home'>{`NEXTIO`}</Link> 
               <div  className={`${scr > 50 ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'} text-base transition-opacity duration-300 text-shadow-[0px_0px_2px_#000000]`}>
                 {modalTitle}
               </div>
