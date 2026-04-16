@@ -3,33 +3,20 @@ import Image from 'next/image';
 import Img from '@/app/components/Img';
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
-import { supabase } from '@/app/supabase';
-import { Provider } from '@supabase/supabase-js';
 
-interface User {
-  id: string;
-  email: string;
-}
-export default function Home() {
-  const router = useRouter();
-
+export default function Index() {
+  
   useEffect(() => {
     const lastActiveRoute = sessionStorage.getItem('last_active_route');
 
-    setTimeout(() => {
-      if (lastActiveRoute) {
-        sessionStorage.removeItem('last_active_route');
-        window.location.replace(lastActiveRoute);
-      } else {
-        window.location.replace(`/home`);
-      }
-    }, 400);
+    if (lastActiveRoute) {
+      sessionStorage.removeItem('last_active_route');
+      window.location.replace(lastActiveRoute);
+    } else {
+      window.location.replace(`/home`);
+    }
 
-    supabase.auth.onAuthStateChange((state, event) => {
-      // state === 'SIGNED_IN' ? router.push('/home') : router.push('/user/login');
-      // console.log('==========================================' + state);
-    });
-    return () => {};
+    return () => { };
   }, []);
 
   return (
