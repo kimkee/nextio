@@ -82,7 +82,7 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
               <div className="absolute left-0 -top-16 z-50 w-100 hidden">
                 <p>{`opts ` + opts}</p>
                 <p>{`id ` + id}</p>
-                <p>{`movURL ` + movURL}</p>
+                <p>{`movURLe ` + movURL}</p>
               </div>
 
               {movs && movs.results.length ? 
