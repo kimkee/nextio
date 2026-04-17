@@ -1,6 +1,7 @@
 'use client';
 
 import Videos from '@/app/list/Videos';
+import Person from '@/app/list/Person';
 import { useSearchParams, useParams } from 'next/navigation';
 
 interface PopupProps {
@@ -15,6 +16,7 @@ interface PopupProps {
 export default function Popup( ) {
   const searchParams = useSearchParams();
   const isVideosModalOpen = searchParams.get('video') !== null;
+  const isPersonModalOpen = searchParams.get('person') !== null;
   const params = useParams();
   const {opts, menu, id} = params;
   return (
@@ -29,6 +31,7 @@ export default function Popup( ) {
     </div>
     <div className='fixed z-1500'>
       {isVideosModalOpen && <Videos />}
+      {isPersonModalOpen && <Person />}
     </div>
     </>
   );
