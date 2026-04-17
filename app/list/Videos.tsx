@@ -76,7 +76,7 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
               <div className="ptit"></div>
           </div>
         </div>
-        <div className="pct bg-black">
+        <div className="pct bg-black/10 backdrop-blur-sm">
           <main className="poptents">
             <div className="videos-box">
               <div className="absolute left-0 -top-16 z-50 w-100 hidden">
