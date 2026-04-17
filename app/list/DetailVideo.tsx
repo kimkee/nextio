@@ -56,7 +56,7 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
                 className="box w-[calc(70%-1.25rem)] min-w-[calc(70%-1.25rem)] mx-[0.3rem] relative block 
                 only:mx-2 only:w-[calc(100%-1rem)] only:min-w-[calc(100%-1rem)]"
               >
-                <button onClick={()=>{openVideosModal(idx) }} className="pic block relative w-full pb-[calc(900/1600*100%)] break-all cursor-pointer" >
+                <button onClick={()=>{openVideosModal(idx) }} className="pic block relative w-full pb-[calc(900/1600*100%)] break-all cursor-pointer active:scale-98 transition-all duration-300" >
                   <span className="msg px-2.5 py-3 absolute bottom-0 left-0 right-0 bg-black/40 z-10">
                     <span className="tit text-xs text-white/70 line-clamp-1">{mov.name}</span>
                   </span>
