@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Img from '@/app/components/Img';
 
-export default function ViewVideo({props}: {props: {title: string, css: string, data: any, defaultImg: any}}) {
+export default function ViewVideo({props}: {props: {title: string, css: string, opts: string, data: any, defaultImg: any}}) {
   const goScroll = (els: string, e?: any) => {
     const scrollBox = scrollBoxRef.current;
     const isNext = els === 'next' ? true : false;
@@ -32,9 +32,9 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
   const pathname = usePathname();
   const router = useRouter();
   
-  const openVideosModal = (idx:number) => {
+  const openVideosModal = (idx:number, opts:string) => {
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
-    router.push(`${pathname}?videos=${idx}`, { scroll: false });
+    router.push(`${pathname}?video=${opts}&idx=${idx}`, { scroll: false });
   };
   console.log(props.data); 
 
@@ -56,7 +56,7 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
                 className="box w-[calc(70%-1.25rem)] min-w-[calc(70%-1.25rem)] mx-[0.3rem] relative block 
                 only:mx-2 only:w-[calc(100%-1rem)] only:min-w-[calc(100%-1rem)]"
               >
-                <button onClick={()=>{openVideosModal(idx) }} className="pic block relative w-full pb-[calc(900/1600*100%)] break-all cursor-pointer active:scale-98 transition-all duration-300" >
+                <button onClick={()=>{openVideosModal(idx, props.opts) }} className="pic block relative w-full pb-[calc(900/1600*100%)] break-all cursor-pointer active:scale-98 transition-all duration-300" >
                   <span className="msg px-2.5 py-3 absolute bottom-0 left-0 right-0 bg-black/40 z-10">
                     <span className="tit text-xs text-white/70 line-clamp-1">{mov.name}</span>
                   </span>
