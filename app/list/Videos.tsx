@@ -90,22 +90,23 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
                 [&_.swiper-pagination]:w-auto!
                 [&_.swiper-pagination]:left-1/2!
                 [&_.swiper-pagination]:-translate-x-1/2!
-                [&_.swiper-pagination]:bottom-4!
+                [&_.swiper-pagination]:bottom-5!
                 [&_.swiper-pagination]:bg-[rgba(80,80,80,0.5)]
                 [&_.swiper-pagination]:text-sm!
                 [&_.swiper-pagination]:px-3!
-                [&_.swiper-pagination]:py-2!
+                [&_.swiper-pagination]:pt-2!
+                [&_.swiper-pagination]:pb-2.5!
                 [&_.swiper-pagination]:text-white!
                 [&_.swiper-pagination]:leading-none!
                 [&_.swiper-pagination]:rounded-full!
-                [&_.swiper-button-prev]:bottom-4!
-                [&_.swiper-button-next]:bottom-4!
+                [&_.swiper-button-prev]:bottom-3!
+                [&_.swiper-button-next]:bottom-3!
                 [&_.swiper-button-prev]:top-auto!
                 [&_.swiper-button-next]:top-auto!
                 [&_.swiper-button-prev]:text-white!
                 [&_.swiper-button-next]:text-white!
-                [&_.swiper-button-prev]:scale-70!
-                [&_.swiper-button-next]:scale-70!
+                [&_.swiper-button-prev]:scale-60!
+                [&_.swiper-button-next]:scale-60!
               " 
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
@@ -137,8 +138,8 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
                     <SwiperSlide tag="li" key={idx} className={`swiper-slide pbox ${loopSet() ? 'pb-16' : ''}`}>
                       <div className={`box `}>
                           <div className="pics block pb-[calc(900/1600*100%)] overflow-hidden rounded-0 bg-black relative w-full">
-                            {/* <span className="ui-load-glx full"> <span className="gbx"> <em className="bx"> <i></i> <i></i> <i></i> <i></i> </em> </span> </span> */}
-                            <iframe className='iframe absolute left-0 top-0 w-full h-full' title={data.name} src={"//www.youtube.com/embed/"+data.key}  allow="autoplay; encrypted-media" allowFullScreen loading='lazy'></iframe>
+                            <span className={`ui-load-glx full z-10! ${loopSet() ? '-mt-16' : ''}`}> <span className="gbx"> <em className="bx"> <i></i> <i></i> <i></i> <i></i> </em> </span> </span>
+                            <iframe className='iframe absolute z-20 left-0 top-0 w-full h-full' title={data.name} src={"//www.youtube.com/embed/"+data.key}  allow="autoplay; encrypted-media" allowFullScreen loading='lazy'></iframe>
                           </div>
                       </div>
                     </SwiperSlide>
