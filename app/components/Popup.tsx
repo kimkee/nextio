@@ -1,0 +1,38 @@
+'use client';
+
+import Videos from '@/app/list/Videos';
+import { useSearchParams, useParams } from 'next/navigation';
+
+interface PopupProps {
+  opts: string;
+  menu: string;
+  id: string;
+}
+
+
+
+
+export default function Popup( ) {
+  const searchParams = useSearchParams();
+  const isVideosModalOpen = searchParams.get('videos') !== null;
+  const params = useParams();
+  const {opts, menu, id} = params;
+  return (
+    
+
+    <>
+    <div className="fix left-0 top-0">
+      <p>{JSON.stringify(params)}</p>
+      <p>{opts}</p>
+      <p>{menu}</p>
+      <p>{id}</p>
+
+    </div>
+    <div className='fixed z-1000'>
+      {isVideosModalOpen && <Videos opts={opts as string} id={id as string} />}
+      <div className="">팝업들</div>
+      <div className="">팝업들</div>
+    </div>
+    </>
+  );
+}

@@ -57,6 +57,7 @@ export const viewport: Viewport = {
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
 import Ui from '@/app/components/Ui';
+import Popup from '@/app/components/Popup';
 import RouteTracker from '@/app/components/RouteTracker';
 import { Suspense } from 'react';
 
@@ -79,6 +80,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <Nav />
         </div>
         <div id='modal-root' className='fixed z-1000' />
+        <Popup />
         <Ui />
         {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
         <Analytics />
