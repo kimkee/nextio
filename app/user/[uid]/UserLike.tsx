@@ -56,13 +56,13 @@ const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any)
             <div className="date mt-2 text-white/40"><span>{data.release_date || data.first_air_date}</span></div>
           </div>
         </Link>
-        <div className="bts absolute right-3 bottom-2">
+        <div className="bts absolute right-1 bottom-2">
           { uInfo?.user_id == user?.id &&
-            <button type="button" className="bt text-white/40" onClick={ (e)=> {
+            <button type="button" className="bt w-6 h-6 flex items-center justify-center text-white/40" aria-label='삭제' onClick={ (e)=> {
               e.stopPropagation();
               ui.confirm(`'${tit}'<br> 스크랩을 삭제할까요?`,{ybt:'네',nbt:'아니오', ycb:()=>deleteScrap(data.mvtv, data.id)}) 
             } }>
-              <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' /></span>
+              <FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' />
             </button>
           }
         </div>

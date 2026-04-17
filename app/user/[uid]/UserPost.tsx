@@ -41,12 +41,12 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
           </div>
         </Link>
         { uInfo?.user_id == user?.id &&
-        <div className="bts absolute right-3 bottom-2">
-          <button type="button" className="bt text-white/40" onClick={ (e)=> {
+        <div className="bts absolute right-1 bottom-2">
+          <button type="button" className="bt w-6 h-6 flex items-center justify-center text-white/40" aria-label='삭제' onClick={ (e)=> {
             e.stopPropagation();
             ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(data.mvtv, data.id)}) 
           } }>
-            <span><FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' /></span>
+            <FontAwesomeIcon icon={["far", "trash-can"]} className='w-3 h-3' />
           </button>
         </div>
         }
