@@ -43,7 +43,7 @@ export default function Header() {
             ) : (
               <h1 className='logo flex gap-2 items-baseline'>
                 <Link 
-                  href={`/home/`} 
+                  href={`/home`} 
                   className='btlogo py-1 flex'
                   
                 >
