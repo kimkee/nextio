@@ -14,7 +14,7 @@ interface PopupProps {
 
 export default function Popup( ) {
   const searchParams = useSearchParams();
-  const isVideosModalOpen = searchParams.get('videos') !== null;
+  const isVideosModalOpen = searchParams.get('video') !== null;
   const params = useParams();
   const {opts, menu, id} = params;
   return (
@@ -28,7 +28,7 @@ export default function Popup( ) {
       <p>{id}</p>
     </div>
     <div className='fixed z-1500'>
-      {isVideosModalOpen && <Videos opts={opts as string} id={id as string} />}
+      {isVideosModalOpen && <Videos />}
     </div>
     </>
   );

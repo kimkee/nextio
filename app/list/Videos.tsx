@@ -18,22 +18,23 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 
-export default function Videos({opts, id}: {opts: string,  id: string}) {
+export default function Videos() {
 
   const router = useRouter();
   const params = useParams()
   const searchParams = useSearchParams();
   const pathname = usePathname();
   
-  const postID = id;
-  const vId = searchParams.get('videos')
+  const postID = params.id;
+  const vId = searchParams.get('idx')
+  const opts = searchParams.get('video')
 
-  const getMediaType = (pathname:string ) => {
-    const parts = pathname.split('/');
-    return parts.find(p => p === 'movie' || p === 'tv') || '';
-  };
-  const mediaType = getMediaType(pathname);
-  opts = opts || mediaType
+  // const getMediaType = (pathname:string ) => {
+  //   const parts = pathname.split('/');
+  //   return parts.find(p => p === 'movie' || p === 'tv') || '';
+  // };
+  // const mediaType = getMediaType(pathname);
+  // opts = opts || mediaType
 
 
   const [movs, setMovs] = useState({results:[]});
@@ -59,16 +60,14 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
   
-  // console.log(datas);
-  // if(!datas)  return ;
-  // console.log( txtHt );
-  // if(!datas || !casts)  return <div><div className="ui-loading-dot on"> <div className="bx"><em><i></i></em></div> </div></div>;
-
   return (
   <>
+  {postID}
+  {vId}
+  {opts}
     <article className="pop-layer b popup videos fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) backdrop-blur-sm open">
       <div className="pbd w-[calc(100%-2rem)] max-w-180 bg-transparent align-middle relative ">
-        <button onClick={() => { router.back(); }} className='btn-pop-close h-8 w-8 -ml-1 text-white inline-flex items-center justify-center text-3xl  absolute  right-0 z-50 top-[calc(0.8rem+var(--safe-top)+var(--safe-watch))]'>
+        <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl absolute left-1/2 -translate-x-1/2 z-50 -bottom-12 bg-black rounded-full'>
           <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
         </button>
         <div className="phd" >
@@ -81,7 +80,7 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
             <div className="videos-box">
               <div className="absolute left-0 -top-16 z-50 w-100 hidden">
                 <p>{`opts ` + opts}</p>
-                <p>{`id ` + id}</p>
+                <p>{`id ` + postID}</p>
                 <p>{`movURL ` + movURL}</p>
               </div>
 
@@ -147,7 +146,7 @@ export default function Videos({opts, id}: {opts: string,  id: string}) {
                 })
                 }
               </Swiper>
-              :null}
+              :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16'></div></>}
 
             </div>
           </main>
