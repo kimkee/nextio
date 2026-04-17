@@ -21,17 +21,14 @@ export default function Popup( ) {
     
 
     <>
-    <div className="fix left-0 top-0">
+    <div className="fix left-0 top-0 hidden">
       <p>{JSON.stringify(params)}</p>
       <p>{opts}</p>
       <p>{menu}</p>
       <p>{id}</p>
-
     </div>
-    <div className='fixed z-1000'>
+    <div className='fixed z-1500'>
       {isVideosModalOpen && <Videos opts={opts as string} id={id as string} />}
-      <div className="">팝업들</div>
-      <div className="">팝업들</div>
     </div>
     </>
   );

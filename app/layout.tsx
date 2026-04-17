@@ -73,6 +73,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body className={`body ${noto_sans_kr.className} antialiased`}>
         <Suspense fallback={null}>
           <RouteTracker />
+          <Popup />
         </Suspense>
         <div className='wrap'>
           <Header />
@@ -80,7 +81,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <Nav />
         </div>
         <div id='modal-root' className='fixed z-1000' />
-        <Popup />
         <Ui />
         {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
         <Analytics />
