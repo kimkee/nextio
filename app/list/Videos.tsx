@@ -67,6 +67,7 @@ export default function Videos() {
   {opts}
     <article className="pop-layer b popup videos fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) backdrop-blur-sm open">
       <div className={`pbd w-[calc(100%-2rem)] max-w-180 bg-transparent align-middle relative
+          transition-[transform,opacity,translate] ease-out duration-200
           ${mounted ? 'translate-y-0' : 'translate-y-90' }
         `}>
         <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl absolute left-1/2 -translate-x-1/2 z-50 -bottom-12 bg-[rgba(80,80,80,0.5)] rounded-full'>
