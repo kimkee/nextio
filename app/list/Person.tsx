@@ -96,7 +96,7 @@ export default function Person() {
       `}>
       {/* <div className="fixed max-w-(--mwide) left-1/2 -translate-x-1/2 top-0 w-full h-full bg-black opacity-50 -z-10 backdrop-blur-sm"></div> */}
       <div className={`pbd bg-[#111111] bottom-0 inline-block text-left whitespace-normal relative
-        max-w-(--mwide) ml-(--scrPad) w-[calc(100%-0rem)] min-h-[calc(100dvh-150px)] margin-bottom-0 overflow-hidden rounded-t-xl
+        max-w-(--mwide) ml-(--scrPad) w-[calc(100%-0rem)] margin-bottom-0 overflow-hidden rounded-t-xl
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
@@ -114,7 +114,7 @@ export default function Person() {
             <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
         </button>
         
-        <div className="pct overflow-y-auto max-h-[calc(100dvh-150px)] min-h-[calc(100dvh-150px)] scrollbar-hidden">
+        <div className="pct overflow-y-auto max-h-[calc(100dvh-150px)] min-h-[calc(100dvh-300px)] scrollbar-hidden">
           <main className="poptents px-5 py-5 pb-[calc(50px+var(--safe-bottom))]">
           
             { !datas && !casts && !photos &&
