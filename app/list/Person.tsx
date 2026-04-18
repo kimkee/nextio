@@ -80,6 +80,7 @@ export default function Person() {
     fetchPerson();
     fetchCredits();
     fetchPhotos();
+    console.log(datas);
     
     ui.lock.using(true); 
     setMounted(true);
@@ -88,79 +89,82 @@ export default function Person() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-  
+  // if (!datas || !casts || !photos){
+  //   return <div className="m-info"><Loading opts={{type:'glx', cls:'full'}}/></div>
+  // }
   return (
   <>
 
-    <article className={`pop-layer c bottom popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-end pr-(--scrPad) open backdrop-blur-xs
-      `}>
-      {/* <div className="fixed max-w-(--mwide) left-1/2 -translate-x-1/2 top-0 w-full h-full bg-black opacity-50 -z-10 backdrop-blur-sm"></div> */}
-      <div className={`pbd bg-[#111111] bottom-0 inline-block text-left whitespace-normal relative
-        max-w-(--mwide) ml-(--scrPad) w-[calc(100%-0rem)] margin-bottom-0 overflow-hidden rounded-t-xl
+    <article className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-end pr-(--scrPad) open backdrop-blur-md `}>
+      <div className="fixed top-2 w-full max-w-(--mwide) left-1/2 -translate-x-1/2 z-50 text-right pr-2">
+        <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
+          className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl"
+        >
+          <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
+        </button>
+      </div>
+        
+      <div className={`pbd bottom-0 inline-block text-left whitespace-normal relative
+        max-h-[calc(100dvh-0px)] max-w-(--mwide) ml-(--scrPad) w-[calc(100%-0rem)] margin-bottom-0 rounded-t-xl
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
-        <div className="phd relative h-14">
+        {/* <div className="phd relative h-14">
             <div className="inr">
-                <div className="ptit">{/* datas?.name */}</div>
+                <div className="ptit"></div>
             </div>
-        </div>
+        </div> */}
+        <div className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-black to-black">
+          <main className="poptents mb-5">
 
-        <button type="button" 
-          className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl absolute top-2 right-2 z-50" 
-          onClick={ () => { router.back() } } 
-          aria-label='닫기'
-          >
-            <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
-        </button>
-        
-        <div className="pct overflow-y-auto max-h-[calc(100dvh-150px)] min-h-[calc(100dvh-300px)] scrollbar-hidden">
-          <main className="poptents px-5 py-5 pb-[calc(50px+var(--safe-bottom))]">
-          
-            { !datas && !casts && !photos &&
-              <div className="m-info"><Loading opts={{type:'glx', cls:'full'}}/></div>
-            }
+            {/* { !datas   ? <div className="m-info"><Loading opts={{type:'glx', cls:'full'}}/></div> : <></> } */}
+            
             { datas && casts && photos &&
-              <div className="m-info">
-                
-                <div className="info flex justify-between gap-5">
-                  <div className="desc w-[calc(55%-16px)]">
-                    
-                    {datas.title && <p className="tit">{datas.title}</p>}
-                    {datas.original_title && <p className="tio">{datas.original_title}</p>}
+            <>
+              <div className="profile pb-3 pt-5">
+                <div className="pics block w-64 h-64 left-1/2 -translate-x-1/2 border-18 border-[rgba(0,0,0,0.5)] relative overflow-hidden rounded-full max-h-(--mwide) z-10">
+                  <img src={`https://image.tmdb.org/t/p/w780${datas.profile_path}`} alt={datas.title}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
+                    className="img block w-full object-cover h-full bg-[#000000] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  />
+                </div>
+                <div className="desc text-center z-11 relative -mt-14">
+                  {/* {datas.title && <p className="tit text-2xl">{datas.title}</p>} */}
+                  {/* {datas.original_title && <p className="tio text-xl">{datas.original_title}</p>} */}
+                  {datas.name && <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">{datas.name}</p>}
+                  {datas.known_for_department && <p className="tio text-xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
+                  {datas.original_name && <p className="tio text-xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.original_name}</p>}
+                </div>
+              </div>
 
-                    {datas.name && <p className="tit">{datas.name}</p>}
-                    {datas.known_for_department && <p className="tio">{datas.known_for_department}</p>}
-                    {datas.original_name && <p className="tio">{datas.original_name}</p>}
-
-                    <ul className="lst">
-                      {datas.birthday && 
-                      <li className="vot"><i className="fa-regular fa-calendar-days"></i>  {datas.birthday}</li>
-                      }
-                      {datas.place_of_birth && 
-                      <li className="vot"><i className="fa-regular fa-location-dot"></i>  {datas.place_of_birth}</li>
-                      }
-                      <li className="vot"> <i className="fa-regular fa-star"></i> {datas.popularity} / 100 </li>
-                      {datas.homepage && 
-                      <li className="web">
-                        <i className="fa-regular fa-globe"></i> <a  className="lk" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
-                      </li>
-                      } 
-                    </ul>
-                  </div>
-                  <div className="thum w-[45%]">
+              <div className="m-info relative px-5 py-5 pb-[calc(30px+var(--safe-bottom))]">
+                <ul className="lst flex justify-center flex-col gap-0">
+                  {datas.birthday && 
+                  <li className="vot flex justify-center items-center gap-2 text-white/90"><FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary'/>  {datas.birthday}</li>
+                  }
+                  {datas.place_of_birth && 
+                  <li className="vot flex justify-center items-center gap-2 text-white/90"><FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary'/>  {datas.place_of_birth}</li>
+                  }
+                  <li className="vot flex justify-center items-center gap-2 text-white/90"> <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary'/> {datas.popularity} / 100 </li>
+                  {datas.homepage && 
+                  <li className="web flex justify-center items-center gap-2 text-white/90">
+                    <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary'/> <a  className="lk ellipsis w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+                  </li>
+                  } 
+                </ul>
+                <div className="info">
+                  {/* <div className="thum w-[45%]">
                     <div className="pics block relative pb-[150%] w-full overflow-hidden rounded-sm bg-[#424242]">
                       <img src={`https://image.tmdb.org/t/p/w780${datas.profile_path}`} alt={datas.title}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
                         className="img block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 
                 {casts.cast.length ? 
                 <div className="sect post mt-5">
-                  <h4 className="tts text-sm text-white/80">출연작 </h4>
+                  <h4 className="tts text-base text-white/90">출연작 </h4>
                   <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
                     {
                     casts.cast.map((item:any,idx:number) => {
@@ -184,7 +188,7 @@ export default function Person() {
 
                 {casts.crew.length ? 
                 <div className="sect post mt-5">
-                  <h4 className="tts text-sm text-white/80">제작참여 </h4>
+                  <h4 className="tts text-base text-white/90">제작참여 </h4>
                   <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
                     {
                     casts.crew.map((item:any,idx:number) => {
@@ -207,9 +211,9 @@ export default function Person() {
                 : null}
               
                 
-              {photos.profiles.length ? 
+                {photos.profiles.length ? 
                 <div className="sect post mt-5">
-                  <h4 className="tts text-sm text-white/80">사진 </h4>
+                  <h4 className="tts text-base text-white/90">사진 </h4>
                   <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
                     {
                     photos.profiles.map((item:any,idx:number) => {
@@ -230,8 +234,8 @@ export default function Person() {
                   </div>
                 </div>
                 : null}
-              </div> 
-              
+              </div>
+            </>
             } 
               
           </main>
