@@ -2,8 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import Img from '@/app/components/Img';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function ViewCast({props}: {props: {title: string, css: string, data: []}}) {
+  const router = useRouter();
+  const pathname = usePathname();
   const goScroll = (els: string, e?: any) => {
     const scrollBox = scrollBoxRef.current;
     const isNext = els === 'next' ? true : false;
@@ -26,6 +29,11 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const openPersonModal = (idx:string) => {
+    // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
+    router.push(`${pathname}?person=${idx}`, { scroll: false });
+  };
+
   return (
     <>
     <div className={`sect cast mt-4 ${props.css}`}>
@@ -40,8 +48,8 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
         {
           props.data.filter( (item: any, i: number) => i < 999 ).map( (b: any) => {
             return (
-              <div /* href={`./person/${b.id}`} */ key={b.credit_id} 
-                className='profile block w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all'>
+              <button onClick={()=>{openPersonModal(b.id) }} /* href={`./person/${b.id}`} */ key={b.credit_id} 
+                className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col'>
                 <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
                   <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
                     srcerr={'/img/common/user.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='lazy'
@@ -49,7 +57,7 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
                 </div>
                 <div className="name text-center text-10 -mx-2 mt-1 leading-tight -mb-0.5 text-[#dddddd]">{b.name}</div>
                 <div className="carc text-center text-9  -mx-2 mt-0.5 leading-tight text-[#999999] max-h-6 overflow-hidden">{b.character}</div>
-              </div>
+              </button>
             )
           })
         }

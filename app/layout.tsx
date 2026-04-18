@@ -57,6 +57,7 @@ export const viewport: Viewport = {
 import Header from '@/app/components/Header';
 import Nav from '@/app/components/Nav';
 import Ui from '@/app/components/Ui';
+import Popup from '@/app/components/Popup';
 import RouteTracker from '@/app/components/RouteTracker';
 import { Suspense } from 'react';
 
@@ -72,6 +73,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body className={`body ${noto_sans_kr.className} antialiased`}>
         <Suspense fallback={null}>
           <RouteTracker />
+          <Popup />
         </Suspense>
         <div className='wrap'>
           <Header />

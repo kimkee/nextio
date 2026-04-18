@@ -262,7 +262,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
 
-          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", data: moves.results, defaultImg: bgImg }} /> : ''}
+          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", opts: opts, data: moves.results, defaultImg: bgImg }} /> : ''}
 
           {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
