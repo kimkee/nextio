@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Img from '@/app/components/Img';
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import Loading from '../components/Loading';
@@ -23,6 +23,7 @@ interface DetailClientProps {
 
 export default function DetailClient({ opts, postID }: DetailClientProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
@@ -155,7 +156,11 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
       </div>
     );
   }
-
+  const openPosterModal = (idx:number, opts:string) => {
+    // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
+    router.push(`${pathname}?poster=${opts}&idx=${idx}`, { scroll: false });
+  };
+  
   const { datas, casts, moves } = data;
   const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
   const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
@@ -242,7 +247,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               </ul>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <div className='pics block relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black'>
+              <button type='button' onClick={()=>{openPosterModal(0, opts) }}className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300'>
                 <Img
                   width={400}
                   height={570}
@@ -252,7 +257,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                   alt={datas.title || datas.name}
                   srcerr='/img/common/non_poster.png'
                 />
-              </div>
+              </button>
             </div>
           </div>
           
@@ -266,7 +271,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
-          {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+          {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
