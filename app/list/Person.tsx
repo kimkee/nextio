@@ -147,7 +147,7 @@ export default function Person() {
                   <li className="vot flex justify-center items-center gap-2 text-white/90"> <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary'/> {datas.popularity} / 100 </li>
                   {datas.homepage && 
                   <li className="web flex justify-center items-center gap-2 text-white/90">
-                    <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary'/> <a  className="lk ellipsis w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+                    <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary'/> <a  className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
                   </li>
                   } 
                 </ul>
