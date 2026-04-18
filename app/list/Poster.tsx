@@ -117,7 +117,6 @@ export default function Poster() {
                 [&_.swiper-wrapper]:h-[calc(100dvh-0px)]!
                 [&_.swiper-slide]:h-[calc(100dvh-0px)]!
                 [&_.swiper-slide]:flex!
-                [&_.swiper-slide]:w-full!
                 [&_.swiper-slide]:items-center!
                 [&_.swiper-slide]:justify-center!
               " 
@@ -142,10 +141,10 @@ export default function Poster() {
               }}
               onSlideChange={() => {/* console.log('slide change') */}} >
                 <SwiperSlide tag="li">
-                  <div className='box w-full'>
-                    <div className="pics block pb-[calc(450/300*100%)] overflow-hidden rounded-0 bg-black relative w-full">
-                      <img src={pstImg} className="img absolute object-cover w-full h-full z-1" alt={`${title}_Poster[1]`} onError={ui.error.poster} loading="lazy"/>
-                      <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><Loading opts={{type:'glx',cls:'scale-200'}} /></div>
+                  <div className='box w-full h-full'>
+                    <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
+                      <img src={pstImg} className="img relative object-contain w-full h-full z-2" alt={`${title}_Poster[1]`} onError={ui.error.poster} loading="lazy"/>
+                      <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:'scale-200'}} /></div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -154,10 +153,10 @@ export default function Poster() {
                   const img = `//image.tmdb.org/t/p/w780${item.file_path}` ;
                   return (
                     <SwiperSlide tag="li" key={idx} className="swiper-slide pbox">
-                      <div className='box w-full'>
-                          <div className="pics block pb-[calc(450/300*100%)] overflow-hidden rounded-0 bg-black relative w-full">
-                            <img src={`${img}`} alt={`${title}_Poster[${idx+2}]`} className='img absolute object-cover w-full h-full z-1' onError={ui.error.poster} loading="lazy" />
-                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><Loading opts={{type:'glx',cls:`scale-200`}} /></div>
+                      <div className='box w-full h-full'>
+                          <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
+                            <img src={`${img}`} alt={`${title}_Poster[${idx+2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
+                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:` `}} /></div>
                           </div>
                       </div>
                     </SwiperSlide>
