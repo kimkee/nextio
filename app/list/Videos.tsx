@@ -92,7 +92,7 @@ export default function Videos() {
                 [&_.swiper-pagination]:w-auto!
                 [&_.swiper-pagination]:left-1/2!
                 [&_.swiper-pagination]:-translate-x-1/2!
-                [&_.swiper-pagination]:bottom-5!
+                [&_.swiper-pagination]:bottom-4!
                 [&_.swiper-pagination]:bg-[rgba(80,80,80,0.5)]
                 [&_.swiper-pagination]:text-sm!
                 [&_.swiper-pagination]:px-3!
