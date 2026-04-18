@@ -132,7 +132,7 @@ export default function Person() {
                   {/* {datas.original_title && <p className="tio text-xl">{datas.original_title}</p>} */}
                   {datas.name && <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">{datas.name}</p>}
                   {datas.known_for_department && <p className="tio text-xl text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
-                  {datas.also_known_as && <p className="tit text-sm mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000]">{datas.also_known_as.join(', ')}</p>}
+                  {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.join(', ')}</p>}
                   {/* {datas.original_name && <p className="tio text-xl text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.original_name}</p>} */}
                 </div>
               </div>
@@ -140,15 +140,15 @@ export default function Person() {
               <div className="m-info relative px-5 py-5 pb-[calc(30px+var(--safe-bottom))]">
                 <ul className="lst flex justify-center flex-col gap-1">
                   {datas.birthday && 
-                  <li className="vot flex justify-center items-center gap-2 text-md text-white/90"><FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary'/>  {datas.birthday}</li>
+                  <li className="vot flex justify-center gap-2 text-center text-md text-white/90"><FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mt-1'/>  {datas.birthday}</li>
                   }
                   {datas.place_of_birth && 
-                  <li className="vot flex justify-center items-center gap-2 text-md text-white/90"><FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary'/>  {datas.place_of_birth}</li>
+                  <li className="vot flex justify-center gap-2 text-center text-md text-white/90"><FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mt-1'/>  {datas.place_of_birth}</li>
                   }
-                  <li className="vot flex justify-center items-center gap-2 text-md text-white/90"> <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary'/> {datas.popularity} / 100 </li>
+                  <li className="vot flex justify-center gap-2 text-center text-md text-white/90"> <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mt-1'/> {datas.popularity} / 100 </li>
                   {datas.homepage && 
-                  <li className="web flex justify-center items-center gap-2 text-md text-white/90">
-                    <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary'/> <a  className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+                  <li className="web flex justify-center gap-2 text-center text-xs text-white/90 mt-2">
+                    <FontAwesomeIcon icon={['fas', 'globe']} className='w-3 h-3 text-primary align-middle mt-0.5'/> <a  className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
                   </li>
                   } 
                 </ul>
