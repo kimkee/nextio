@@ -222,7 +222,7 @@ export default function Person() {
                         }} /* to={`/list/${opts}/0/${item.id}`} */  className='pic pb-[150%] block w-full relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
                           <img 
                             className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
-                            src={'https://image.tmdb.org/t/p/w185'+item.file_path} alt={item.title}
+                            src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={item.title}
                             onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/non_poster.png`}} 
                             loading="lazy" 
                           />
