@@ -97,7 +97,7 @@ export default function Person() {
             <>
               <div className="profile pb-3 pt-5">
                 <div className="pics block w-64 h-64 left-1/2 -translate-x-1/2 border-18 border-[rgba(0,0,0,0.5)] relative overflow-hidden rounded-full max-h-(--mwide) z-10">
-                  <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={datas.title}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
+                  <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
                     className="img block w-full object-cover h-full bg-[#000000] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   />
                 </div>
@@ -126,7 +126,7 @@ export default function Person() {
                 
                 {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
                 {casts.crew.length ? <PersonCastCrew title="제작진" data={casts.crew} /> : <></>}
-                {photos.profiles.length ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg}/> : <></>}
+                {photos.profiles.length ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
 
                 {/* {casts.cast.length ? 
                 <div className="sect list mt-5">
