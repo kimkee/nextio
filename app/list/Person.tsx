@@ -6,19 +6,8 @@ import {useParams, useRouter, useSearchParams } from 'next/navigation'; //,useOu
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Loading from '@/app/components/Loading';
-import Link from 'next/link';
-
-// import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
-import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-import 'swiper/css/effect-fade';
+import PersonCastCrew from './PersonCastCrew';
+import PersonPhoto from './PersonPhoto';
 
 export default function Person() {
 
@@ -57,6 +46,9 @@ export default function Person() {
 
 
   const [profileImg, setProfileImg] = useState<string>('');
+  const handleSetProfileImg = (imgUrl: string) => {
+    setProfileImg(imgUrl);
+  };
   const [mounted, setMounted] = useState<boolean>(false);
   useEffect(() => {
     
@@ -66,25 +58,25 @@ export default function Person() {
     
     ui.lock.using(true); 
     setMounted(true);
+    
     return () => {
       ui.lock.using(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-
-  const goScroll = (els: string, e?: any) => {
-    const scrollBox = e.target.closest('.sect').querySelector('.lst');
-    const isNext = els === 'next' ? true : false;
-    if(!scrollBox) return;
-    const minus = isNext ? 1 : -1;
-    const scAmt = (scrollBox.offsetWidth - 100) * minus;
-    scrollBox.scrollLeft += scAmt;
+  // article 전체 영역 휠 → pct 스크롤로 위임
+  // shift+wheel은 출연진/영상 등 가로 스크롤 영역이 처리하도록 통과
+  const pctRef = useRef<HTMLDivElement>(null);
+  const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
+    if (e.shiftKey) return;
+    const pct = pctRef.current;
+    if (!pct) return;
+    pct.scrollTop += e.deltaY;
   };
-
   return (
   <>
 
-    <article className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-end pr-(--scrPad) open backdrop-blur-md `}>
+    <article onWheel={handleWheel} className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-end pr-(--scrPad) open backdrop-blur-md `}>
       <div className="fixed top-2 w-full max-w-(--mwide) left-1/2 -translate-x-1/2 z-50 text-right pr-2">
         <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
           className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl"
@@ -98,15 +90,8 @@ export default function Person() {
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
-        {/* <div className="phd relative h-14">
-            <div className="inr">
-                <div className="ptit"></div>
-            </div>
-        </div> */}
-        <div className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-[#111111] to-[#111111]">
+        <div ref={pctRef} className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-[#111111] to-[#111111]">
           <main className="poptents mb-5">
-
-            {/* { !datas   ? <div className="m-info"><Loading opts={{type:'glx', cls:'full'}}/></div> : <></> } */}
             
             { datas && casts && photos &&
             <>
@@ -139,8 +124,12 @@ export default function Person() {
                   } 
                 </ul>              
                 
-                {casts.cast.length ? 
-                <div className="sect post mt-5">
+                {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
+                {casts.crew.length ? <PersonCastCrew title="제작진" data={casts.crew} /> : <></>}
+                {photos.profiles.length ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg}/> : <></>}
+
+                {/* {casts.cast.length ? 
+                <div className="sect list mt-5">
                   <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
                     <h4 className="tts text-base text-white/90">출연작 </h4>
                     <div className="bt-nav">
@@ -171,7 +160,7 @@ export default function Person() {
                 : null}
 
                 {casts.crew.length ? 
-                <div className="sect post mt-5">
+                <div className="sect list mt-5">
                   <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
                     <h4 className="tts text-base text-white/90">제작참여 </h4>
                     <div className="bt-nav">
@@ -199,14 +188,14 @@ export default function Person() {
                     }
                   </div>
                 </div>
-                : null} 
+                : null}  
                
               
                 {photos.profiles.length ? 
-                <div className="sect post mt-5">
+                <div className="sect list mt-5">
                   <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
                     <h4 className="tts text-base text-white/90">사진 </h4>
-                    <div className="bt-nav">
+                    <div className={`bt-nav`}>
                       <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
                       <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>
                     </div>
@@ -219,7 +208,7 @@ export default function Person() {
                         <button type='button' onClick={()=>{
                           // 클릭하면. 여기 이미지 url을  id='profile_img'  에 교체하기
                           setProfileImg('https://image.tmdb.org/t/p/w400'+item.file_path);
-                        }} /* to={`/list/${opts}/0/${item.id}`} */  className='pic pb-[150%] block w-full relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
+                        }} className='pic pb-[150%] block w-full relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
                           <img 
                             className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                             src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={item.title}
@@ -233,7 +222,7 @@ export default function Person() {
                     }
                   </div>
                 </div>
-                : null}
+                : null} */}
                 
               </div>
             </>
