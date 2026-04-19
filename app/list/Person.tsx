@@ -104,7 +104,7 @@ export default function Person() {
                 <div className="desc text-center z-11 relative -mt-12 px-6">
                   {datas.name && <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">{datas.name}</p>}
                   {datas.known_for_department && <p className="tio text-xl text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
-                  {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.join(', ')}</p>}
+                  {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
                 </div>
               </div>
 
