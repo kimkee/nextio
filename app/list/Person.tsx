@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import PersonCastCrew from './PersonCastCrew';
 import PersonPhoto from './PersonPhoto';
+import PersonSkeleton from './PersonSkeleton';
 
 export default function Person() {
 
@@ -30,6 +31,8 @@ export default function Person() {
     }).catch( e => { console.log(e); });
   };
   const creditsURL = `https://api.themoviedb.org/3/person/${personID}/movie_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const creditsURL2 = `https://api.themoviedb.org/3/person/${personID}/tv_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const creditsURL3 = `https://api.themoviedb.org/3/person/${personID}/combined_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchCredits = () => {
     axios.get( creditsURL ).then(response => {
       console.log("인물 출연작" , response.data);
@@ -92,7 +95,12 @@ export default function Person() {
       `}>
         <div ref={pctRef} className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-[#111111] to-[#111111]">
           <main className="poptents mb-5">
-            
+
+            {/* Skeleton Area */}
+            {/* { !datas && !casts && !photos   &&
+              <div className="min-[471px]:hidden"><PersonSkeleton /></div>
+            } */}
+
             { datas && casts && photos &&
             <>
               <div className="profile pb-3 pt-5">
