@@ -57,6 +57,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
   useEffect(() => {
     fetchMovieData();
+    window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opts, postID]);
 
