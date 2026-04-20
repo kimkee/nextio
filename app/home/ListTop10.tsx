@@ -14,9 +14,26 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
  
   const cateList = opts.cate !== '0' ? `&with_genres=${opts.cate}` : ``;
   
+  // const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/discover/${opts.media}`,
+    params: {
+      page: '1', // 페이지
+      sort_by: 'popularity.desc', // 정렬
+      language: 'ko-KR', // 언어
+      region: 'kr', // 지역
+      include_adult: 'true', // 성인 콘텐츠 포함 여부
+      include_video: 'true', // 비디오 포함 여부
+    },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+    }
+  };
   const fetchMoive = ()=>{
-    const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-    axios.get( fetchURL ).then(res =>{
+    axios.request(options).then(res =>{
       console.log(res.data);
       setMlist( res.data.results );
     }).catch(e=>{

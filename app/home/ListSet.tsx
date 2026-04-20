@@ -18,13 +18,13 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     method: 'GET',
     url: `https://api.themoviedb.org/3/${opts.list}`,
     params: {
-      include_adult: 'true',
-      include_video: 'true',
+      page: '1',
+      with_genres: opts.cate,
+      sort_by: 'vote_count.desc',
       language: 'ko-KR',
       region: 'kr',
-      with_genres: opts.cate,
-      page: '1',
-      sort_by: 'vote_count.desc'
+      include_adult: 'true',
+      include_video: 'true',
     },
     headers: {
       accept: 'application/json',

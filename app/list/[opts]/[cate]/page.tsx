@@ -53,7 +53,7 @@ export default function Page({
   };
 
   const fetchMoive = async (p: any) => {
-    const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${p}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${p}&language=ko&region=kr&sort_by=popularity.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     await axios
       .get(fetchURL)
       .then((res) => {
