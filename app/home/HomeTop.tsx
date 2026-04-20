@@ -26,11 +26,29 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   const page = Math.floor( Math.random() *3 )+1;
   const [mlist, setMlist] = useState<[any] | any>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+
+  // const fetchURL = `https://api.themoviedb.org/3/${opts.media}/now_playing?language=ko&page=${page}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const fetchURL = `https://api.themoviedb.org/3/${opts.media}/now_playing?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/${opts.media}/now_playing`,
+    params: {
+      page: '1',
+      language: 'ko-KR',
+      region: 'kr',
+      include_adult: 'true',
+      include_video: 'true',
+    },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+    }
+  };
   const fetchMoive = (page:number)=>{
     ui.loading.show(`glx`);
-   
-    const fetchURL = `https://api.themoviedb.org/3/${opts.media}/now_playing?language=ko&page=${page}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-    axios.get( fetchURL ).then(res =>{
+    axios.request(options).then(res =>{
       console.log(res.data.results);
       setMlist( (prev:any) => [ ...prev , ...res.data.results ] );
       setIsLoading(false);

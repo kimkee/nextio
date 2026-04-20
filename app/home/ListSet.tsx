@@ -13,16 +13,45 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   const [mlist, setMlist] = useState<any>(null);
  
   const cateList = opts.cate !== '0' ? `&with_genres=${opts.cate}` : ``;
-  
+
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/${opts.list}`,
+    params: {
+      page: '1',
+      with_genres: opts.cate,
+      sort_by: 'vote_count.desc',
+      language: 'ko-KR',
+      region: 'kr',
+      include_adult: 'true',
+      include_video: 'true',
+    },
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+    }
+  };
+
   const fetchMoive = ()=>{
     const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-    axios.get( fetchURL ).then(res =>{
+    axios.request(options).then(res =>{
       console.log(res.data);
       setMlist( res.data.results );
     }).catch(e=>{
       console.log(e);
     }); 
   }
+
+
+  // const fetchMoive = ()=>{
+  //   const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  //   axios.get( fetchURL ).then(res =>{
+  //     console.log(res.data);
+  //     setMlist( res.data.results );
+  //   }).catch(e=>{
+  //     console.log(e);
+  //   }); 
+  // }
 
   const goScroll = (els: string, e?: any) => {
     const scrollBox = scrollBoxRef.current;
