@@ -315,6 +315,7 @@ export default function Page() {
               <span className="input">
                 <input type="text" placeholder="검색어를 입력하기." 
                   ref={inputRef}
+                  defaultValue={keyword}
                   required maxLength={12}
                   onChange={onChange}
                   onInvalid={ (e)=> e.preventDefault() }
