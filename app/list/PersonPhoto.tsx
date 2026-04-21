@@ -33,7 +33,7 @@ export default function PersonPhoto({title, data, setProfileImg, name}: {title:s
   <>
     <div className="sect list mt-5">
       <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
-        <h4 className="tts text-base text-white/90">{title}</h4>
+        <h4 className="tts text-base text-white/90">{title} : {data.length}</h4>
         <div className={`bt-nav ${isNav ? '' : 'hidden'}`}>
           <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
           <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>
