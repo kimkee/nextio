@@ -1,4 +1,5 @@
 import Detail from '@/app/list/Detail';
+import PersonClient from '@/app/list/PersonClient';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -9,7 +10,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { opts, id } = await params;
   
-  if (opts !== 'movie' && opts !== 'tv') {
+  if (opts !== 'movie' && opts !== 'tv' && opts !== 'person') {
     return { title: 'Not Found' };
   }
 
@@ -45,14 +46,15 @@ export default async function View({ params }: Props) {
   const { opts, id } = await params;
 
   // 허용되지 않은 opts(movie나 tv가 아닌 경우)는 404 처리
-  if (opts !== 'movie' && opts !== 'tv') {
+  if (opts !== 'movie' && opts !== 'tv' && opts !== 'person') {
     notFound();
   }
 
   return (
     <div className='container'>
       <main className='contents'>
-        <Detail params={{ opts, id }} />
+        {opts === 'movie' || opts === 'tv' ? <Detail params={{ opts, id }} /> : <></>}
+        {opts === 'person' ? <PersonClient params={{ opts, id }} /> : <></>}
       </main>
     </div>
   );

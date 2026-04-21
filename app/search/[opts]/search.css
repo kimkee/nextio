@@ -10,11 +10,11 @@
 }
 .schs-form .form{display: flex; align-items: center;justify-content: space-between;align-items: center;width:100%;position: relative;}
 .schs-form .bts{display: flex; position: absolute; left: 0.4rem; top: 0.4rem; z-index: 10;}
-.schs-form .bts .bt{padding: 0rem 0.75rem 0rem;height: 2rem;border-radius: 0.25rem;background-color: #1c1c1c;border: #3c3c3c solid 1px;color: #b7b7b7;white-space: nowrap;min-width: 1.875rem;font-size: 0.8125rem;display:flex;align-items:center;justify-content: center;}
+.schs-form .bts .bt{padding: 0rem 0.5rem 0rem;height: 2rem;border-radius: 0.25rem;background-color: #1c1c1c;border: #3c3c3c solid 1px;color: #b7b7b7;white-space: nowrap;min-width: 1.875rem;font-size: 0.8125rem;display:flex;align-items:center;justify-content: center;}
 .schs-form .bts .bt+.bt{margin-left: 0.25rem;}
 .schs-form .bts .bt.active{background: #273c5a;border-color: #2c3a58;color: #fff;text-shadow: 0 0rem 2rem black;}
 .schs-form .form .input{border-width: 0;background-color: #121212; position: relative;}
-.schs-form .form .input input{padding-left: 7.75rem;color: #dddddd;height: 2.8rem; font-size: 0.875rem; background: transparent;}
+.schs-form .form .input input{padding-left: 11rem;color: #dddddd;height: 2.8rem; font-size: 0.875rem; background: transparent;}
 .schs-form .form .input input:focus{outline: none;}
 .schs-form .form .input input::-webkit-input-placeholder{ color: #666;}
 .schs-form .form .input input:valid + .bt-del{display: flex;}
