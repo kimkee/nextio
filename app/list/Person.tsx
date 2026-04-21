@@ -56,7 +56,7 @@ export default function Person() {
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
         <div ref={pctRef} className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-[#111111] to-[#111111]">
-          <main className="poptents mb-5">
+          <main className="poptents mb-5 p-5">
 
             <PersonClient params={{ opts, id }} />
               

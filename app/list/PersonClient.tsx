@@ -100,7 +100,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             </div>
           </div>
 
-          <div className="m-info relative px-5 py-5 pb-[calc(30px+var(--safe-bottom))]">
+          <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
             <ul className="lst flex justify-center flex-col gap-1">
               {datas.birthday && 
               <li className="vot flex justify-center gap-2 text-center text-md text-white/90"><FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mt-1'/>  {datas.birthday}</li>
