@@ -52,8 +52,8 @@ export default function DetailCollection({opts, props}: {opts: string, props: an
                   className='img absolute object-cover w-full h-full' loading='eager'
                   alt={item.name +'-Poster-'+ (idx+1)} srcerr={'/img/common/non_poster.png'} unoptimized={true}
                 />
-                <p className='tit text-10 text-white/60 bg-black/40 text-shadow-[1px_1px_1px_#000000] absolute left-0 right-0 top-0 p-1 leading-none text-center'>{item.title}</p>
-                <p className='tio text-9 text-white/60 bg-black/40 text-shadow-[1px_1px_1px_#000000] absolute left-0 right-0 bottom-0 p-1 leading-none text-center'>{item.release_date}</p>
+                <p className='tit text-10 text-white/80 bg-black/40 text-shadow-[1px_1px_1px_#000000] absolute left-0 right-0 top-0 p-1 leading-none text-center'>{item.title}</p>
+                <p className='tio text-9 text-white/80 bg-black/40 text-shadow-[1px_1px_1px_#000000] absolute left-0 right-0 bottom-0 p-1 leading-none text-center'>{item.release_date}</p>
               </div>
             </Link>
             )
