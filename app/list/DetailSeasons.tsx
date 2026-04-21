@@ -44,7 +44,7 @@ export default function DetailSeason({opts, props}: {opts: string, props: any}) 
         {
           props.data.sort( (a:any, b:any) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime() ).map((item: any,idx: number) => {
             return(
-            <div /* href={`/${opts}/${item.id}`} */ key={idx} data-index={idx+1} /* scroll={false} */ className='box block relative min-w-[calc(25%-1.7rem)] mx-[0.4rem] break-all active:scale-98 transition-all duration-300'>
+            <div /* href={`/${opts}/${item.id}`} */ key={idx} data-index={idx+1} /* scroll={false} */ className='box block relative min-w-[calc(25%-1.7rem)] mx-[0.4rem] break-all'>
               <div  className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(750/500*100%)] mb-1'>
                 <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w500${item.backdrop_path || item.poster_path}`} 
                   className='img absolute object-cover w-full h-full' loading='eager'
