@@ -11,6 +11,7 @@ import DetailCast from './DetailCast';
 import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
 import DetailCollection from './DetailCollection';
+import DetailSeasons from './DetailSeasons';
 import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
 import getUser from '@/app/getUser';
@@ -300,6 +301,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
           {collect ? <DetailCollection opts={opts} props={{ title: "시리즈", css: "collect", data: collect }} /> : ''}
+
+          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: "시즌", css: "season", data: datas.seasons }} /> : ''}
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
