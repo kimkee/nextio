@@ -42,7 +42,7 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
     <>
     <div className="sect movs mt-4">
       <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
-        <h4 className="tts text-sm">{props.title}</h4>
+        <h4 className="tts text-sm">{props.title} <span className="text-sm text-white/60">: {props.data.length}</span></h4>
         <div className={`bt-nav ${isNav ? '' : 'hidden'}`}>
           <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
           <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>

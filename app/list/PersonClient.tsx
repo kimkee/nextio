@@ -10,13 +10,16 @@ import PersonCastCrew from './PersonCastCrew';
 import PersonPhoto from './PersonPhoto';
 import PersonSkeleton from './PersonSkeleton';
 import PersonInfoText from './PersonInfoText';
+import Loading from '@/app/components/Loading';
+import { useSetAtom } from 'jotai';
+import { modalTitleAtom } from '@/app/store/modal';
 
 export default function PersonClient({params}: {params: { opts: string, id: string }}) {
 
   // let params = useParams()
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const setTitle = useSetAtom(modalTitleAtom);
   const personID = searchParams.get('person') ||  params.id;
 
   const [datas, setDatas] = useState<any>(null);
@@ -55,19 +58,21 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   };
   const [mounted, setMounted] = useState<boolean>(false);
   useEffect(() => {
-    
     fetchPerson();
     fetchCredits();
     fetchPhotos();
-    
-      
     setMounted(true);
-    
-    return () => {
-      
-    };
+    return () => { };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
+  useEffect(() => {
+    if (datas) {
+      console.log(datas);
+      const newTitle = datas.name;
+      setTitle(newTitle);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [datas]);
   // article 전체 영역 휠 → pct 스크롤로 위임
   // shift+wheel은 출연진/영상 등 가로 스크롤 영역이 처리하도록 통과
   const pctRef = useRef<HTMLDivElement>(null);
@@ -77,7 +82,31 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (!pct) return;
     pct.scrollTop += e.deltaY;
   };
-   
+  const shareLink = ()=> {
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}person/${personID}`;
+    navigator.clipboard.writeText(surl);
+    // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
+    const datatitle = datas.title || datas.name;
+    if (navigator.share) {
+      navigator.share({
+        title: datatitle,
+        text: datatitle +' 를 공유합니다.',
+        url: surl,
+      })
+      .then(() => {
+        console.log('공유 성공');
+        
+      })
+      .catch((error) => {
+        // ui.alert('공유 실패:'+ error)
+        console.error('공유 실패:', error);
+      });
+    } else {
+      ui.alert(`<b>${datatitle}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
+      console.log('Web Share API를 지원하지 않습니다.');
+    }
+  }
+  
   return (
   <>
       <div className="mb-5">
@@ -90,13 +119,20 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         { datas && casts && photos &&
         <>
           <div className="profile pb-3 pt-5">
-            <div className="pics block w-64 h-64 left-1/2 -translate-x-1/2 border-18 border-[rgba(0,0,0,0.5)] relative overflow-hidden rounded-full max-h-(--mwide) z-10">
+            <div className="pics block w-64 h-64 mx-auto border-18 border-[rgba(0,0,0,0.5)] relative overflow-hidden rounded-full max-h-(--mwide) z-10">
               <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
                 className="img block w-full object-cover h-full bg-[#000000] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               />
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
-              {datas.name && <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">{datas.name}</p>}
+              {datas.name && 
+                <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">
+                  {datas.name}
+                  <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 -mr-8 ml-2 -mt-2">
+                    <FontAwesomeIcon icon={['far', 'copy']} className={`w-5 h-5 text-white align-middle`} /><em className='text-primary sr-only'>공유</em>
+                  </button>
+                </p>
+              }
               {datas.known_for_department && <p className="tio text-xl text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
               {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
             </div>
@@ -105,15 +141,25 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
             <ul className="lst flex justify-center flex-col gap-1">
               {datas.birthday && 
-              <li className="vot flex justify-center gap-2 text-center text-md text-white/90"><FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mt-1'/>  {datas.birthday}</li>
+              <li className="vot text-center text-md text-white/90">
+                <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                {datas.birthday}
+              </li>
               }
               {datas.place_of_birth && 
-              <li className="vot flex justify-center gap-2 text-center text-md text-white/90"><FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mt-1'/>  {datas.place_of_birth}</li>
+              <li className="vot text-center text-md text-white/90">
+                <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                {datas.place_of_birth}
+              </li>
               }
-              <li className="vot flex justify-center gap-2 text-center text-md text-white/90"> <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mt-1'/> {datas.popularity} / 100 </li>
+              <li className="vot text-center text-md text-white/90"> 
+                <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                {datas.popularity}
+              </li>
               {datas.homepage && 
-              <li className="web flex justify-center gap-2 text-center text-xs text-white/90 mt-2">
-                <FontAwesomeIcon icon={['fas', 'globe']} className='w-3 h-3 text-primary align-middle mt-0.5'/> <a  className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+              <li className="web text-center text-xs text-white/90 mt-2">
+                <FontAwesomeIcon icon={['fas', 'globe']} className='w-3 h-3 text-primary align-middle mr-1 -mt-2'/>
+                <a className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
               </li>
               } 
             </ul>              
