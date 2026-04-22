@@ -51,9 +51,11 @@ export default function ItemPerson({ data, opts }: any) {
           </div>
         </Link>
         <div className="desc w-[calc(100%-80px)]">
-          <div className="tits text-[#bbbbbb] text-sm line-clamp-1">{tit}</div>
-          <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
-          <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
+          <Link href={`/search/${opts}/${data.id}`} className="block active:scale-98 active:opacity-80 transition-transform">
+            <div className="tits text-[#bbbbbb] text-xs">{tit}</div>
+            <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
+            <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
+          </Link>
           <div className="cate flex flex-wrap gap-1 leading-none mt-2">
             {data.known_for.map( (item: any) => {
               return (
