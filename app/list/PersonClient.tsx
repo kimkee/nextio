@@ -117,7 +117,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             </ul>              
             
             {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
-            {photos.profiles.length ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
+            {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
             {casts.crew.length ? <PersonCastCrew title="제작진" data={casts.crew} /> : <></>}
 
             {/* {casts.cast.length ? 
