@@ -43,7 +43,7 @@ export default function Person({title, data}: {title:string, data:any}) {
         {
         data.map((item:any,idx:number) => {
           return(
-          <div key={idx} className='box shrink-0 w-[calc(22%-19px)] mx-1.25' data-index={idx+1}>
+          <div key={idx} className='box shrink-0 w-[calc(20%-0.75rem)] mx-1.5' data-index={idx+1}>
             <Link href={`/${item.media_type}/${item.id}`} title={(item.title||item.name) + ' (' + item.media_type + ')'} className='pic pb-[150%] block relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200' >
               <img 
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"

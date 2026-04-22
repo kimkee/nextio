@@ -43,7 +43,7 @@ export default function PersonPhoto({title, data, setProfileImg, name}: {title:s
         {
         data.map((item:any,idx:number) => {
           return(
-          <div key={idx} className='box shrink-0 w-[calc(22%-19px)] mx-1.25' data-index={idx+1}>
+          <div key={idx} className='box shrink-0 w-[calc(20%-0.75rem)] mx-1.5' data-index={idx+1}>
             <button type='button' onClick={()=>{
               // 부모컴포넌트에 setProfileImg 전달 하기
               setProfileImg('https://image.tmdb.org/t/p/w400'+item.file_path);
