@@ -90,7 +90,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        text: datatitle +' 를 공유합니다.',
+        text: ' 를 공유합니다.',
         url: surl,
       })
       .then(() => {
