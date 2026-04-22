@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const title = data.title || data.name;
-    const description = data.overview;
-    const image = `https://image.tmdb.org/t/p/w780${data.backdrop_path || data.poster_path}`;
+    const description = data.overview || data.biography || data.known_for_department;
+    const image = `https://image.tmdb.org/t/p/w780${data.backdrop_path || data.poster_path || data.profile_path}`;
 
     return {
       title: `${title} - NEXTIO`,

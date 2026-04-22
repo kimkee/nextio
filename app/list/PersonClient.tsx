@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PersonCastCrew from './PersonCastCrew';
 import PersonPhoto from './PersonPhoto';
 import PersonSkeleton from './PersonSkeleton';
+import PersonInfoText from './PersonInfoText';
 
 export default function PersonClient({params}: {params: { opts: string, id: string }}) {
 
@@ -76,6 +77,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (!pct) return;
     pct.scrollTop += e.deltaY;
   };
+   
   return (
   <>
       <div className="mb-5">
@@ -99,7 +101,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
             </div>
           </div>
-
+          
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
             <ul className="lst flex justify-center flex-col gap-1">
               {datas.birthday && 
@@ -115,7 +117,9 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               </li>
               } 
             </ul>              
-            
+
+            {datas.biography ? <PersonInfoText infoTxt={datas.biography}/> : <></>}
+       
             {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
             {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
             {casts.crew.length ? <PersonCastCrew title="제작진" data={casts.crew} /> : <></>}
