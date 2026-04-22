@@ -90,7 +90,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        text: ' 를 공유합니다.',
+        text: '공유합니다.',
         url: surl,
       })
       .then(() => {
@@ -119,10 +119,13 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         { datas && casts && photos &&
         <>
           <div className="profile pb-3 pt-5">
-            <div className="pics block w-64 h-64 mx-auto border-18 border-[rgba(0,0,0,0.5)] relative overflow-hidden rounded-full max-h-(--mwide) z-10">
-              <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
-                className="img block w-full object-cover h-full bg-[#000000] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              />
+            <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
+              <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl"></div>
+              <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
+                <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
+                  className="img block w-full h-full object-cover bg-[#000000] "
+                />
+              </div>
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
               {datas.name && 
