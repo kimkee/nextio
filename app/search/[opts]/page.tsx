@@ -13,6 +13,7 @@ import ui from '@/app/lib/ui';
 import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ItemA from '@/app/components/ItemA';
+import ItemPerson from '@/app/components/ItemPerson';
 import Loading from '@/app/components/Loading';
 
 // export const dynamicParams = false;
@@ -37,8 +38,19 @@ export default function Page() {
 
   // const total;
   const getCate = async ()=>{
-    
-    await axios.get(`https://api.themoviedb.org/3/genre/${opts}/list?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res =>{
+    const opttions = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/genre/${opts}/list`,
+      params: {
+        language: 'ko-KR',
+        region: 'kr',
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+    await axios.request(opttions).then(res =>{
       // console.log(res.data.genres);  
       interface GenreMap {
         [key: number]: string;
@@ -82,7 +94,22 @@ export default function Page() {
       setIsSearching(true);
     }
 
-    axios.get(fetchURL).then(res => {
+    const opttions = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/search/${opts}`,
+      params: {
+        language: 'ko-KR',
+        region: 'kr',
+        page: p,
+        query: kwd,
+        sort_by: 'release_date.desc',
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+    axios.request(opttions).then(res => {
       if (isInitial) {
         schListSet(res.data.results);
       } else {
@@ -275,10 +302,20 @@ export default function Page() {
 
     return (
       <>
-        <ul className='list'>
+        <ul className={`list 
+          ${opts === 'movie' ? 'movie' : ''}
+          ${opts === 'tv' ? 'tv' : ''}
+          ${opts === 'person' ? 'person grid grid-cols-2 border-t border-[#242b3688]' : ''}
+        `}>
           {schList.map((data: any, num: number) => (
+            opts !== 'person'
+            ?
             <li className='border-b border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
               <ItemA data={data} opts={opts} cate={cate} />
+            </li>
+            :
+            <li className='border-b border-[#242b3688] odd:border-r odd:border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
+              <ItemPerson data={data} opts={opts} />
             </li>
           ))}
         </ul>
@@ -302,19 +339,21 @@ export default function Page() {
         <div className="schs-form flex h-[calc(4.625rem)] jusptify-between z-20 sticky top-[calc(3.5rem+var(--safe-top)+var(--safe-watch))]"
          ref={schsForm}
         >
-          <div className="inr ml-[calc(0px-var(--scrPad)/2)]  top-0  z-600 max-w-(--mwide) flex items-center
+          <div className="inr  top-0  z-600 max-w-(--mwide) flex items-center
             jusptify-between bg-[#1c1c1c] backdrop-blur-sm
-            px-[calc(0.75rem+var(--scrPad)/2)] ]
+            px-4
             border-b border-[rgb(58_58_58_/38%)] w-full"
           >
             <form className="form" onSubmit={ goSearch }>
               <div className="bts">
                 <Link className={`bt ${isActive('movie') ? 'active' : ''}`} href={`/search/movie?search=${keyword}`}>Movie</Link>
                 <Link className={`bt ${isActive('tv') ? 'active' : ''}`} href={`/search/tv?search=${keyword}`}>TV</Link>
+                <Link className={`bt ${isActive('person') ? 'active' : ''}`} href={`/search/person?search=${keyword}`}>Person</Link>
               </div>
               <span className="input">
                 <input type="text" placeholder="검색어를 입력하기." 
                   ref={inputRef}
+                  defaultValue={keyword}
                   required maxLength={12}
                   onChange={onChange}
                   onInvalid={ (e)=> e.preventDefault() }

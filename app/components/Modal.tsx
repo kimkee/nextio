@@ -54,7 +54,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <article ref={dialogRef} onWheel={handleWheel} className='pop-layer popup fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad)'>
       <div className={`
-          pbd my-0 bg-[#181818] relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
+          pbd my-0 bg-[#181818ee] backdrop-blur-md relative text-white mx-auto w-full max-w-(--mwide) flex flex-col h-dvh
           transition-[transform,opacity,translate] ease-out duration-200
           ${mounted 
             ? 'max-[471px]:translate-x-0 min-[471px]:translate-y-0   '

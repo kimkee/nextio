@@ -3,12 +3,15 @@ import { useEffect, useState, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Img from '@/app/components/Img';
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
+import axios from 'axios';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
 import DetailCtls from './DetailCtls';
 import DetailCast from './DetailCast';
 import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
+import DetailCollection from './DetailCollection';
+import DetailSeasons from './DetailSeasons';
 import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
 import getUser from '@/app/getUser';
@@ -45,16 +48,39 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
       if (!datasRes.ok) throw new Error('Failed to fetch movie data');
 
+      const datas = await datasRes.json();
+      const casts = await castRes.json();
+      const moves = await movRes.json();
       setData({
-        datas: await datasRes.json(),
-        casts: await castRes.json(),
-        moves: await movRes.json()
+        datas: datas,
+        casts: casts,
+        moves: moves
       });
+      fetchCollection(datas.belongs_to_collection?.id);
     } catch (e) {
       console.error(e);
     }
   };
 
+  const [collect, setCollect] = useState<[any] | any>(null);
+  const fetchCollection = (id:number) => {
+    console.log(id);
+    if(!id) return;
+    axios.request({
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/collection/${id}?language=ko-KR`,
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+    } 
+  }).then(res =>{
+      console.log(res.data);
+      setCollect(res.data);
+    }).catch(e=>{
+      console.log(e);
+    }); 
+  }
+  
   useEffect(() => {
     fetchMovieData();
     window.scrollTo(0, 0);
@@ -165,7 +191,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
   const { datas, casts, moves } = data;
   const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
   const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
-
+  console.log(data);
   return (
     <>
       <div 
@@ -273,6 +299,10 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 
           {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+
+          {collect ? <DetailCollection opts={opts} props={{ title: "시리즈", css: "collect", data: collect }} /> : ''}
+
+          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: "시즌", css: "season", data: datas.seasons }} /> : ''}
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
