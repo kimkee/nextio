@@ -220,7 +220,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       <div className="sect revk mt-4" id='writeRev'>
         <div className="hbox flex justify-between items-end min-h-6 mb-2.5 leading-none">
           <h4 className="tts text-sm">리뷰</h4>
-          <span className="num text-xs font-normal text-white/40 "><i className="i">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
+          <span className="num text-xs font-normal text-white/40 "><i className="i not-italic">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">
           <div className="user absolute left-0 top-2">
