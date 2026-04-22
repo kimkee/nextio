@@ -258,3 +258,14 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .scrollbar-hidden::-webkit-scrollbar{display: none;}
 
 
+.bg-rainbow {
+    --angle: 180deg;
+    --offset: 70%;
+    --yellow: #ffce20cc;
+    --red: #c50000cc;
+    --blue: #9abddecc;
+    --cyan: #0fffa9cc;
+    /* mix-blend-mode: hard-light; */
+    background: conic-gradient(from var(--angle) at 50% var(--offset), transparent 0deg, var(--blue) 72deg, var(--cyan) 144deg, var(--yellow) 216deg, var(--red) 288deg, transparent 1turn);
+    background-color: #000;
+}
