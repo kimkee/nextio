@@ -85,9 +85,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className={`floatpop 
-          ${scr > 50 
-          ? 'on-top -translate-y-16' 
-          : 'translate-y-32'}
+          ${scr > 50 ? 'on-top -translate-y-16' : 'translate-y-32'}
           fixed text-right px-5 left-1/2 max-w-(--mwide) w-full h-0 z-50 bottom-[calc(2rem+var(--safe-bottom))] transition-transform duration-200 transform translate-x-[-50%]`}
         >
           <button type='button'
