@@ -110,7 +110,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   return (
   <>
       <div className="mb-5">
-
+        <div className="bg-rainbow absolute w-[calc(100%-2.5rem)] h-100 blur-2xl opacity-10"></div>
         {/* Skeleton Area */}
         {/* { !datas && !casts && !photos   &&
           <div className="min-[471px]:hidden"><PersonSkeleton /></div>
@@ -120,7 +120,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         <>
           <div className="profile pb-3 pt-5">
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
-              <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl"></div>
+              <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
               <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
                 <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
                   className="img block w-full h-full object-cover bg-[#000000] "
@@ -129,45 +129,47 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
               {datas.name && 
-                <p className="tit text-3xl text-white font-extrabold text-shadow-[1px_1px_2px_#000000]">
+                <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]">
                   {datas.name}
-                  <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 -mr-8 ml-2 -mt-2">
-                    <FontAwesomeIcon icon={['far', 'copy']} className={`w-5 h-5 text-white align-middle`} /><em className='text-primary sr-only'>공유</em>
-                  </button>
                 </p>
               }
-              {datas.known_for_department && <p className="tio text-xl text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
-              {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 font-extrabold text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
+              {datas.known_for_department && <p className="tio text-xl text-white/80 text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
+              {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
             </div>
           </div>
           
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
-            <ul className="lst flex justify-center flex-col gap-1">
-              {datas.birthday && 
-              <li className="vot text-center text-md text-white/90">
-                <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
-                {datas.birthday}
-              </li>
-              }
-              {datas.place_of_birth && 
-              <li className="vot text-center text-md text-white/90">
-                <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
-                {datas.place_of_birth}
-              </li>
-              }
-              <li className="vot text-center text-md text-white/90"> 
-                <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
-                {datas.popularity}
-              </li>
-              {datas.homepage && 
-              <li className="web text-center text-xs text-white/90 mt-2">
-                <FontAwesomeIcon icon={['fas', 'globe']} className='w-3 h-3 text-primary align-middle mr-1 -mt-2'/>
-                <a className="lk ellipsis max-w-[calc(100%-6rem)] whitespace-nowrap overflow-hidden text-ellipsis inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
-              </li>
-              } 
-            </ul>              
+            <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8">
+              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4">
+                <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 text-white/60 align-middle`} /><em className='text-primary sr-only'>공유</em>
+              </button>
+              <ul className="lst  flex flex-wrap gap-x-10 gap-y-2">
+                {datas.birthday &&
+                <li className="vot text-md text-white/90">
+                  <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                  {datas.birthday}
+                </li>
+                }
+                {datas.popularity && <li className="vot text-md text-white/90">
+                  <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                  {datas.popularity}
+                </li>}
+                {datas.place_of_birth &&
+                <li className="vot text-md text-white/90">
+                  <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                  {datas.place_of_birth}
+                </li>
+                }
+                {datas.homepage &&
+                <li className="web text-md text-white/90 w-[calc(100%)]">
+                  <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary align-middle mr-1 mt-1'/>
+                  <a className="lk w-[calc(100%-2rem)] whitespace-nowrap line-clamp-1 text-ellipsis text-sm align-middle inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+                </li>
+                }
+              </ul>
+              {datas.biography ? <PersonInfoText infoTxt={datas.biography}/> : <></>}
+            </div>              
 
-            {datas.biography ? <PersonInfoText infoTxt={datas.biography}/> : <></>}
        
             {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
             {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
