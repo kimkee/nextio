@@ -303,9 +303,9 @@ export default function Page() {
     return (
       <>
         <ul className={`list 
-          ${opts === 'person' ? 'person grid grid-cols-2 gap-x-2' : ''}
           ${opts === 'movie' ? 'movie' : ''}
           ${opts === 'tv' ? 'tv' : ''}
+          ${opts === 'person' ? 'person grid grid-cols-2 border-t border-[#242b3688]' : ''}
         `}>
           {schList.map((data: any, num: number) => (
             opts !== 'person'
@@ -314,7 +314,7 @@ export default function Page() {
               <ItemA data={data} opts={opts} cate={cate} />
             </li>
             :
-            <li className='border-b border-[#242b3688] even:border-l even:border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
+            <li className='border-b border-[#242b3688] odd:border-r odd:border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
               <ItemPerson data={data} opts={opts} />
             </li>
           ))}
