@@ -32,32 +32,36 @@ export default function ItemPerson({ data, opts }: any) {
 
   return (
   <>
-    <Link 
-      className="box block p-4 pr-3 relative group" 
-      href={`/search/${opts}/${data.id}`} 
-      scroll={false}
-      prefetch={true}
-      onClick={handleLinkClick}
+    <div 
+      className="box block p-4 pr-3 relative" 
     >
-      <div className="cont flex w-full items-center group-active:scale-98 group-active:opacity-80 transition-transform">
-        <div className='w-20 flex-none mr-4 overflow-hidden  bg-black'>
+      <div className="cont flex w-full items-center">
+        <Link 
+          href={`/search/${opts}/${data.id}`} 
+          className='w-20 flex-none mr-2 overflow-hidden  bg-black active:scale-98 active:opacity-80 transition-transform'
+          scroll={false}
+          prefetch={true}
+          onClick={handleLinkClick}
+        >
           <div className="pics relative w-full h-full pb-[calc(300/200*100%)] ">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 
               className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-100!'
             />  
           </div>
-        </div>
-        <div className="desc">
+        </Link>
+        <div className="desc w-[calc(100%-80px)]">
           <div className="tits text-[#bbbbbb] text-sm line-clamp-1">{tit}</div>
           <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
           <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
           <div className="cate flex flex-wrap gap-1 leading-none mt-2">
             {data.known_for.map( (item: any) => {
               return (
-                <em key={item.id} className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)]  overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9" >
+                <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
+                  className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)]  overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 active:scale-98 active:opacity-80 transition-transform" 
+                >
                   {  item.title || item.name }
-                </em>
+                </Link>
               )
             })}
           </div>
@@ -82,7 +86,7 @@ export default function ItemPerson({ data, opts }: any) {
       </div>
       <div className="bgs bg-cover bg-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-5 " style={{backgroundImage: `url(${bgs})`}}></div> 
       */}
-    </Link>
+    </div>
   </>  
   )
 }
