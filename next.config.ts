@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 import withPWA from 'next-pwa';
 
 const baseConfig: NextConfig = {
+  // Empty Turbopack config to silence the warning
+  turbopack: {},
   async redirects() {
     return [
       // {
@@ -43,3 +45,8 @@ const nextConfig = withPWA({
 });
 
 export default nextConfig;
+
+// Silence Turbopack warning – we rely on a webpack‑based plugin (next‑pwa)
+// An empty turbopack config tells Next.js we are aware of the mismatch.
+export const turbopack = {};
+
