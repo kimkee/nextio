@@ -29,10 +29,10 @@ export default function InstallPrompt() {
 
   if (!show) return null;
   return (
-    <button onClick={install}
+    <button onClick={install} title='앱 설치'
       className="
-        bt gap-1 h-8 inline-flex items-center justify-center text-white hover:text-primary!
-        px-2 rounded-sm mr-2
+        bt pressed gap-1 h-8 inline-flex items-center justify-center text-white hover:text-primary!
+        px-2 rounded-sm
     ">
       <FontAwesomeIcon icon={['fas', 'download']} className='w-4 h-4 flex' />
       <span className="text-sm sr-only">앱 설치</span>

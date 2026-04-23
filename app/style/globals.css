@@ -146,14 +146,14 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 .btn{
     @apply shrink-0 rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 inline-flex items-center justify-center shadow-sm ring-1 ring-inset 
-        bg-white/5
-        text-gray-200
-        ring-white/10
-        hover:bg-white/10 
-        disabled:bg-gray-800 
-        aria-disabled:bg-gray-800 
-        focus-visible:ring-2;
-    }
+    bg-white/5
+    text-gray-200
+    ring-white/10
+    hover:bg-white/10 
+    disabled:bg-gray-800 
+    aria-disabled:bg-gray-800 
+    focus-visible:ring-2;
+}
 .btn.btn-primary{ @apply  text-white bg-primary/40 hover:bg-slate-700 ring-white/10; }
 .btn.btn-xs{ @apply text-[0.7rem] px-2 py-0.5 rounded font-normal }
 .btn.btn-sm{ @apply text-xs px-1.5 py-1.5 rounded font-normal }
@@ -162,6 +162,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .btn.btn-xl{ @apply text-base px-5 py-3 }
 .btn:disabled{ @apply opacity-60 cursor-not-allowed; }
 .btn:active:not(:disabled){ @apply scale-95 opacity-80 transition-transform}
+.pressed:active{ @apply scale-95 opacity-90 transition-transform}
 
 body.is-lock{height: 100%;overflow-y:initial;padding-right: var(--scrPad);}
 html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}

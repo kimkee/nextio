@@ -14,7 +14,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
   const params = useParams();
   const router = useRouter();
   const shareLink = ()=> {
-    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}${opts}/${postID}`;
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/${opts}/${postID}`;
     navigator.clipboard.writeText(surl);
     // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
     const datatitle = datas.title || datas.name;
@@ -33,7 +33,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
         console.error('공유 실패:', error);
       });
     } else {
-      ui.alert(`<b>${datatitle}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
+      ui.alert(`<strong>${datatitle}</strong><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
       console.log('Web Share API를 지원하지 않습니다.');
     }
   }

@@ -55,11 +55,11 @@ export default function Header() {
             )}
           </div>
 
-          <div className='rdt flex items-center'>
+          <div className='rdt flex items-center gap-2'>
             
             <InstallPrompt />
 
-            <a href={'/user/login'} className='bt gnb bt w-8 h-8 inline-flex items-center justify-center text-white hover:text-primary!'>
+            <a href={'/user/login'} className='bt pressed gnb bt w-8 h-8 inline-flex items-center justify-center text-white hover:text-primary!'>
               <FontAwesomeIcon icon={['fas', 'bars']} className='w-5 h-5 flex'  />
               <b className='sr-only'>Menu</b>
             </a>

@@ -11,6 +11,7 @@ import PersonPhoto from './PersonPhoto';
 import PersonSkeleton from './PersonSkeleton';
 import PersonInfoText from './PersonInfoText';
 import Loading from '@/app/components/Loading';
+import Img from '@/app/components/Img';
 import { useSetAtom } from 'jotai';
 import { modalTitleAtom } from '@/app/store/modal';
 
@@ -83,7 +84,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     pct.scrollTop += e.deltaY;
   };
   const shareLink = ()=> {
-    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}person/${personID}`;
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/person/${personID}`;
     navigator.clipboard.writeText(surl);
     // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
     const datatitle = datas.title || datas.name;
@@ -102,7 +103,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         console.error('공유 실패:', error);
       });
     } else {
-      ui.alert(`<b>${datatitle}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
+      ui.alert(`<strong>${datatitle}</strong><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
       console.log('Web Share API를 지원하지 않습니다.');
     }
   }
@@ -122,8 +123,13 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
               <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
-                <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/user.png`}}
+                <Img
+                  src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
+                  alt={`${datas.name}`}
                   className="img block w-full h-full object-cover bg-[#000000] "
+                  srcerr='/img/common/user.png'
+                  width={260}
+                  height={260}
                 />
               </div>
             </div>
@@ -139,31 +145,32 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           </div>
           
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
-            <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8">
-              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4">
-                <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 text-white/60 align-middle`} /><em className='text-primary sr-only'>공유</em>
+            <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
+              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4 text-white/60">
+                <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
               </button>
               <ul className="lst  flex flex-wrap gap-x-10 gap-y-2">
                 {datas.birthday &&
-                <li className="vot text-md text-white/90">
-                  <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                <li className="vot text-md text-white/80 relative pl-6">
+                  <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   {datas.birthday}
                 </li>
                 }
-                {datas.popularity && <li className="vot text-md text-white/90">
-                  <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                {datas.popularity &&
+                <li className="vot text-md text-white/80 relative pl-6">
+                  <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   {datas.popularity}
                 </li>}
                 {datas.place_of_birth &&
-                <li className="vot text-md text-white/90">
-                  <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 -mt-1'/>
+                <li className="vot text-md text-white/80 relative pl-6">
+                  <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   {datas.place_of_birth}
                 </li>
                 }
                 {datas.homepage &&
-                <li className="web text-md text-white/90 w-[calc(100%)]">
-                  <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary align-middle mr-1 mt-1'/>
-                  <a className="lk w-[calc(100%-2rem)] whitespace-nowrap line-clamp-1 text-ellipsis text-sm align-middle inline-block text-white/90 underline" href={datas.homepage } target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
+                <li className="web text-md text-white/80 w-[calc(100%)] relative pl-6">
+                  <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
+                  <a className="lk text-sm align-middle break-all block text-white/80 hover:text-primary underline" href={datas.homepage} target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
                 </li>
                 }
               </ul>
