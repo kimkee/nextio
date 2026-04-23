@@ -1,5 +1,5 @@
 // components/CustomImage.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface CustomImageProps {
@@ -17,6 +17,12 @@ interface CustomImageProps {
 export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized = true, priority, loading }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
+
+  // Sync src prop changes
+  useEffect(() => {
+    setImgSrc(src);
+    setIsError(false);
+  }, [src]);
 
   // Handle image load to detect YouTube placeholder (gray image)
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {

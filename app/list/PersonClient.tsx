@@ -74,15 +74,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datas]);
-  // article 전체 영역 휠 → pct 스크롤로 위임
-  // shift+wheel은 출연진/영상 등 가로 스크롤 영역이 처리하도록 통과
-  const pctRef = useRef<HTMLDivElement>(null);
-  const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
-    if (e.shiftKey) return;
-    const pct = pctRef.current;
-    if (!pct) return;
-    pct.scrollTop += e.deltaY;
-  };
+
   const shareLink = ()=> {
     const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/person/${personID}`;
     navigator.clipboard.writeText(surl);
