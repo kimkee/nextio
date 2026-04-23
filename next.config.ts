@@ -29,6 +29,7 @@ const baseConfig: NextConfig = {
         hostname: '**',
       },
     ],
+    domains: ['image.tmdb.org'],
   },
   // 추가적인 설정 옵션을 여기에 추가할 수 있습니다
 };

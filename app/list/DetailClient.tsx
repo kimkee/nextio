@@ -316,6 +316,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                   width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
                   className='img max-h-3 align-middle max-w-full w-auto h-auto'
                   alt={comp.name} srcerr='/img/common/non_poster.png'
+                  unoptimized={true}
                 />
               </span> 
               : 
