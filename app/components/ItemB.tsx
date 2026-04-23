@@ -41,6 +41,7 @@ export default function ItemB({ data, opts, cate }: any) {
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' loading="eager"
               className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
+              classNameErr='opacity-100 bg-black border border-white/15 border-4'
             />
           </div>
           <div className="desc absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/62 to-transparent p-1">

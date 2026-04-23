@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import Img from '@/app/components/Img';
 
 export default function PersonPhoto({title, data, setProfileImg, name}: {title:string, data:any, setProfileImg:any, name:string}) {
   const scrollBoxRef = useRef<HTMLDivElement>(null);
@@ -48,10 +49,12 @@ export default function PersonPhoto({title, data, setProfileImg, name}: {title:s
               // 부모컴포넌트에 setProfileImg 전달 하기
               setProfileImg('https://image.tmdb.org/t/p/w400'+item.file_path);
             }} className='pic pb-[150%] block w-full relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
-              <img 
+              <Img 
+                width={278}
+                height={278}
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                 src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={`${name }-${idx+1}`}
-                onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
+                srcerr={`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`} 
                 loading="lazy" 
               />
             </button> 

@@ -99,7 +99,9 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
       console.log('Web Share API를 지원하지 않습니다.');
     }
   }
-  
+  const isInfo = () => {
+    return datas && datas.birthday || datas.place_of_birth || datas.deathday || datas.homepage || datas.biography; 
+  };
   return (
   <>
       <div className="mb-5">
@@ -135,41 +137,45 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
             <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
-              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4 text-white/60">
+              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4.5 text-white/60">
                 <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
               </button>
+              {isInfo() ?
               <ul className="lst  flex flex-wrap gap-x-10 gap-y-2">
-                {datas.birthday &&
+                {datas.birthday ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
-                  {datas.birthday}
+                  {datas.birthday} 4
                 </li>
-                }
-                {datas.popularity &&
+                : <></>}
+                {datas.popularity ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
-                  {datas.popularity}
-                </li>}
-                {datas.place_of_birth &&
+                  {datas.popularity} 
+                </li> : <></>}
+                {datas.place_of_birth ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   {datas.place_of_birth}
                 </li>
-                }
-                {datas.homepage &&
+                : <></>}
+                {datas.homepage ?
                 <li className="web text-md text-white/80 w-[calc(100%)] relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'globe']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   <a className="lk text-sm align-middle break-all block text-white/80 hover:text-primary underline" href={datas.homepage} target="_blank" rel="noopener noreferrer">{datas.homepage}</a>
                 </li>
-                }
+                : <></>}
               </ul>
+              :
+              <p className="text-white/80">정보가 없습니다.</p>
+              }
               {datas.biography ? <PersonInfoText infoTxt={datas.biography}/> : <></>}
             </div>              
 
        
-            {casts.cast.length ? <PersonCastCrew title="출연작" data={casts.cast} /> : <></>}
+            {casts.cast.length ? <PersonCastCrew title="출연" data={casts.cast} /> : <></>}
             {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
-            {casts.crew.length ? <PersonCastCrew title="제작진" data={casts.crew} /> : <></>}
+            {casts.crew.length ? <PersonCastCrew title="참여" data={casts.crew} /> : <></>}
 
             {/* {casts.cast.length ? 
             <div className="sect list mt-5">

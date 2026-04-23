@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import Img from '@/app/components/Img';
 
 export default function Person({title, data}: {title:string, data:any}) {
   const scrollBoxRef = useRef<HTMLDivElement>(null);
@@ -45,11 +46,13 @@ export default function Person({title, data}: {title:string, data:any}) {
           return(
           <div key={idx} className='box shrink-0 w-[calc(20%-0.75rem)] mx-1.5' data-index={idx+1}>
             <Link href={`/${item.media_type}/${item.id}`} title={(item.title||item.name) + ' (' + item.media_type + ')'} className='pic pb-[150%] block relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200' >
-              <img 
+              <Img 
+                width={185}
+                height={278}
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                 src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
-                alt={item.title}
-                onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
+                alt={(item.title||item.name)}
+                srcerr={`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}
                 loading="lazy"
               />
             </Link> 
