@@ -269,3 +269,23 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
     background: conic-gradient(from var(--angle) at 50% var(--offset), transparent 0deg, var(--blue) 72deg, var(--cyan) 144deg, var(--yellow) 216deg, var(--red) 288deg, transparent 1turn);
     background-color: #000;
 }
+/* Install button styles */
+.install-btn {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.install-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+/* Optional: hide on desktop */
+@media (min-width: 769px) {
+  .install-btn { display: none; }
+}
