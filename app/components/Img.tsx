@@ -11,10 +11,11 @@ interface CustomImageProps {
   unoptimized?: boolean;
   priority?: boolean;
   className?: string;
+  classNameErr?: string;
   loading?: 'eager' | 'lazy' | undefined;
 }
 
-export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized = true, priority, loading }: CustomImageProps) {
+export default function CustomImage({ src, alt, width, height, className, srcerr, unoptimized = true, priority, loading, classNameErr = 'opacity-60 bg-white/20' }: CustomImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
 
@@ -43,7 +44,7 @@ export default function CustomImage({ src, alt, width, height, className, srcerr
       alt={alt}
       width={width}
       height={height}
-      className={className + ` ${isError ? 'opacity-60 bg-white/20' : ''}`}
+      className={className + ` ${isError ? classNameErr : ''}`}
       unoptimized={unoptimized}
       priority={priority}
       onError={() => {

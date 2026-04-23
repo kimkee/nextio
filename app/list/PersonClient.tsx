@@ -118,7 +118,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                 <Img
                   src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
                   alt={`${datas.name}`}
-                  className="img block w-full h-full object-cover bg-black!"
+                  className="img block w-full h-full object-cover"
+                  classNameErr='opacity-100 bg-black'
                   srcerr='/img/common/user.png'
                   width={260}
                   height={260}

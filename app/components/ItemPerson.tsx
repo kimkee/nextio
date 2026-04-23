@@ -46,7 +46,8 @@ export default function ItemPerson({ data, opts }: any) {
           <div className="pics relative w-full h-full pb-[calc(300/200*100%)] ">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_user.png' 
-              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-80!'
+              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
+              classNameErr='opacity-100 bg-black'
             />  
           </div>
         </Link>
