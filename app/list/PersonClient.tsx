@@ -114,11 +114,11 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           <div className="profile pb-3 pt-5">
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
-              <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] bg-[rgba(0,0,0,1)] overflow-hidden z-10">
+              <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
                 <Img
                   src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
                   alt={`${datas.name}`}
-                  className="img block w-full h-full object-cover bg-[#000000] "
+                  className="img block w-full h-full object-cover bg-black!"
                   srcerr='/img/common/user.png'
                   width={260}
                   height={260}
@@ -126,11 +126,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               </div>
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
-              {datas.name && 
-                <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]">
-                  {datas.name}
-                </p>
-              }
+              {datas.name && <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]"> {datas.name} </p> }
               {datas.known_for_department && <p className="tio text-xl text-white/80 text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
               {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
             </div>
