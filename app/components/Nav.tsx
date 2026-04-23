@@ -102,6 +102,7 @@ export default function Nav() {
                       alt={myinfo.username} width={32} height={32}
                       src={myinfo.profile_picture} 
                       srcerr='/img/common/user.png'
+                      unoptimized={true}
                     />
                   </span>
                   <em className='text-xt mt-1'>MY</em>
