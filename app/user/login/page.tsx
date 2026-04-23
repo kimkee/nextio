@@ -33,7 +33,7 @@ export default function LoginPage() {
           access_type: 'offline',
           prompt: 'consent',
         },        
-        redirectTo: `${SITE_URL}/callback`
+        redirectTo: `${SITE_URL}`
       },
     });
   };
