@@ -49,7 +49,7 @@ export default function Person({title, data}: {title:string, data:any}) {
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                 src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
                 alt={item.title}
-                onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/non_poster.png`}} 
+                onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
                 loading="lazy"
               />
             </Link> 

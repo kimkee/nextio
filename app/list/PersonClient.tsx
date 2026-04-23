@@ -122,7 +122,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
               <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
-                <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/user.png`}}
+                <img id='profile_img' src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`} alt={`${datas.name}`}  onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/user.png`}}
                   className="img block w-full h-full object-cover bg-[#000000] "
                 />
               </div>
@@ -194,7 +194,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                         className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                         src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
                         alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/non_poster.png`}} 
+                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
                         loading="lazy"
                       />
                     </Link> 
@@ -225,7 +225,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                         className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                         src={'https://image.tmdb.org/t/p/w185'+item.poster_path}
                         alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/non_poster.png`}} 
+                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
                         loading="lazy"
                       />
                     </Link> 
@@ -259,7 +259,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                       <img 
                         className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                         src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}img/common/non_poster.png`}} 
+                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
                         loading="lazy" 
                       />
                     </button> 
