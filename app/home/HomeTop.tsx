@@ -137,7 +137,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
       <section className={`sect mnTop ${styles.mnTop}`}>
         <div className={`inr ${styles.mnTop_inr}`} id="slide">
           
-          <Swiper className={`swiper-wrapper ${styles.slide} slide`} 
+          <Swiper className={`swiper-wrapper ${styles.slide} mask-[radial-gradient(101%_11%_at_50%_102%,transparent_50%,white_52%)] slide pb-10`} 
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]} //EffectFade,
             spaceBetween={0}
@@ -191,7 +191,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               })
             }
             
-            <div className="flex z-30 absolute bottom-1 left-0 right-0 items-center justify-center gap-2.5">
+            <div className="flex z-30 absolute bottom-10 left-0 right-0 items-center justify-center gap-2.5">
               <div className="custom-pagination w-auto! leading-none flex items-center gap-1.5"></div>
               { mlist.length > 1 &&
               <div className="flex items-center">

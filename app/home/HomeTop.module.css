@@ -1,14 +1,15 @@
-.mnTop{ position: relative; padding-bottom: 1.25rem; }
-.mnTop_inr { position: relative; height: 122.9vw; max-height: 525px; overflow: hidden; }
+.mnTop{ position: relative; padding-bottom: 0rem; }
+.mnTop_inr { position: relative; height: 152.9vw; max-height: 550px; overflow: hidden; }
 .mnTop .slide{padding-bottom: 0px; overflow: visible;}
+.mnTop .slide ul{padding-bottom: 60px; overflow: visible;}
 .mnTop .slide .box { position: relative; display: block; z-index: 10; height: 100%; }
 .mnTop .slide .pics { display: block; position: relative; padding-bottom: calc(1000 / 790 * 100%); width: 100%; overflow: hidden; width: 100%; border-radius: 0rem; background: #000000; }
 .mnTop .slide .img { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%; background-color: #000000; }
-.mnTop .slide .info { z-index: 10; position: absolute; left: 1.25rem; right: 1.25rem; bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
-.mnTop .slide .info .tit { font-size: 1.125rem; text-align: right; line-height: 1.2; }
+.mnTop .slide .info { z-index: 10; position: absolute; left: 1.25rem; right: 1.25rem; bottom: 4.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
+.mnTop .slide .info .tit { font-size: 1.125rem; text-align: right; line-height: 1.2; color: #dddddd; text-shadow: 0 1px 2px #000000; }
 .mnTop .slide .info .star { min-width: 7.5rem; text-align: left; font-size: 1.125rem; line-height: 1; padding-bottom: 0.1875rem; }
 .mnTop .slide .info .star i { min-width: 1.5rem; font-size: clamp(1.125rem, 5vw, 1.5rem); }
-.mnTop .screen { position: absolute; height: 12.5rem; z-index: 9; left: 0; right: 0; bottom: 0rem; background-image: linear-gradient(360deg, rgb(24 24 24), transparent); padding: 4% 0; }
+.mnTop .screen { position: absolute; height: 14.5rem; z-index: 9; left: 0; right: 0; bottom: 0rem; background-image: linear-gradient(360deg, rgb(24 24 24), transparent); padding: 4% 0; }
 .mnTop :global(.swiper-pagination-bullet){transform: scale(1);opacity: 0.8;margin: 0rem 0rem !important;background-color: #dddddd;transition: all 0.3s; border-radius: 1rem;margin: 0rem 1px; transition: all 0.2s;}
 .mnTop :global(.swiper-pagination-bullet-active){background-color: #61dafb;opacity: 1;transform: scale(1); width: 1.5rem; margin: 0rem 1px !important;}
 

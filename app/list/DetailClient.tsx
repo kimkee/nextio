@@ -275,7 +275,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
             </div>
             <div className='thum max-w-[45%] flex-1'>
               <button type='button' onClick={()=>{openPosterModal(0, opts) }} 
-                className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300'
+                className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300
+                 mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]'
               >
                 <Img
                   width={400}

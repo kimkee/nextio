@@ -100,7 +100,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
 
   if (mlist === null) {
     return (
-      <section className="sect mnList mb-4 animate-pulse">
+      <section className="sect mnList mb-4 animate-pulse mt-8">
         {/* 섹션 헤더 스켈레톤 - ListTop10은 이탤릭 대형 제목 */}
         <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none px-5 py-2">
           <div className="h-5 w-44 rounded bg-black" />
