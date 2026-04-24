@@ -142,8 +142,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
             </button>
             {isInfo() ?
-            <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
-              <ul className="lst  flex flex-wrap gap-x-10 gap-y-2">
+            <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-9 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
+              <ul className="lst  flex flex-wrap gap-x-9 gap-y-2">
                 {datas.birthday ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
