@@ -32,43 +32,41 @@ export default function ItemPerson({ data, opts }: any) {
 
   return (
   <>
-    <div 
-      className="box block p-4 pr-3 relative" 
-    >
+    <div className="box block p-4 pr-3 relative" >
       <div className="cont flex w-full items-center">
         <Link 
           href={`/search/${opts}/${data.id}`} 
-          className='w-20 flex-none mr-2 overflow-hidden  bg-black active:scale-98 active:opacity-80 transition-transform'
+          className='w-20 flex-none mr-2 overflow-hidden active:scale-98 active:opacity-80 transition-transform'
           scroll={false}
           prefetch={true}
           onClick={handleLinkClick}
         >
-          <div className="pics relative w-full h-full pb-[calc(300/200*100%)] ">
+          <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
             <Img 
-              width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_user.png' 
-              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full'
-              classNameErr='opacity-100 bg-black border border-white/15 border-2'
+              width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/user.png' 
+              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full mt-2'
+              classNameErr='opacity-70 bg-black border border-white/15 border-4 mt-0! rounded-full'
             />  
           </div>
         </Link>
         <div className="desc w-[calc(100%-80px)]">
           <Link href={`/search/${opts}/${data.id}`} className="block active:scale-98 active:opacity-80 transition-transform">
-            <div className="tits text-[#bbbbbb] text-xs">{tit}</div>
+            <div className="tits text-[#bbbbbb] text-sm">{tit}</div>
             <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
             <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
           </Link>
-          <div className="cate flex flex-wrap gap-1 leading-none mt-2">
-            {data.known_for.map( (item: any) => {
-              return (
-                <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
-                  className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)]  overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 active:scale-98 active:opacity-80 transition-transform" 
-                >
-                  {  item.title || item.name }
-                </Link>
-              )
-            })}
-          </div>
         </div>
+      </div>
+      <div className="cate flex flex-wrap gap-1 leading-none mt-3">
+        {data.known_for.map( (item: any) => {
+          return (
+            <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
+              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)]  overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 active:scale-98 active:opacity-80 transition-transform" 
+            >
+              {  item.title || item.name }
+            </Link>
+          )
+        })}
       </div>
        {/*
        <div className="info flex justify-between items-start pt-2 gap-3">

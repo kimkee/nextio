@@ -60,7 +60,9 @@ export default function ViewPoster({props}: {props: {title: string, name: string
           <div key={idx} data-index={idx+1} className='box block w-[calc(30%-1.25rem)] min-w-[calc(30%-1.25rem)] mx-[0.4rem]  break-all'>
             <button type='button' onClick={()=>{openPosterModal(idx+1, props.opts) }} /* href={`./poster/${idx+1}`} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(450/300*100%)] mb-1 active:scale-98 transition-all duration-300'>
               <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${img.file_path}`} alt={props.name +'-Poster-'+ (idx+1)} 
-                srcerr={'/img/common/non_poster.png'} unoptimized={true} className='img absolute object-cover w-full h-full' loading='eager'
+                srcerr={'/img/common/non_poster.png'} unoptimized={true} 
+                className='img absolute object-cover w-full h-full' loading='eager'
+                classNameErr='opacity-100! border border-white/20! border-2'
               />
             </button> 
           </div>

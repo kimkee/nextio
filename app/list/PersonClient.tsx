@@ -117,15 +117,17 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
               <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
-                <Img
-                  src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
-                  alt={`${datas.name}`}
-                  className="img block w-full h-full object-cover"
-                  classNameErr='opacity-100 bg-black'
-                  srcerr='/img/common/user.png'
-                  width={260}
-                  height={260}
-                />
+                <span className='block w-full h-full bg-black'>
+                  <Img
+                    src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
+                    alt={`${datas.name}`}
+                    className="img block w-full h-full object-cover"
+                    classNameErr='opacity-100 bg-black'
+                    srcerr='/img/common/user.png'
+                    width={260}
+                    height={260}
+                  />
+                </span>
               </div>
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
@@ -136,11 +138,11 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           </div>
           
           <div className="m-info relative py-5 pb-[calc(30px+var(--safe-bottom))]">
+            <button type="button" onClick={shareLink} className={`bt inline-flex justify-center items-center size-6 absolute right-4 text-white/60 z-10 ${isInfo() ? 'top-10' : 'top-0 right-0!'}`}>
+              <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
+            </button>
+            {isInfo() ?
             <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-8 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
-              <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center size-6 absolute right-3 top-4.5 text-white/60">
-                <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
-              </button>
-              {isInfo() ?
               <ul className="lst  flex flex-wrap gap-x-10 gap-y-2">
                 {datas.birthday ?
                 <li className="vot text-md text-white/80 relative pl-6">
@@ -166,12 +168,10 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                 </li>
                 : <></>}
               </ul>
-              :
-              <p className="text-white/80">정보가 없습니다.</p>
-              }
               {datas.biography ? <PersonInfoText infoTxt={datas.biography}/> : <></>}
             </div>              
-
+            : <></>
+            }
        
             {casts.cast.length ? <PersonCastCrew title="출연" data={casts.cast} /> : <></>}
             {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
