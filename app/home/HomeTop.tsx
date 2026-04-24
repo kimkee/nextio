@@ -191,7 +191,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               })
             }
             
-            <div className="flex z-30 absolute bottom-10 left-0 right-0 items-center justify-center gap-2.5">
+            <div className="flex z-30 absolute bottom-10 left-1/2 -translate-x-1/2 items-center justify-center gap-2.5">
               <div className="custom-pagination w-auto! leading-none flex items-center gap-1.5"></div>
               { mlist.length > 1 &&
               <div className="flex items-center">
