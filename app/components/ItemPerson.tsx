@@ -33,8 +33,8 @@ export default function ItemPerson({ data, opts }: any) {
   return (
   <>
     <div className="box block p-4 pr-3 relative" >
-      <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick} className="cont flex w-full items-center">
-        <div className='w-20 flex-none mr-2 overflow-hidden active:scale-98 active:opacity-80 transition-transform'>
+      <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick} className="cont flex w-full items-center pressed">
+        <div className='w-20 flex-none mr-2 overflow-hidden'>
           <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/user.png' 
@@ -44,7 +44,7 @@ export default function ItemPerson({ data, opts }: any) {
           </div>
         </div>
         <div className="desc w-[calc(100%-80px)]">
-          <div className="block active:scale-98 active:opacity-80 transition-transform">
+          <div className="block">
             <div className="tits text-[#bbbbbb] text-sm">{tit}</div>
             <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
             <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
@@ -55,7 +55,7 @@ export default function ItemPerson({ data, opts }: any) {
         {data.known_for.map( (item: any) => {
           return (
             <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
-              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)]  overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 active:scale-98 active:opacity-80 transition-transform" 
+              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)] overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 pressed" 
             >
               {  item.title || item.name }
             </Link>
