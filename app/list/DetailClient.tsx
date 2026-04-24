@@ -274,11 +274,15 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               </ul>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <button type='button' onClick={()=>{openPosterModal(0, opts) }}className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300'>
+              <button type='button' onClick={()=>{openPosterModal(0, opts) }} 
+                className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300'
+              >
                 <Img
                   width={400}
                   height={570}
-                  className='img absolute object-cover w-full h-full opacity-100!'
+                  className='img absolute object-cover w-full h-full'
+                  classNameErr='opacity-100! border border-white/15! border-4'
+                  priority={true}
                   unoptimized={true}
                   src={'https://image.tmdb.org/t/p/w400' + datas.poster_path}
                   alt={datas.title || datas.name}

@@ -119,27 +119,27 @@ export default function Poster() {
                 [&_.swiper-slide]:flex!
                 [&_.swiper-slide]:items-center!
                 [&_.swiper-slide]:justify-center!
-              " 
-              // install Swiper modules
-              modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
-              spaceBetween={20}
-              slidesPerView={1}
-              // navigation
-              loop={loopSet()}
-              // lazy={ {enabled: true, loadPrevNext: true, loadPrevNextAmount: 3} } // 지금 loadPrevNext 옵션이 동작 안됨 ㅡㅡ; 
-              // effect={"fade"}
-              // autoplay={false}
-              // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: true}}
-              wrapperTag="ul"
-              pagination={{ clickable: true ,type:'fraction'}}
-              // scrollbar={{ draggable: true }}
-              // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
-              autoHeight={true}
-              onSwiper={(swiper) => {
-                console.log("initialize swiper", swiper);
-                swiper.slideToLoop(Number(vId) , 0);
-              }}
-              onSlideChange={() => {/* console.log('slide change') */}} >
+                " 
+                // install Swiper modules
+                modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+                spaceBetween={20}
+                slidesPerView={1}
+                // navigation
+                loop={loopSet()}
+                // lazy={ {enabled: true, loadPrevNext: true, loadPrevNextAmount: 3} } // 지금 loadPrevNext 옵션이 동작 안됨 ㅡㅡ; 
+                // effect={"fade"}
+                // autoplay={false}
+                // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: true}}
+                wrapperTag="ul"
+                pagination={{ clickable: true ,type:'fraction'}}
+                // scrollbar={{ draggable: true }}
+                // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
+                autoHeight={true}
+                onSwiper={(swiper) => {
+                  console.log("initialize swiper", swiper);
+                  swiper.slideToLoop(Number(vId) , 0);
+                }}
+                onSlideChange={() => {/* console.log('slide change') */}} >
                 <SwiperSlide tag="li">
                   <div className='box w-full h-full'>
                     <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
@@ -149,19 +149,19 @@ export default function Poster() {
                   </div>
                 </SwiperSlide>
                 {
-                datas.images.posters.map( (item:any, idx:number) => {  // .filter( (item, i) => i < 10 )
-                  const img = `//image.tmdb.org/t/p/w780${item.file_path}` ;
-                  return (
-                    <SwiperSlide tag="li" key={idx} className="swiper-slide pbox">
-                      <div className='box w-full h-full'>
+                  datas.images.posters.map((item: any, idx: number) => {  // .filter( (item, i) => i < 10 )
+                    const img = `//image.tmdb.org/t/p/w780${item.file_path}`;
+                    return (
+                      <SwiperSlide tag="li" key={idx} className="swiper-slide pbox">
+                        <div className='box w-full h-full'>
                           <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
-                            <img src={`${img}`} alt={`${title}_Poster[${idx+2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
-                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:` `}} /></div>
+                            <img src={`${img}`} alt={`${title}_Poster[${idx + 2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
+                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: ` ` }} /></div>
                           </div>
-                      </div>
-                    </SwiperSlide>
-                  )
-                })
+                        </div>
+                      </SwiperSlide>
+                    )
+                  })
                 }
               </Swiper>
               :null}

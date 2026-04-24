@@ -8,8 +8,8 @@ const ui = {
         console.log("dsfafsafdsffsafasfdfas");
     },
     error:{
-        poster: e => e.target.src=`${process.env.NEXT_PUBLIC_URL}img/common/non_poster.png`,
-        user: e => e.target.src=`${process.env.NEXT_PUBLIC_URL}img/common/user.png`
+        poster: e => e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`,
+        user: e => e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/user.png`
     },
     iosx:{ // 아이폰X 여백값
         top: ()=>    parseInt(getComputedStyle(document.documentElement).getPropertyValue("--safe-top").replace(/[^0-9]/g, "")) || 0 ,

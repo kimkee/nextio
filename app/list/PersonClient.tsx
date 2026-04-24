@@ -147,14 +147,15 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                 {datas.birthday ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'calendar-days']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
-                  {datas.birthday} 4
+                  {datas.birthday}
                 </li>
                 : <></>}
                 {datas.popularity ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'star']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
                   {datas.popularity} 
-                </li> : <></>}
+                </li>
+                : <></>}
                 {datas.place_of_birth ?
                 <li className="vot text-md text-white/80 relative pl-6">
                   <FontAwesomeIcon icon={['fas', 'location-dot']} className='w-4 h-4 text-primary align-middle mr-1 absolute left-0 top-1'/>
@@ -176,102 +177,6 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             {casts.cast.length ? <PersonCastCrew title="출연" data={casts.cast} /> : <></>}
             {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
             {casts.crew.length ? <PersonCastCrew title="참여" data={casts.crew} /> : <></>}
-
-            {/* {casts.cast.length ? 
-            <div className="sect list mt-5">
-              <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
-                <h4 className="tts text-base text-white/90">출연작 </h4>
-                <div className="bt-nav">
-                  <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
-                  <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>
-                </div>
-              </div>
-              <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
-                {
-                casts.cast.map((item:any,idx:number) => {
-                  return(
-                  <div key={idx} className='box shrink-0 w-[calc(19%-20px)] mx-1.25' data-index={idx+1}>
-                    <Link href={`/movie/${item.id}`}  className='pic pb-[150%] block relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200' >
-                      <img 
-                        className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
-                        src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
-                        alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
-                        loading="lazy"
-                      />
-                    </Link> 
-                  </div>
-                  )
-                })
-                }
-              </div>
-            </div>
-            : null}
-
-            {casts.crew.length ? 
-            <div className="sect list mt-5">
-              <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
-                <h4 className="tts text-base text-white/90">제작참여 </h4>
-                <div className="bt-nav">
-                  <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
-                  <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>
-                </div>
-              </div>
-              <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
-                {
-                casts.crew.map((item:any,idx:number) => {
-                  return(
-                  <div key={idx} className='box shrink-0 w-[calc(19%-20px)] mx-1.25' data-index={idx+1}>
-                    <Link href={`/movie/${item.id}`} className='pic pb-[150%] block relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
-                      <img 
-                        className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
-                        src={'https://image.tmdb.org/t/p/w185'+item.poster_path}
-                        alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
-                        loading="lazy"
-                      />
-                    </Link> 
-                  </div>
-                  )
-                })
-                }
-              </div>
-            </div>
-            : null}  
-            
-          
-            {photos.profiles.length ? 
-            <div className="sect list mt-5">
-              <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
-                <h4 className="tts text-base text-white/90">사진 </h4>
-                <div className={`bt-nav`}>
-                  <button type="button" onClick={(e)=>goScroll('prev', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-left' ]} className='w-3 h-3' /></button>
-                  <button type="button" onClick={(e)=>goScroll('next', e)} className="bt w-4 h-4 inline-flex items-center justify-center -mx-0.5 text-white/30 hover:text-primary"><FontAwesomeIcon icon={['fas', 'caret-right']} className='w-3 h-3' /></button>
-                </div>
-              </div>
-              <div className="lst flex flex-nowrap overflow-x-auto overflow-y-hidden mt-2 -mx-5 px-4 scrollbar-hidden scroll-smooth">
-                {
-                photos.profiles.map((item:any,idx:number) => {
-                  return(
-                  <div key={idx} className='box shrink-0 w-[calc(19%-20px)] mx-1.25' data-index={idx+1}>
-                    <button type='button' onClick={()=>{
-                      // 클릭하면. 여기 이미지 url을  id='profile_img'  에 교체하기
-                      setProfileImg('https://image.tmdb.org/t/p/w400'+item.file_path);
-                    }} className='pic pb-[150%] block w-full relative overflow-hidden rounded-sm bg-black active:scale-95 transition-all duration-200'>
-                      <img 
-                        className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
-                        src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={item.title}
-                        onError={(e:any)=>{e.target.src=`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}} 
-                        loading="lazy" 
-                      />
-                    </button> 
-                  </div>
-                  )
-                })
-                }
-              </div>
-            </div>
-            : null} */}
             
           </div>
         </>

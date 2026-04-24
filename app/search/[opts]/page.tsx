@@ -369,7 +369,7 @@ export default function Page() {
             </form>
           </div>
         </div>
-
+        <div className="w-full h-120 bg-rainbow opacity-5 max-w-(--mwide) fixed top-[calc(3.5rem+var(--safe-top)+8rem)] backdrop-blur-lg blur-xl "></div>
         {keywordList.length > 0 &&
         <div className={`recent-kwds`} ref={keyWordBox}>
           <ul className="lst">
