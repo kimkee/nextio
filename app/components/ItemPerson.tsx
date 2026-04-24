@@ -33,14 +33,8 @@ export default function ItemPerson({ data, opts }: any) {
   return (
   <>
     <div className="box block p-4 pr-3 relative" >
-      <div className="cont flex w-full items-center">
-        <Link 
-          href={`/search/${opts}/${data.id}`} 
-          className='w-20 flex-none mr-2 overflow-hidden active:scale-98 active:opacity-80 transition-transform'
-          scroll={false}
-          prefetch={true}
-          onClick={handleLinkClick}
-        >
+      <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick} className="cont flex w-full items-center">
+        <div className='w-20 flex-none mr-2 overflow-hidden active:scale-98 active:opacity-80 transition-transform'>
           <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/user.png' 
@@ -48,15 +42,15 @@ export default function ItemPerson({ data, opts }: any) {
               classNameErr='opacity-70 bg-black border border-white/15 border-4 mt-0! rounded-full'
             />  
           </div>
-        </Link>
+        </div>
         <div className="desc w-[calc(100%-80px)]">
-          <Link href={`/search/${opts}/${data.id}`} className="block active:scale-98 active:opacity-80 transition-transform">
+          <div className="block active:scale-98 active:opacity-80 transition-transform">
             <div className="tits text-[#bbbbbb] text-sm">{tit}</div>
             <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
             <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
-          </Link>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="cate flex flex-wrap gap-1 leading-none mt-3">
         {data.known_for.map( (item: any) => {
           return (
