@@ -34,7 +34,7 @@ export default function ItemPerson({ data, opts }: any) {
   <>
     <div className="box block relative" >
       <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick}
-        className="cont flex w-full items-center pressed py-4 pr-3 pl-5"
+        className="cont flex w-full items-center pressed py-4 pb-2 pr-3 pl-5"
       >
         <div className='w-20 flex-none mr-2 overflow-hidden'>
           <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
