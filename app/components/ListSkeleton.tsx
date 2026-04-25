@@ -7,9 +7,9 @@ export default function ListSkeleton({ count = 20 }: { count?: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <li key={i} className='animate-pulse'>
           {/* 포스터 영역 - ItemB의 pb-[calc(1200%/780*100)] 비율과 동일 */}
-          <div className='relative overflow-hidden rounded-sm bg-black pb-[calc(1200/780*100%)]'></div>
+          <div className='relative overflow-hidden rounded-sm bg-black pb-[calc(1200/780*100%)] mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]'></div>
           {/* 타이틀 영역 */}
-          <div className='mt-1.5 h-2.5 bg-black rounded w-4/5'></div>
+          <div className='mt-1.5 h-2.5 bg-black rounded w-full'></div>
         </li>
       ))}
     </ul>
