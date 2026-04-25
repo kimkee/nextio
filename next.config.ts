@@ -47,7 +47,3 @@ const nextConfig = withPWA({
 
 export default nextConfig;
 
-// Silence Turbopack warning – we rely on a webpack‑based plugin (next‑pwa)
-// An empty turbopack config tells Next.js we are aware of the mismatch.
-export const turbopack = {};
-
