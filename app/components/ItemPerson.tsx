@@ -32,8 +32,10 @@ export default function ItemPerson({ data, opts }: any) {
 
   return (
   <>
-    <div className="box block p-4 pr-3 relative" >
-      <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick} className="cont flex w-full items-center pressed">
+    <div className="box block relative" >
+      <Link href={`/search/${opts}/${data.id}`} scroll={false} prefetch={true} onClick={handleLinkClick}
+        className="cont flex w-full items-center pressed py-4 pr-3 pl-5"
+      >
         <div className='w-20 flex-none mr-2 overflow-hidden'>
           <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
             <Img 
@@ -51,11 +53,11 @@ export default function ItemPerson({ data, opts }: any) {
           </div>
         </div>
       </Link>
-      <div className="cate flex flex-wrap gap-1 leading-none mt-3">
+      <div className="cate flex flex-wrap gap-1 leading-none p-4 pt-1">
         {data.known_for.map( (item: any) => {
           return (
             <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
-              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)] overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-[#aaa] text-9 pressed" 
+              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)] overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-white/60 text-xs pressed" 
             >
               {  item.title || item.name }
             </Link>

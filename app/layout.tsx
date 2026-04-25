@@ -63,6 +63,7 @@ import { Suspense } from 'react';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/';
+  const isProd = process.env.NODE_ENV === 'production';
 
   return (
     <html lang='ko' className={`${noto_sans_kr.variable}`}>
@@ -84,8 +85,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         </div>
         <div id='modal-root' className='fixed z-1000' />
         <Ui />
-        {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
-        <Analytics />
+        {isProd && (
+          <>
+            {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   );
