@@ -36,7 +36,7 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
     router.push(`${pathname}?video=${opts}&idx=${idx}`, { scroll: false });
   };
-  console.log(props.data); 
+  // console.log(props.data); 
 
   return (
     <>

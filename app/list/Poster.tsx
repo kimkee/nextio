@@ -29,7 +29,7 @@ export default function Poster() {
   let params = useParams()
   const router = useRouter();
   const searchParams = useSearchParams();
-  console.log(params);
+  
   
 
   const postID = params.id;
@@ -54,7 +54,7 @@ export default function Poster() {
   useEffect(() => {
     
     fetchDatas();
-    console.log(datas);
+    // console.log(datas);
     
     ui.lock.using(true); 
     setMounted(true);

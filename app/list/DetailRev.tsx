@@ -195,7 +195,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   }
 */
 
-  console.log(myinfo);
+  // console.log(myinfo);
   useEffect(() => {
     fetchReview();
     console.log(postID);

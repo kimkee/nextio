@@ -64,8 +64,9 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
   const [collect, setCollect] = useState<[any] | any>(null);
   const fetchCollection = (id:number) => {
-    console.log(id);
+    
     if(!id) return;
+    console.log(id);
     axios.request({
     method: 'GET',
     url: `https://api.themoviedb.org/3/collection/${id}?language=ko-KR`,
@@ -191,7 +192,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
   const { datas, casts, moves } = data;
   const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
   const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <div 
