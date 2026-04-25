@@ -62,7 +62,7 @@ import RouteTracker from '@/app/components/RouteTracker';
 import { Suspense } from 'react';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app/';
+  const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app';
   const isProd = process.env.NODE_ENV === 'production';
 
   return (

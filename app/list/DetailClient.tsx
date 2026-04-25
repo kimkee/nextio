@@ -134,24 +134,24 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                 <div className='h-3 bg-black rounded w-1/4' />
               </div>
             </div>
-            <div className='thum max-w-[45%] flex-1'>
+            <div className='thum max-w-[45%] flex-1 mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]'>
               <div className='aspect-2/3 bg-black rounded-sm' />
             </div>
           </div>
 
           {/* 컨트롤 바 영역 */}
-          <div className='mt-8 h-10 bg-black rounded' />
+          <div className='mt-6 h-8 bg-black rounded' />
           
           {/* 줄거리 영역 */}
-          <div className='mt-8 h-24 bg-black rounded' />
+          <div className='mt-4 h-21 bg-black rounded' />
 
           {/* 출연진 영역 (원형) */}
-          <div className='sect mt-10'>
-            <div className='h-6 bg-black rounded w-20 mb-4' />
-            <div className='flex gap-4 overflow-hidden'>
+          <div className='sect mt-4'>
+            <div className='h-6 bg-black rounded w-20 mb-2' />
+            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5'>
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className='flex-none'>
-                  <div className='w-16 h-16 bg-black rounded-full mb-2' />
+                <div key={i} className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col active:scale-95 transition-transform duration-200'>
+                  <div className='pics relative rounded-full w-full bg-black pb-[calc(100%/100*100)] mb-1' />
                   <div className='h-2 bg-black rounded w-12 mx-auto' />
                 </div>
               ))}
@@ -171,10 +171,10 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           {/* 제작진 영역 (원형) */}
           <div className='sect mt-10'>
             <div className='h-6 bg-black rounded w-20 mb-4' />
-            <div className='flex gap-4 overflow-hidden'>
+            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5'>
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className='flex-none'>
-                  <div className='w-16 h-16 bg-black rounded-full mb-2' />
+                <div key={i} className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col active:scale-95 transition-transform duration-200'>
+                  <div className='pics relative rounded-full w-full bg-black pb-[calc(100%/100*100)] mb-1' />
                   <div className='h-2 bg-black rounded w-12 mx-auto' />
                 </div>
               ))}
@@ -315,19 +315,18 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           {datas.production_companies.length ? 
           <div className="sect comp flex flex-wrap mt-8 gap-1">
             {datas.production_companies.map((comp: any) => (
-              comp.logo_path 
-              ? 
+               
               <span key={comp.id} className='logo bg-white/50 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
-                <Img 
-                  width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
-                  className='img max-h-3 align-middle max-w-full w-auto h-auto'
-                  alt={comp.name} srcerr='/img/common/non_poster.png'
-                  unoptimized={true}
-                />
-              </span> 
-              : 
-              <span key={comp.id} className='logo bg-white/70 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
-                {comp.name}
+                {
+                  comp.logo_path
+                  ? <Img 
+                      width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
+                      className='img max-h-3 align-middle max-w-full w-auto h-auto'
+                      alt={comp.name} srcerr='/img/common/non_poster.png'
+                      unoptimized={true}
+                    />
+                  : comp.name
+                }
               </span> 
             ))}
           </div>
