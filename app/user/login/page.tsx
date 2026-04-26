@@ -49,7 +49,7 @@ export default function LoginPage() {
           <Image width={96} height={96} className="w-12" src="/img/logo.png" alt="" />
         </div>
         <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
-          <em className="text-primary relative px-2 z-1 bg-white dark:bg-[#0d111b]">로그인</em>
+          <em className="text-primary relative px-2 z-1 bg-[#181818]">로그인</em>
         </div>
         <div className="grid grid-cols-1 gap-4 w-full">
           <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>

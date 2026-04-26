@@ -37,18 +37,18 @@ export default function ItemPerson({ data, opts }: any) {
         className="cont flex w-full items-center pressed py-4 pb-2 pr-3 pl-5"
       >
         <div className='w-20 flex-none mr-2 overflow-hidden'>
-          <div className="pics relative w-full h-full pb-[calc(200/200*100%)] rounded-full overflow-hidden">
+          <div className="pics relative w-full bg-black/60 pb-[calc(100%/100*100)] rounded-full overflow-hidden">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/user.png' 
-              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full mt-2'
-              classNameErr='opacity-70 bg-black border border-white/15 border-4 mt-0! rounded-full'
+              className='img absolute object-cover w-full h-full rounded-full border-4'
+              classNameErr='opacity-70 border-black/70 border-4 bg-white/5 rounded-full'
             />  
           </div>
         </div>
         <div className="desc w-[calc(100%-80px)]">
           <div className="block">
-            <div className="tits text-[#bbbbbb] text-sm">{tit}</div>
-            <div className="text line-clamp-5 text-10 text-[#888888] mb-2">{data.known_for_department}</div>
+            <div className="tits text-white/90 text-md">{tit}</div>
+            <div className="text line-clamp-5 text-10 text-white/50 mb-2">{data.known_for_department}</div>
             <div className="text-xt flex items-center gap-2"><StarPoint point={data.popularity} opts={{cls:'text-10 -mt-1'}} /></div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function ItemPerson({ data, opts }: any) {
         {data.known_for.map( (item: any) => {
           return (
             <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
-              className="ico bg-white/8 rounded-full inline-block overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 text-white/60 text-xs pressed" 
+              className="ico bg-white/5 rounded-full inline-block overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 text-white/60 text-xs pressed" 
             >
               { item.title || item.name }
             </Link>

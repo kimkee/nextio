@@ -55,7 +55,7 @@ export default function PersonPhoto({title, data, setProfileImg, name}: {title:s
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
                 classNameErr='opacity-100! border border-white/20! border-2'
                 src={'https://image.tmdb.org/t/p/w400'+item.file_path} alt={`${name }-${idx+1}`}
-                srcerr={`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`} 
+                srcerr={`/img/common/non_poster.png`} 
                 loading="lazy" 
               />
             </button> 

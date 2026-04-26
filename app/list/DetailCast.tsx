@@ -50,11 +50,11 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
             return (
               <button onClick={()=>{openPersonModal(b.id) }} /* href={`./person/${b.id}`} */ key={b.credit_id} 
                 className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col active:scale-95 transition-transform duration-200'>
-                <div className="pics relative rounded-full overflow-hidden w-full bg-black pb-[calc(100%/100*100)] mb-1">
+                <div className="pics relative rounded-full overflow-hidden w-full bg-black/60 pb-[calc(100%/100*100)] mb-1">
                   <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
                     srcerr={'/img/common/user.png'} unoptimized={true} 
-                    className='img absolute object-cover w-full h-full rounded-full'
-                    classNameErr='opacity-70 border border-black/100! border-5 bg-white/10! rounded-full'
+                    className='img absolute object-cover w-full h-full rounded-full border-3'
+                    classNameErr='opacity-70 border border-black/70! border-3 bg-white/10 rounded-full'
                     loading='lazy'
                   />
                 </div>

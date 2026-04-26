@@ -53,7 +53,7 @@ export default function Person({title, data}: {title:string, data:any}) {
                 classNameErr='opacity-100! border border-white/20! border-2'
                 src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
                 alt={(item.title||item.name)}
-                srcerr={`${process.env.NEXT_PUBLIC_SITE_URL}/img/common/non_poster.png`}
+                srcerr={`/img/common/non_poster.png`}
                 loading="lazy"
               />
             </Link> 
