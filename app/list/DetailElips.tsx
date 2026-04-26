@@ -29,7 +29,7 @@ export default function ViewElips({overview}: {overview: string}) {
 
   return (
     <>
-    <div data-open={isOverviewOpen} ref={overviewRef} className={`mt-5 mb-8 relative ${isOverFlow ? 'mb-8':''} ${isOverviewOpen ? 'mb-6!':''}`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
+    <div data-open={isOverviewOpen} ref={overviewRef} className={`mt-5 mb-6 relative ${isOverFlow ? 'mb-8':''} ${isOverviewOpen ? 'mb-6!':''}`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
       <div ref={txtRef} className={`text-sm  text-[#aaa] leading-normal ${ isOverviewOpen ? '' : 'line-clamp-3'} ${isOverFlow ? 'cursor-pointer':''}`} >
         <span dangerouslySetInnerHTML={{ __html: ui.textHtml( overview, 'incode' ) }}></span>
         {
