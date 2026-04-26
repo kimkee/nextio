@@ -54,7 +54,7 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
                   <Img width={92} height={92} src={`https://image.tmdb.org/t/p/w92${b.profile_path}`} alt={b.name} 
                     srcerr={'/img/common/user.png'} unoptimized={true} 
                     className='img absolute object-cover w-full h-full rounded-full'
-                    classNameErr='opacity-70 border border-white/10! border-5 bg-white/20! rounded-full'
+                    classNameErr='opacity-70 border border-black/100! border-5 bg-white/10! rounded-full'
                     loading='lazy'
                   />
                 </div>

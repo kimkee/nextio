@@ -57,9 +57,9 @@ export default function ItemPerson({ data, opts }: any) {
         {data.known_for.map( (item: any) => {
           return (
             <Link href={`/search/${item.media_type}/${item.id}`} key={item.id} title={item.title || item.name} 
-              className="ico bg-[#333] rounded-full inline-block max-w-[calc(100%-1rem)] overflow-hidden text-ellipsis whitespace-nowrap  px-1.5 py-0.5 text-white/60 text-xs pressed" 
+              className="ico bg-white/8 rounded-full inline-block overflow-hidden text-ellipsis whitespace-nowrap px-2 py-1 text-white/60 text-xs pressed" 
             >
-              {  item.title || item.name }
+              { item.title || item.name }
             </Link>
           )
         })}

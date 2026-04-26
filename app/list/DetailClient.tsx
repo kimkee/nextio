@@ -316,7 +316,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
           <div className="sect comp flex flex-wrap mt-8 gap-1">
             {datas.production_companies.map((comp: any) => (
                
-              <span key={comp.id} className='logo bg-white/50 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
+              <span key={comp.id} className='logo bg-white/20 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
                 {
                   comp.logo_path
                   ? <Img 
