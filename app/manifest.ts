@@ -5,28 +5,30 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `NEXTIO${ENV}`,
     short_name: `NEXTIO${ENV}`,
-    description: 'NEXTIO = Supabase + Nest.js',
-    start_url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+    description: '최신 영화 정보 서비스 NEXTIO',
+    start_url: '/',
     scope: '/',
     orientation: 'portrait',
     display: 'standalone',
     background_color: '#1c1c1c',
     theme_color: '#1c1c1c',
     icons: [
-        {
-        src: `${process.env.NEXT_PUBLIC_SITE_URL}/img/favicon.ico`,
+      {
+        src: '/img/favicon.ico',
         sizes: '48x48',
         type: 'image/x-icon'
       },
       {
-        src: `${process.env.NEXT_PUBLIC_SITE_URL}/img/icon_app.png`,
+        src: '/img/icon_app.png',
         type: "image/png",
-        sizes: "192x192"
+        sizes: "192x192",
+        purpose: "maskable"
       },
       {
-        src: `${process.env.NEXT_PUBLIC_SITE_URL}/img/icon_app.png`,
+        src: '/img/icon_app.png',
         type: "image/png",
-        sizes: "512x512"
+        sizes: "512x512",
+        purpose: "any"
       }
     ],
   }
