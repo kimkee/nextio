@@ -13,7 +13,7 @@ export default function Index() {
       sessionStorage.removeItem('last_active_route');
       window.location.replace(lastActiveRoute);
     } else {
-      setTimeout(() => { window.location.replace(`/home`); }, 0);
+      setTimeout(() => { window.location.replace(`/home`); }, 500);
     }
 
     return () => { };
