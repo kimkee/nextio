@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 
 // 1. Edge Runtime 사용 (이미 잘 넣어주셨습니다!)
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 // 2. 추가: 이 API는 호출될 때마다 실행되도록 설정 (빌드 시 렌더링 방지)
 export const dynamic = 'force-dynamic';
