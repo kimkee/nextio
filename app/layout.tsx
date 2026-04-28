@@ -70,7 +70,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <head>
         <link rel="preconnect" href="https://image.tmdb.org" />
         <link rel="dns-prefetch" href="https://image.tmdb.org" />
-        <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#1c1c1c" />
       </head>
       <body className={`body ${noto_sans_kr.className} antialiased`}>

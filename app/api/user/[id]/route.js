@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/app/supabase';
 import { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 
 export async function GET(request, { params }) {
