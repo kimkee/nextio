@@ -70,7 +70,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (datas) {
       console.log(datas);
       const newTitle = datas.name;
-      setTitle(newTitle);
+      !searchParams.get('person') && setTitle(newTitle); //person을 키로 가져올때는 타이틀에 사용하지 않음. 
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datas]);
