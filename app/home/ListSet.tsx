@@ -20,7 +20,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     params: {
       page: '1',
       with_genres: opts.cate,
-      sort_by: 'vote_count.desc',
+      sort_by: 'popularity.desc',
       language: 'ko-KR',
       region: 'kr',
       include_adult: 'true',
