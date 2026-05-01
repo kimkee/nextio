@@ -6,6 +6,11 @@ import { notFound } from 'next/navigation';
 type Props = {
   params: Promise<{ opts: string; id: string }>;
 };
+const SNAME = { 
+  DEV: 'NEXTIO:D',
+  LOCAL: 'NEXTIO:L' ,
+  PRD: 'NEXTIO'
+}[process.env.NEXT_PUBLIC_ENV || 'PRD'];
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { opts, id } = await params;
@@ -21,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const data = await res.json();
     
     if (!res.ok) {
-      return { title: '상세 정보 - NEXTIO' };
+      return { title: `상세 정보 - ${SNAME}` };
     }
 
     const title = data.title || data.name;
@@ -29,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const image = `https://image.tmdb.org/t/p/w780${data.backdrop_path || data.poster_path || data.profile_path}`;
 
     return {
-      title: `${title} - NEXTIO`,
+      title: `${title} - ${SNAME}`,
       description,
       openGraph: {
         title,
