@@ -62,7 +62,8 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   
   const [swiper, setSwiper] = useState(null as any);
   const nexto = () => {
-    if(swiper) swiper.slideTo( Math.floor( Math.random() *10 ) , 0 );
+    if(swiper) swiper.slideTo( Math.floor( Math.random() * 7 ) , 0 );
+    // if(swiper) swiper.slideTo( 0 , 0 );
   };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -76,6 +77,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
     // ui.loading.show('glx');
   };
 
+  const [slideCounter, setSlideCounter] = useState(0);
   useEffect(() => {
     fetchMoive(page);
     nexto();
@@ -98,6 +100,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
     if(playStop) swiper.autoplay.start();
     else swiper.autoplay.stop();
   }
+
   const [playStop, setPlayStop] = useState(false);
 
   if (isLoading) {
@@ -107,7 +110,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
           {/* 슬라이더 스켈레톤: mnTop 실제 높이 = 122.9vw / max 525px */}
           <div className="animate-pulse relative w-full bg-black" style={{ height: 'min(122.9vw, 525px)' }}>
             {/* 하단 정보 영역 스켈레톤 */}
-            <div className="absolute bottom-10 left-5 right-5 flex justify-between items-end">
+            <div className="absolute bottom-17 left-5 right-5 flex justify-between items-end">
               {/* 별점 */}
               <div className="flex gap-1">
                 {[1,2,3,4,5].map(i => (
@@ -121,9 +124,9 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               </div>
             </div>
             {/* 페이지네이션 도트 */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {[1,2,3,4,5].map(i => (
-                <div key={i} className={`h-1.5 rounded-full bg-white/30 ${i === 1 ? 'w-5' : 'w-1.5'}`} />
+            <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {[1,2,3,4,5,6,7].map(i => (
+                <div key={i} className={`h-2 rounded-full bg-white/30 ${i === 1 ? 'w-5' : 'w-2'}`} />
               ))}
             </div>
           </div>
@@ -158,9 +161,13 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             onSwiper={(swiper) => {
               // console.log("initialize swiper", swiper);
               setSwiper(swiper);
-              swiper.slideTo( Math.floor( Math.random() *10 ) );
+              // swiper.slideTo( Math.floor( Math.random() *10 ) );
             }}
-            onSlideChange={() => {/* console.log('slide change') */}}
+            onSlideChange={() => {
+              console.log( 'slideCount' , slideCounter);
+              setSlideCounter(slideCounter+1);
+              if(slideCounter>7) togglePlayStop();
+            }}
           >
             {
               mlist.filter( (item:any, i:number) => i < 7 ).map( (data:any, idx:number) => {
