@@ -1,15 +1,16 @@
-
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { usePathname, useRouter, useParams } from 'next/navigation';
-import Link from 'next/link';
+import React, { useEffect, useRef } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+
 export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) {
-  const params = useParams()
-  const [slideActive, slideActiveSet] = useState(0);
+  const params = useParams();
+  const cateID = (params.cate as string) || '0'; // URL에서 카테고리 ID 추출
+  
   const cateBoxRef = useRef<HTMLDivElement>(null);
   const activeBtnRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
-  const goSlide = (num: number) => {
+
+  const goSlide = () => {
     const catebox = cateBoxRef.current;
     const btnAct = activeBtnRef.current;
     if (catebox && btnAct) {
@@ -19,18 +20,12 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
 
       const scr = btnActLeft - cateboxWid + btnActWid;
       catebox?.scrollTo(scr, 0);
-      console.log("slideActive == " + slideActive + "  " + btnActLeft);
-      slideActiveSet(num);
     }
   };
-  const cateID = params.cate;
-  useEffect(() => {
-    goSlide(slideActive);
-    // console.log(menu);
 
-    return () => { }
-    // eslint-disable-next-line
-  }, [cateID, slideActive, menu, opts]);
+  useEffect(() => {
+    goSlide();
+  }, [cateID, menu]); // 카테고리가 바뀌거나 메뉴 데이터가 로드될 때만 스크롤
 
   const handleWheel = (event: any)=> {
     event.preventDefault();
@@ -41,17 +36,15 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
 
   return (
     <>
-      
       <div className={`cate-box overflow-hidden block w-full h-14 ${cateID}`}>
         <div className="inr h-14 flex flex-nowrap items-center border border-t border-[#6b6b6b]/10 bg-[rgb(30_30_30_/92%)] fixed z-600
-          bottom-[calc(3.75rem+var(--safe-bottom))] w-full overflow-x-auto scrollbar-hidden
+          bottom-[calc(3.75rem+var(--safe-bottom))] w-full overflow-x-auto scrollbar-hidden scroll-smooth
           left-1/2 translate-x-[-50%] max-w-(--mwide) ml-[calc(0px-var(--scrPad)/2)]"
           ref={cateBoxRef}
           onMouseOver={  ()=>cateBoxRef.current?.addEventListener('wheel', handleWheel) }
           onMouseLeave={ ()=>cateBoxRef.current?.removeEventListener('wheel', handleWheel) }
         >
           {
-            
             menu.length > 0 ?
             <ul className="list px-2.5 flex flex-nowrap items-center">
               <li data-index="0" className={"0" === cateID ? "active" : ''}>
@@ -61,12 +54,13 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
                 </button>
               </li>
               {menu.map((item: { id: string; name: string; }, idx: number) => {
+                const isSelected = item.id.toString() === cateID;
                 return (                  
-                  <li data-index={idx + 1} key={item.id} data-cate={item.id} className={`${item.id.toString() === cateID ? "active" : ''} mx-1.5` }>
+                  <li data-index={idx + 1} key={item.id} data-cate={item.id} className={`${isSelected ? "active" : ''} mx-1.5` }>
                     <button
-                      className={`${btnClass} ring-1 ${item.id.toString() === cateID ? 'bg-[#273c5a] ring-[#2c3a58]':'bg-[#1c1c1c] ring-[#3c3c3c]'}`}
+                      className={`${btnClass} ring-1 ${isSelected ? 'bg-[#273c5a] ring-[#2c3a58]':'bg-[#1c1c1c] ring-[#3c3c3c]'}`}
                       onClick={() => router.push(`/list/${opts}/${item.id}`)}
-                      ref={item.id.toString() === cateID ? activeBtnRef : null}
+                      ref={isSelected ? activeBtnRef : null}
                     >
                       {item.name}
                     </button>
