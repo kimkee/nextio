@@ -190,8 +190,9 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
   };
   
   const { datas, casts, moves } = data;
-  const bgDm = datas.backdrop_path ? datas.backdrop_path : datas.poster_path;
+  const bgDm = (datas.backdrop_path ? datas.backdrop_path : datas.poster_path );
   const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
+  const videoImg = bgDm ? 'https://image.tmdb.org/t/p/w780' + bgDm : '/img/common/non_video.png';
   // console.log(data);
   return (
     <>
@@ -300,7 +301,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
 
-          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", opts: opts, data: moves.results, defaultImg: bgImg }} /> : ''}
+          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", opts: opts, data: moves.results, defaultImg: videoImg }} /> : ''}
 
           {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
 

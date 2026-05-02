@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {useParams, useRouter, useSearchParams } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
+import Link from 'next/link';
 
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -116,7 +117,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           <div className="profile pb-3 pt-5">
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
-              <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
+              <Link href={`/person/${personID}`} className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
                 <span className='block w-full h-full bg-black'>
                   <Img
                     src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
@@ -128,7 +129,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                     height={260}
                   />
                 </span>
-              </div>
+              </Link>
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-6">
               {datas.name && <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]"> {datas.name} </p> }

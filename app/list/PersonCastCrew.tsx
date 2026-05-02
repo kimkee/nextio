@@ -50,12 +50,13 @@ export default function Person({title, data}: {title:string, data:any}) {
                 width={185}
                 height={278}
                 className="img absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full object-cover max-w-inherit min-w-inherit h-full bg-[#000000]"
-                classNameErr='opacity-100! border border-white/20! border-2'
+                classNameErr='opacity-100! border border-white/20! border-2 [&+span]:flex'
                 src={'https://image.tmdb.org/t/p/w185'+item.poster_path} 
                 alt={(item.title||item.name)}
                 srcerr={`/img/common/non_poster.png`}
                 loading="lazy"
               />
+              <span className='hidden absolute left-1 right-1 top-[56%] text-white/60 bottom-1 items-end bg-[#1c1c1c] justify-center text-shadow-[0.5px_0.5px_2px_#000000] text-xs p-2 pb-2 text-center leading-tight break-keep'>{(item.title||item.name)}</span>
             </Link> 
           </div>
           )

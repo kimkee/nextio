@@ -144,7 +144,7 @@ export default function Poster() {
                   <div className='box w-full h-full'>
                     <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
                       <img src={pstImg} className="img relative object-contain w-full h-full z-2" alt={`${title}_Poster[1]`} onError={ui.error.poster} loading="lazy"/>
-                      <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:'scale-200'}} /></div>
+                      <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:'full'}} /></div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -156,7 +156,7 @@ export default function Poster() {
                         <div className='box w-full h-full'>
                           <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
                             <img src={`${img}`} alt={`${title}_Poster[${idx + 2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
-                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: ` ` }} /></div>
+                            <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: `full` }} /></div>
                           </div>
                         </div>
                       </SwiperSlide>

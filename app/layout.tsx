@@ -63,7 +63,7 @@ import { Suspense } from 'react';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app';
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = process.env.NEXT_PUBLIC_ENV === 'PRD';
 
   return (
     <html lang='ko' className={`${noto_sans_kr.variable}`}>
