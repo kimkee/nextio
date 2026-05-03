@@ -163,10 +163,14 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               setSwiper(swiper);
               // swiper.slideTo( Math.floor( Math.random() *10 ) );
             }}
-            onSlideChange={() => {
+            onSlideChangeTransitionEnd={() => {
               console.log( 'slideCount' , slideCounter);
               setSlideCounter(slideCounter+1);
-              if(slideCounter>7) togglePlayStop();
+              if(slideCounter>7) {
+                setPlayStop(false);
+                togglePlayStop();
+                setSlideCounter(0);
+              }
             }}
           >
             {
