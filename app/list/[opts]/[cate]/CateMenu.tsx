@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import ui from '@/app/lib/ui';
 
 export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) {
   const params = useParams();
@@ -18,7 +19,10 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
     const btnActLeft = btnAct.offsetLeft;
     const btnActWid = btnAct.offsetWidth * 0.5;
     const scr = btnActLeft - cateboxWid + btnActWid;
-    catebox.scrollTo(scr, 0);
+    ui.scrollTo(cateBoxRef.current, scr, 0, 200, () => {
+      console.log(".cate-box 도착");
+    });
+    // catebox.scrollTo(scr, 0);
   };
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
     <>
       <div className={`cate-box overflow-hidden block w-full h-14 ${cateID}`}>
         <div className="inr h-14 flex flex-nowrap items-center border border-t border-[#6b6b6b]/10 bg-[rgb(30_30_30_/92%)] fixed z-600
-          bottom-[calc(3.75rem+var(--safe-bottom))] w-full overflow-x-auto scrollbar-hidden scroll-smooth
+          bottom-[calc(3.75rem+var(--safe-bottom))] w-full overflow-x-auto scrollbar-hidden
           left-1/2 translate-x-[-50%] max-w-(--mwide) ml-[calc(0px-var(--scrPad)/2)]"
           ref={cateBoxRef}
           onMouseOver={  ()=>cateBoxRef.current?.addEventListener('wheel', handleWheel) }

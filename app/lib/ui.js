@@ -117,29 +117,47 @@ const ui = {
 
 		return str;
 	},
-    scrollTo: (selector, position, duration, callback) => {
-        // ui.scrollTo(boxElement, 100, 200, () => {
-        //     console.log(".box 도착");
-        // });
-        const element = document.querySelector(selector);
+    /* 
+    @description: 요소 스크롤 투 x y 
+    @param: 
+        element: 대상
+        x: x 좌표
+        y: y 좌표
+        duration: 지속 시간
+        callback: 도착 후 실행할 함수
+    @example: ui.scrollTo(boxElement, 100, 0, 200, () => { console.log(".box 도착"); }); 
+    */
+    scrollTo: (element, x, y, duration = 400, callback, easeingType = 'easeInOut') => {
+        // const element = document.querySelector(selector);
         if (!element) return;
-        console.log(element);
-        const startingYOffset = element.scrollTop || document.documentElement.scrollTop;
-        const targetYOffset = position;
+        console.log(`scrollTo`, element);
+        const startingXOffset = element.scrollLeft || document.documentElement.scrollLeft;
+        const startingYOffset = element.scrollTop  || document.documentElement.scrollTop;
+        const targetXOffset = x;
+        const targetYOffset = y;
         const startTime = performance.now();
 
+        const easing = {
+            easeIn   : (t) => t * t * t,
+            easeOut  : (t) => 1 - Math.pow(1 - t, 3),
+            easeInOut: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+            linear   : (t) => t,
+        };
         const animateScroll = (timestamp) => {
             const currentTime = timestamp - startTime;
             const progress = Math.min(currentTime / duration, 1);
-            const easeInOutCubic = progress < 0.5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
-            const yOffset = startingYOffset + (targetYOffset - startingYOffset) * easeInOutCubic;
+            
+            const curve = easing[easeingType](progress);
+            const xOffset = Math.floor(startingXOffset + (targetXOffset - startingXOffset) * curve);
+            const yOffset = Math.floor(startingYOffset + (targetYOffset - startingYOffset) * curve);
+            process.env.NEXT_PUBLIC_ENV !== 'PRD' && console.log(`left : ${xOffset} , top : ${yOffset}`);
 
             if (element === document.body) {
-                window.scrollTo(0, yOffset);
+                window.scrollTo(xOffset, yOffset);
             }else{
-                element.scrollTop = yOffset;
+                element.scrollLeft = xOffset;
+                element.scrollTop  = yOffset;
             }
-
             if (currentTime < duration) {
                 requestAnimationFrame(animateScroll);
             }else{

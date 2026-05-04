@@ -16,7 +16,7 @@ export default function Nav() {
   const isActive = (els: string) => pathname.includes(`${els}`) ? 'active  text-primary border-primary' : '';
   const [isOnTop, setIsOnTop] = useState(false);
 
-  const goTop = () => ui.scrollTo('body', 0, 200);
+  const goTop = () => ui.scrollTo(document.body, 0, 0, 200);
 
   const scrollEvent = () => {
     if (ui.lock.stat) return;

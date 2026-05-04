@@ -133,14 +133,13 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
   const inputReply = (e: any)=> {
     const isPop = !!e.target.closest(".poptents");
     console.log(`isPop ${isPop}`);
-    const boxScroll = isPop ? ".popup>.pbd>.pct" : "body,html";
+    const boxScroll = document.querySelector(isPop ? ".popup>.pbd>.pct" : "body,html") as HTMLElement;
     const $writeRev = document.querySelector("#writeRev") as HTMLElement;
-    if($writeRev){
+    if($writeRev && boxScroll){
       const rvPosTop = $writeRev.offsetTop;
       console.log(rvPosTop);
-      ui.scrollTo( boxScroll, rvPosTop , 200, ()=>{ console.log("도착"); });
+      ui.scrollTo( boxScroll, 0, rvPosTop , 200, ()=> { console.log("도착"); });
     }
-    
   }
   useEffect(() => {
     getUser().then((data) => {

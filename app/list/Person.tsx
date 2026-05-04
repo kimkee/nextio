@@ -14,7 +14,7 @@ export default function Person() {
  
 
   const [mounted, setMounted] = useState<boolean>(false);
-  const goTop = () => ui.scrollTo('.popup .pct', 0, 200);
+  const goTop = () => ui.scrollTo( pctRef.current, 0, 0, 200);
   const [scr, setScr] = useState(0);
   const scrollEvent = (e: any) => setScr(parseInt(e.target.scrollTop));
   useEffect(() => {
