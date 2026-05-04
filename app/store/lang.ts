@@ -2,6 +2,7 @@ import { atom, useAtomValue } from 'jotai';
 import langData from '@/app/langs/lang.json';
 
 export const globalLangAtom = atom({ lang: '', region: '' });
+export const langAtom = atom('ko');
 // export const globalLangAtom = atom({ lang: 'ko-KR', region: 'kr' });
 // export const globalLangAtom = atom({ lang: 'ja-JP', region: 'jp' });
 // export const globalLangAtom = atom({ lang: 'zh-CN', region: 'cn' });

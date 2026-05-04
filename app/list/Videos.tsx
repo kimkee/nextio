@@ -17,6 +17,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 
 export default function Videos() {
 
@@ -24,6 +26,7 @@ export default function Videos() {
   const params = useParams()
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const [globalLang] = useAtom(globalLangAtom);
   
   const postID = params.id;
   const vId = searchParams.get('idx')
@@ -39,9 +42,21 @@ export default function Videos() {
 
   const [movs, setMovs] = useState({results:[]});
   const loopSet = ()=> movs.results.length > 1 ? true : false;
-  const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?language=ko&region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?language=ko&region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchMov = () => {
-    axios.get( movURL ).then(response => {
+    const options = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/${opts}/${postID}/videos`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+    axios.request(options).then(response => {
       console.log("영상" , response.data);
       setMovs( response.data);
     }).catch( e => { console.log(e); });
@@ -84,7 +99,6 @@ export default function Videos() {
               <div className="absolute left-0 -top-16 z-50 w-100 hidden">
                 <p>{`opts ` + opts}</p>
                 <p>{`id ` + postID}</p>
-                <p>{`movURL ` + movURL}</p>
               </div>
 
               {movs && movs.results.length ? 

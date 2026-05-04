@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { cookies } from 'next/headers';
 import '@/app/style/globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react"
@@ -61,12 +62,26 @@ import Popup from '@/app/components/Popup';
 import RouteTracker from '@/app/components/RouteTracker';
 import { Suspense } from 'react';
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default async function RootLayout(props: { children: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app';
   const isProd = process.env.NEXT_PUBLIC_ENV === 'PRD';
 
+  const cookieStore = await cookies();
+  const globalLangCookie = cookieStore.get('globalLang');
+  let lang = 'ko';
+
+  if (globalLangCookie) {
+    try {
+      const { region } = JSON.parse(decodeURIComponent(globalLangCookie.value));
+      const langMap: Record<string, string> = { kr: 'ko', us: 'en', jp: 'jp', cn: 'cn', tw: 'tw' };
+      lang = langMap[region] || 'ko';
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
-    <html lang='ko' className={`${noto_sans_kr.variable}`}>
+    <html lang={lang} className={`${noto_sans_kr.variable}`}>
       <head>
         <link rel="preconnect" href="https://image.tmdb.org" />
         <link rel="dns-prefetch" href="https://image.tmdb.org" />
