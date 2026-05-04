@@ -4,6 +4,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import Img from '@/app/components/Img';
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import axios from 'axios';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 import Loading from '../components/Loading';
 import DetailElips from './DetailElips';
 import DetailCtls from './DetailCtls';
@@ -18,6 +20,7 @@ import getUser from '@/app/getUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSetAtom } from 'jotai';
 import { modalTitleAtom } from '@/app/store/modal';
+import { useTranslation } from '@/app/store/lang';
 
 interface DetailClientProps {
   opts: string;
@@ -25,6 +28,7 @@ interface DetailClientProps {
 }
 
 export default function DetailClient({ opts, postID }: DetailClientProps) {
+  const t = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
   const setTitle = useSetAtom(modalTitleAtom);
@@ -33,32 +37,57 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
   const [user, setUser] = useState<UserType>(null as any);
   const [myinfo, setMyinfo] = useState<MyinfoType>(null as any);
 
+  const [globalLang] = useAtom(globalLangAtom);
+
   const fetchMovieData = async () => {
     setData(null);
-    const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
-    const castURL = `https://api.themoviedb.org/3/${opts}/${postID}/credits?&region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-    const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
 
-    try {
-      const [datasRes, castRes, movRes] = await Promise.all([
-        fetch(fetchURL),
-        fetch(castURL),
-        fetch(movURL)
-      ]);
+    const dataOpts = {
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+        append_to_response: 'videos,images',
+        include_image_language: 'en,null'
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
 
-      if (!datasRes.ok) throw new Error('Failed to fetch movie data');
+    const castOpts = {
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
 
-      const datas = await datasRes.json();
-      const casts = await castRes.json();
-      const moves = await movRes.json();
+    const movOpts = {
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+
+    const datasRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}`, dataOpts).catch(console.error);
+    const castsRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/credits`, castOpts).catch(console.error);
+    const videoRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/videos`, movOpts).catch(console.error);
+
+    if (datasRes && castsRes && videoRes) {
       setData({
-        datas: datas,
-        casts: casts,
-        moves: moves
+        datas: datasRes.data,
+        casts: castsRes.data,
+        moves: videoRes.data
       });
-      fetchCollection(datas.belongs_to_collection?.id);
-    } catch (e) {
-      console.error(e);
+      fetchCollection(datasRes.data.belongs_to_collection?.id);
     }
   };
 
@@ -68,13 +97,13 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
     if(!id) return;
     console.log(id);
     axios.request({
-    method: 'GET',
-    url: `https://api.themoviedb.org/3/collection/${id}?language=ko-KR`,
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
-    } 
-  }).then(res =>{
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/collection/${id}?language=${globalLang.lang}&region=${globalLang.region}`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      } 
+    }).then(res =>{
       console.log(res.data);
       setCollect(res.data);
     }).catch(e=>{
@@ -299,17 +328,17 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {datas.overview && <DetailElips overview={datas.overview} />}
 
-          {casts.cast.length ? <DetailCast props={{ title: "출연진", css: "cast", data: casts.cast }} /> : ''}
+          {casts.cast.length ? <DetailCast props={{ title: t.detailTool.cast, css: "cast", data: casts.cast }} /> : ''}
 
-          {moves.results.length ? <DetailVideo props={{ title: "영상", css: "movs", opts: opts, data: moves.results, defaultImg: videoImg }} /> : ''}
+          {moves.results.length ? <DetailVideo props={{ title: t.detailTool.video, css: "movs", opts: opts, data: moves.results, defaultImg: videoImg }} /> : ''}
 
-          {casts.crew.length ? <DetailCast props={{ title: "제작진", css: "crew", data: casts.crew }} /> : ''}
+          {casts.crew.length ? <DetailCast props={{ title: t.detailTool.crew, css: "crew", data: casts.crew }} /> : ''}
 
-          {datas.images.posters.length ? <DetailPoster props={{ title: "포스터", name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+          {datas.images.posters.length ? <DetailPoster props={{ title: t.detailTool.poster, name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
-          {collect ? <DetailCollection opts={opts} props={{ title: "시리즈", css: "collect", data: collect }} /> : ''}
+          {collect ? <DetailCollection opts={opts} props={{ title: t.detailTool.series, css: "collect", data: collect }} /> : ''}
 
-          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: "시즌", css: "season", data: datas.seasons }} /> : ''}
+          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailTool.season, css: "season", data: datas.seasons }} /> : ''}
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 

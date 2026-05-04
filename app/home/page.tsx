@@ -9,8 +9,10 @@ import ui from '@/app/lib/ui';
 import HomeTop from "./HomeTop";
 import ListSet from "./ListSet";
 import ListTop10 from "./ListTop10";
+import { useTranslation } from '@/app/store/lang';
 
 export default function Home() {
+  const t = useTranslation();
   const scrollEvent = ()=> {
     const header = document.querySelector('.header');
     const scr = ui.viewport.scrollTop(); 
@@ -40,19 +42,19 @@ export default function Home() {
 
         <ListTop10 opts={{media:"movie", list: "trending/movie/week", cate: "0", title:"Weekly Movie TOP 20"}} />
         
-        <ListSet opts={{media:"movie", list: "discover/movie", cate: "16", title: "영화/애니메이션"}} />
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "16", title: `${t.movie}/${t.animation}`}} />
         
-        <ListSet opts={{media:"movie", list: "discover/movie", cate: "10402", title: "영화/음악"}} />
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "10402", title: `${t.movie}/${t.music}`}} />
         
-        <ListSet opts={{media:"movie", list: "discover/movie", cate: "99", title: "영화/다큐멘터리"}} />
+        <ListSet opts={{media:"movie", list: "discover/movie", cate: "99", title: `${t.movie}/${t.documentary}`}} />
 
         <ListTop10 opts={{media:"tv", list: "trending/tv/week", cate: "0", title:"Weekly TV TOP 20"}} />
         
-        <ListSet opts={{media:"tv", list: "discover/tv", cate: "16", title: "TV/애니메이션"}} />
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "16", title: `${t.tv}/${t.animation}`}} />
         
-        <ListSet opts={{media:"tv", list: "discover/tv", cate: "10764", title: "TV/Reality"}} />
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "10764", title: `${t.tv}/${t.reality}`}} />
         
-        <ListSet opts={{media:"tv", list: "discover/tv", cate: "80", title: "TV/범죄"}} />
+        <ListSet opts={{media:"tv", list: "discover/tv", cate: "80", title: `${t.tv}/${t.crime}`}} />
 
       </main>
     </div>

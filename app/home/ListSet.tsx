@@ -7,12 +7,16 @@ import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 
 export default  function ListSet({opts}:{opts:{media:string, list:string, cate:string, title:string }}){
   const pathname = usePathname();
   const [mlist, setMlist] = useState<any>(null);
  
   const cateList = opts.cate !== '0' ? `&with_genres=${opts.cate}` : ``;
+
+  const [globalLang] = useAtom(globalLangAtom);
 
   const options = {
     method: 'GET',
@@ -21,8 +25,8 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       page: '1',
       with_genres: opts.cate,
       sort_by: 'popularity.desc',
-      language: 'ko-KR',
-      region: 'kr',
+      language: globalLang.lang,
+      region: globalLang.region,
       include_adult: 'true',
       include_video: 'true',
     },

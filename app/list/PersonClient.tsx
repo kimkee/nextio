@@ -14,10 +14,13 @@ import PersonInfoText from './PersonInfoText';
 import Loading from '@/app/components/Loading';
 import Img from '@/app/components/Img';
 import { useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 import { modalTitleAtom } from '@/app/store/modal';
+import { useTranslation } from '@/app/store/lang';
 
 export default function PersonClient({params}: {params: { opts: string, id: string }}) {
-
+  const t = useTranslation();
   // let params = useParams()
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -28,26 +31,64 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   const [casts, setCasts] = useState<any>(null);
   const [photos, setPhotos] = useState<any>(null);
 
-  const personURL = `https://api.themoviedb.org/3/person/${personID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const [globalLang] = useAtom(globalLangAtom);
+
+  // const personURL = `https://api.themoviedb.org/3/person/${personID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  
   const fetchPerson = () => {
-    axios.get( personURL ).then(response => {
+    const options = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/person/${personID}`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+    axios.request( options ).then(response => {
       console.log("인물 정보" , response.data);
       setDatas(response.data);
-      
     }).catch( e => { console.log(e); });
   };
-  const creditsURL = `https://api.themoviedb.org/3/person/${personID}/movie_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-  const creditsURL2 = `https://api.themoviedb.org/3/person/${personID}/tv_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
-  const creditsURL3 = `https://api.themoviedb.org/3/person/${personID}/combined_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const creditsURL = `https://api.themoviedb.org/3/person/${personID}/movie_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const creditsURL2 = `https://api.themoviedb.org/3/person/${personID}/tv_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const creditsURL3 = `https://api.themoviedb.org/3/person/${personID}/combined_credits?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchCredits = () => {
-    axios.get( creditsURL3 ).then(response => {
+    const options ={
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/person/${personID}/combined_credits`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    }
+    axios.request( options ).then(response => {
       console.log("인물 출연작" , response.data);
       setCasts(response.data);
     }).catch( e => { console.log(e); });
   };
-  const photoURL = `https://api.themoviedb.org/3/person/${personID}/images?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const photoURL = `https://api.themoviedb.org/3/person/${personID}/images?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchPhotos = () => {
-    axios.get( photoURL ).then(response => {
+    const options ={
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/person/${personID}/images`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    }
+    axios.request( options ).then(response => {
       console.log("인물 사진" , response.data);
       setPhotos(response.data);
     }).catch( e => { console.log(e); });
@@ -75,6 +116,15 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datas]);
+
+  const refrashDatas = () => {
+    setDatas(null);
+    setCasts(null);
+    setPhotos(null);
+    fetchPerson();
+    fetchCredits();
+    fetchPhotos();
+  };
 
   const shareLink = ()=> {
     const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/person/${personID}`;
@@ -130,9 +180,17 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                   />
                 </span>
               </Link>
+              
             </div>
-            <div className="desc text-center z-11 relative -mt-12 px-6">
-              {datas.name && <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]"> {datas.name} </p> }
+            <div className="desc text-center z-11 relative -mt-12 px-10">
+              {datas.name && 
+                <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]">
+                  {datas.name}
+                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1 -mr-5' onClick={refrashDatas}>
+                    <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
+                  </button>
+                </p> 
+              }
               {datas.known_for_department && <p className="tio text-xl text-white/80 text-shadow-[1px_1px_2px_#000000] mt-2">{datas.known_for_department}</p>}
               {datas.also_known_as && <p className="tit text-xs mt-2 text-white/80 text-shadow-[1px_1px_2px_#000000] px-20">{datas.also_known_as.filter((item:any,i:number)=> i < 3).join(', ')}</p>}
             </div>
@@ -142,6 +200,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             <button type="button" onClick={shareLink} className={`bt inline-flex justify-center items-center size-6 absolute right-4 text-white/60 z-10 ${isInfo() ? 'top-10' : 'top-0 right-0!'}`}>
               <FontAwesomeIcon icon={['far', 'share-from-square']} className={`w-5 h-5 align-middle`} /><em className='text-primary sr-only'>공유</em>
             </button>
+            
             {isInfo() ?
             <div className="relative rounded-md bg-white/2 border border-white/10 px-5 py-5 pr-9 shadow-[0_0_1rem_rgba(128,128,128,0.1)]">
               <ul className="lst  flex flex-wrap gap-x-9 gap-y-2">
@@ -175,9 +234,9 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
             : <></>
             }
        
-            {casts.cast.length ? <PersonCastCrew title="출연" data={casts.cast} /> : <></>}
-            {photos.profiles.length >=2 ? <PersonPhoto title="사진" data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
-            {casts.crew.length ? <PersonCastCrew title="참여" data={casts.crew} /> : <></>}
+            {casts.cast.length ? <PersonCastCrew title={t.persion.cast} data={casts.cast} /> : <></>}
+            {photos.profiles.length >=2 ? <PersonPhoto title={t.persion.photo} data={photos.profiles} setProfileImg={handleSetProfileImg} name={datas.name}/> : <></>}
+            {casts.crew.length ? <PersonCastCrew title={t.persion.crew} data={casts.crew} /> : <></>}
             
           </div>
         </>

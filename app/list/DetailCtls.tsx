@@ -8,11 +8,13 @@ import { useParams } from 'next/navigation';
 import { supabase } from '@/app/supabase';
 import { usePathname } from 'next/navigation';
 import getUser from '@/app/getUser';
+import { useTranslation } from '@/app/store/lang';
 
 export default function ViewCtls({datas,postID, opts}: {datas: any, postID: string, opts: any}) {
 
   const params = useParams();
   const router = useRouter();
+  const t = useTranslation();
   const shareLink = ()=> {
     const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/${opts}/${postID}`;
     navigator.clipboard.writeText(surl);
@@ -163,13 +165,13 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
         onClick={likeTog} disabled={isDimBtn}
       >
         {false ?(<Loading opts={{type:'glx', cls:''}}/>) 
-        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4 align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>스크랩</em></>)}
+        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4 align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>{t.detailTool.scrap}</em></>)}
       </button>
       <button type="button" onClick={inputReply} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>리뷰</em>
+        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailTool.review}</em>
       </button>
       <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>공유</em>
+        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailTool.share}</em>
       </button>
     </div>
     </>

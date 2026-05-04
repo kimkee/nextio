@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import Detail from '@/app/list/Detail';
 import PersonClient from '@/app/list/PersonClient';
 import type { Metadata } from 'next';
@@ -19,11 +20,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Not Found' };
   }
 
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const cookieStore = await cookies();
+  const globalLangCookie = cookieStore.get('globalLang');
+  let lang = 'ko-KR';
+  let region = 'kr';
+
+  if (globalLangCookie) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(globalLangCookie.value));
+      if (parsed.lang) lang = parsed.lang;
+      if (parsed.region) region = parsed.region;
+    } catch (e) {}
+  }
+
   
+  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${lang}&region=${region}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+    }
+  };
   try {
-    const res = await fetch(fetchURL);
+    const res = await fetch(fetchURL, options);
     const data = await res.json();
+    // console.log("상세페이지 메타데이터 가져오기", data);
     
     if (!res.ok) {
       return { title: `상세 정보 - ${SNAME}` };

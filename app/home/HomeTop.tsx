@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
-
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
 import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
@@ -27,6 +28,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
   const [mlist, setMlist] = useState<[any] | any>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [globalLang] = useAtom(globalLangAtom);
 
   // const fetchURL = `https://api.themoviedb.org/3/${opts.media}/now_playing?language=ko&page=${page}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   // const fetchURL = `https://api.themoviedb.org/3/${opts.media}/now_playing?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
@@ -36,8 +38,8 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
     url: `https://api.themoviedb.org/3/${opts.media}/now_playing`,
     params: {
       page: '1',
-      language: 'ko-KR',
-      region: 'kr',
+      language: globalLang.lang,
+      region: globalLang.region,
       include_adult: 'true',
       include_video: 'true',
     },

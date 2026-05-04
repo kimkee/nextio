@@ -9,7 +9,9 @@ import Link from 'next/link';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { use } from 'react';
 import getUser from '@/app/getUser';
-
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
+import { useTranslation } from '@/app/store/lang';
 import Loading from '@/app/components/Loading';
 import axios from 'axios';
 import DetailRevSet from './DetailRevSet';
@@ -17,10 +19,20 @@ import DetailRevTxt from './DetailRevTxt';
 import './DetailRev.css';
 export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: any, postID: string, opts: any, user: any, myinfo: any}) {
   
+  const t = useTranslation();
+  const [globalLang] = useAtom(globalLangAtom);
   const [review, setReview] =  useState<any>(null);
-  const fetchRev = `https://api.themoviedb.org/3/${opts}/${postID}/reviews?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  // const fetchRev = `https://api.themoviedb.org/3/${opts}/${postID}/reviews?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchReview = () => {
-    axios.get( fetchRev ).then(response => {
+    const options={
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/${opts}/${postID}/reviews`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    }
+    axios.request( options ).then(response => {
       console.log("리뷰들" , response.data.results);
       setReview(response.data.results);
     }).catch( e => { console.log(e); });
@@ -125,75 +137,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
         }
       });
   };
-/* 
-  const deleteReview = async (opts: string, postID: number) => {
-    console.log(opts, postID);
-    const { data, error }  = await supabase.from('TMDB_REVIEW').delete().eq('id', postID);
-    if (error) {
-      console.error("리뷰 삭제 에러 Error deleting data:", error.message);
-    } else {
-      console.table("리뷰 삭제 성공 Data deleted successfully:");
-      gethRevs();
-    }
-  }
-  
-  const myRvText = useRef<HTMLTextAreaElement>(null);
-  
-  const editMode = (rvTxt: string, rvID: number) => {
-    console.log(rvTxt, rvID);   
-    document.querySelectorAll(`.rplist li .infs`).forEach(el => el.classList.remove("show"));
-    document.querySelector(`.rplist li[data-idx="${rvID}"] .infs`)?.classList.add("show");
-    const rvTbox = document.querySelector(`#myRvTex_${rvID}`) as HTMLTextAreaElement;
-    rvTbox.value = ui.textHtml(rvTxt, "decode");
-    rvTbox.focus();
-  }
-  const editCancel = () => {
-    document.querySelectorAll(`.rplist li .infs`).forEach(el => el.classList.remove("show"));
-  }
-  
-  const editReview = async(opts: string, rvID: number) => {
-    console.log(opts, rvID);
-    const text = document.querySelector(`#myRvTex_${rvID}`) as HTMLTextAreaElement;
-    
-    const content = ui.textHtml( text.value, "incode" );
-    if (text.value.trim() == '') {
-      ui.alert("댓글을 입력하세요", {
-        ycb: () => {
-          text.focus();
-        }
-      });
-      return;
-    }
-    const updateData = {
-      user_num : myinfo?.id,
-      user_name : myinfo?.username,
-      updated_at : new Date().toISOString(),
-      content: content,
-      profile_picture : myinfo?.profile_picture, 
-      provider : myinfo?.provider,
-      email : myinfo?.email, 
-      mvtv : opts,
-      idmvtv : postID,
-      title : datas.title || datas.name,
-      poster_path : datas.poster_path,
-      vote_average : datas.vote_average,
-    };
-   
-    const { data, error } = await supabase
-    .from('TMDB_REVIEW')
-    .update(updateData)
-    .eq('id', rvID)
-    .select()
-            
-    if (error) {
-      console.error("리뷰 수정 에러 Error updating data:", error.message);
-    } else {
-      console.table("리뷰 수정 성공 Data updated successfully:");
-      gethRevs();
-      editCancel()
-    }
-  }
-*/
+
 
   // console.log(myinfo);
   useEffect(() => {
@@ -219,7 +163,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       
       <div className="sect revk mt-4" id='writeRev'>
         <div className="hbox flex justify-between items-end min-h-6 mb-2.5 leading-none">
-          <h4 className="tts text-sm">리뷰</h4>
+          <h4 className="tts text-sm">{t.detailTool.review}</h4>
           <span className="num text-xs font-normal text-white/40 "><i className="i not-italic">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">

@@ -7,7 +7,8 @@ import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 export default  function ListSet({opts}:{opts:{media:string, list:string, cate:string, title:string }}){
   const pathname = usePathname();
   const [mlist, setMlist] = useState<any>(null);
@@ -16,14 +17,16 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   
   // const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     
+  const [globalLang] = useAtom(globalLangAtom);
+
   const options = {
     method: 'GET',
     url: `https://api.themoviedb.org/3/discover/${opts.media}`,
     params: {
       page: '1', // 페이지
       sort_by: 'popularity.desc', // 정렬
-      language: 'ko-KR', // 언어
-      region: 'kr', // 지역
+      language: globalLang.lang, // 언어
+      region: globalLang.region, // 지역
       include_adult: 'true', // 성인 콘텐츠 포함 여부
       include_video: 'true', // 비디오 포함 여부
     },

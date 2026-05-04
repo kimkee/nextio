@@ -2,9 +2,11 @@
 import React, { useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import ui from '@/app/lib/ui';
+import { useTranslation } from '@/app/store/lang';
 
 export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) {
   const params = useParams();
+  const t = useTranslation();
   const cateID = (params.cate as string) || '0'; // URL에서 카테고리 ID 추출
   
   const cateBoxRef = useRef<HTMLDivElement>(null);
@@ -52,7 +54,7 @@ export default function CateMenu({ menu, opts }: { menu: any[], opts: string }) 
               <li data-index="0" className={`${"0" === cateID ? "active" : ''}`}>
                 <button className={`bt ring-1 ${btnClass} ${"0" === cateID ? 'bg-primary/20 ring-primary/30 text-white/90':'bg-black/30 ring-white/10'}`}
                   onClick={() => router.push(`/list/${opts}/0`)} ref={cateID === "0" ? activeBtnRef : null}>
-                  전체
+                  {t.all}
                 </button>
               </li>
               {menu.map((item: { id: string; name: string; }, idx: number) => {

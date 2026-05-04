@@ -7,8 +7,11 @@ import ItemB from '@/app/components/ItemB';
 import Loading from '@/app/components/Loading';
 import ListSkeleton from '@/app/components/ListSkeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 
 export default function ListContent({ opts, cate }: { opts: string; cate: string }) {
+  const [globalLang] = useAtom(globalLangAtom);
   const [movieList, movieListSet] = useState<any[]>([]);
   const cateList = cate !== '0' ? `&with_genres=${cate}` : ``;
   const pageRef = useRef(1);
@@ -27,8 +30,8 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
       params: {
         with_genres: cate !== '0' ? cate : '',
         page: p,
-        language: 'ko-KR',
-        region: 'kr',
+        language: globalLang.lang,
+        region: globalLang.region,
         sort_by: 'popularity.desc',
       },
       headers: {

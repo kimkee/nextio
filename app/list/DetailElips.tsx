@@ -30,7 +30,7 @@ export default function ViewElips({overview}: {overview: string}) {
   return (
     <>
     <div data-open={isOverviewOpen} ref={overviewRef} className={`mt-5 mb-8 relative`} onClick={ togOverView } onKeyUp={ e=> e.key ==="Enter" ? togOverView() : null  } tabIndex={0}> 
-      <div ref={txtRef} className={`text-sm  text-[#aaa] leading-normal ${ isOverviewOpen ? '' : 'line-clamp-3 [&_br]:hidden'} ${isOverFlow ? 'cursor-pointer':''}`} >
+      <div ref={txtRef} className={`text-sm  text-[#aaa] leading-normal break-all wrap-break-word ${ isOverviewOpen ? '' : 'line-clamp-3 [&_br]:hidden'} ${isOverFlow ? 'cursor-pointer':''}`} >
         <span dangerouslySetInnerHTML={{ __html: ui.textHtml( overview, 'incode' ) }}></span>
         {
         <span className={`btn-tog inline-flex items-center justify-center
