@@ -84,7 +84,7 @@ export default function Page() {
       return;
     }
 
-    const fetchURL = `https://api.themoviedb.org/3/search/${opts}?language=ko&region=kr&page=${p}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+    // const fetchURL = `https://api.themoviedb.org/3/search/${opts}?language=ko&region=kr&page=${p}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     // const fetchURL = `https://api.themoviedb.org/3/search/multi?language=ko&region=kr&page=${p}&query=${kwd}&sort_by=release_date.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
 
     if (isInitial) {

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from '@/app/store/lang';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
@@ -12,7 +13,7 @@ export default function LoginPage() {
   const router = useRouter();
   // 세션 로딩 중 여부 (true일 때는 UI를 아예 그리지 않아 깜빡임 방지)
   const [authChecking, setAuthChecking] = useState(true);
-
+  const t = useTranslation();
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user?.id) {
@@ -49,7 +50,7 @@ export default function LoginPage() {
           <Image width={96} height={96} className="w-12" src="/img/logo.png" alt="" />
         </div>
         <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
-          <em className="text-primary relative px-2 z-1 bg-[#181818]">로그인</em>
+          <em className="text-primary relative px-2 z-1 bg-[#181818]">{ t.signin.login }</em>
         </div>
         <div className="grid grid-cols-1 gap-4 w-full">
           <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>

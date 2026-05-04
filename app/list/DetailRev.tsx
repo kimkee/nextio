@@ -10,15 +10,16 @@ import { usePathname, useRouter, useParams } from 'next/navigation';
 import { use } from 'react';
 import getUser from '@/app/getUser';
 import { useAtom } from 'jotai';
-import { globalLangAtom } from '@/app/store/lang';
+import { globalLangAtom, langAtom } from '@/app/store/lang';
 import { useTranslation } from '@/app/store/lang';
 import Loading from '@/app/components/Loading';
 import axios from 'axios';
 import DetailRevSet from './DetailRevSet';
 import DetailRevTxt from './DetailRevTxt';
+
 import './DetailRev.css';
 export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: any, postID: string, opts: any, user: any, myinfo: any}) {
-  
+  const [langAtomVal, langAtomSet] = useAtom(langAtom);
   const t = useTranslation();
   const [globalLang] = useAtom(globalLangAtom);
   const [review, setReview] =  useState<any>(null);
@@ -43,6 +44,20 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   const revText = useRef<HTMLTextAreaElement>(null);
   const revListBox = useRef<HTMLDivElement>(null);
   const revNumMax = 500;
+  const revMaxLang = {
+    ko: `(최대${revNumMax}자)`,
+    en: `(Max ${revNumMax} characters)`,
+    jp: `(最大${revNumMax}文字)`,
+    cn: `(最大${revNumMax}字符)`,
+    tw: `(最大${revNumMax}字符)`
+  }
+  const revMaxLang2 = {
+    ko: `감상평은 ${revNumMax}글자 까지 입니다.`,
+    en: `Reviews can be up to ${revNumMax} characters long.`,
+    jp: `最大${revNumMax}文字まで入力できます。`,
+    cn: `评论最多可输入${revNumMax}个字符。`,
+    tw: `評論最多可輸入${revNumMax}個字符。`,
+  }
   const [revNumNow, setRevNumNow] = useState(0)
   const autoheight = (e: any)=>{
     const $els = e.target;
@@ -57,18 +72,18 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     if ( revTxtNow.length > revNumMax ) {
       $els.value = $els.value.slice(0, revNumMax );
       setRevNumNow( ui.commas.add(revText.current?.value.length) );
-      ui.alert(`감상평은 ${revNumMax}글자 까지 입니다.`,{
+      ui.alert(revMaxLang2[langAtomVal as keyof typeof revMaxLang2],{
         ycb: () => {}
       });      
     }
   }
   const checkLogin = ()=> { 
     if (user?.email) { return; }
-    ui.confirm("로그인이 필요합니다.", {
+    ui.confirm(t.signin.chk_01, {
       ycb: () => { window.location.href = '/user/login'; return; },
       ccb: () => { return; },
-      ybt: "로그인 하기",
-      nbt: "닫기",
+      ybt: t.signin.btn_login,
+      nbt: t.signin.btn_close,
     });
   }
 
@@ -146,6 +161,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     // console.log(datas || '');
     gethRevs();
     setupRealtimeListener('TMDB_REVIEW');
+    langAtomSet(document.documentElement.getAttribute('lang') || 'ko');
     return () => {
       if (realtimeChannel.current) {
         supabase.removeChannel(realtimeChannel.current);
@@ -183,12 +199,12 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           >
             <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} 
               className="rtext max-h-60 border-nome align-middle resize-none w-full leading-normal -webkit-appearance-none outline-none  break-all bg-transparent text-[#999999] min-h-10 text-12" 
-              placeholder={`${myinfo?.id ? `감상평을 남겨보세요. (최대${revNumMax}자)`:`로그인 후 감상평을 남겨보세요.`}`}
+              placeholder={`${myinfo?.id ? ` ${t.detailTool.text_01} ${revMaxLang[langAtomVal as keyof typeof revMaxLang]}`:`${t.detailTool.text_02}`}`}
             ></textarea>
             <div className="bts mt-2">
               <button type="button" className="btn btn-sm btsend text-12! w-full bg-[rgb(0_0_0/38%)] border-white/10 disabled:bg-[rgb(0_0_0/20%)] rounded-md" 
                 disabled={ revNumNow < 1 } onClick={sendReview}>
-                <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>등록</em>
+                <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>{t.detailTool.text_03}</em>
               </button>
             </div>
           </div>

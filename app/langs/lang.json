@@ -22,7 +22,16 @@
         "video":"영상",
         "series":"시리즈",
         "reviewreg":"리뷰등록",
-        "season":"시즌"
+        "season":"시즌",
+        "text_01":"감상평을 남겨보세요.",
+        "text_02":"로그인 후 감상평을 남겨보세요.",
+        "text_03":"등록"
+      },
+      "signin":{
+        "login":"로그인",
+        "chk_01":"로그인이 필요합니다.",
+        "btn_login":"로그인 하기",
+        "btn_close":"닫기"
       },
       "persion":{
         "cast":"출연",
@@ -52,7 +61,16 @@
         "video":"Video",
         "series":"Series",
         "reviewreg":"Review Reg",
-        "season":"Season"
+        "season":"Season",
+        "text_01":"Write your review",
+        "text_02":"Log in and write a review",
+        "text_03":"Review"
+      },
+      "signin":{
+        "login":"Login",
+        "chk_01":"You need to login.",
+        "btn_login":"Sign in",
+        "btn_close":"Close"
       },
       "persion":{
         "cast":"Cast",
@@ -82,7 +100,16 @@
         "video":"動画",
         "series":"シリーズ",
         "reviewreg":"レビュー登録",
-        "season":"シーズン"
+        "season":"シーズン",
+        "text_01":"感想を書いてみましょう",
+        "text_02":"ログインして感想を書いてみましょう",
+        "text_03":"レビュー"
+      },
+      "signin":{
+        "login":"ログイン",
+        "chk_01":"ログインが必要です。",
+        "btn_login":"ログイン",
+        "btn_close":"閉じる"
       },
       "persion":{
         "cast":"出演",
@@ -112,7 +139,16 @@
         "video":"视频",
         "series":"系列",
         "reviewreg":"レビュー登録",
-        "season":"季节"
+        "season":"季节",
+        "text_01":"写下你的评论",
+        "text_02":"登录后写下你的评论",
+        "text_03":"评论"
+      },
+      "signin":{
+        "login":"登录",
+        "chk_01":"登录是必要的。",
+        "btn_login":"登录",
+        "btn_close":"关闭"
       },
       "persion":{
         "cast":"出演",
@@ -142,7 +178,16 @@
         "video":"視頻",
         "series":"系列",
         "reviewreg":"レビュー登録",
-        "season":"季節"
+        "season":"季節",
+        "text_01":"寫下您的評論",
+        "text_02":"登錄後寫下您的評論",
+        "text_03":"評論"
+      },
+      "signin":{
+        "login":"登錄",
+        "chk_01":"登錄是必要的。",
+        "btn_login":"登錄",
+        "btn_close":"關閉"
       },
       "persion":{
         "cast":"出演",

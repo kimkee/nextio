@@ -22,6 +22,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 
 export default function Poster() {
 
@@ -29,7 +31,7 @@ export default function Poster() {
   let params = useParams()
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+  const [globalLang] = useAtom(globalLangAtom);
   
 
   const postID = params.id;
@@ -40,9 +42,23 @@ export default function Poster() {
   const [pstImg, pstImgSet] = useState('');
   const [title, titleSet] = useState('');
   const loopSet = ()=> datas.images.posters.length > 1 ? true : false;
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
+  // const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
   const fetchDatas = () => {
-    axios.get( fetchURL ).then(response => {
+    const options = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/${opts}/${postID}`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+        append_to_response: 'videos,images',
+        include_image_language: 'en,null'
+      },
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    };
+    axios.request(options).then(response => {
       console.log("영화정보" , response.data);
       setDatas(response.data);
       let bgDm = response.data.poster_path ? response.data.poster_path : response.data.backdrop_path;
