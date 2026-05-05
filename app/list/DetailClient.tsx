@@ -269,12 +269,12 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
               <ul className='lst mt-4 grid gap-1'>
                 <li className='vot text-12 text-primary/90  relative pl-4'>
                   <FontAwesomeIcon icon={['far', 'thumbs-up']} className='absolute left-0 top-0.5' />
-                  <b>평점</b> : {datas.vote_average} / 10
+                  <b>{t.detailinfo.rate}</b> : {datas.vote_average} / 10
                 </li>
                 {datas.release_date ? (
                   <li className='opn text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
-                    <b>개봉</b> : {datas.release_date}
+                    <b>{t.detailinfo.release}</b> : {datas.release_date}
                   </li>
                 ):null}
                 {datas.first_air_date ? (
@@ -287,13 +287,13 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
                 {datas.runtime ? (
                   <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
-                    <b>시간</b> : {datas.runtime} 분
+                    <b>{t.detailinfo.runtime}</b> : {datas.runtime} {t.detailinfo.runtime_min}
                   </li>
                 ):null}
                 {datas.number_of_seasons ? (
                   <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
-                    <b>시즌</b> : {datas.number_of_seasons}개 - <b>에피소드</b> : {datas.number_of_episodes}개
+                    <b>{t.detailinfo.seasons}</b> : {datas.number_of_seasons}{t.detailinfo.count} - <b>{t.detailinfo.episode}</b> : {datas.number_of_episodes}{t.detailinfo.count}
                   </li>
                 ):null}
                 {datas.homepage ? (
@@ -334,17 +334,17 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
           {datas.overview && <DetailElips overview={datas.overview} />}
 
-          {casts.cast.length ? <DetailCast props={{ title: t.detailTool.cast, css: "cast", data: casts.cast }} /> : ''}
+          {casts.cast.length ? <DetailCast props={{ title: t.detailinfo.cast, css: "cast", data: casts.cast }} /> : ''}
 
-          {moves.results.length ? <DetailVideo props={{ title: t.detailTool.video, css: "movs", opts: opts, data: moves.results, defaultImg: videoImg }} /> : ''}
+          {moves.results.length ? <DetailVideo props={{ title: t.detailinfo.video, css: "movs", opts: opts, data: moves.results, defaultImg: videoImg }} /> : ''}
 
-          {casts.crew.length ? <DetailCast props={{ title: t.detailTool.crew, css: "crew", data: casts.crew }} /> : ''}
+          {casts.crew.length ? <DetailCast props={{ title: t.detailinfo.crew, css: "crew", data: casts.crew }} /> : ''}
 
-          {datas.images.posters.length ? <DetailPoster props={{ title: t.detailTool.poster, name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
+          {datas.images.posters.length ? <DetailPoster props={{ title: t.detailinfo.poster, name: datas.title || datas.name, css: "movie", opts: opts, poster: datas.poster_path, data: datas.images.posters }} /> : ''}
 
-          {collect ? <DetailCollection opts={opts} props={{ title: t.detailTool.series, css: "collect", data: collect }} /> : ''}
+          {collect ? <DetailCollection opts={opts} props={{ title: t.detailinfo.series, css: "collect", data: collect }} /> : ''}
 
-          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailTool.season, css: "season", data: datas.seasons }} /> : ''}
+          {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailinfo.season, css: "season", data: datas.seasons }} /> : ''}
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 

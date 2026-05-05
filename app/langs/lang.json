@@ -12,7 +12,7 @@
       "music":"음악",
       "crime":"범죄",
       "reality":"TV",
-      "detailTool":{
+      "detailinfo":{
         "scrap":"스크랩",
         "review":"리뷰",
         "share":"공유",
@@ -25,7 +25,14 @@
         "season":"시즌",
         "text_01":"감상평을 남겨보세요.",
         "text_02":"로그인 후 감상평을 남겨보세요.",
-        "text_03":"등록"
+        "text_03":"등록",
+        "rate":"평점",
+        "release":"개봉",
+        "runtime":"시간",
+        "runtime_min":"분",
+        "seasons":"시즌",
+        "episode":"에피소드",
+        "count":"편"
       },
       "signin":{
         "login":"로그인",
@@ -51,7 +58,7 @@
       "music":"Music",
       "crime":"Crime",
       "reality":"Reality",
-      "detailTool":{
+      "detailinfo":{
         "scrap":"Scrap",
         "review":"Review",
         "share":"Share",
@@ -64,7 +71,14 @@
         "season":"Season",
         "text_01":"Write your review",
         "text_02":"Log in and write a review",
-        "text_03":"Review"
+        "text_03":"Review",
+        "rate":"Rate",
+        "release":"Release",
+        "runtime":"Run time",
+        "runtime_min":"min",
+        "seasons":"Season",
+        "episode":"Episode",
+        "count":"ep"
       },
       "signin":{
         "login":"Login",
@@ -90,7 +104,7 @@
       "music":"音楽",
       "crime":"犯罪",
       "reality":"バラエティ",
-      "detailTool":{
+      "detailinfo":{
         "scrap":"スクラップ",
         "review":"レビュー",
         "share":"共有",
@@ -103,7 +117,14 @@
         "season":"シーズン",
         "text_01":"感想を書いてみましょう",
         "text_02":"ログインして感想を書いてみましょう",
-        "text_03":"レビュー"
+        "text_03":"レビュー",
+        "rate":"Rate",
+        "release":"Release",
+        "runtime":"Run time",
+        "runtime_min":"分",
+        "seasons":"Season",
+        "episode":"Episode",
+        "count":"話"
       },
       "signin":{
         "login":"ログイン",
@@ -129,7 +150,7 @@
       "music":"音乐",
       "crime":"犯罪",
       "reality":"综艺",
-      "detailTool":{
+      "detailinfo":{
         "scrap":"收藏",
         "review":"影评",
         "share":"分享",
@@ -142,7 +163,14 @@
         "season":"季节",
         "text_01":"写下你的评论",
         "text_02":"登录后写下你的评论",
-        "text_03":"评论"
+        "text_03":"评论",
+        "rate":"Rate",
+        "release":"Release",
+        "runtime":"Run time",
+        "runtime_min":"min",
+        "seasons":"Season",
+        "episode":"Episode",
+        "count":"集"
       },
       "signin":{
         "login":"登录",
@@ -168,7 +196,7 @@
       "music":"音樂",
       "crime":"犯罪",
       "reality":"實境秀",
-      "detailTool":{
+      "detailinfo":{
         "scrap":"收藏",
         "review":"影評",
         "share":"分享",
@@ -181,7 +209,14 @@
         "season":"季節",
         "text_01":"寫下您的評論",
         "text_02":"登錄後寫下您的評論",
-        "text_03":"評論"
+        "text_03":"評論",
+        "rate":"Rate",
+        "release":"Release",
+        "runtime":"Run time",
+        "runtime_min":"min",
+        "seasons":"Season",
+        "episode":"Episode",
+        "count":"集"
       },
       "signin":{
         "login":"登錄",
