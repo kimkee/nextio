@@ -10,6 +10,9 @@ import React from 'react';
 import axios from 'axios';
 import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
+import { useTranslation } from '@/app/store/lang';
+import { useAtom } from 'jotai';
+import { globalLangAtom } from '@/app/store/lang';
 import './search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ItemA from '@/app/components/ItemA';
@@ -22,9 +25,9 @@ export default function Page() {
   const params = useParams();
   const id = params.id;
   const opts = params.opts;
-
+  const t = useTranslation();
   const searchParams = useSearchParams();
-  
+  const [globalLang] = useAtom(globalLangAtom);
   
   const [keyword, keywordSet] = useState(searchParams.get('search') || '');
   const [schList, schListSet] = useState<any>([]);
@@ -98,8 +101,8 @@ export default function Page() {
       method: 'GET',
       url: `https://api.themoviedb.org/3/search/${opts}`,
       params: {
-        language: 'ko-KR',
-        region: 'kr',
+        language: globalLang.lang,
+        region: globalLang.region,
         page: p,
         query: kwd,
         sort_by: 'release_date.desc',
@@ -242,7 +245,7 @@ export default function Page() {
   const schsForm = useRef(null);
   const [keywordList, keywordListSet] = useState<string[]>([]);
   const saveKwdStorage =(k:string) =>{
-    const keyArr = JSON.parse( localStorage.getItem("keyword") || '["스타워즈","포레스트 검프"]' );
+    const keyArr = JSON.parse( localStorage.getItem("keyword") || JSON.stringify( t.sch.sampleKwd ) );
     k.trim() !== '' ? keyArr.unshift(k) : null;
     const nkeyArr = [...new Set(keyArr)].slice(0, 10) as string[];
     localStorage.setItem("keyword", JSON.stringify( nkeyArr ) )
@@ -250,7 +253,7 @@ export default function Page() {
   }
 
   const showKwdList =() =>{
-    const keyArr = JSON.parse( localStorage.getItem("keyword") || '["스타워즈","포레스트 검프"]' );
+    const keyArr = JSON.parse( localStorage.getItem("keyword") || JSON.stringify( t.sch.sampleKwd ) );
     keywordListSet(keyArr);
   }
 
@@ -295,7 +298,7 @@ export default function Page() {
       return (
         <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
           <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 h-8 align-middle' />
-          {keyword ? <p><span className='uppercase'>{opts}</span> : “{keyword}” 검색 결과가 없습니다.</p> : <p>검색어를 입력하세요.</p>}
+          {keyword ? <p><span className='uppercase'>{opts}</span> : “{keyword}” {t.sch.noResult}</p> : <p>{t.sch.placeholder}</p>}
         </div>
       );
     }
@@ -351,25 +354,25 @@ export default function Page() {
                 <Link className={`bt ${isActive('person') ? 'active' : ''}`} href={`/search/person?search=${keyword}`}>Person</Link>
               </div>
               <span className="input">
-                <input type="text" placeholder="검색어를 입력하기." 
+                <input type="text" placeholder={t.sch.placeholder} 
                   ref={inputRef}
                   defaultValue={keyword}
                   required maxLength={12}
                   onChange={onChange}
                   onInvalid={ (e)=> e.preventDefault() }
                 />
-                <button type="button" className="bt-del" title='삭제' onClick={delFormText} >
+                <button type="button" className="bt-del" title={t.sch.text_del} onClick={delFormText} >
                   <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 align-middle' />
                 </button>
               </span>
-              <button type="submit" className="bt-sch" title='검색'>
+              <button type="submit" className="bt-sch" title={t.sch.text_sch}>
                 <FontAwesomeIcon icon={['fas', 'search']} className='w-5 h-5 align-middle' />
               </button>
               
             </form>
           </div>
         </div>
-        <div className="w-full h-120 bg-rainbow opacity-5 max-w-(--mwide) fixed top-[calc(3.5rem+var(--safe-top)+8rem)] backdrop-blur-lg blur-xl "></div>
+        <div className="w-full h-120 bg-rainbow opacity-5 max-w-(--mwide) fixed top-[calc(3.5rem+var(--safe-top)+8rem)] backdrop-blur-lg blur-xl -z-1"></div>
         {keywordList.length > 0 &&
         <div className={`recent-kwds`} ref={keyWordBox}>
           <ul className="lst">
@@ -377,7 +380,7 @@ export default function Page() {
             return (
               <li key={kwd}>
                 <button className="kwd" type="button" onClick={ ()=> goRecentSearch(kwd) }>{kwd}</button>
-                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) } aria-label='삭제'><FontAwesomeIcon icon={['fas', 'xmark']} className='w-3 h-3 align-middle' /></button>
+                <button className="del" type="button" onClick={ ()=> delRecentKwd(kwd) } title={t.sch.text_del}><FontAwesomeIcon icon={['fas', 'xmark']} className='w-3 h-3 align-middle' /></button>
               </li>
             )
           }) }

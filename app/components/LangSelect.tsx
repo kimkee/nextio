@@ -17,9 +17,25 @@ export default function LangSelect() {
     location.reload();
   }
   useEffect(() => {
-    const localLang = localStorage.getItem('globalLang') ||  JSON.stringify({ lang: 'ko-KR', region: 'kr' });
-    if(localLang){
-      globalLangSet(JSON.parse(localLang));  
+    const localLang = localStorage.getItem('globalLang');
+    if (localLang) {
+      globalLangSet(JSON.parse(localLang));
+    } else {
+      // If no saved preference, detect browser language
+      const browserLang = navigator.language.toLowerCase();
+      let detected = { lang: 'en-US', region: 'us' };
+      
+      if (browserLang.startsWith('ko')) {
+        detected = { lang: 'ko-KR', region: 'kr' };
+      } else if (browserLang.startsWith('ja')) {
+        detected = { lang: 'ja-JP', region: 'jp' };
+      } else if (browserLang.startsWith('zh-tw') || browserLang.startsWith('zh-hk')) {
+        detected = { lang: 'zh-TW', region: 'tw' };
+      } else if (browserLang.startsWith('zh')) {
+        detected = { lang: 'zh-CN', region: 'cn' };
+      }
+      
+      globalLangSet(detected);
     }
     document.addEventListener('mousedown', (e:any) => {
       if (!e.target.closest('.langSelectUI')) {

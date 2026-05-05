@@ -47,6 +47,13 @@
         "cast":"출연",
         "photo":"사진",
         "crew":"참여"
+      },
+      "sch":{
+        "placeholder":"검색어를 입력하세요.",
+        "noResult":"검색 결과가 없습니다.",
+        "sampleKwd":["스타워즈","포레스트 검프"],
+        "text_del":"삭제",
+        "text_sch":"검색"
       }
     },
     "en":{
@@ -96,6 +103,13 @@
         "cast":"Cast",
         "photo":"Photo",
         "crew":"Crew"
+      },
+      "sch":{
+        "placeholder":"Type a keyword.",
+        "noResult":"No result.",
+        "sampleKwd":["Star Wars","Forrest Gump"],
+        "text_del":"Delete",
+        "text_sch":"Search"
       }
     },
     "jp":{
@@ -145,6 +159,13 @@
         "cast":"出演",
         "photo":"写真",
         "crew":"制作"
+      },
+      "sch":{
+        "placeholder":"キーワードを入力してください。",
+        "noResult":"検索結果がありません。",
+        "sampleKwd":["スター・ウォーズ","フォレスト・ガンプ"],
+        "text_del":"Delete",
+        "text_sch":"Search"
       }
     },
     "cn":{
@@ -194,6 +215,13 @@
         "cast":"出演",
         "photo":"照片",
         "crew":"制作"
+      },
+      "sch":{
+        "placeholder":"请输入关键词。",
+        "noResult":"没有搜索结果。",
+        "sampleKwd":["星球大战","阿甘正传"],
+        "text_del":"Delete",
+        "text_sch":"Search"
       }
     },
     "tw":{
@@ -243,6 +271,13 @@
         "cast":"出演",
         "photo":"照片",
         "crew":"制作"
+      },
+      "sch":{
+        "placeholder":"请输入关键词。",
+        "noResult":"没有搜索结果。",
+        "sampleKwd":["星球大戰","阿甘正傳"],
+        "text_del":"Delete",
+        "text_sch":"Search"
       }
     }
   }
