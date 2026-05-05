@@ -12,39 +12,45 @@ const noto_sans_kr = Noto_Sans_KR({
   display: 'swap',
   variable: '--font-noto-sans-kr',
 });
+import { getLang, getTranslation } from '@/app/lib/lang';
+
 const SNAME = { 
   DEV: 'NEXTIO:D',
   LOCAL: 'NEXTIO:L' ,
   PRD: 'NEXTIO'
 }[process.env.NEXT_PUBLIC_ENV || 'PRD'];
 
-export const metadata: Metadata = {
-  title: SNAME,
-  description: '최신 영화 정보, 리뷰, 트레일러, 인기 영화 검색 서비스. 영화 팬들을 위한 완벽한 정보 검색 앱! 방대한 영화 데이터베이스에서 영화 정보를 검색하세요. 평점, 리뷰, 감독 정보, 출연진 등 다양한 정보를 제공합니다.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nextio.vercel.app'),
-  alternates: {
-    canonical: '/',
-  },
-  verification: {
-    google: '-VkSsPm2o6T2VkeRry8QBbdER8kBPXLvQeqGf2QzSdw',
-  },
-  openGraph: {
-    title: 'NEXTIO',
-    description: '최신 영화 정보, 리뷰, 트레일러, 인기 영화 검색 서비스. 영화 팬들을 위한 완벽한 정보 검색 앱! 방대한 영화 데이터베이스에서 배급사, 평점, 리뷰, 감독 정보, 출연진 등 다양한 정보를 제공합니다.',
-    url: './',
-    siteName: 'NEXTIO',
-    images: [
-      {
-        url: '/img/ogimage.png',
-        width: 1200,
-        height: 630,
-        alt: 'NEXTIO',
-      },
-    ],
-    locale: 'ko_KR',
-    type: 'website',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslation();
+  
+  return {
+    title: SNAME,
+    description: t.description,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nextio.vercel.app'),
+    alternates: {
+      canonical: '/',
+    },
+    verification: {
+      google: '-VkSsPm2o6T2VkeRry8QBbdER8kBPXLvQeqGf2QzSdw',
+    },
+    openGraph: {
+      title: t.title || 'NEXTIO',
+      description: t.description,
+      url: './',
+      siteName: 'NEXTIO',
+      images: [
+        {
+          url: '/img/ogimage.png',
+          width: 1200,
+          height: 630,
+          alt: 'NEXTIO',
+        },
+      ],
+      locale: 'ko_KR', // Note: could also be dynamic if needed
+      type: 'website',
+    },
+  };
+}
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -66,19 +72,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app';
   const isProd = process.env.NEXT_PUBLIC_ENV === 'PRD';
 
-  const cookieStore = await cookies();
-  const globalLangCookie = cookieStore.get('globalLang');
-  let lang = 'ko';
-
-  if (globalLangCookie) {
-    try {
-      const { region } = JSON.parse(decodeURIComponent(globalLangCookie.value));
-      const langMap: Record<string, string> = { kr: 'ko', us: 'en', jp: 'jp', cn: 'cn', tw: 'tw' };
-      lang = langMap[region] || 'ko';
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  const lang = await getLang();
 
   return (
     <html lang={lang} className={`${noto_sans_kr.variable}`}>
