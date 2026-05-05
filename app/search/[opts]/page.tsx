@@ -28,7 +28,7 @@ export default function Page() {
   const t = useTranslation();
   const searchParams = useSearchParams();
   const [globalLang] = useAtom(globalLangAtom);
-  
+  const [mounted, setMounted] = useState(false);
   const [keyword, keywordSet] = useState(searchParams.get('search') || '');
   const [schList, schListSet] = useState<any>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -45,8 +45,8 @@ export default function Page() {
       method: 'GET',
       url: `https://api.themoviedb.org/3/genre/${opts}/list`,
       params: {
-        language: 'ko-KR',
-        region: 'kr',
+        language: globalLang.lang,
+        region: globalLang.region,
       },
       headers: {
         accept: 'application/json',
@@ -144,7 +144,7 @@ export default function Page() {
     pageRef.current = 1;
     callStatRef.current = true;
     fetchMoive(1, true);
-    
+    setMounted(true);
     !keyword && inputRef.current?.focus();
     window.addEventListener("scroll", scrollEvent);
     window.scrollTo(0, 0);
@@ -294,7 +294,7 @@ export default function Page() {
         </div>
       );
     }
-    if (schList.length === 0) {
+    if (schList.length === 0 && mounted) {
       return (
         <div className="nodata flex flex-col justify-center items-center min-h-20 gap-6 text-sm py-[10vh]">
           <FontAwesomeIcon icon={['fas', 'comment-dots']} className='w-8 h-8 align-middle' />
@@ -354,18 +354,18 @@ export default function Page() {
                 <Link className={`bt ${isActive('person') ? 'active' : ''}`} href={`/search/person?search=${keyword}`}>Person</Link>
               </div>
               <span className="input">
-                <input type="text" placeholder={t.sch.placeholder} 
+                <input type="text" placeholder={mounted ? t.sch.placeholder : ''} 
                   ref={inputRef}
                   defaultValue={keyword}
                   required maxLength={12}
                   onChange={onChange}
                   onInvalid={ (e)=> e.preventDefault() }
                 />
-                <button type="button" className="bt-del" title={t.sch.text_del} onClick={delFormText} >
+                <button type="button" className="bt-del" title={mounted ? t.sch.text_del : ''} onClick={delFormText} >
                   <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 align-middle' />
                 </button>
               </span>
-              <button type="submit" className="bt-sch" title={t.sch.text_sch}>
+              <button type="submit" className="bt-sch" title={mounted ? t.sch.text_sch : ''}>
                 <FontAwesomeIcon icon={['fas', 'search']} className='w-5 h-5 align-middle' />
               </button>
               
