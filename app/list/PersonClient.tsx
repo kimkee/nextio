@@ -186,7 +186,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               {datas.name && 
                 <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]">
                   {datas.name}
-                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1 -mr-5' onClick={refrashDatas}>
+                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-2 -mr-5' onClick={refrashDatas}>
                     <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
                   </button>
                 </p> 

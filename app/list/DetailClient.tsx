@@ -77,9 +77,11 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
       }
     };
 
-    const datasRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}`, dataOpts).catch(console.error);
-    const castsRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/credits`, castOpts).catch(console.error);
-    const videoRes = await axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/videos`, movOpts).catch(console.error);
+    const [datasRes, castsRes, videoRes] = await Promise.all([
+      axios.get(`https://api.themoviedb.org/3/${opts}/${postID}`, dataOpts).catch(console.error),
+      axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/credits`, castOpts).catch(console.error),
+      axios.get(`https://api.themoviedb.org/3/${opts}/${postID}/videos`, movOpts).catch(console.error)
+    ]);
 
     if (datasRes && castsRes && videoRes) {
       setData({
@@ -98,7 +100,11 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
     console.log(id);
     axios.request({
       method: 'GET',
-      url: `https://api.themoviedb.org/3/collection/${id}?language=${globalLang.lang}&region=${globalLang.region}`,
+      url: `https://api.themoviedb.org/3/collection/${id}`,
+      params: {
+        language: globalLang.lang,
+        region: globalLang.region,
+      },
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
