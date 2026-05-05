@@ -179,7 +179,7 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
       
       <div className="sect revk mt-4" id='writeRev'>
         <div className="hbox flex justify-between items-end min-h-6 mb-2.5 leading-none">
-          <h4 className="tts text-sm">{t.detailTool.review}</h4>
+          <h4 className="tts text-sm">{t.detailinfo.review}</h4>
           <span className="num text-xs font-normal text-white/40 "><i className="i not-italic">{revNumNow}</i> / <b className="n">{ui.commas.add(revNumMax)}</b></span>
         </div>
         <div className="relative">
@@ -199,12 +199,12 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
           >
             <textarea onInput={autoheight} onFocus={checkLogin} ref={revText} 
               className="rtext max-h-60 border-nome align-middle resize-none w-full leading-normal -webkit-appearance-none outline-none  break-all bg-transparent text-[#999999] min-h-10 text-12" 
-              placeholder={`${myinfo?.id ? ` ${t.detailTool.text_01} ${revMaxLang[langAtomVal as keyof typeof revMaxLang]}`:`${t.detailTool.text_02}`}`}
+              placeholder={`${myinfo?.id ? ` ${t.detailinfo.text_01} ${revMaxLang[langAtomVal as keyof typeof revMaxLang]}`:`${t.detailinfo.text_02}`}`}
             ></textarea>
             <div className="bts mt-2">
               <button type="button" className="btn btn-sm btsend text-12! w-full bg-[rgb(0_0_0/38%)] border-white/10 disabled:bg-[rgb(0_0_0/20%)] rounded-md" 
                 disabled={ revNumNow < 1 } onClick={sendReview}>
-                <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>{t.detailTool.text_03}</em>
+                <FontAwesomeIcon icon={['fas', 'paper-plane']} /> <em>{t.detailinfo.text_03}</em>
               </button>
             </div>
           </div>

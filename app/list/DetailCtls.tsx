@@ -165,13 +165,13 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
         onClick={likeTog} disabled={isDimBtn}
       >
         {false ?(<Loading opts={{type:'glx', cls:''}}/>) 
-        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4 align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>{t.detailTool.scrap}</em></>)}
+        :(<><FontAwesomeIcon icon={['fas', 'bookmark']} className={`w-4 h-4 align-middle ${isScrap ? 'on text-primary' : 'off'}`} /><em className='-mt-0.5'>{t.detailinfo.scrap}</em></>)}
       </button>
       <button type="button" onClick={inputReply} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailTool.review}</em>
+        <FontAwesomeIcon icon={['far', 'pen-to-square']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailinfo.review}</em>
       </button>
       <button type="button" onClick={shareLink} className="bt inline-flex justify-center items-center bg-black/40 w-full text-ss gap-1 ring-white/10 ring-1 px-3">
-        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailTool.share}</em>
+        <FontAwesomeIcon icon={['fas', 'share-nodes']} className={`w-4 h-4 align-middle`} /><em className='-mt-0.5'>{t.detailinfo.share}</em>
       </button>
     </div>
     </>
