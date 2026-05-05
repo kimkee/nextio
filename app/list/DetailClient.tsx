@@ -47,7 +47,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
         language: globalLang.lang,
         region: globalLang.region,
         append_to_response: 'videos,images',
-        include_image_language: 'en,null'
+        include_image_language: 'ko,ja,en,zh,null'
       },
       headers: {
         accept: 'application/json',
