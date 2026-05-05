@@ -23,7 +23,7 @@ export default function ViewCtls({datas,postID, opts}: {datas: any, postID: stri
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        text: '공유합니다.',
+        text: `${t.detailinfo.share_txt}`,
         url: surl,
       })
       .then(() => {

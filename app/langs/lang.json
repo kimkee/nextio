@@ -35,7 +35,8 @@
         "runtime_min":"분",
         "seasons":"시즌",
         "episode":"에피소드",
-        "count":"편"
+        "count":"편",
+        "share_txt":"공유합니다."
       },
       "signin":{
         "login":"로그인",
@@ -91,7 +92,8 @@
         "runtime_min":"min",
         "seasons":"Season",
         "episode":"Episode",
-        "count":"ep"
+        "count":"ep",
+        "share_txt":"Share."
       },
       "signin":{
         "login":"Login",
@@ -147,7 +149,8 @@
         "runtime_min":"分",
         "seasons":"Season",
         "episode":"Episode",
-        "count":"話"
+        "count":"話",
+        "share_txt":"共有します。"
       },
       "signin":{
         "login":"ログイン",
@@ -203,7 +206,8 @@
         "runtime_min":"min",
         "seasons":"Season",
         "episode":"Episode",
-        "count":"集"
+        "count":"集",
+        "share_txt":"分享了。"
       },
       "signin":{
         "login":"登录",
@@ -259,7 +263,8 @@
         "runtime_min":"min",
         "seasons":"Season",
         "episode":"Episode",
-        "count":"集"
+        "count":"集",
+        "share_txt":"分享了。"
       },
       "signin":{
         "login":"登錄",
