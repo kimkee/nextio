@@ -1,9 +1,8 @@
-import { cookies } from 'next/headers';
 import Detail from '@/app/list/Detail';
 import PersonClient from '@/app/list/PersonClient';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-
+import { getLang, getTranslation } from '@/app/lib/lang';
 type Props = {
   params: Promise<{ opts: string; id: string }>;
 };
@@ -15,26 +14,16 @@ const SNAME = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { opts, id } = await params;
+  const t = await getTranslation();
   
   if (opts !== 'movie' && opts !== 'tv' && opts !== 'person') {
     return { title: 'Not Found' };
   }
-
-  const cookieStore = await cookies();
-  const globalLangCookie = cookieStore.get('globalLang');
-  let lang = 'ko-KR';
-  let region = 'kr';
-
-  if (globalLangCookie) {
-    try {
-      const parsed = JSON.parse(decodeURIComponent(globalLangCookie.value));
-      if (parsed.lang) lang = parsed.lang;
-      if (parsed.region) region = parsed.region;
-    } catch (e) {}
-  }
-
   
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${lang}&region=${region}`;
+  const lang = await getLang();
+  console.log("상세페이지 메타데이터 가져오기", lang);
+
+  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${lang}`;
   const options = {
     method: 'GET',
     headers: {
@@ -48,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // console.log("상세페이지 메타데이터 가져오기", data);
     
     if (!res.ok) {
-      return { title: `상세 정보 - ${SNAME}` };
+      return { title: `${t.title} - ${SNAME}` };
     }
 
     const title = data.title || data.name;
@@ -65,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     };
   } catch (e) {
-    return { title: '상세 정보 - NEXTIO' };
+    return { title: `${t.title} - ${SNAME}` };
   }
 }
 

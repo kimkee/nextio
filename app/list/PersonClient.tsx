@@ -134,7 +134,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        text: '공유합니다.',
+        // text: `${t.detailinfo.share_txt}`,
         url: surl,
       })
       .then(() => {
