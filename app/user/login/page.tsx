@@ -6,6 +6,7 @@ import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from '@/app/store/lang';
+import Img from "@/app/components/Img";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
@@ -47,7 +48,7 @@ export default function LoginPage() {
       <main className="flex flex-col max-w-[16rem] w-full justify-center items-center py-6">
 
         <div className="mb-1">
-          <Image width={96} height={96} className="w-12" src="/img/logo.png" alt="" />
+          <Image width={96} height={96} className="w-12" src="/img/logo.png" unoptimized={true} alt="" />
         </div>
         <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
           <em className="text-primary relative px-2 z-1 bg-[#181818]">{ t.signin.login }</em>
