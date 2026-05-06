@@ -6,7 +6,8 @@ import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from '@/app/store/lang';
-
+import Img from "@/app/components/Img";
+import { version } from '@/package.json'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
 export default function LoginPage() {
@@ -43,28 +44,37 @@ export default function LoginPage() {
   if (authChecking) return null;
 
   return (
-    <div className="container items-center justify-center">
-      <main className="flex flex-col max-w-[16rem] w-full justify-center items-center py-6">
+    <div className="container items-center justify-center flex-col">
+      <main className="flex flex-col w-full justify-center items-center flex-1">
 
-        <div className="mb-1">
-          <Image width={96} height={96} className="w-12" src="/img/logo.png" alt="" />
+        <div className="flex-1 w-full max-w-64 flex flex-col justify-center items-center pt-12">
+          <div className="mb-1">
+            <Image width={96} height={96} className="w-12" src="/img/logo.png" unoptimized={true} alt="" />
+          </div>
+          <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
+            <em className="text-primary relative px-2 z-1 bg-[#181818]">{ t.signin.login }</em>
+          </div>
+          <div className="grid grid-cols-1 gap-4 w-full">
+            <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>
+              <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google</em>
+            </button>
+            <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
+              <i><FontAwesomeIcon icon={["fab", "kakao-talk"]} /></i><em>Kakao</em>
+            </button>
+            <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
+              <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github</em>
+            </button>
+          </div>
         </div>
-        <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
-          <em className="text-primary relative px-2 z-1 bg-[#181818]">{ t.signin.login }</em>
+        <div className="flex flex-col justify-center items-center pb-6">
+          <button className="text-xs mt-2 text-transparent active:bg-primary active:text-black px-2">{SITE_URL}</button>
+          <p className="text-xs mt-3 flex gap-1 border border-gray-500/40 items-center justify-center px-2 py-1 rounded-xl bg-white/10 leading-none">
+            <span className="font-bold">{`Version ${version}`}</span>
+          </p>
+          <p className="font-light text-xs mt-2">
+            Build : {process.env.NEXT_PUBLIC_BUILD_TIME}
+          </p>
         </div>
-        <div className="grid grid-cols-1 gap-4 w-full">
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>
-            <i><FontAwesomeIcon icon={["fab", "google"]} /></i><em>Google</em>
-          </button>
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('kakao')}>
-            <i><FontAwesomeIcon icon={["fab", "kakao-talk"]} /></i><em>Kakao</em>
-          </button>
-          <button className="btn btn-lg" onClick={() => signInWithOAuth('github')}>
-            <i><FontAwesomeIcon icon={["fab", "github"]} /></i><em>Github</em>
-          </button>
-        </div>
-
-        <p className="text-sm mt-6">{SITE_URL}</p>
 
       </main>
     </div>

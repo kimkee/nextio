@@ -1,11 +1,15 @@
 import type { MetadataRoute } from 'next'
+import { version } from '../package.json'
 
-export default function manifest(): MetadataRoute.Manifest {
+type AppManifest = MetadataRoute.Manifest & { version: string };
+
+export default function manifest(): AppManifest {
   const ENV = !(process.env.NEXT_PUBLIC_ENV == 'PRD') ? ':'+process.env.NEXT_PUBLIC_ENV : '';
   return {
     name: `NEXTIO${ENV}`,
     short_name: `NEXTIO${ENV}`,
-    description: '최신 영화 정보 서비스 NEXTIO',
+    version: `v${version}`,
+    description: 'The Latest Movie Information Service',
     start_url: '/',
     scope: '/',
     orientation: 'portrait',
@@ -31,5 +35,5 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any"
       }
     ],
-  }
+  } as unknown as MetadataRoute.Manifest & { version: string };
 }
