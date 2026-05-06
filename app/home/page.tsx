@@ -10,6 +10,7 @@ import HomeTop from "./HomeTop";
 import ListSet from "./ListSet";
 import ListTop10 from "./ListTop10";
 import { useTranslation } from '@/app/store/lang';
+import { version } from '@/package.json'
 
 export default function Home() {
   const t = useTranslation();
@@ -56,6 +57,14 @@ export default function Home() {
         
         <ListSet opts={{media:"tv", list: "discover/tv", cate: "80", title: `${t.tv}/${t.crime}`}} />
 
+        <div className="flex flex-col justify-center items-center pb-3">
+          <p className="text-xs mt-3 flex gap-1 border border-gray-500/40 items-center justify-center px-2 py-1 rounded-xl bg-white/10 leading-none">
+            <span className="font-bold">{`Version ${version}`}</span>
+          </p>
+          <p className="font-light text-xs mt-2">
+            Build : {process.env.NEXT_PUBLIC_BUILD_TIME}
+          </p>
+        </div>
       </main>
     </div>
   );

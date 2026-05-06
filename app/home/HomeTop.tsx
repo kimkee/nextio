@@ -188,16 +188,16 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                       prefetch={true}
                       onClick={handleLinkClick}
                     >
-                        <div className={`${styles.pics}`} style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className={`${styles.img}`} />
+                      <div className={`${styles.pics}`} style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
+                        <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className={`${styles.img}`} />
+                      </div>
+                      <div className={`${styles.info}`}>
+                        <div className={`${styles.star}`}>
+                          <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                         </div>
-                        <div className={`${styles.info}`}>
-                          <div className={`${styles.star}`}>
-                            <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
-                          </div>
-                          <div className={`${styles.tit}`}>{data.title}</div>
-                        </div>
-                        <div className={`${styles.screen}`}></div>
+                        <div className={`${styles.tit}`}>{data.title}</div>
+                      </div>
+                      <div className={`${styles.screen}`}></div>
                     </Link>
                   </SwiperSlide>
                 )
@@ -208,11 +208,13 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
               <div className="custom-pagination w-auto! leading-none flex items-center gap-1.5"></div>
               { mlist.length > 1 &&
               <div className="flex items-center">
-                <button className="play w-4 h-4 ring-1 ring-white/30 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/60" 
-                  onClick={togglePlayStop}
-                  title={ playStop ? 'play' : 'pause' }
+                <button 
+                  className="play size-7 flex items-center justify-center -m-1" 
+                  onClick={togglePlayStop} title={ playStop ? 'play' : 'pause' }
                 >
-                  {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2 h-2 ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2 h-2' /> }
+                  <span className="w-4 h-4 ring-1 ring-white/30 rounded-full inline-flex items-center justify-center -mx-0.5 text-white/60">
+                    {playStop ? <FontAwesomeIcon icon={['fas', 'play' ]} className='w-2 h-2 ml-0.5' /> : <FontAwesomeIcon icon={['fas', 'pause' ]} className='w-2 h-2' /> }
+                  </span>
                 </button> 
               </div> }
             </div>
