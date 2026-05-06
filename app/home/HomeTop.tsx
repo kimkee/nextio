@@ -188,16 +188,16 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                       prefetch={true}
                       onClick={handleLinkClick}
                     >
-                        <div className={`${styles.pics}`} style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
-                          <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className={`${styles.img}`} />
+                      <div className={`${styles.pics}`} style={{transform:'translate3D(0rem , 0'+topVal+'px , 0rem)'}}>
+                        <Img width={780} height={1170} src={`${img}`} alt={data.title} srcerr='/img/common/non_poster.png' unoptimized={true} loading='lazy' className={`${styles.img}`} />
+                      </div>
+                      <div className={`${styles.info}`}>
+                        <div className={`${styles.star}`}>
+                          <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                         </div>
-                        <div className={`${styles.info}`}>
-                          <div className={`${styles.star}`}>
-                            <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
-                          </div>
-                          <div className={`${styles.tit}`}>{data.title}</div>
-                        </div>
-                        <div className={`${styles.screen}`}></div>
+                        <div className={`${styles.tit}`}>{data.title}</div>
+                      </div>
+                      <div className={`${styles.screen}`}></div>
                     </Link>
                   </SwiperSlide>
                 )
