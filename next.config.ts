@@ -37,6 +37,18 @@ const baseConfig: NextConfig = {
       },
     ],
   },
+  env: {
+    NEXT_PUBLIC_BUILD_TIME: new Intl.DateTimeFormat('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZone: 'Asia/Seoul',
+    }).format(new Date()),
+  },
   // 추가적인 설정 옵션을 여기에 추가할 수 있습니다
 };
 

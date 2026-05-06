@@ -7,7 +7,7 @@ import { Provider } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from '@/app/store/lang';
 import Img from "@/app/components/Img";
-
+import { version } from '@/package.json'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL as string;
 
 export default function LoginPage() {
@@ -66,6 +66,9 @@ export default function LoginPage() {
         </div>
 
         <p className="text-sm mt-6">{SITE_URL}</p>
+        
+        <p className="text-xs mt-1">{process.env.NEXT_PUBLIC_BUILD_TIME} {`(v${version})`}</p>
+
 
       </main>
     </div>
