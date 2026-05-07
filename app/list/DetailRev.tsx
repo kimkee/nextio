@@ -6,7 +6,7 @@ import Img from '@/app/components/Img';
 import { supabase } from '@/app/supabase';
 import { Provider } from '@supabase/supabase-js';
 import Link from 'next/link';
-import { usePathname, useRouter, useParams } from 'next/navigation';
+import { usePathname, useRouter, useParams, useSearchParams } from 'next/navigation';
 import { use } from 'react';
 import getUser from '@/app/getUser';
 import { useAtom } from 'jotai';
@@ -20,7 +20,9 @@ import DetailRevTxt from './DetailRevTxt';
 import './DetailRev.css';
 export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: any, postID: string, opts: any, user: any, myinfo: any}) {
   const [langAtomVal, langAtomSet] = useAtom(langAtom);
-  const t = useTranslation();
+  const searchParams = useSearchParams()
+  const langParams = searchParams.get('lang') as string;
+  const t = useTranslation(langParams);
   const [globalLang] = useAtom(globalLangAtom);
   const [review, setReview] =  useState<any>(null);
   // const fetchRev = `https://api.themoviedb.org/3/${opts}/${postID}/reviews?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;

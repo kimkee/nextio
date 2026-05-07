@@ -3,8 +3,10 @@ import PersonClient from '@/app/list/PersonClient';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLangCode, getLang, getTranslation } from '@/app/lib/lang';
+
 type Props = {
   params: Promise<{ opts: string; id: string }>;
+  searchParams: Promise<{ lang: string; }>;
 };
 const SNAME = { 
   DEV: 'NEXTIO:D',
@@ -12,7 +14,7 @@ const SNAME = {
   PRD: 'NEXTIO'
 }[process.env.NEXT_PUBLIC_ENV || 'PRD'];
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { opts, id } = await params;
   const t = await getTranslation();
   
@@ -22,9 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const regionCode = (await getLang());
   const langCode = (await getLangCode());
-  console.log("상세페이지 메타데이터 가져오기", regionCode, langCode);
+  const { lang: langParams } = await searchParams;
+  const LCODE = (await getLangCode(langParams));
 
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${langCode}&region=${regionCode}`;
+  console.log("상세페이지 메타데이터 가져오기",langParams, LCODE, regionCode, langCode  );
+
+  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${LCODE || langCode}&region=${regionCode}`;
   const options = {
     method: 'GET',
     headers: {
