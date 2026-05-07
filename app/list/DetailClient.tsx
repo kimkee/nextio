@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, useTransition } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Img from '@/app/components/Img';
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import axios from 'axios';
@@ -27,10 +27,15 @@ interface DetailClientProps {
   postID: string;
 }
 
-export default function DetailClient({ opts, postID }: DetailClientProps) {
-  const t = useTranslation();
+export default function DetailClient({ opts, postID  }: DetailClientProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams()
+  let langParams = searchParams.get('lang') as string;
+  const t = useTranslation(langParams);
+  // console.log(t.lang);
+  langParams = t.lang;
+
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
@@ -38,14 +43,17 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
   const [myinfo, setMyinfo] = useState<MyinfoType>(null as any);
 
   const [globalLang] = useAtom(globalLangAtom);
+  const currentLang = langParams || globalLang.lang;
+  const currentRegion = langParams || globalLang.region;
 
+  // console.log(t);
   const fetchMovieData = async () => {
     setData(null);
 
     const dataOpts = {
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
         append_to_response: 'videos,images',
         include_image_language: 'ko,ja,en,zh,null'
       },
@@ -57,8 +65,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
     const castOpts = {
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',
@@ -68,8 +76,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
 
     const movOpts = {
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',
@@ -102,8 +110,8 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
       method: 'GET',
       url: `https://api.themoviedb.org/3/collection/${id}`,
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',
@@ -330,7 +338,7 @@ export default function DetailClient({ opts, postID }: DetailClientProps) {
             </div>
           </div>
           
-          <DetailCtls datas={datas} postID={postID} opts={opts} />
+          <DetailCtls datas={datas} postID={postID} opts={opts} shareLang={t.id}/>
 
           {datas.overview && <DetailElips overview={datas.overview} />}
 

@@ -47,8 +47,8 @@ export async function getLang() {
 }
 
 // 다국어 언어코드 가져오기 (TMDB 등에서 사용)
-export async function getLangCode() {
-  const lang = (await getLang()) as keyof typeof values;
+export async function getLangCode(val?: string) {
+  const lang = (val || await getLang()) as keyof typeof values;
   const values = {
     ko: "ko-KR",
     en: "en-US",
