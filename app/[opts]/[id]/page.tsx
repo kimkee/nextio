@@ -2,7 +2,7 @@ import Detail from '@/app/list/Detail';
 import PersonClient from '@/app/list/PersonClient';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getLang, getTranslation } from '@/app/lib/lang';
+import { getLangCode, getLang, getTranslation } from '@/app/lib/lang';
 type Props = {
   params: Promise<{ opts: string; id: string }>;
 };
@@ -20,10 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Not Found' };
   }
   
-  const lang = await getLang();
-  console.log("상세페이지 메타데이터 가져오기", lang);
+  const regionCode = (await getLang());
+  const langCode = (await getLangCode());
+  console.log("상세페이지 메타데이터 가져오기", regionCode, langCode);
 
-  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${lang}`;
+  const fetchURL = `https://api.themoviedb.org/3/${opts}/${id}?language=${langCode}&region=${regionCode}`;
   const options = {
     method: 'GET',
     headers: {
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const res = await fetch(fetchURL, options);
     const data = await res.json();
-    // console.log("상세페이지 메타데이터 가져오기", data);
+    console.log("상세페이지 메타데이터 가져오기", fetchURL, data);
     
     if (!res.ok) {
       return { title: `${t.title} - ${SNAME}` };
