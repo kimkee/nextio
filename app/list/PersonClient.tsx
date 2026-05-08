@@ -25,7 +25,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   const initLangParams = searchParams.get('lang') as string;
   const t = useTranslation(initLangParams);
   const langParams = t.lang;
-
+  const regionParams = t.region;
+  console.log("인물 페이지에서", langParams, regionParams);
   const setTitle = useSetAtom(modalTitleAtom);
   const personID = searchParams.get('person') ||  params.id;
 
@@ -36,7 +37,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
 
   const [globalLang] = useAtom(globalLangAtom);
   const currentLang = langParams || globalLang.lang;
-  const currentRegion = langParams || globalLang.region;
+  const currentRegion = regionParams || globalLang.region;
 
   // const personURL = `https://api.themoviedb.org/3/person/${personID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   

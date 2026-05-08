@@ -3,6 +3,7 @@
     "ko": {
       "id":"ko",
       "lang":"ko-KR",
+      "region":"kr",
       "title":"NEXTIO",
       "description":"최신 영화 정보, 리뷰, 트레일러, 인기 영화 검색 서비스. 영화 팬들을 위한 완벽한 정보 검색 앱! 방대한 영화 데이터베이스에서 영화 정보를 검색하세요. 평점, 리뷰, 감독 정보, 출연진 등 다양한 정보를 제공합니다.",
       "all":"전체",
@@ -62,6 +63,7 @@
     "en":{
       "id":"en",
       "lang":"en-US",
+      "region":"us",
       "title":"NEXTIO",
       "description":"Latest movie information, reviews, trailers, popular movie search service. The perfect information search app for movie fans! Search for movie information in a vast movie database. Provides various information such as ratings, reviews, director information, and cast.",
       "all":"All",
@@ -121,6 +123,7 @@
     "jp":{
       "id":"jp",
       "lang":"ja-JP",
+      "region":"jp",
       "title":"NEXTIO",
       "description":"最新の映画情報、レビュー、予告編、人気映画検索サービス。映画ファンに最適な情報検索アプリ！広大な映画データベースで映画情報を検索できます。評価、レビュー、監督情報、出演者など、さまざまな情報を提供します。",
       "all":"全",
@@ -180,6 +183,7 @@
     "cn":{
       "id":"cn",
       "lang":"zh-CN",
+      "region":"cn",
       "title":"NEXTIO",
       "description":"最新电影信息、评论、预告片、热门电影搜索服务。电影迷的完美信息搜索应用程序！在庞大的电影数据库中搜索电影信息。提供评分、评论、导演信息、演员等各种信息。",
       "all":"全",
@@ -239,6 +243,7 @@
     "tw":{
       "id":"tw",
       "lang":"zh-TW",
+      "region":"tw",
       "title":"NEXTIO",
       "description":"最新電影資訊、評論、預告片、熱門電影搜索服務。電影迷的完美信息搜索應用程序！在龐大的電影數據庫中搜索電影信息。提供評分、評論、導演信息、演員等各種信息。",
       "all":"全",

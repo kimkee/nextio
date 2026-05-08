@@ -35,7 +35,8 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   const initLangParams = searchParams.get('lang') as string;
   const t = useTranslation(initLangParams);
   const langParams = t.lang;
-
+  const regionParams = t.region;
+  console.log("디테일 페이지에서", langParams, regionParams);
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
@@ -44,7 +45,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
   const [globalLang] = useAtom(globalLangAtom);
   const currentLang = langParams || globalLang.lang;
-  const currentRegion = langParams || globalLang.region;
+  const currentRegion = regionParams || globalLang.region;
 
   // console.log(t);
   const fetchMovieData = async () => {
