@@ -30,11 +30,11 @@ interface DetailClientProps {
 export default function DetailClient({ opts, postID  }: DetailClientProps) {
   const router = useRouter();
   const pathname = usePathname();
+
   const searchParams = useSearchParams()
-  let langParams = searchParams.get('lang') as string;
-  const t = useTranslation(langParams);
-  // console.log(t.lang);
-  langParams = t.lang;
+  const initLangParams = searchParams.get('lang') as string;
+  const t = useTranslation(initLangParams);
+  const langParams = t.lang;
 
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();

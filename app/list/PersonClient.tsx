@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import {useParams, useRouter, useSearchParams } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
+import {useParams, usePathname, useRouter, useSearchParams } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
 import Link from 'next/link';
 
 import ui from '@/app/lib/ui';
@@ -20,23 +20,12 @@ import { modalTitleAtom } from '@/app/store/modal';
 import { useTranslation } from '@/app/store/lang';
 
 export default function PersonClient({params}: {params: { opts: string, id: string }}) {
+
   const searchParams = useSearchParams()
-  let langParams = searchParams.get('lang') as string;
-  const t = useTranslation(langParams);
-  if(langParams == 'jp'){
-    langParams ='ja-JP';
-  } else if(langParams == 'ko') {
-    langParams = 'ko-KR';
-  } else if(langParams == 'en') {
-    langParams = 'en-US';
-  } else if(langParams == 'cn') {
-    langParams = 'zh-CN';
-  } else if(langParams == 'tw') {
-    langParams = 'zh-TW';
-  }
-  // let params = useParams()
-  const router = useRouter();
-  
+  const initLangParams = searchParams.get('lang') as string;
+  const t = useTranslation(initLangParams);
+  const langParams = t.lang;
+
   const setTitle = useSetAtom(modalTitleAtom);
   const personID = searchParams.get('person') ||  params.id;
 
@@ -141,9 +130,10 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     fetchCredits();
     fetchPhotos();
   };
-
+  
+  const shareLang = t.id; 
   const shareLink = ()=> {
-    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/person/${personID}`;
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/person/${personID}?lang=${shareLang || langParams}`;
     navigator.clipboard.writeText(surl);
     // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
     const datatitle = datas.title || datas.name;
@@ -154,7 +144,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         url: surl,
       })
       .then(() => {
-        console.log('공유 성공');
+        console.log('공유 성공' , surl);
         
       })
       .catch((error) => {
