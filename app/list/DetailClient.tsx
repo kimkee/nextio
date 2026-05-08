@@ -36,7 +36,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   const t = useTranslation(initLangParams);
   const langParams = t.lang;
   const regionParams = t.region;
-  console.log("디테일 페이지에서", langParams, regionParams);
+  
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
@@ -49,8 +49,8 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
   // console.log(t);
   const fetchMovieData = async () => {
+    console.log("디테일 페이지에서", langParams, regionParams, currentLang, currentRegion);
     setData(null);
-
     const dataOpts = {
       params: {
         language: currentLang,
@@ -153,16 +153,28 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
     });
   }, []);
 
+  const [isOverTime, setIsOverTime] = useState(false);
+  
+  useEffect(() => {
+    setTimeout(() => setIsOverTime(true), 2000);
+  }, []);
+  
   const refrashDatas = () => {
     fetchMovieData();
   };
 
   if (isPending || !data) {
     return (
-      <div className='movie-detail relative text-white animate-pulse'>
+      <div className='movie-detail relative text-white'>
+        <div className={`fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-25 scale-120 ${isOverTime ? '' : 'hidden'}`}>
+          <button className='refresh  ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center pressed focus:animate-spin' onClick={refrashDatas}>
+            <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
+          </button>
+        </div>
+
         <div className='m-info relative z-1'>
           {/* 상단 기본 정보 영역 */}
-          <div className='info flex flex-wrap justify-between flex-row'>
+          <div className='info flex flex-wrap justify-between flex-row animate-pulse'>
             <div className='desc flex-1 pr-3'>
               <div className='h-8 bg-black rounded w-3/4 mb-4' />
               <div className='h-4 bg-black rounded w-1/2 mb-6' />
@@ -184,15 +196,15 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
           </div>
 
           {/* 컨트롤 바 영역 */}
-          <div className='mt-6 h-8 bg-black rounded' />
+          <div className='mt-6 h-8 bg-black rounded animate-pulse' />
           
           {/* 줄거리 영역 */}
-          <div className='mt-4 h-21 bg-black rounded' />
+          <div className='mt-4 h-21 bg-black rounded animate-pulse' />
 
           {/* 출연진 영역 (원형) */}
-          <div className='sect mt-4'>
-            <div className='h-6 bg-black rounded w-20 mb-2' />
-            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5'>
+          <div className='sect mt-4 animate-pulse'>
+            <div className='h-6 bg-black rounded w-20 mb-2 animate-pulse' />
+            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5 animate-pulse'>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col active:scale-95 transition-transform duration-200'>
                   <div className='pics relative rounded-full w-full bg-black pb-[calc(100%/100*100)] mb-1' />
@@ -203,7 +215,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
           </div>
 
           {/* 영상 영역 (16:9 사각형) */}
-          <div className='sect mt-10'>
+          <div className='sect mt-10 animate-pulse'>
             <div className='h-6 bg-black rounded w-16 mb-4' />
             <div className='flex gap-4 overflow-hidden'>
               {[1, 2, 3].map((i) => (
@@ -213,9 +225,9 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
           </div>
 
           {/* 제작진 영역 (원형) */}
-          <div className='sect mt-10'>
-            <div className='h-6 bg-black rounded w-20 mb-4' />
-            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5'>
+          <div className='sect mt-10 animate-pulse'>
+            <div className='h-6 bg-black rounded w-20 mb-4 animate-pulse' />
+            <div className='lst flex flex-nowrap overflow-y-hidden -mx-5 px-2.5 animate-pulse'>
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className='profile w-[calc(20%-1.25rem)] min-w-[calc(20%-1.25rem)] mx-2.5  break-all flex align-top flex-col active:scale-95 transition-transform duration-200'>
                   <div className='pics relative rounded-full w-full bg-black pb-[calc(100%/100*100)] mb-1' />
@@ -228,9 +240,14 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
       </div>
     );
   }
-  const openPosterModal = (idx:number, opts:string) => {
+  const openPosterModal = (idx:string, opts:string) => {
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
-    router.push(`${pathname}?poster=${opts}&idx=${idx}`, { scroll: false });
+    // 기존 url에  ?person=${idx}만 추가하는방식으로 바꾸자
+    const url = new URL(window.location.href);
+    url.searchParams.set('poster', opts);
+    url.searchParams.set('idx', idx);
+    const newUrl = url.toString();
+    router.push(newUrl, { scroll: false });
   };
   
   const { datas, casts, moves } = data;
@@ -256,7 +273,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
             <div className='desc flex-1 pr-3'>
               <h1 className='tit text-xx '>
                 {datas.title || datas.name}
-                <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1' onClick={refrashDatas}>
+                <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1 pressed' onClick={refrashDatas}>
                   <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
                 </button>
               </h1>
@@ -320,7 +337,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
               </ul>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <button type='button' onClick={()=>{openPosterModal(0, opts) }} 
+              <button type='button' onClick={()=>{openPosterModal('0', opts) }} 
                 className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300
                  mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]'
               >

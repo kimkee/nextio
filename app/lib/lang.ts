@@ -62,11 +62,11 @@ export async function getLangCode(val?: string) {
 export async function getRegion(val?: string) {
   const region = (val || await getLang()) as keyof typeof values;
   const values = {
-    ko: "kr",
-    en: "us",
-    jp: "jp",
-    cn: "cn",
-    tw: "tw"
+    ko: "KR",
+    en: "US",
+    jp: "JP",
+    cn: "CN",
+    tw: "TW"
   }
   return values[region];
 }
