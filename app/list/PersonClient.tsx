@@ -125,6 +125,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   }, [datas]);
 
   const refrashDatas = () => {
+    setIsOverTime(false);
     setDatas(null);
     setCasts(null);
     setPhotos(null);

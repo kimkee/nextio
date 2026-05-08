@@ -7,7 +7,7 @@ export default function LangSelect() {
 
   const [globalLang, globalLangSet] = useAtom(globalLangAtom);
   const [openLang, setOpenLang] = useState(false);
-  const langTxt = {ko: '한국어',en: 'English',jp: '日本語',cn: '简体中文',tw: '繁體中文'}
+  const langTxt = {kr: '한국어',us: 'English',jp: '日本語',cn: '简体中文',tw: '繁體中文'} as Record<string, string>;
   const setLang = (lang: string, region: string) => {
     // globalLangSet({ lang, region });
     const langData = JSON.stringify({ lang, region });
@@ -56,44 +56,35 @@ export default function LangSelect() {
         title={`Language : ${globalLang.lang.toUpperCase()}`}>
         <FontAwesomeIcon icon={['fas', 'earth-americas']} className='w-3 h-3 flex mr-1'  />
         <b className='flex items-center justify-center top-2 left-2 -right-9 bottom-2 text-xs text-shadow-[0_0_1px_black]'>
-          {
-          globalLang.region === 'kr' ? langTxt.ko
-          :globalLang.region === 'us' ? langTxt.en
-          :globalLang.region === 'jp' ? langTxt.jp
-          :globalLang.region === 'cn' ? langTxt.cn
-          :globalLang.region === 'tw' ? langTxt.tw
-          :''
-          }
+          {langTxt[globalLang.region]}
         </b>
       </button>
       <div 
-        className={`options absolute bg-black/50 z-50 w-20 top-full right-0 grid grid-cols-1 
-          ${openLang ? 'block' : 'hidden'}
-        `}>
-        <button onClick={() => {
-          setLang('en-US', 'us');
-        }} className={`px-3 py-1.5 text-white/90 text-sm hover:bg-black/70 ${globalLang.lang === 'en-US' ? 'text-primary' : ''}`}>
-          {langTxt.en}
+        className={`${openLang ? 'block' : 'hidden'} options absolute bg-black/50 z-50 w-20 top-full right-0 grid grid-cols-1 `}
+      >
+        <button
+          onClick={() => { setLang('en-US', 'us'); }} 
+          className={`px-3 py-1.5 text-sm hover:bg-black/70 ${globalLang.lang} ${globalLang.lang === 'en-US' ? 'text-primary acitve' : 'text-white/90'}`}>
+          {langTxt.us}
         </button>
-
-        <button onClick={() => {
-          setLang('ko-KR', 'kr');
-        }} className={`px-3 py-1.5 text-white/90 text-sm hover:bg-black/70 ${globalLang.lang === 'ko-KR' ? 'text-primary' : ''}`}>
-          {langTxt.ko}
+        <button
+          onClick={() => { setLang('ko-KR', 'kr'); }} 
+          className={`px-3 py-1.5 text-sm hover:bg-black/70 ${globalLang.lang} ${globalLang.lang === 'ko-KR' ? 'text-primary acitve' : 'text-white/90'}`}>
+          {langTxt.kr}
         </button>
-        <button onClick={() => {
-          setLang('ja-JP', 'jp');
-        }} className={`px-3 py-1.5 text-white/90 text-sm hover:bg-black/70 ${globalLang.lang === 'ja-JP' ? 'text-primary' : ''}`}>
+        <button
+          onClick={() => { setLang('ja-JP', 'jp'); }} 
+          className={`px-3 py-1.5 text-sm hover:bg-black/70 ${globalLang.lang} ${globalLang.lang === 'ja-JP' ? 'text-primary acitve' : 'text-white/90'}`}>
           {langTxt.jp}
         </button>
-        <button onClick={() => {
-          setLang('zh-CN', 'cn');
-        }} className={`px-3 py-1.5 text-white/90 text-sm hover:bg-black/70 ${globalLang.lang === 'zh-CN' ? 'text-primary' : ''}`}>
+        <button
+          onClick={() => { setLang('zh-CN', 'cn'); }} 
+          className={`px-3 py-1.5 text-sm hover:bg-black/70 ${globalLang.lang} ${globalLang.lang === 'zh-CN' ? 'text-primary acitve' : 'text-white/90'}`}>
           {langTxt.cn}
         </button>
-        <button onClick={() => {
-          setLang('zh-TW', 'tw');
-        }} className={`px-3 py-1.5 text-white/90 text-sm hover:bg-black/70 ${globalLang.lang === 'zh-TW' ? 'text-primary' : ''}`}>
+        <button
+          onClick={() => { setLang('zh-TW', 'tw'); }} 
+          className={`px-3 py-1.5 text-sm hover:bg-black/70 ${globalLang.lang} ${globalLang.lang === 'zh-TW' ? 'text-primary acitve' : 'text-white/90'}`}>
           {langTxt.tw}
         </button>
       </div>

@@ -160,6 +160,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   }, []);
   
   const refrashDatas = () => {
+    setIsOverTime(false);
     fetchMovieData();
   };
 
