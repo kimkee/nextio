@@ -34,7 +34,12 @@ export default function ViewVideo({props}: {props: {title: string, css: string, 
   
   const openVideosModal = (idx:number, opts:string) => {
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
-    router.push(`${pathname}?video=${opts}&idx=${idx}`, { scroll: false });
+    // 기존 url에 ?video=${opts}&idx=${idx}  추가하는방식으로 바꾸자
+    const url = new URL(window.location.href);
+    url.searchParams.set('video', opts);
+    url.searchParams.set('idx', idx.toString());
+    router.push(url.toString(), { scroll: false });
+    // router.push(`${pathname}?video=${opts}&idx=${idx}`, { scroll: false });
   };
   // console.log(props.data); 
 

@@ -59,6 +59,18 @@ export async function getLangCode(val?: string) {
   return values[lang];
 }
 
+export async function getRegion(val?: string) {
+  const region = (val || await getLang()) as keyof typeof values;
+  const values = {
+    ko: "KR",
+    en: "US",
+    jp: "JP",
+    cn: "CN",
+    tw: "TW"
+  }
+  return values[region];
+}
+
 /**
  * Get current translation data (Server-side)
  */

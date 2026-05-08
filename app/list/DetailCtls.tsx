@@ -29,7 +29,7 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
         url: surl,
       })
       .then(() => {
-        console.log('공유 성공');
+        console.log('공유 성공', surl);
         
       })
       .catch((error) => {
@@ -72,11 +72,13 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
   const likeTog = async (e: any)=> {
     console.log(myinfo?.email);
     if (!myinfo?.email) {
-      ui.confirm(`로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까? `,{
+      ui.confirm(`${t.signin.chk_01}`,{
         ycb: () => {
           router.push(`/user/login`);
         },
-        ncb: () => { }
+        ncb: () => { },
+        ybt: t.signin.btn_login,
+        nbt: t.signin.btn_close,
       });
       return
     }
