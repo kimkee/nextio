@@ -29,7 +29,7 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
         url: surl,
       })
       .then(() => {
-        console.log('공유 성공');
+        console.log('공유 성공', surl);
         
       })
       .catch((error) => {

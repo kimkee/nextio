@@ -47,7 +47,7 @@ export default function LoginPage() {
     <div className="container items-center justify-center flex-col">
       <main className="flex flex-col w-full justify-center items-center flex-1">
 
-        <div className="flex-1 w-full max-w-64 flex flex-col justify-center items-center pt-12">
+        <div className="flex-1 w-full max-w-64 flex flex-col justify-center items-center pt-4 z-25 relative">
           <div className="mb-1">
             <Image width={96} height={96} className="w-12" src="/img/logo.png" unoptimized={true} alt="" />
           </div>
@@ -66,7 +66,7 @@ export default function LoginPage() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center pb-6">
+        <div className="sticky z-10 bottom-[calc(4rem+var(--safe-bottom))] left-0 right-0 flex flex-col justify-center items-center pb-6">
           <button className="text-xs mt-2 text-transparent active:bg-primary active:text-black px-2">{SITE_URL}</button>
           <p className="text-xs mt-3 flex gap-1 border border-gray-500/40 items-center justify-center px-2 py-1 rounded-xl bg-white/10 leading-none">
             <span className="font-bold">{`Version ${version}`}</span>

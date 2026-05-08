@@ -31,7 +31,10 @@ export default function ViewCast({props}: {props: {title: string, css: string, d
 
   const openPersonModal = (idx:string) => {
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
-    router.push(`${pathname}?person=${idx}`, { scroll: false });
+    // 기존 url에  ?person=${idx}만 추가하는방식으로 바꾸자
+    const url = new URL(window.location.href);
+    url.searchParams.set('person', idx);
+    router.push(url.toString(), { scroll: false });
   };
 
   return (
