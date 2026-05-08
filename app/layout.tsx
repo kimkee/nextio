@@ -4,13 +4,37 @@ import '@/app/style/globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { Noto_Sans_KR } from 'next/font/google';
+import { Noto_Sans_KR, Noto_Sans, Noto_Sans_JP, Noto_Sans_SC, Noto_Sans_TC } from 'next/font/google';
 
 const noto_sans_kr = Noto_Sans_KR({ 
   subsets: ['latin'], 
   weight: ['400', '500', '700'],
   display: 'swap',
   variable: '--font-noto-sans-kr',
+});
+const noto_sans_en = Noto_Sans({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans-en',
+});
+const noto_sans_jp = Noto_Sans_JP({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans-jp',
+});
+const noto_sans_sc = Noto_Sans_SC({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans-sc',
+});
+const noto_sans_tc = Noto_Sans_TC({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans-tc',
 });
 import { getLang, getTranslation } from '@/app/lib/lang';
 
@@ -73,15 +97,24 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const isProd = process.env.NEXT_PUBLIC_ENV === 'PRD';
 
   const lang = await getLang();
-
+  const fontSet = (l:string)=>{
+    switch(l){
+      case 'ko': return noto_sans_kr;
+      case 'en': return noto_sans_en;
+      case 'jp': return noto_sans_jp;
+      case 'cn': return noto_sans_sc;
+      case 'tw': return noto_sans_tc;
+      default: return noto_sans_kr;
+    }
+  }
   return (
-    <html lang={lang} className={`${noto_sans_kr.variable}`}>
+    <html lang={lang} className={`${fontSet(lang).variable}`}>
       <head>
         <link rel="preconnect" href="https://image.tmdb.org" />
         <link rel="dns-prefetch" href="https://image.tmdb.org" />
         <meta name="theme-color" content="#1c1c1c" />
       </head>
-      <body className={`body ${noto_sans_kr.className} antialiased`}>
+      <body className={`body ${fontSet(lang).className} antialiased`}>
         <Suspense fallback={null}>
           <RouteTracker />
           <Popup />

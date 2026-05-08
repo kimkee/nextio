@@ -26,7 +26,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   const t = useTranslation(initLangParams);
   const langParams = t.lang;
   const regionParams = t.region;
-  console.log("인물 페이지에서", langParams, regionParams);
+  
   const setTitle = useSetAtom(modalTitleAtom);
   const personID = searchParams.get('person') ||  params.id;
 
@@ -42,6 +42,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   // const personURL = `https://api.themoviedb.org/3/person/${personID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   
   const fetchPerson = () => {
+    console.log("인물 페이지에서", langParams, regionParams);
     const options = {
       method: 'GET',
       url: `https://api.themoviedb.org/3/person/${personID}`,
@@ -124,6 +125,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   }, [datas]);
 
   const refrashDatas = () => {
+    setIsOverTime(false);
     setDatas(null);
     setCasts(null);
     setPhotos(null);
@@ -160,14 +162,28 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   const isInfo = () => {
     return datas && datas.birthday || datas.place_of_birth || datas.deathday || datas.homepage || datas.biography; 
   };
+  
+  const [isOverTime, setIsOverTime] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsOverTime(true), 2000);
+  }, []);
+
+  if( !datas || !casts || !photos)
+  return(
+  <>
+    <div className="min-[471px]"><PersonSkeleton /></div>
+    <div className={`fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-25 scale-120 ${isOverTime ? '' : 'hidden'}`}>
+      <button className='refresh  ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center pressed focus:animate-spin' onClick={refrashDatas}>
+        <FontAwesomeIcon icon={['fas', 'refresh']} className='text-white/80 w-4 h-4 align-middle leading-none' />
+      </button>
+    </div>
+  </>);
+
   return (
   <>
       <div className="mb-5">
         <div className="bg-rainbow absolute w-[calc(100%-2.5rem)] h-100 blur-2xl opacity-10"></div>
-        {/* Skeleton Area */}
-        {/* { !datas && !casts && !photos   &&
-          <div className="min-[471px]:hidden"><PersonSkeleton /></div>
-        } */}
 
         { datas && casts && photos &&
         <>
@@ -193,7 +209,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
               {datas.name && 
                 <p className="tit text-3xl text-white text-shadow-[1px_1px_2px_#000000]">
                   {datas.name}
-                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-2 -mr-5' onClick={refrashDatas}>
+                  <button className='refresh ml-1 w-5 h-5 leading-none p-0 inline-flex align-middle items-center justify-center -mt-1 -mr-5 pressed' onClick={refrashDatas}>
                     <FontAwesomeIcon icon={['fas', 'rotate']} className='text-white/80 w-4 h-4  align-middle leading-none' />
                   </button>
                 </p> 
