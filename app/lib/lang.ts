@@ -46,6 +46,19 @@ export async function getLang() {
   return 'en';
 }
 
+// 다국어 언어코드 가져오기 (TMDB 등에서 사용)
+export async function getLangCode(val?: string) {
+  const lang = (val || await getLang()) as keyof typeof values;
+  const values = {
+    ko: "ko-KR",
+    en: "en-US",
+    jp: "ja-JP",
+    cn: "zh-CN",
+    tw: "zh-TW"
+  }
+  return values[lang];
+}
+
 /**
  * Get current translation data (Server-side)
  */

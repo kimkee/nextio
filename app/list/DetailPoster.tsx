@@ -34,7 +34,7 @@ export default function ViewPoster({props}: {props: {title: string, name: string
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
     router.push(`${pathname}?poster=${opts}&idx=${idx}`, { scroll: false });
   };
-  console.log(props.data); 
+  // console.log(props.data); 
   
   return (
     <>

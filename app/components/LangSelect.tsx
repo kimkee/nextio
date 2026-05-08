@@ -14,7 +14,11 @@ export default function LangSelect() {
     localStorage.setItem('globalLang', langData);
     document.cookie = `globalLang=${encodeURIComponent(langData)}; path=/; max-age=31536000`;
     setOpenLang(false);
-    location.reload();
+    // url 주소에서 lang=''  lang 값 지우기
+    const url = new URL(window.location.href);
+    url.searchParams.delete('lang');
+    window.history.replaceState({}, '', url);
+    location.reload();  //새로 고침 필수
   }
   useEffect(() => {
     const localLang = localStorage.getItem('globalLang');

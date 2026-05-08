@@ -20,10 +20,23 @@ import { modalTitleAtom } from '@/app/store/modal';
 import { useTranslation } from '@/app/store/lang';
 
 export default function PersonClient({params}: {params: { opts: string, id: string }}) {
-  const t = useTranslation();
+  const searchParams = useSearchParams()
+  let langParams = searchParams.get('lang') as string;
+  const t = useTranslation(langParams);
+  if(langParams == 'jp'){
+    langParams ='ja-JP';
+  } else if(langParams == 'ko') {
+    langParams = 'ko-KR';
+  } else if(langParams == 'en') {
+    langParams = 'en-US';
+  } else if(langParams == 'cn') {
+    langParams = 'zh-CN';
+  } else if(langParams == 'tw') {
+    langParams = 'zh-TW';
+  }
   // let params = useParams()
   const router = useRouter();
-  const searchParams = useSearchParams();
+  
   const setTitle = useSetAtom(modalTitleAtom);
   const personID = searchParams.get('person') ||  params.id;
 
@@ -31,7 +44,10 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
   const [casts, setCasts] = useState<any>(null);
   const [photos, setPhotos] = useState<any>(null);
 
+
   const [globalLang] = useAtom(globalLangAtom);
+  const currentLang = langParams || globalLang.lang;
+  const currentRegion = langParams || globalLang.region;
 
   // const personURL = `https://api.themoviedb.org/3/person/${personID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   
@@ -40,8 +56,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
       method: 'GET',
       url: `https://api.themoviedb.org/3/person/${personID}`,
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',
@@ -61,8 +77,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
       method: 'GET',
       url: `https://api.themoviedb.org/3/person/${personID}/combined_credits`,
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',
@@ -80,8 +96,8 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
       method: 'GET',
       url: `https://api.themoviedb.org/3/person/${personID}/images`,
       params: {
-        language: globalLang.lang,
-        region: globalLang.region,
+        language: currentLang,
+        region: currentRegion,
       },
       headers: {
         accept: 'application/json',

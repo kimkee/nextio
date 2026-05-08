@@ -6,17 +6,19 @@ import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
 import { supabase } from '@/app/supabase';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import getUser from '@/app/getUser';
 import { useTranslation } from '@/app/store/lang';
 
-export default function ViewCtls({datas,postID, opts}: {datas: any, postID: string, opts: any}) {
+export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, postID: string, opts: any, shareLang: string}) {
 
   const params = useParams();
   const router = useRouter();
-  const t = useTranslation();
+  const searchParams = useSearchParams()
+  const langParams = searchParams.get('lang') as string;
+  const t = useTranslation(langParams);
   const shareLink = ()=> {
-    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/${opts}/${postID}`;
+    const surl = `${process.env.NEXT_PUBLIC_SITE_URL}/${opts}/${postID}?lang=${shareLang || langParams}`;
     navigator.clipboard.writeText(surl);
     // ui.alert(`<b>${parentTit}</b><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
     const datatitle = datas.title || datas.name;
