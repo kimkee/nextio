@@ -7,7 +7,7 @@ import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import IconAdult from '@/app/components/IconAdult';
 // Movie, TV 검색결과 유닛
 export default function ItemA({ data, opts, cate }: any) {
   const pathname = usePathname();
@@ -39,7 +39,8 @@ export default function ItemA({ data, opts, cate }: any) {
       prefetch={true}
       onClick={handleLinkClick}
     >
-      <div className="cont flex items-center group-active:scale-98 group-active:opacity-80 transition-transform">
+      <div className="cont relative flex items-center group-active:scale-98 group-active:opacity-80 transition-transform">
+        {data.adult && <IconAdult opts={{cls:'absolute top-0 left-0 scale-80'}} />}
         <div className="pics flex-none relative w-20 pb-30 mr-4 overflow-hidden  bg-black">
           <Img 
             width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 

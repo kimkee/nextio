@@ -39,7 +39,8 @@
         "seasons":"시즌",
         "episode":"에피소드",
         "count":"편",
-        "share_txt":"공유합니다."
+        "share_txt":"공유합니다.",
+        "copy_url":"URL 주소를 복사했습니다."
       },
       "signin":{
         "login":"로그인",
@@ -99,7 +100,8 @@
         "seasons":"Season",
         "episode":"Episode",
         "count":"ep",
-        "share_txt":"Share."
+        "share_txt":"Share.",
+        "copy_url":"URL address has been copied."
       },
       "signin":{
         "login":"Login",
@@ -159,7 +161,8 @@
         "seasons":"Season",
         "episode":"Episode",
         "count":"話",
-        "share_txt":"共有します。"
+        "share_txt":"共有します。",
+        "copy_url":"URLアドレスをコピーしました。"
       },
       "signin":{
         "login":"ログイン",
@@ -219,7 +222,8 @@
         "seasons":"Season",
         "episode":"Episode",
         "count":"集",
-        "share_txt":"分享了。"
+        "share_txt":"分享了。",
+        "copy_url":"URL地址已复制。"
       },
       "signin":{
         "login":"登录",
@@ -279,7 +283,8 @@
         "seasons":"Season",
         "episode":"Episode",
         "count":"集",
-        "share_txt":"分享了。"
+        "share_txt":"分享了。",
+        "copy_url":"URL地址已複製。"
       },
       "signin":{
         "login":"登錄",

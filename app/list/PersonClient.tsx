@@ -155,7 +155,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
         console.error('공유 실패:', error);
       });
     } else {
-      ui.alert(`<strong>${datatitle}</strong><br> URL 주소를 복사했습니다 <br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
+      ui.alert(`<strong>${datatitle}</strong><br> ${t.detailinfo.copy_url}<br> <a class="under" href="${surl}" target="_blank">${surl}</a>`)
       console.log('Web Share API를 지원하지 않습니다.');
     }
   }

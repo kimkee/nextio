@@ -48,6 +48,7 @@ export default function Poster() {
       method: 'GET',
       url: `https://api.themoviedb.org/3/${opts}/${postID}`,
       params: {
+        include_adult: true,
         language: globalLang.lang,
         region: globalLang.region,
         append_to_response: 'videos,images',
