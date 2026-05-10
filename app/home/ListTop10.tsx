@@ -9,6 +9,7 @@ import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAtom } from 'jotai';
 import { globalLangAtom } from '@/app/store/lang';
+import IconAdult from '@/app/components/IconAdult';
 export default  function ListSet({opts}:{opts:{media:string, list:string, cate:string, title:string }}){
   const pathname = usePathname();
   const [mlist, setMlist] = useState<any>(null);
@@ -27,8 +28,8 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       sort_by: 'popularity.desc', // 정렬
       language: globalLang.lang, // 언어
       region: globalLang.region, // 지역
-      include_adult: 'true', // 성인 콘텐츠 포함 여부
-      include_video: 'true', // 비디오 포함 여부
+      include_adult: true, // 성인 콘텐츠 포함 여부
+      include_video: true, // 비디오 포함 여부
     },
     headers: {
       accept: 'application/json',
@@ -56,12 +57,22 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   const scrollBoxRef = useRef<HTMLDivElement>(null);
   
 
-  const handleWheel = (event: any)=> {
-    event.preventDefault();
-    if(scrollBoxRef.current){
-      scrollBoxRef.current.scrollLeft += event.deltaY;
-    }
-  }
+  useEffect(() => {
+    const box = scrollBoxRef.current;
+    if (!box) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        box.scrollLeft += e.deltaY;
+      }
+    };
+
+    box.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      box.removeEventListener('wheel', handleWheel);
+    };
+  }, [mlist]);
   const [isNavPrev, setIsNavPrev] = useState(false);
   const [isNavNext, setIsNavNext] = useState(false);
   const handeScroll = ()=> {
@@ -139,8 +150,6 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
 
         <div ref={scrollBoxRef}
           className="inr flex flex-nowrap overflow-y-hidden overflow-x-auto px-1 scrollbar-hidden"
-          onMouseEnter={ ()=>scrollBoxRef.current?.addEventListener('wheel', handleWheel) }
-          onMouseLeave={ ()=>scrollBoxRef.current?.removeEventListener('wheel', handleWheel) }
           onScroll={ handeScroll }
         >
           
@@ -157,6 +166,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      prefetch={true}
                      onClick={handleLinkClick}
                   >
+                    {data.adult && <IconAdult opts={{cls:'absolute top-1 right-1'}} />}
                     <div className='num absolute -top-3 -left-2 text-white text-3xl font-extrabold drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] italic z-10'>{idx + 1}</div>
                     <Img width={300} height={450} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' className='img absolute object-cover w-full h-full'/>
                     <div className="info absolute left-0 bottom-0 right-0 bg-linear-to-t from-black/62 to-transparent p-1">

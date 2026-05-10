@@ -16,6 +16,7 @@ import DetailCollection from './DetailCollection';
 import DetailSeasons from './DetailSeasons';
 import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
+import IconAdult from '@/app/components/IconAdult';
 import getUser from '@/app/getUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSetAtom } from 'jotai';
@@ -286,12 +287,14 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
               <div className='star text-xl mt-3 leading-none min-h-6'>
                 <StarPoint point={datas.vote_average} opts={{ cls: 'lg' }}/>
               </div>
-              <div className='cate mt-4 leading-none min-h-6'>
+              <div className='cate mt-4 leading-none flex flex-wrap gap-1.5'>
+                {datas.adult && <IconAdult opts={{cls:''}} />}
                 {datas.genres.map((item: any) => (
-                  <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] mr-1 mt-0.5 text-xt' key={item.id}>
+                  <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] text-xt' key={item.id}>
                     {item.name}
                   </em>
                 ))}
+                
               </div>
               <ul className='lst mt-4 grid gap-1'>
                 <li className='vot text-12 text-primary/90  relative pl-4'>

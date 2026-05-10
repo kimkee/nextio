@@ -6,6 +6,7 @@ import './ItemB.css';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import ui from '@/app/lib/ui';
+import IconAdult from '@/app/components/IconAdult';
 
 // Movie, TV 리스트 유닛
 export default function ItemB({ data, opts, cate }: any) {
@@ -36,7 +37,9 @@ export default function ItemB({ data, opts, cate }: any) {
         prefetch={true}
         onClick={handleLinkClick}
       >
+        
         <div className="cont relative mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]">
+          {data.adult && <IconAdult opts={{cls:'absolute top-1 left-1 scale-80'}} />}
           <div className="pics block relative overflow-hidden pb-[calc(1200/780*100%)] bg-black group-active:scale-95 group-active:opacity-80 transition-transform">
             <Img 
               width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' loading="eager"

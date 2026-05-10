@@ -20,18 +20,17 @@ export default function PersonSkeleton() {
           className="img block w-full object-cover h-full bg-[#000000] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
-      <div className="desc text-center z-11 relative -mt-12 px-6 max-w-80 mx-auto">
+      <div className="desc text-center z-11 relative px-6 max-w-80 mx-auto">
         <div className="tit text-3xl text-white font-extrabold bg-black/50 rounded-full h-9 max-w-60 mx-auto"></div>
         <div className="tio text-xl text-white/80 font-extrabold bg-black/50 mt-2 h-4 max-w-40 mx-auto"></div>
-        <div className="tit text-xs mt-2 text-white/80 font-extrabold bg-black/50 px-20 h-3 max-w-50 mx-auto"></div>
       </div>
     </div>
 
     <div className="m-info relative px-5 py-5 pb-[calc(30px+var(--safe-bottom))] animate-pulse">
-      <ul className="lst flex justify-center flex-col gap-1 max-w-80 mx-auto">
-        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-4"></li>
-        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-4"></li>
-        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-4"></li>
+      <ul className="lst flex justify-center flex-col gap-1 mx-auto">
+        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-6"></li>
+        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-6"></li>
+        <li className="vot flex justify-center gap-2 text-center text-md text-white/90 bg-black h-6"></li>
       </ul>              
       
       <div className="sect list mt-5">

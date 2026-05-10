@@ -101,6 +101,7 @@ export default function Page() {
       method: 'GET',
       url: `https://api.themoviedb.org/3/search/${opts}`,
       params: {
+        include_adult: true,
         language: globalLang.lang,
         region: globalLang.region,
         page: p,

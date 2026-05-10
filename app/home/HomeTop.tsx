@@ -21,6 +21,8 @@ import ui from '@/app/lib/ui';
 import StarPoint from '@/app/components/StarPoint';
 import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import IconAdult from '@/app/components/IconAdult';
+
 export default  function HomeTop({opts}:{opts:{media:string }}) {
   const pathname = usePathname();
   // console.log(opts);
@@ -40,8 +42,8 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
       page: '1',
       language: globalLang.lang,
       region: globalLang.region,
-      include_adult: 'true',
-      include_video: 'true',
+      include_adult: true,
+      include_video: true,
     },
     headers: {
       accept: 'application/json',
@@ -195,7 +197,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                         <div className={`${styles.star}`}>
                           <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                         </div>
-                        <div className={`${styles.tit}`}>{data.title}</div>
+                        <div className={`${styles.tit}`}>{ data.adult && <IconAdult opts={{cls:'mr-1 align-middle'}} />}{data.title}</div>
                       </div>
                       <div className={`${styles.screen}`}></div>
                     </Link>

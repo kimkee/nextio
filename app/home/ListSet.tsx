@@ -9,6 +9,7 @@ import Img from '@/app/components/Img';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAtom } from 'jotai';
 import { globalLangAtom } from '@/app/store/lang';
+import IconAdult from '@/app/components/IconAdult';
 
 export default  function ListSet({opts}:{opts:{media:string, list:string, cate:string, title:string }}){
   const pathname = usePathname();
@@ -27,8 +28,8 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       sort_by: 'popularity.desc',
       language: globalLang.lang,
       region: globalLang.region,
-      include_adult: 'true',
-      include_video: 'true',
+      include_adult: true,
+      include_video: true,
     },
     headers: {
       accept: 'application/json',
@@ -178,6 +179,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
                      prefetch={true}
                      onClick={handleLinkClick}
                   >
+                    {data.adult && <IconAdult opts={{cls:'absolute top-0.5 left-0.5 scale-80'}} />}
                     <Img width={300} height={450} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' className='img img absolute object-cover w-full h-full'/>
                   </Link>
                 </div>

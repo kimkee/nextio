@@ -5,15 +5,6 @@ import Person from '@/app/list/Person';
 import Poster from '@/app/list/Poster';
 import { useSearchParams, useParams } from 'next/navigation';
 
-interface PopupProps {
-  opts: string;
-  menu: string;
-  id: string;
-}
-
-
-
-
 export default function Popup( ) {
   const searchParams = useSearchParams();
   const isVideosModalOpen = searchParams.get('video') !== null;
@@ -22,10 +13,8 @@ export default function Popup( ) {
   const params = useParams();
   const {opts, menu, id} = params;
   return (
-    
-
     <>
-    <div className="fix left-0 top-0 hidden">
+    <div className="fixed left-0 top-0 hidden">
       <p>{JSON.stringify(params)}</p>
       <p>{opts}</p>
       <p>{menu}</p>
