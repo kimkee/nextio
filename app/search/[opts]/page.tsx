@@ -306,19 +306,19 @@ export default function Page() {
 
     return (
       <>
-        <ul className={`list 
-          ${opts === 'movie' ? 'movie' : ''}
-          ${opts === 'tv' ? 'tv' : ''}
-          ${opts === 'person' ? 'person grid grid-cols-2 border-t border-[#242b3688]' : ''}
+        <ul className={`list
+          ${opts === 'movie' ? 'movie grid grid-cols-2 border-t border-white/5' : ''}
+          ${opts === 'tv' ? 'tv grid grid-cols-2 border-t border-white/5' : ''}
+          ${opts === 'person' ? 'person grid grid-cols-2 border-t border-white/5' : ''}
         `}>
           {schList.map((data: any, num: number) => (
             opts !== 'person'
             ?
-            <li className='border-b border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
+            <li className='border-b border-white/5 odd:border-r odd:border-white/5' key={data.id + '_' + num} data-id={data.id + '_' + num}>
               <ItemA data={data} opts={opts} cate={cate} />
             </li>
             :
-            <li className='border-b border-[#242b3688] odd:border-r odd:border-[#242b3688]' key={data.id + '_' + num} data-id={data.id + '_' + num}>
+            <li className='border-b border-white/5 odd:border-r odd:border-white/5' key={data.id + '_' + num} data-id={data.id + '_' + num}>
               <ItemPerson data={data} opts={opts} />
             </li>
           ))}
@@ -389,7 +389,7 @@ export default function Page() {
         </div>
         }
 
-        <div className='search-list p-0' tabIndex={-1}>
+        <div className='search-list p-0  pb-5' tabIndex={-1}>
           {renderSearchBody()}
         </div>
                 
