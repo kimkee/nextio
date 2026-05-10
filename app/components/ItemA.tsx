@@ -57,7 +57,7 @@ export default function ItemA({ data, opts, cate }: any) {
       </div>
       <div className="info flex flex-col justify-between items-start pt-1 gap-3">
         <div className="dd w-full flex flex-wrap items-center text-white/40 gap-2">
-          <div className="hits text-xt whitespace-nowrap">
+          <div className="hits text-10 whitespace-nowrap">
             <StarPoint point={data.vote_average} opts={{cls:''}} />
             {/* <em className="ico inline-flex items-center gap-1">
               <FontAwesomeIcon icon={['far', 'heart']} className='w-3 h-3 align-middle' />
