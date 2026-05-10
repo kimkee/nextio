@@ -33,27 +33,29 @@ export default function ItemA({ data, opts, cate }: any) {
   return (
   <>
     <Link 
-      className="box block p-4 relative group" 
+      className="box block p-4 relative h-full pressed" 
       href={`/search/${opts}/${data.id}`} 
       scroll={false}
       prefetch={true}
       onClick={handleLinkClick}
     >
-      <div className="cont relative flex items-center group-active:scale-98 group-active:opacity-80 transition-transform">
+      <div className="cont relative flex group-active:scale-98">
         {data.adult && <IconAdult opts={{cls:'absolute top-0 left-0 scale-80'}} />}
-        <div className="pics flex-none relative w-20 pb-30 mr-4 overflow-hidden  bg-black">
-          <Img 
-            width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 
-            className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-100!'
-            classNameErr='opacity-100 bg-black border border-white/15 border-2'
-          />  
+        <div className="pics flex-none relative w-[40%] max-w-20 mr-[7%] overflow-hidden">
+          <div className="pb-[calc(450/300*100%)] w-full relative bg-black mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]">
+            <Img 
+              width={200} height={300} src={`${img}`} alt={tit} unoptimized={true} srcerr='/img/common/non_poster.png' 
+              className='img block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover w-full h-full opacity-100!'
+              classNameErr='opacity-100 bg-black border border-white/15 border-2'
+            />
+          </div>
         </div>
-        <div className="desc">
-          <div className="tits text-[#bbbbbb] text-sm mb-1 line-clamp-1">{tit}</div>
-          <div className="text line-clamp-5 text-12 text-[#888888] mb-2">{data.overview}</div>
+        <div className="desc flex-1">
+          <div className="tits text-white/70 text-sm mb-1 line-clamp-1">{tit}</div>
+          <div className="text line-clamp-5 text-12 text-white/40 mb-2">{data.overview}</div>
         </div>
       </div>
-      <div className="info flex justify-between items-start pt-2 gap-3">
+      <div className="info flex flex-col justify-between items-start pt-2 gap-3 group-active:scale-98">
         <div className="dd">
           <div className="cate">
             <span className="txt flex flex-wrap gap-1">
@@ -63,13 +65,13 @@ export default function ItemA({ data, opts, cate }: any) {
             </span>
           </div>
         </div>
-        <div className="dd items-center flex text-[#707887] gap-2">
-          <div className="hits inline-flex items-center gap-2 text-xt whitespace-nowrap">
+        <div className="dd w-full flex justify-between flex-wrap items-center text-white/40 gap-1">
+          <div className="hits text-xt whitespace-nowrap">
             <StarPoint point={data.vote_average} opts={{cls:'-mt-1'}} />
-            <em className="ico inline-flex items-center gap-1 ">
+            {/* <em className="ico inline-flex items-center gap-1">
               <FontAwesomeIcon icon={['far', 'heart']} className='w-3 h-3 align-middle' />
               <b>{data.vote_average}</b>
-            </em>
+            </em> */}
           </div>
           <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
             <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 h-3 align-middle' />
@@ -77,7 +79,7 @@ export default function ItemA({ data, opts, cate }: any) {
           </div>
         </div>
       </div>
-      <div className="bgs bg-cover bg-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-5 " style={{backgroundImage: `url(${bgs})`}}></div>
+      {/* <div className="bgs bg-cover bg-center absolute left-0 top-0 right-0 bottom-0 -z-10 opacity-5 " style={{backgroundImage: `url(${bgs})`}}></div> */}
     </Link>
   </>  
   )
