@@ -57,12 +57,22 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   const scrollBoxRef = useRef<HTMLDivElement>(null);
   
 
-  const handleWheel = (event: any)=> {
-    event.preventDefault();
-    if(scrollBoxRef.current){
-      scrollBoxRef.current.scrollLeft += event.deltaY;
-    }
-  }
+  useEffect(() => {
+    const box = scrollBoxRef.current;
+    if (!box) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        box.scrollLeft += e.deltaY;
+      }
+    };
+
+    box.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      box.removeEventListener('wheel', handleWheel);
+    };
+  }, [mlist]);
   const [isNavPrev, setIsNavPrev] = useState(false);
   const [isNavNext, setIsNavNext] = useState(false);
   const handeScroll = ()=> {
@@ -140,8 +150,6 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
 
         <div ref={scrollBoxRef}
           className="inr flex flex-nowrap overflow-y-hidden overflow-x-auto px-1 scrollbar-hidden"
-          onMouseEnter={ ()=>scrollBoxRef.current?.addEventListener('wheel', handleWheel) }
-          onMouseLeave={ ()=>scrollBoxRef.current?.removeEventListener('wheel', handleWheel) }
           onScroll={ handeScroll }
         >
           
