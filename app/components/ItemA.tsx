@@ -64,10 +64,10 @@ export default function ItemA({ data, opts, cate }: any) {
               <b>{data.vote_average}</b>
             </em> */}
           </div>
-          <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
+          {(data.release_date || data.first_air_date) ? <div className="date inline-flex items-center gap-1 text-xt whitespace-nowrap">
             <FontAwesomeIcon icon={['far', 'calendar-days']} className='w-3 h-3 align-middle' />
             <b>{data.release_date || data.first_air_date}</b>
-          </div>
+          </div>:null}
         </div>
         {/* <div className="dd">
           <div className="cate">
