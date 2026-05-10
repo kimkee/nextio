@@ -197,7 +197,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
                         <div className={`${styles.star}`}>
                           <StarPoint point={data.vote_average} opts={{ cls: 'text-lg' }} />
                         </div>
-                        <div className={`${styles.tit}`}>{ <IconAdult opts={{cls:'mr-1 align-middle'}} />}{data.title}</div>
+                        <div className={`${styles.tit}`}>{ data.adult && <IconAdult opts={{cls:'mr-1 align-middle'}} />}{data.title}</div>
                       </div>
                       <div className={`${styles.screen}`}></div>
                     </Link>
