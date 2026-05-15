@@ -322,6 +322,7 @@ export default function Page() {
               <ItemPerson data={data} opts={opts} />
             </li>
           ))}
+          {schList.length % 2 === 1 && <li className='border-b border-white/5 odd:border-r odd:border-white/5'></li>}
         </ul>
         <div className={`ui-loadmore ${loadActive} ${loadHide} ${loadError} mt-1`}>
           <div className='flex justify-center h-12 items-center loading'>

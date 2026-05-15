@@ -2,6 +2,7 @@
 import { useEffect, useState, useTransition } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Img from '@/app/components/Img';
+import Link from 'next/link';
 import { Myinfo as MyinfoType, User as UserType } from '@/app/types';
 import axios from 'axios';
 import { useAtom } from 'jotai';
@@ -290,9 +291,9 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
               <div className='cate mt-4 leading-none flex flex-wrap gap-1.5'>
                 {datas.adult && <IconAdult opts={{cls:''}} />}
                 {datas.genres.map((item: any) => (
-                  <em className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-[#1f6476] text-xt' key={item.id}>
+                  <a href={`/list/${opts}/${item.id}`} className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-primary/40 text-xt text-white' key={item.id} data-genre={item.id}>
                     {item.name}
-                  </em>
+                  </a>
                 ))}
                 
               </div>

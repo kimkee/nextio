@@ -95,6 +95,7 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
             deleteScrap={deleteScrap} 
           />
         ))}
+        { data.length % 2 === 1 && <li className="odd:border-r border-b border-[#202020]"><div className="box relative"></div></li>}
       </ul>
       { data.length < total &&
         <div className="loading border-b border-[#202020]">
