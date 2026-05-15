@@ -146,7 +146,7 @@ export default function Page() {
     callStatRef.current = true;
     fetchMoive(1, true);
     setMounted(true);
-    !keyword && inputRef.current?.focus();
+    // !keyword && inputRef.current?.focus();
     window.addEventListener("scroll", scrollEvent);
     window.scrollTo(0, 0);
     showKwdList();
@@ -265,7 +265,7 @@ export default function Page() {
     
     setTimeout(() => {
       if(!inputRef.current)return
-        inputRef.current.focus()
+        // inputRef.current.focus()
       }
     );
     // return false;
@@ -373,7 +373,12 @@ export default function Page() {
             </form>
           </div>
         </div>
-        <div className="w-full h-120 bg-rainbow opacity-5 max-w-(--mwide) fixed top-[calc(3.5rem+var(--safe-top)+8rem)] backdrop-blur-lg blur-xl -z-1"></div>
+        
+        <div
+          onClick={()=>{inputRef.current?.focus();}}
+          className="w-full h-[calc(100dvh-120px)] bg-rainbow opacity-5 max-w-(--mwide) fixed top-[calc(3.5rem+var(--safe-top)+8rem)] backdrop-blur-lg blur-xl -z-1">
+        </div>
+
         {keywordList.length > 0 &&
         <div className={`recent-kwds`} ref={keyWordBox}>
           <ul className="lst">
