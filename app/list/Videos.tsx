@@ -81,18 +81,18 @@ export default function Videos() {
   {vId}
   {opts}
     <article className="pop-layer b popup videos fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) backdrop-blur-sm open">
-      <div className={`pbd w-[calc(100%-2rem)] max-w-180 bg-transparent align-middle relative
+      <div className={`pbd w-[calc(100%-0rem)] max-w-180 h-full bg-transparent align-middle relative
           transition-[transform,opacity,translate] ease-out duration-200
           ${mounted ? 'translate-y-0' : 'translate-y-90' }
         `}>
-        <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl absolute left-1/2 -translate-x-1/2 z-50 -bottom-12 bg-[rgba(80,80,80,0.5)] rounded-full'>
-          <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
-        </button>
-        <div className="phd" >
+        {/* <div className="phd" >
           <div className="inr h-14">
               <div className="ptit"></div>
           </div>
-        </div>
+        </div> */}
+        <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-8 w-8 text-white inline-flex items-center justify-center text-3xl z-20 absolute left-1/2 -translate-x-1/2 bottom-14 rounded-full bg-white/15 backdrop-blur-sm'>
+          <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 flex text-white'/>
+        </button>
         <div className="pct bg-black/10 backdrop-blur-sm">
           <main className="poptents">
             <div className="videos-box">
@@ -102,35 +102,12 @@ export default function Videos() {
               </div>
 
               {movs && movs.results.length ? 
-              <Swiper className=" swiper-wrapper swiper slide relative
-                [&_.swiper-pagination]:w-auto!
-                [&_.swiper-pagination]:left-1/2!
-                [&_.swiper-pagination]:-translate-x-1/2!
-                [&_.swiper-pagination]:bottom-4!
-                [&_.swiper-pagination]:bg-[rgba(80,80,80,0.5)]
-                [&_.swiper-pagination]:text-sm!
-                [&_.swiper-pagination]:px-3!
-                [&_.swiper-pagination]:pt-2!
-                [&_.swiper-pagination]:pb-2.5!
-                [&_.swiper-pagination]:text-white!
-                [&_.swiper-pagination]:leading-none!
-                [&_.swiper-pagination]:rounded-full!
-                [&_.swiper-button-prev]:bottom-3!
-                [&_.swiper-button-next]:bottom-3!
-                [&_.swiper-button-prev]:top-auto!
-                [&_.swiper-button-next]:top-auto!
-                [&_.swiper-button-prev]:text-white!
-                [&_.swiper-button-next]:text-white!
-                [&_.swiper-button-prev]:scale-60!
-                [&_.swiper-button-next]:scale-60!
-              " 
+              <Swiper className=" swiper-wrapper swiper slide relative h-dvh!" 
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
               spaceBetween={20}
               slidesPerView={1}
-              navigation
               loop={loopSet()}
-              
               // lazy={ {enabled: true, loadPrevNext: true, loadPrevNextAmount: 3} as any} // 지금 loadPrevNext 옵션이 동작 안됨 ㅡㅡ; 
               observeParents = {true}
               observeSlideChildren = {true}
@@ -139,7 +116,8 @@ export default function Videos() {
               // autoplay={false}
               // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: true}}
               wrapperTag="ul"
-              pagination={{ clickable: true ,type:'fraction'}}
+              pagination={{ clickable: true ,type:'fraction',el: ".navigation .custom-pagination",}}
+              navigation={{nextEl:'.navigation .button-next',prevEl:'.navigation .button-prev',hiddenClass:'.navigation .button-hidden'}}
               // scrollbar={{ draggable: true }}
               // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
               // autoHeight={true}
@@ -151,10 +129,10 @@ export default function Videos() {
                 {
                 movs.results.filter( (item:any, i:number) => i < 100 ).reverse().map( (data:any, idx:number) => {  // .filter( (item, i) => i < 10 )
                   return (
-                    <SwiperSlide tag="li" key={idx} className={`swiper-slide pbox ${loopSet() ? 'pb-16' : ''}`}>
-                      <div className={`box `}>
+                    <SwiperSlide tag="li" key={idx} className={`swiper-slide h-auto! flex! items-center justify-center pbox ${loopSet() ? 'pb-20' : ''}`}>
+                      <div className={`box w-full absolute top-1/2 -translate-y-1/2`}>
                           <div className="pics block pb-[calc(900/1600*100%)] overflow-hidden rounded-0 bg-black relative w-full">
-                            <span className={`ui-load-glx full z-10! ${loopSet() ? '-mt-16' : ''}`}> <span className="gbx"> <em className="bx"> <i></i> <i></i> <i></i> <i></i> </em> </span> </span>
+                            <span className={`ui-load-glx absolute! full top-0 left-0 w-full h-full z-10! ${loopSet() ? '' : ''}`}> <span className="gbx"> <em className="bx"> <i></i> <i></i> <i></i> <i></i> </em> </span> </span>
                             <iframe className='iframe absolute z-20 left-0 top-0 w-full h-full' title={data.name} src={"//www.youtube.com/embed/"+data.key}  allow="autoplay; encrypted-media" allowFullScreen loading='lazy'></iframe>
                           </div>
                       </div>
@@ -163,7 +141,13 @@ export default function Videos() {
                 })
                 }
               </Swiper>
-              :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16'></div></>}
+              :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16 absolute top-1/2 -translate-y-1/2'></div></>}
+              
+              <div className="navigation absolute bottom-27 left-0 right-0">
+                <button className="button-prev inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 left-1"> <FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-left']} /></button>
+                <button className="button-next inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 right-1"><FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-right']} /></button>
+                <div className="custom-pagination absolute left-1/2! bottom-0! -translate-x-1/2 w-auto! bg-[rgba(80,80,80,0.5)] px-3 text-sm pt-2 pb-2.5 text-white! leading-none rounded-full"></div>
+              </div>
 
             </div>
           </main>
