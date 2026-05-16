@@ -58,7 +58,7 @@ export default function Person() {
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
-        <div ref={pctRef} onScroll={scrollEvent} className="pct h-full max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-black/40 to-black/70">
+        <div ref={pctRef} onScroll={scrollEvent} className="pct h-full max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-black/10 via-black/80 to-black/90">
           <main className="poptents mb-5 p-5">
 
             <PersonClient params={{ opts, id }} />
