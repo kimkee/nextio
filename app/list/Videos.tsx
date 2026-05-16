@@ -80,7 +80,7 @@ export default function Videos() {
   {postID}
   {vId}
   {opts}
-    <article className="pop-layer b popup videos fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) backdrop-blur-sm open">
+    <article className="pop-layer b popup videos fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) bg-black/10 backdrop-blur-sm open">
       <div className={`pbd w-[calc(100%-0rem)] max-w-180 h-full bg-transparent align-middle relative
           transition-[transform,opacity,translate] ease-out duration-200
           ${mounted ? 'translate-y-0' : 'translate-y-90' }
@@ -90,16 +90,16 @@ export default function Videos() {
               <div className="ptit"></div>
           </div>
         </div> */}
-        <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-8 w-8 text-white inline-flex items-center justify-center text-3xl z-20 absolute left-1/2 -translate-x-1/2 bottom-14 rounded-full bg-white/15 backdrop-blur-sm'>
-          <FontAwesomeIcon icon={['fas', 'xmark']} className='w-4 h-4 flex text-white'/>
-        </button>
-        <div className="pct bg-black/10 backdrop-blur-sm">
+        <div className="pct">
+          <button onClick={() => { router.back(); }} aria-label='닫기' className='btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl z-20 absolute right-2 top-2 rounded-full '>
+            <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
+          </button>
           <main className="poptents">
             <div className="videos-box">
-              <div className="absolute left-0 -top-16 z-50 w-100 hidden">
+              {/* <div className="absolute left-0 -top-16 z-50 w-100 hidden">
                 <p>{`opts ` + opts}</p>
                 <p>{`id ` + postID}</p>
-              </div>
+              </div> */}
 
               {movs && movs.results.length ? 
               <Swiper className=" swiper-wrapper swiper slide relative h-dvh!" 
@@ -143,7 +143,7 @@ export default function Videos() {
               </Swiper>
               :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16 absolute top-1/2 -translate-y-1/2'></div></>}
               
-              <div className="navigation absolute bottom-27 left-0 right-0">
+              <div className="navigation absolute bottom-12  bg-red-400 left-0 right-0 w-full">
                 <button className="button-prev inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 left-1"> <FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-left']} /></button>
                 <button className="button-next inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 right-1"><FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-right']} /></button>
                 <div className="custom-pagination absolute left-1/2! bottom-0! -translate-x-1/2 w-auto! bg-[rgba(80,80,80,0.5)] px-3 text-sm pt-2 pb-2.5 text-white! leading-none rounded-full"></div>
