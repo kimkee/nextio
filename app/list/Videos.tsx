@@ -102,6 +102,7 @@ export default function Videos() {
               </div> */}
 
               {movs && movs.results.length ? 
+              <>
               <Swiper className=" swiper-wrapper swiper slide relative h-dvh!" 
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
@@ -141,13 +142,17 @@ export default function Videos() {
                 })
                 }
               </Swiper>
-              :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16 absolute top-1/2 -translate-y-1/2'></div></>}
-              
               <div className="navigation absolute bottom-12  bg-red-400 left-0 right-0 w-full">
                 <button className="button-prev inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 left-1"> <FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-left']} /></button>
                 <button className="button-next inline-flex items-center justify-center text-sm text-white! w-9 h-9 top-auto z-10 absolute bottom-0 right-1"><FontAwesomeIcon className='w-5 h-5' icon={['fas', 'chevron-right']} /></button>
                 <div className="custom-pagination absolute left-1/2! bottom-0! -translate-x-1/2 w-auto! bg-[rgba(80,80,80,0.5)] px-3 text-sm pt-2 pb-2.5 text-white! leading-none rounded-full"></div>
               </div>
+              </>
+              :<><div className='bg-black pb-[calc(900/1600*100%)] mb-16 absolute top-1/2 -translate-y-1/2'></div></>
+              
+              }
+              
+              
 
             </div>
           </main>
