@@ -44,7 +44,7 @@ export default function Person() {
   return (
   <>
 
-    <article onWheel={handleWheel} className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-end pr-(--scrPad) open backdrop-blur-md `}>
+    <article onWheel={handleWheel} className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center pr-(--scrPad) open backdrop-blur-md `}>
       <div className="fixed top-2 w-full max-w-(--mwide) left-1/2 -translate-x-1/2 z-50 text-right pr-2">
         <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
           className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl"
@@ -58,7 +58,7 @@ export default function Person() {
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
-        <div ref={pctRef} onScroll={scrollEvent} className="pct max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-[#111111] to-[#111111]">
+        <div ref={pctRef} onScroll={scrollEvent} className="pct h-full max-h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden bg-linear-to-b from-transparent via-black/40 to-black/70">
           <main className="poptents mb-5 p-5">
 
             <PersonClient params={{ opts, id }} />
