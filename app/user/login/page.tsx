@@ -51,8 +51,13 @@ export default function LoginPage() {
           <div className="mb-1">
             <Image width={96} height={96} className="w-12" src="/img/logo.png" unoptimized={true} alt="" />
           </div>
-          <div className="my-4 text-center mb-7 relative before:absolute before:left-0 before:right-0 before:border-t before:border-gray-500/40 before:top-1/2 before:z-0 w-full">
-            <em className="text-primary relative px-2 z-1 bg-[#181818]">{ t.signin.login }</em>
+          <div className="
+            my-4 text-center mb-7 relative flex w-full justify-center items-center
+            before:border-t before:border-gray-500/40 before:grow
+            after:border-t  after:border-gray-500/40  after:grow
+            "
+          >
+            <em className="text-primary relative px-2">{ t.signin.login }</em>
           </div>
           <div className="grid grid-cols-1 gap-4 w-full">
             <button className="btn btn-lg" onClick={() => signInWithOAuth('google')}>

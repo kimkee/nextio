@@ -106,31 +106,12 @@ export default function Poster() {
             </div>
         </div> */}
         <div className="pct h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden">
-          <main className="poptents mb-5">
+          <main className="poptents">
 
             <div className="poster-box">
               {datas && datas.images.posters ? 
+              <>
               <Swiper className="swiper-wrapper swiper slide h-[calc(100dvh-0px)]!
-                [&_.swiper-pagination]:w-auto!
-                [&_.swiper-pagination]:left-1/2!
-                [&_.swiper-pagination]:-translate-x-1/2!
-                [&_.swiper-pagination]:bottom-12!
-                [&_.swiper-pagination]:bg-[rgba(80,80,80,0.5)]
-                [&_.swiper-pagination]:text-sm!
-                [&_.swiper-pagination]:px-3!
-                [&_.swiper-pagination]:pt-2!
-                [&_.swiper-pagination]:pb-2.5!
-                [&_.swiper-pagination]:text-white!
-                [&_.swiper-pagination]:leading-none!
-                [&_.swiper-pagination]:rounded-full!
-                [&_.swiper-button-prev]:bottom-3!
-                [&_.swiper-button-next]:bottom-3!
-                [&_.swiper-button-prev]:top-auto!
-                [&_.swiper-button-next]:top-auto!
-                [&_.swiper-button-prev]:text-white!
-                [&_.swiper-button-next]:text-white!
-                [&_.swiper-button-prev]:scale-60!
-                [&_.swiper-button-next]:scale-60!
                 [&_.swiper-wrapper]:h-[calc(100dvh-0px)]!
                 [&_.swiper-slide]:h-[calc(100dvh-0px)]!
                 [&_.swiper-slide]:flex!
@@ -148,7 +129,7 @@ export default function Poster() {
                 // autoplay={false}
                 // autoplay={{ delay: 3000 ,waitForTransition:false, pauseOnMouseEnter: true ,disableOnInteraction: true}}
                 wrapperTag="ul"
-                pagination={{ clickable: true ,type:'fraction'}}
+                pagination={{ clickable: true ,type:'fraction',el: ".navigation .custom-pagination",}}
                 // scrollbar={{ draggable: true }}
                 // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
                 autoHeight={true}
@@ -181,6 +162,10 @@ export default function Poster() {
                   })
                 }
               </Swiper>
+              <div className="navigation absolute bottom-9 left-0 right-0 w-full z-10">
+                <div className="custom-pagination absolute left-1/2! bottom-0! -translate-x-1/2 w-auto! bg-[rgba(80,80,80,0.5)] px-3 text-sm pt-2 pb-2.5 text-white! leading-none rounded-full"></div>
+              </div>
+              </>
               :null}
 
             </div>
