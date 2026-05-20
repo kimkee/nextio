@@ -45,6 +45,8 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
         movieListSet((prevList) => [...prevList, ...res.data.results]);
         callStatRef.current = true;
         loadErrorSet('');
+        console.log(res.data.results);
+        
         nowPageSet({ pge: res.data.page, tot: res.data.total_pages });
         if (res.data.total_pages <= p) {
           callStatRef.current = false;

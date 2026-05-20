@@ -13,7 +13,7 @@ export default function ItemB({ data, opts, cate }: any) {
   const pathname = usePathname();
   // console.log(data);
 
-  const img = `https://image.tmdb.org/t/p/w200/${data.poster_path}`;
+  const img = `https://image.tmdb.org/t/p/w200${data.poster_path}`;
   const tit = data.title || data.name;
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
