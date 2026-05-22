@@ -22,8 +22,8 @@ export default function PersonSkeleton() {
         </div>  
       </div>
       <div className="desc text-center z-11 relative px-6 max-w-80 mx-auto">
-        <div className="tit text-3xl text-white font-extrabold bg-black/50 rounded-full h-9 max-w-60 mx-auto"></div>
-        <div className="tio text-xl text-white/80 font-extrabold bg-black/50 mt-2 h-4 max-w-40 mx-auto"></div>
+        <div className="tit text-3xl text-white font-extrabold bg-black rounded-full h-9 max-w-60 mx-auto"></div>
+        <div className="tio text-xl text-white/80 font-extrabold bg-black mt-2 h-4 max-w-40 mx-auto"></div>
       </div>
     </div>
 

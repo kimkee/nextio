@@ -23,11 +23,11 @@ export default function DetailSeason({opts, props}: {opts: string, props: any}) 
   };
   useEffect(() => {
     isNavBtn();
+    console.log(props.data); 
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  console.log(props.data); 
   // return ('')
   if(!props.data) return ;
   return (
