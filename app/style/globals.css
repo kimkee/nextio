@@ -6,6 +6,7 @@
   --color-foreground: var(--foreground);
   --color-primary: #61dafb;
   --color-secondary: #facc15;
+  --background:#151515;
 
   --text-9: 0.5625rem;
   --text-9--line-height: 1.4;
