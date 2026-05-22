@@ -52,7 +52,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   // console.log(t);
   const fetchMovieData = async () => {
     console.log("디테일 페이지에서", langParams, regionParams, currentLang, currentRegion);
-    setData(null);
+    // setData(null);
     const dataOpts = {
       params: {
         language: currentLang,
@@ -163,6 +163,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   
   const refrashDatas = () => {
     setIsOverTime(false);
+    setData(null);
     fetchMovieData();
   };
 
@@ -263,7 +264,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
       <div 
         className={`
           bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat max-w-(--mwide) max-h-120 right-0 left-1/2 top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
-          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-[#111111]
+          after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-background
         `}
         style={{ 
           backgroundImage: `url(${bgImg})`,
