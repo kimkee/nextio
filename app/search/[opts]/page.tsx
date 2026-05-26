@@ -77,7 +77,7 @@ export default function Page() {
   const [loadError, loadErrorSet] = useState(``);
   const inputRef = useRef<HTMLInputElement>(null);
   
-  const fetchMoive = (p: number, isInitial = false) => {
+  const fetchMovie = (p: number, isInitial = false) => {
     if (!inputRef.current) return;
     const kwd = keyword || '';
     if (!kwd) {
@@ -144,7 +144,7 @@ export default function Page() {
     getCate();
     pageRef.current = 1;
     callStatRef.current = true;
-    fetchMoive(1, true);
+    fetchMovie(1, true);
     setMounted(true);
     // !keyword && inputRef.current?.focus();
     window.addEventListener("scroll", scrollEvent);
@@ -173,7 +173,7 @@ export default function Page() {
       
       setTimeout(() => {
         pageRef.current += 1;
-        fetchMoive(pageRef.current);
+        fetchMovie(pageRef.current);
       }, 500);
     }
   };
@@ -196,7 +196,7 @@ export default function Page() {
     window.history.replaceState(null, '', `/search/${opts}?search=${inputRef.current?.value}`);
     pageRef.current = 1;
     callStatRef.current = true;
-    fetchMoive( 1, true );
+    fetchMovie( 1, true );
     e.preventDefault();
     saveKwdStorage(inputRef.current?.value);
   }
@@ -207,7 +207,7 @@ export default function Page() {
     keywordSet( txt );
     window.history.replaceState(null, '', `/search/${opts}?search=${txt}`);
     // setMlist([]);
-    // fetchMoive( 1,txt );
+    // fetchMovie( 1,txt );
     const url = new URL(window.location.href);
     url.searchParams.set("search", txt);
     // keyWordBox.current.classList.remove("open");
@@ -328,7 +328,7 @@ export default function Page() {
           <div className='flex justify-center h-12 items-center loading'>
             <Loading opts={{ type: 'glx' }} />
           </div>
-          <button onClick={() => { callStatRef.current = true; fetchMoive(pageRef.current); }} type="button" className="btn-load" title="불러오기">
+          <button onClick={() => { callStatRef.current = true; fetchMovie(pageRef.current); }} type="button" className="btn-load" title="불러오기">
             <i><FontAwesomeIcon icon={['fas', 'rotate-right']} /></i>
           </button>
         </div>
