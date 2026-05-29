@@ -36,7 +36,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
     }
   };
-  const fetchMoive = ()=>{
+  const fetchMovie = ()=>{
     axios.request(options).then(res =>{
       console.log(res.data);
       setMlist( res.data.results );
@@ -105,7 +105,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   };
 
   useEffect(() => {
-    fetchMoive();
+    fetchMovie();
     // isNavBtn()
     setTimeout(() => isNavBtn(), 1000);
     return () => {};

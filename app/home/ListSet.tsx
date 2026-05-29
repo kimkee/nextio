@@ -37,7 +37,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
     }
   };
 
-  const fetchMoive = ()=>{
+  const fetchMovie = ()=>{
     // const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     axios.request(options).then(res =>{
       console.log(res.data);
@@ -48,7 +48,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   }
 
 
-  // const fetchMoive = ()=>{
+  // const fetchMovie = ()=>{
   //   const fetchURL = `https://api.themoviedb.org/3/${opts.list}?page=1${cateList}&language=ko&region=kr&sort_by=vote_count.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   //   axios.get( fetchURL ).then(res =>{
   //     console.log(res.data);
@@ -111,7 +111,7 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
   };
 
   useEffect(() => {
-    fetchMoive();
+    fetchMovie();
     // isNavBtn()
     setTimeout(() => isNavBtn(), 1000);
     return () => {};

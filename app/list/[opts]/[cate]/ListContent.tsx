@@ -22,7 +22,7 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
   const [loadHide, loadHideSet] = useState(``);
   const [loadError, loadErrorSet] = useState(``);
 
-  const fetchMoive = async (p: any) => {
+  const fetchMovie = async (p: any) => {
     // const fetchURL = `https://api.themoviedb.org/3/discover/${opts}?${cateList}&page=${p}&language=ko&region=kr&sort_by=popularity.desc&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
     const options = {
       method: 'GET',
@@ -78,7 +78,7 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
       }
       setTimeout(() => {
         pageRef.current += 1;
-        fetchMoive(pageRef.current);        
+        fetchMovie(pageRef.current);        
       }, 300);
     }
   };
@@ -88,7 +88,7 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
     callStatRef.current = true;
     movieListSet([]);
     window.scrollTo(0, 0);
-    fetchMoive(1);
+    fetchMovie(1);
     window.addEventListener('scroll', scrollEvent);
     return () => {
       window.removeEventListener('scroll', scrollEvent);
@@ -119,7 +119,7 @@ export default function ListContent({ opts, cate }: { opts: string; cate: string
                 <button
                   onClick={(e) => {
                     callStatRef.current = true;
-                    fetchMoive(pageRef.current);
+                    fetchMovie(pageRef.current);
                   }} type='button' className='btn-load'>
                   <i>
                     <FontAwesomeIcon icon={['fas', 'rotate-right']} />

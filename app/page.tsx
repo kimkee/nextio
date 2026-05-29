@@ -14,7 +14,8 @@ export default function Index() {
       window.location.replace(lastActiveRoute);
     } else {
       console.log('HOME~~~~');
-      setTimeout(() => { window.location.replace(`/home`); }, 1000);
+      setTimeout(() => { }, 100);
+      window.location.replace(`/home`);
     }
 
     return () => { };

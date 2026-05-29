@@ -50,7 +50,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
     }
   };
-  const fetchMoive = (page:number)=>{
+  const fetchMovie = (page:number)=>{
     ui.loading.show(`glx`);
     axios.request(options).then(res =>{
       console.log(res.data.results);
@@ -83,7 +83,7 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
 
   const [slideCounter, setSlideCounter] = useState(0);
   useEffect(() => {
-    fetchMoive(page);
+    fetchMovie(page);
     nexto();
     
     window.addEventListener("scroll", scrollHome);
