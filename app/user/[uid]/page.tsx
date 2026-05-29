@@ -48,6 +48,36 @@ export default function User() {
     if(error) console.log(error);
   }, [param_id]);
 
+  const [scrapCount, setScrapCount] = useState<number>(0);
+  const [reviewCount, setReviewCount] = useState<number>(0);
+  const fetchCounts = useCallback(async (info: any) => {
+    if (!info) return;
+
+    // Fetch scrap count
+    const { count: scrapCnt, error: scrapErr } = await supabase
+      .from('TMDB_SCRAP')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_num', info.id);
+
+    if (scrapErr) {
+      console.error("Scrap count fetch error:", scrapErr.message);
+    } else if (scrapCnt !== null) {
+      setScrapCount(scrapCnt);
+    }
+
+    // Fetch review count
+    const { count: reviewCnt, error: reviewErr } = await supabase
+      .from('TMDB_REVIEW')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', info.user_id);
+
+    if (reviewErr) {
+      console.error("Review count fetch error:", reviewErr.message);
+    } else if (reviewCnt !== null) {
+      setReviewCount(reviewCnt);
+    }
+  }, []);
+
   const [swiper, setSwiper] = useState(null as any);
   const [spIdx, setSpIdx] = useState<number>(0);
   
@@ -62,6 +92,29 @@ export default function User() {
     });
     viewUser()
   }, [param_id, viewUser]);
+
+  useEffect(() => {
+    if (uInfo) {
+      fetchCounts(uInfo);
+
+      const scrapChannel = supabase.channel(`public:TMDB_SCRAP:profile:${uInfo.id}`)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'TMDB_SCRAP' }, () => {
+          fetchCounts(uInfo);
+        })
+        .subscribe();
+
+      const reviewChannel = supabase.channel(`public:TMDB_REVIEW:profile:${uInfo.user_id}`)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'TMDB_REVIEW' }, () => {
+          fetchCounts(uInfo);
+        })
+        .subscribe();
+
+      return () => {
+        supabase.removeChannel(scrapChannel);
+        supabase.removeChannel(reviewChannel);
+      };
+    }
+  }, [uInfo, fetchCounts]);
 
   const slideHeightClass = "min-h-[calc(100dvh-22.5rem-var(--safe-top)-var(--safe-bottom))]";
 
@@ -98,9 +151,9 @@ export default function User() {
                       </span>
                     </Link>
                     <div className="info flex w-full px-5 text-sm">
-                      <div className="num b flex-1 text-center"><b className="n">{0}</b><p className="t">Post </p></div>    
-                      <div className="num p flex-1 text-center"><b className="n">{0}</b><p className="t">Review</p></div>    
-                      <div className="num l flex-1 text-center"><b className="n">{0}</b><p className="t">Scrap</p></div>
+                      <div className="num l flex-1 text-center"><b className="n">{scrapCount}</b><p className="t">Scrap</p></div>
+                      <div className="num p flex-1 text-center"><b className="n">{reviewCount}</b><p className="t">Review</p></div>    
+                      {/* <div className="num b flex-1 text-center"><b className="n">{0}</b><p className="t">Post </p></div>     */}
                     </div>
                   </div>
                   <div className="desc flex flex-col gap-1 mx-5 text-xs">
