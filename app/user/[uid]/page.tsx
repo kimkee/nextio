@@ -48,8 +48,8 @@ export default function User() {
     if(error) console.log(error);
   }, [param_id]);
 
-  const [scrapCount, setScrapCount] = useState<number>(0);
-  const [reviewCount, setReviewCount] = useState<number>(0);
+  const [scrapCount, setScrapCount] = useState<number>();
+  const [reviewCount, setReviewCount] = useState<number>();
   const fetchCounts = useCallback(async (info: any) => {
     if (!info) return;
 
@@ -151,8 +151,8 @@ export default function User() {
                       </span>
                     </Link>
                     <div className="info flex w-full px-5 text-sm">
-                      <div className="num l flex-1 text-center"><b className="n">{scrapCount}</b><p className="t">Scrap</p></div>
-                      <div className="num p flex-1 text-center"><b className="n">{reviewCount}</b><p className="t">Review</p></div>    
+                      <div className="num l flex-1 text-center"><b className="n block min-h-5">{scrapCount}</b><p className="t">Scrap</p></div>
+                      <div className="num p flex-1 text-center"><b className="n block min-h-5">{reviewCount}</b><p className="t">Review</p></div>    
                       {/* <div className="num b flex-1 text-center"><b className="n">{0}</b><p className="t">Post </p></div>     */}
                     </div>
                   </div>
