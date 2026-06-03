@@ -8,16 +8,15 @@ export default function Index() {
 
   useEffect(() => {
     const lastActiveRoute = sessionStorage.getItem('last_active_route');
-
-    if (lastActiveRoute && lastActiveRoute !== '/' && lastActiveRoute !== '/home') {
-      sessionStorage.removeItem('last_active_route');
-      window.location.replace(lastActiveRoute);
-    } else {
-      console.log('HOME~~~~');
-      setTimeout(() => { 
+    setTimeout(() => {
+      if (lastActiveRoute && lastActiveRoute !== '/' && lastActiveRoute !== '/home') {
+        sessionStorage.removeItem('last_active_route');
+        window.location.replace(lastActiveRoute);
+      } else {
+        console.log('HOME~~~~');
         window.location.replace(`/home`);
-      }, 1000);
-    }
+      }
+    }, 500);
 
     return () => { };
   }, []);
