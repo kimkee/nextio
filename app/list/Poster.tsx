@@ -41,7 +41,7 @@ export default function Poster() {
   const [datas, setDatas] = useState<any>(null);
   const [pstImg, pstImgSet] = useState('');
   const [title, titleSet] = useState('');
-  const loopSet = ()=> datas.images.posters.length > 1 ? true : false;
+  const loopSet = ()=> datas?.images?.posters?.length > 1 ? true : false;
   // const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
   const fetchDatas = () => {
     const options = {
@@ -86,17 +86,8 @@ export default function Poster() {
   return (
   <>
 
-    <article className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex justify-center items-center pr-(--scrPad) open backdrop-blur-md `}>
-      <div className="fixed top-2 w-full max-w-(--mwide) left-1/2 -translate-x-1/2 z-50 text-right pr-2">
-        <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
-          className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl"
-        >
-          <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
-        </button>
-      </div>
-        
-      <div className={`pbd bottom-0 inline-block text-left whitespace-normal relative
-        max-h-[calc(100dvh-0px)] max-w-(--mwide) ml-(--scrPad) w-[calc(100%-0rem)] margin-bottom-0 rounded-t-xl
+    <article className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) open backdrop-blur-md `}>
+      <div className={`pbd w-[calc(100%-0rem)] max-w-(--mwide) h-full bg-transparent align-middle relative
         transition-[transform,opacity,translate] ease-out duration-200
         ${mounted ? 'translate-y-0' : 'translate-y-90' }
       `}>
@@ -105,25 +96,29 @@ export default function Poster() {
                 <div className="ptit"></div>
             </div>
         </div> */}
-        <div className="pct h-[calc(100dvh-0px)] overflow-y-auto scrollbar-hidden">
-          <main className="poptents">
+        <div className="pct relative w-full h-full">
+          <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
+            className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl z-20 absolute right-2 top-2 rounded-full"
+          >
+            <FontAwesomeIcon icon={['fas', 'xmark']} className='w-5 h-5 flex text-white'/>
+          </button>
+          <main className="poptents h-full">
 
-            <div className="poster-box">
+            <div className="poster-box h-full">
               {datas && datas.images.posters ? 
               <>
-              <Swiper className="swiper-wrapper swiper slide h-[calc(100dvh-0px)]!
-                [&_.swiper-wrapper]:h-[calc(100dvh-0px)]!
-                [&_.swiper-slide]:h-[calc(100dvh-0px)]!
-                [&_.swiper-slide]:flex!
-                [&_.swiper-slide]:items-center!
-                [&_.swiper-slide]:justify-center!
+              <Swiper className="swiper relative h-dvh!
                 " 
                 // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
                 spaceBetween={20}
                 slidesPerView={1}
                 // navigation
+                // loop={loopSet()}
                 loop={loopSet()}
+                observeParents={true}
+                observeSlideChildren={true}
+                observer={true}
                 // lazy={ {enabled: true, loadPrevNext: true, loadPrevNextAmount: 3} } // 지금 loadPrevNext 옵션이 동작 안됨 ㅡㅡ; 
                 // effect={"fade"}
                 // autoplay={false}
@@ -132,27 +127,26 @@ export default function Poster() {
                 pagination={{ clickable: true ,type:'fraction',el: ".navigation .custom-pagination",}}
                 // scrollbar={{ draggable: true }}
                 // initialSlide={ Math.floor( Math.random() *10  ) } // 0 ~ 9
-                autoHeight={true}
                 onSwiper={(swiper) => {
                   console.log("initialize swiper", swiper);
-                  swiper.slideToLoop(Number(vId) , 0);
+                  swiper.slideTo(Number(vId) , 0);
                 }}
                 onSlideChange={() => {/* console.log('slide change') */}} >
-                <SwiperSlide tag="li">
+                <SwiperSlide tag="li" key={`first`} className="swiper-slide h-full flex items-center justify-center">
                   <div className='box w-full h-full'>
-                    <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
+                    <div className="pics block overflow-hidden rounded-0 relative w-full h-full">
                       <img src={pstImg} className="img relative object-contain w-full h-full z-2" alt={`${title}_Poster[1]`} onError={ui.error.poster} loading="lazy"/>
                       <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{type:'glx',cls:'full'}} /></div>
                     </div>
                   </div>
                 </SwiperSlide>
                 {
-                  datas.images.posters.map((item: any, idx: number) => {  // .filter( (item, i) => i < 10 )
+                  datas.images.posters.filter( (item: any, i: number) => i < 29 ).map((item: any, idx: number) => {  // .filter( (item, i) => i < 10 )
                     const img = `//image.tmdb.org/t/p/w780${item.file_path}`;
                     return (
-                      <SwiperSlide tag="li" key={idx} className="swiper-slide pbox">
+                      <SwiperSlide tag="li" key={idx} className="swiper-slide h-full flex items-center justify-center pbox">
                         <div className='box w-full h-full'>
-                          <div className="pics block  overflow-hidden rounded-0 relative w-full h-full">
+                          <div className="pics block overflow-hidden rounded-0 relative w-full h-full">
                             <img src={`${img}`} alt={`${title}_Poster[${idx + 2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
                             <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: `full` }} /></div>
                           </div>
