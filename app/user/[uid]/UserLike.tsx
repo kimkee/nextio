@@ -193,7 +193,13 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = useCallback((tableName: string) => {
     realtimeChannel.current = supabase.channel(`public:${tableName}:user:${uInfo.id}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: tableName }, () => {
+        getMyScrap(uInfo.id,'movie',pagingAmount);
+        getMyScrap(uInfo.id,'tv',pagingAmount);
+        getMyScrapTotal(uInfo.id,'movie');
+        getMyScrapTotal(uInfo.id,'tv');
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: tableName }, () => {
         getMyScrap(uInfo.id,'movie',pagingAmount);
         getMyScrap(uInfo.id,'tv',pagingAmount);
         getMyScrapTotal(uInfo.id,'movie');
