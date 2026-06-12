@@ -98,13 +98,19 @@ export default function User() {
       fetchCounts(uInfo);
 
       const scrapChannel = supabase.channel(`public:TMDB_SCRAP:profile:${uInfo.id}`)
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'TMDB_SCRAP' }, () => {
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'TMDB_SCRAP' }, () => {
+          fetchCounts(uInfo);
+        })
+        .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'TMDB_SCRAP' }, () => {
           fetchCounts(uInfo);
         })
         .subscribe();
 
       const reviewChannel = supabase.channel(`public:TMDB_REVIEW:profile:${uInfo.user_id}`)
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'TMDB_REVIEW' }, () => {
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'TMDB_REVIEW' }, () => {
+          fetchCounts(uInfo);
+        })
+        .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'TMDB_REVIEW' }, () => {
           fetchCounts(uInfo);
         })
         .subscribe();

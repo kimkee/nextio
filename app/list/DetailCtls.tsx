@@ -64,8 +64,49 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
       setIsScrap(data.length > 0);
       console.log(data);
       console.table("내 스크랩 조회 성공 Data selected successfully:");
-      setIsDimBtn(false);
       
+      if (data.length > 0 && datas) {
+        const existing = data[0];
+        const currentTitle = datas.title || datas.name;
+        const currentPoster = datas.poster_path;
+        const currentVote = datas.vote_average;
+        const currentDate = datas.release_date || datas.first_air_date;
+        const currentOverview = datas.overview || '';
+
+        if (
+          existing.title !== currentTitle ||
+          existing.poster_path !== currentPoster ||
+          existing.vote_average !== currentVote ||
+          existing.release_date !== currentDate ||
+          existing.overview !== currentOverview
+        ) {
+          console.log("스크랩 정보가 변경되어 업데이트를 진행합니다.");
+          const updateData: any = {
+            title: currentTitle,
+            poster_path: currentPoster,
+            vote_average: currentVote,
+            release_date: currentDate,
+            overview: currentOverview,
+          };
+          if ('updated_at' in existing) {
+            updateData.updated_at = new Date().toISOString();
+          }
+          const { data: updated, error: updateError } = await supabase
+            .from('TMDB_SCRAP')
+            .update(updateData)
+            .eq('id', existing.id)
+            .select('*');
+
+          if (updateError) {
+            console.error("스크랩 정보 업데이트 실패:", updateError.message);
+          } else {
+            console.log("스크랩 정보 업데이트 성공");
+            setMyscrap(updated);
+          }
+        }
+      }
+
+      setIsDimBtn(false);
     }
   }
 
@@ -99,6 +140,7 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
         poster_path: datas.poster_path,
         vote_average: datas.vote_average,
         release_date: datas.release_date || datas.first_air_date,
+        overview: datas.overview || '',
       }
       setIsDimBtn(true);
       console.table(insertData);
