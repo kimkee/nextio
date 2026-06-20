@@ -132,7 +132,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Ui />
         {isProd && (
           <>
-            {isVercel ? <SpeedInsights /> : <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />}
+            <GoogleAnalytics gaId='G-9BBCJ4KC3Z' />
+            {isVercel && <SpeedInsights />}
             <Analytics />
           </>
         )}
