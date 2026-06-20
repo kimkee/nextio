@@ -29,7 +29,7 @@ export default function manifest(): AppManifest {
         purpose: "maskable"
       },
       {
-        src: '/img/icon_app.png',
+        src: '/img/apple-touch-icon.png',
         type: "image/png",
         sizes: "512x512",
         purpose: "any"
