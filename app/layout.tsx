@@ -54,6 +54,10 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: '/',
     },
+    icons: {
+      icon: '/img/favicon.ico',
+      apple: '/img/apple-touch-icon.png',
+    },
     verification: {
       google: '-VkSsPm2o6T2VkeRry8QBbdER8kBPXLvQeqGf2QzSdw',
     },
