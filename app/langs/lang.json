@@ -59,6 +59,13 @@
         "sampleKwd":["스타워즈","포레스트 검프"],
         "text_del":"삭제",
         "text_sch":"검색"
+      },
+      "pwa":{
+        "title":"홈 화면에 추가",
+        "desc":"사파리(Safari) 브라우저에서 아래 순서로 앱을 추가해 보세요.",
+        "step1":"하단의 공유 버튼 클릭",
+        "step2":"'홈 화면에 추가' 선택",
+        "btn":"확인"
       }
     },
     "en":{
@@ -120,6 +127,13 @@
         "sampleKwd":["Star Wars","Forrest Gump"],
         "text_del":"Delete",
         "text_sch":"Search"
+      },
+      "pwa":{
+        "title":"Add to Home Screen",
+        "desc":"Add the app from Safari browser with the steps below.",
+        "step1":"Tap the Share button at the bottom",
+        "step2":"Select 'Add to Home Screen'",
+        "btn":"OK"
       }
     },
     "jp":{
@@ -181,6 +195,13 @@
         "sampleKwd":["スター・ウォーズ","フォレスト・ガンプ"],
         "text_del":"Delete",
         "text_sch":"Search"
+      },
+      "pwa":{
+        "title":"ホーム画面に追加",
+        "desc":"Safariブラウザから以下の手順でアプリを追加してください。",
+        "step1":"下部の共有ボタンをタップ",
+        "step2":"「ホーム画面に追加」を選択",
+        "btn":"確認"
       }
     },
     "cn":{
@@ -242,6 +263,13 @@
         "sampleKwd":["星球大战","阿甘正传"],
         "text_del":"Delete",
         "text_sch":"Search"
+      },
+      "pwa":{
+        "title":"添加到主屏幕",
+        "desc":"在 Safari 浏览器中按照以下步骤添加应用。",
+        "step1":"点击底部的分享按钮",
+        "step2":"选择 '添加到主屏幕'",
+        "btn":"确定"
       }
     },
     "tw":{
@@ -303,6 +331,13 @@
         "sampleKwd":["星球大戰","阿甘正傳"],
         "text_del":"Delete",
         "text_sch":"Search"
+      },
+      "pwa":{
+        "title":"新增至主畫面",
+        "desc":"在 Safari 瀏覽器中按照以下步驟新增應用程式。",
+        "step1":"點擊底部的分享按鈕",
+        "step2":"選擇 '新增至主畫面'",
+        "btn":"確定"
       }
     }
   }
