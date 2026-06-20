@@ -289,5 +289,21 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 }
 /* Optional: hide on desktop */
 @media (min-width: 769px) {
-  .install-btn { display: none; }
+  .install-btn {  }
 }
+
+@keyframes ios-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ios-scale-up {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-ios-fade {
+  animation: ios-fade-in 0.2s ease-out forwards;
+}
+.animate-ios-scale {
+  animation: ios-scale-up 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
