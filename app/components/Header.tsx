@@ -45,7 +45,7 @@ export default function Header() {
             ) : (
               <h1 className='logo flex gap-2 items-baseline'>
                 <Link href={`/home`} className='btlogo py-1 flex'>
-                  <Img priority={true} width={256} height={54} src={`/img/logo_nextio.png`} unoptimized={true} alt='Nextio' srcerr='' className='w-24 h-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]' />
+                  <Img priority={true} width={256} height={54} src={`/img/logo_nextio.png`} unoptimized={true} alt='Nextio' srcerr='' className='w-22 h-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]' />
                 </Link>
                 <span className='text-xt text-white'>{PUBLIC_ENV}</span>
                 <span className='sr-only'>{process.env.NODE_ENV}</span>
