@@ -15,7 +15,7 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
   const detailUrl = `/user/${uInfo.id}/${data.mvtv}/${data.idmvtv}`;
 
   return (
-    <li data-idmvtv={data.idmvtv} className="border-b border-[#202020]">
+    <li data-idmvtv={data.idmvtv} className="border-b border-white/7">
       <div className="box relative">
         <Link 
           className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5 active:scale-95 active:opacity-80 transition-transform" 
@@ -32,16 +32,21 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
               />
             </div>
           </div>
-          <div className="dd flex-1 ">
-            <div className="tits mb-2 min-h-6 text-sm">{ui.textHtml(data.content, 'decode')}</div>
-            <div className="hits flex gap-2">
-              <StarPoint point={data.vote_average} opts={{ cls: 'text-10' }} />
-              <span className="date mt-0 text-white/40 text-xt"> {ui.dateForm(data.created_at, 'short')}</span>
+          <div className="dd flex-1 flex flex-col gap-1.5 ">
+            <div className="hits flex gap-2  justify-between w-full">
+              <span className="text-white/80 flex items-center">
+                <span className="text-sm">{data.title}</span>
+              </span>
+              <span className="date mt-0 text-white/40 text-xt flex items-center gap-1.5"> 
+                <StarPoint point={data.vote_average} opts={{ cls: 'text-10' }} />
+                {ui.dateForm(data.created_at, 'short')}
+              </span>
             </div>
+            <div className="tits min-h-6 text-sm">{ui.textHtml(data.content, 'decode')}</div>
           </div>
         </Link>
         { uInfo?.user_id == user?.id &&
-        <div className="bts absolute right-1 bottom-2">
+        <div className="bts absolute right-2 bottom-3">
           <button type="button" className="bt w-6 h-6 flex items-center justify-center text-white/40" aria-label='삭제' onClick={ (e)=> {
             e.stopPropagation();
             ui.confirm('삭제할까요?',{ybt:'네',nbt:'아니오', ycb:()=>deleteReview(data.mvtv, data.id)}) 

@@ -28,7 +28,7 @@ const LikeItem = memo(({ data, uInfo, user, handleLinkClick, deleteScrap }: any)
   const img = imgpath + data.poster_path;
 
   return (
-    <li className="odd:border-r border-b border-[#202020]">
+    <li className="odd:border-r border-b border-white/7">
       <div className="box relative">
         <Link 
           className="cont flex justify-between w-full text-xs py-3 pl-4 pr-5 active:scale-95 active:opacity-80 transition-transform" 
@@ -95,10 +95,10 @@ const LikeList = memo(({ data, total, uInfo, user, handleLinkClick, deleteScrap,
             deleteScrap={deleteScrap} 
           />
         ))}
-        { data.length % 2 === 1 && <li className="odd:border-r border-b border-[#202020]"><div className="box relative"></div></li>}
+        { data.length % 2 === 1 && <li className="odd:border-r border-b border-white/7"><div className="box relative"></div></li>}
       </ul>
       { data.length < total &&
-        <div className="loading border-b border-[#202020]">
+        <div className="loading border-b border-white/7">
           <button type="button" className='text-sm text-[#c9d1d9] h-14 flex flex-col items-center justify-center w-full leading-none'
             onClick={getMore}
           >
@@ -236,7 +236,7 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
 
   return (
     <div className="movie-list user">
-      <div className="tabs flex justify-center border-b border-[#202020] h-12" role="tablist">
+      <div className="tabs flex justify-center border-b border-white/7 h-12" role="tablist">
         <button onClick={()=>gotoSlide(0)} className={`w-full text-xs ${media == 'movie' ? 'active text-primary font-bold':''}`}>
           <em>Movie</em>
           <i className={`${media == 'movie' ? 'bg-primary':'bg-white/50'} not-italic text-10 h-0.6rem leading-none rounded-full px-1 text-black ml-1`}>{scrapMvTot}</i>
