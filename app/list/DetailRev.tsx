@@ -172,6 +172,56 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[postID]);
 
+  // 사용자가 리뷰를 작성한 영상인 경우 최신 TMDB 정보(제목, poster_path, vote_average)로 업데이트
+  useEffect(() => {
+    if (reviewArr && user?.id && datas) {
+      const myReview = reviewArr.find((rev: any) => rev.user_id === user.id);
+      if (myReview) {
+        const apiPoster = datas.poster_path || "";
+        const dbPoster = myReview.poster_path || "";
+        const apiVote = Number(datas.vote_average) || 0;
+        const dbVote = Number(myReview.vote_average) || 0;
+        const apiTitle = datas.title || datas.name || "";
+        const dbTitle = myReview.title || "";
+
+        const needsUpdate =
+          (datas.poster_path !== undefined && dbPoster !== apiPoster) ||
+          (datas.vote_average !== undefined && Math.abs(dbVote - apiVote) >= 0.1) ||
+          (apiTitle !== "" && dbTitle !== apiTitle);
+
+        console.log("Review TMDB Sync Check:", {
+          dbTitle, apiTitle, titleMatch: dbTitle === apiTitle,
+          dbPoster, apiPoster, posterMatch: dbPoster === apiPoster,
+          dbVote, apiVote, voteMatch: Math.abs(dbVote - apiVote) < 0.1,
+          needsUpdate
+        });
+
+        if (needsUpdate) {
+          const updateMovieInfo = async () => {
+            console.log("Updating movie details in TMDB_REVIEW for user review...", {
+              dbPoster, apiPoster, dbVote, apiVote, dbTitle, apiTitle
+            });
+            const { error: updateError } = await supabase
+              .from('TMDB_REVIEW')
+              .update({
+                poster_path: datas.poster_path,
+                vote_average: datas.vote_average,
+                title: apiTitle
+              })
+              .eq('id', myReview.id);
+
+            if (updateError) {
+              console.error("Error updating movie info in TMDB_REVIEW:", updateError.message);
+            } else {
+              console.log("Successfully updated movie info in TMDB_REVIEW");
+            }
+          };
+          updateMovieInfo();
+        }
+      }
+    }
+  }, [reviewArr, user, datas, opts, postID]);
+
   // console.log(review);
 
 
