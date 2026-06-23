@@ -32,17 +32,17 @@ const ReviewItem = memo(({ data, uInfo, user, handleLinkClick, deleteReview }: a
               />
             </div>
           </div>
-          <div className="dd flex-1 flex flex-col gap-1.5 ">
-            <div className="hits flex gap-2  justify-between w-full">
-              <span className="text-white/80 flex items-center">
-                <span className="text-sm">{data.title}</span>
+          <div className="dd flex-1 flex flex-col gap-1.5 justify-between">
+            <div className="hits flex gap-2 items-start justify-between w-full">
+              <span className="text-white/80 flex items-center flex-1">
+                <span className="text-sm break-all line-clamp-1 text-clip">{data.title} {data.title} {data.title} {data.title} </span>
               </span>
               <span className="date mt-0 text-white/40 text-xt flex items-center gap-1.5"> 
                 <StarPoint point={data.vote_average} opts={{ cls: 'text-10' }} />
-                {ui.dateForm(data.created_at, 'short')}
+                <span className="text-11">{ui.dateForm(data.created_at, 'short')}</span>
               </span>
             </div>
-            <div className="tits min-h-6 text-sm">{ui.textHtml(data.content, 'decode')}</div>
+            <div className="tits min-h-6 text-sm break-all">{ui.textHtml(data.content, 'decode')}</div>
           </div>
         </Link>
         { uInfo?.user_id == user?.id &&

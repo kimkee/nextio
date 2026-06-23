@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: '/img/apple-touch-icon.png',
     },
     verification: {
-      google: '-VkSsPm2o6T2VkeRry8QBbdER8kBPXLvQeqGf2QzSdw',
+      google: '-VkSsPm2o6T2VkeRry8QBbdER8kBPXLvQeqGf2QzSdw', // google search console
     },
     openGraph: {
       title: t.title || 'NEXTIO',
