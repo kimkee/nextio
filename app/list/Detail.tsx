@@ -63,7 +63,7 @@ export default function Detail({
       });
   };
 
-  const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?language=ko&region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
+  const movURL = `https://api.themoviedb.org/3/${opts}/${postID}/videos?region=kr&language=ko&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`;
   const fetchMov = () => {
     axios
       .get(movURL)
