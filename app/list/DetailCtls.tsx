@@ -115,7 +115,7 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
     if (!myinfo?.email) {
       ui.confirm(`${t.signin.chk_01}`,{
         ycb: () => {
-          router.push(`/user/login`);
+          window.location.href = '/user/login'; return;
         },
         ncb: () => { },
         ybt: t.signin.btn_login,
