@@ -180,7 +180,8 @@ export default  function HomeTop({opts}:{opts:{media:string }}) {
             {
               mlist.filter( (item:any, i:number) => i < 7 ).map( (data:any, idx:number) => {
                 const img = `https://image.tmdb.org/t/p/w780${data.poster_path}`;
-                const targetUrl = `/home/${opts.media}/${data.id}`;
+                const basePath = pathname.startsWith('/home') ? '/home' : '';
+                const targetUrl = `${basePath}/${opts.media}/${data.id}`;
                 return (
                   <SwiperSlide tag="li" key={idx}  className="swiper-slide pbox">
                     <Link 

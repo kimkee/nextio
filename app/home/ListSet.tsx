@@ -169,7 +169,8 @@ export default  function ListSet({opts}:{opts:{media:string, list:string, cate:s
           { mlist.filter( (item: any, i: number) => i < 20 ).map( (data: any, idx: number) => {
               const img = `https://image.tmdb.org/t/p/w154${data.poster_path}` ;
               const tit = data.title || data.name;
-              const detailUrl = `/home/${opts.media}/${data.id}`;
+              const basePath = pathname.startsWith('/home') ? '/home' : '';
+              const detailUrl = `${basePath}/${opts.media}/${data.id}`;
               return (
                 <div key={idx} className="pbox box block w-[calc(24%-3%)] min-w-[calc(24%-3%)] mx-[0.4rem]  break-all">
                   <Link 

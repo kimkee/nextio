@@ -19,7 +19,7 @@ export default function LoginPage() {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user?.id) {
         // 이미 로그인된 상태 → 히스토리에 로그인 페이지를 남기지 않고 홈으로 교체
-        window.location.replace('/home');
+        window.location.replace('/');
       } else {
         // 비로그인 상태 확인 완료 → 로그인 UI 표시
         setAuthChecking(false);
@@ -38,6 +38,7 @@ export default function LoginPage() {
         redirectTo: `${SITE_URL}`
       },
     });
+    sessionStorage.setItem('isReturnLogin', 'true');
   };
 
   // 세션 확인 중엔 아무것도 렌더링하지 않음 (깜빡임 방지)

@@ -96,7 +96,7 @@ import Popup from '@/app/components/Popup';
 import RouteTracker from '@/app/components/RouteTracker';
 import { Suspense } from 'react';
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
+export default async function RootLayout(props: { children: React.ReactNode; modal: React.ReactNode }) {
   const isVercel = process.env.NEXT_PUBLIC_SITE_URL === 'https://nextio.vercel.app';
   const isProd = process.env.NEXT_PUBLIC_ENV === 'PRD';
 
@@ -126,6 +126,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <div className='wrap'>
           <Header />
           {props.children}
+          {props.modal}
           <Nav />
         </div>
         <div id='modal-root' className='fixed z-1000' />
