@@ -103,12 +103,21 @@ function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:any}) {
 
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = useCallback((tableName: string) => {
+    const channelTopic = `realtime:public:${tableName}:user:${uInfo.user_id}`;
+    const existingChannels = supabase.getChannels().filter(c => c.topic === channelTopic);
+    existingChannels.forEach(c => {
+      supabase.removeChannel(c);
+      const channels = supabase.getChannels();
+      const idx = channels.indexOf(c);
+      if (idx > -1) channels.splice(idx, 1);
+    });
+
     realtimeChannel.current = supabase.channel(`public:${tableName}:user:${uInfo.user_id}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
         getMyReviews();
       })
       .subscribe();
-  }, [getMyReviews]);
+  }, [getMyReviews, uInfo.user_id]);
 
   /* 내 리뷰삭제 */
   const deleteReview = useCallback(async (opts: string, id: number) => {
@@ -131,6 +140,10 @@ function UserPost({uInfo,user,swiper}:{uInfo:any,user:any,swiper:any}) {
     return ()=>{
       if (realtimeChannel.current) {
         supabase.removeChannel(realtimeChannel.current);
+        const channels = supabase.getChannels();
+        const idx = channels.indexOf(realtimeChannel.current);
+        if (idx > -1) channels.splice(idx, 1);
+        realtimeChannel.current = null;
       }
     }
   }, [getMyReviews, setupRealtimeListener]);
