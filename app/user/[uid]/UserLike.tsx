@@ -192,6 +192,15 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
 
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = useCallback((tableName: string) => {
+    const channelTopic = `realtime:public:${tableName}:user:${uInfo.id}`;
+    const existingChannels = supabase.getChannels().filter(c => c.topic === channelTopic);
+    existingChannels.forEach(c => {
+      supabase.removeChannel(c);
+      const channels = supabase.getChannels();
+      const idx = channels.indexOf(c);
+      if (idx > -1) channels.splice(idx, 1);
+    });
+
     realtimeChannel.current = supabase.channel(`public:${tableName}:user:${uInfo.id}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: tableName }, () => {
         getMyScrap(uInfo.id,'movie',pagingAmount);
@@ -222,6 +231,10 @@ function UserLike({uInfo,user,swiper1dep}:{uInfo:any,user:any,swiper1dep:any}) {
     return ()=>{
       if (realtimeChannel.current) {
         supabase.removeChannel(realtimeChannel.current);
+        const channels = supabase.getChannels();
+        const idx = channels.indexOf(realtimeChannel.current);
+        if (idx > -1) channels.splice(idx, 1);
+        realtimeChannel.current = null;
       }
     }
   },[uInfo.id, getMyScrap, getMyScrapTotal, setupRealtimeListener]);

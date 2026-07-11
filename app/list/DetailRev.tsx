@@ -142,6 +142,16 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
   }
   const realtimeChannel = useRef<any>(null);
   const setupRealtimeListener = (tableName:string) => {
+    // 기존 채널이 남아있는 경우 구독 해제 및 목록에서 즉시 제거하여 충돌 방지
+    const channelTopic = `realtime:public:${tableName}:detail:${postID}`;
+    const existingChannels = supabase.getChannels().filter(c => c.topic === channelTopic);
+    existingChannels.forEach(c => {
+      supabase.removeChannel(c);
+      const channels = supabase.getChannels();
+      const idx = channels.indexOf(c);
+      if (idx > -1) channels.splice(idx, 1);
+    });
+
     // 채널 이름을 고유하게 지정하여 다른 컴포넌트(UserPost 등)와 충돌을 방지함
     realtimeChannel.current = supabase.channel(`public:${tableName}:detail:${postID}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: tableName }, () => {
@@ -167,6 +177,10 @@ export default function ViewCtls({datas, postID, opts, user, myinfo}: {datas: an
     return () => {
       if (realtimeChannel.current) {
         supabase.removeChannel(realtimeChannel.current);
+        const channels = supabase.getChannels();
+        const idx = channels.indexOf(realtimeChannel.current);
+        if (idx > -1) channels.splice(idx, 1);
+        realtimeChannel.current = null;
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

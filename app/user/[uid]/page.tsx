@@ -97,6 +97,16 @@ export default function User() {
     if (uInfo) {
       fetchCounts(uInfo);
 
+      const scrapTopic = `realtime:public:TMDB_SCRAP:profile:${uInfo.id}`;
+      const reviewTopic = `realtime:public:TMDB_REVIEW:profile:${uInfo.user_id}`;
+      const existingChannels = supabase.getChannels().filter(c => c.topic === scrapTopic || c.topic === reviewTopic);
+      existingChannels.forEach(c => {
+        supabase.removeChannel(c);
+        const channels = supabase.getChannels();
+        const idx = channels.indexOf(c);
+        if (idx > -1) channels.splice(idx, 1);
+      });
+
       const scrapChannel = supabase.channel(`public:TMDB_SCRAP:profile:${uInfo.id}`)
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'TMDB_SCRAP' }, () => {
           fetchCounts(uInfo);
@@ -116,8 +126,14 @@ export default function User() {
         .subscribe();
 
       return () => {
-        supabase.removeChannel(scrapChannel);
-        supabase.removeChannel(reviewChannel);
+        [scrapChannel, reviewChannel].forEach(ch => {
+          if (ch) {
+            supabase.removeChannel(ch);
+            const channels = supabase.getChannels();
+            const idx = channels.indexOf(ch);
+            if (idx > -1) channels.splice(idx, 1);
+          }
+        });
       };
     }
   }, [uInfo, fetchCounts]);
