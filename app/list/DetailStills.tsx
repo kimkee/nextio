@@ -39,10 +39,28 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
 
   const [dataStills, setDataStills] = useState<any>();
   const fetchStills = () => {
+    if(opts === 'movie') return;
     const list = `https://api.themoviedb.org/3/${opts}/${postID}/season/1/episode/1/images?api_key=f76021076e8162ea929bd2cea62c6646`;
     axios.get(list).then((res)=>{
       setDataStills(res.data.stills);
       console.log(res.data.stills);
+      setTimeout(() => {
+        isNavBtn();
+      }, 500);
+    }).catch((e)=>{
+      console.error('Failed to fetch stills:', e);
+      setTimeout(() => {
+        isNavBtn();
+        setDataStills([]);
+      }, 500);
+    });
+  }
+  const fetchBackdrops = () => {
+    if(opts === 'tv') return;
+    const list = `https://api.themoviedb.org/3/movie/${postID}/images?api_key=f76021076e8162ea929bd2cea62c6646`;
+    axios.get(list).then((res)=>{
+      setDataStills(res.data.backdrops);
+      console.log(res.data.backdrops);
       setTimeout(() => {
         isNavBtn();
       }, 500);
@@ -60,11 +78,12 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
 
   useEffect(() => {
     fetchStills();
+    fetchBackdrops();
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // console.log(props.data); 
-  if(!dataStills) return null;
+  if(!dataStills ) return null;
   return (
     <>
     <div className={`sect post mt-4`}>
@@ -80,8 +99,8 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
         {
         dataStills?.map((img: any,idx: number) => {
           return(
-          <div key={idx} data-index={idx+1} className='box block w-[calc(60%-1.25rem)] min-w-[calc(60%-1.25rem)] mx-[0.4rem]  break-all'>
-            <button type='button' onClick={()=>{openPosterModal(idx+1, opts) }} className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(9/16*100%)] mb-1 active:scale-98 transition-all duration-300'>
+          <div key={idx} data-index={idx+1} className='box block w-[calc(46%-1.25rem)] min-w-[calc(46%-1.25rem)] mx-[0.4rem]  break-all'>
+            <button type='button' /* onClick={()=>{openPosterModal(idx+1, opts) }} */ className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(9/16*100%)] mb-1 active:scale-98 transition-all duration-300'>
               <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${img.file_path}`} alt={postID +'-Poster-'+ (idx+1)} 
                 srcerr={'/img/common/non_poster.png'} unoptimized={true} 
                 className='img absolute object-cover w-full h-full' loading='eager'
