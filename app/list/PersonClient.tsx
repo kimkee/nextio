@@ -143,12 +143,11 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        // text: `${t.detailinfo.share_txt}`,
+        text: `NEXTIO`,
         url: surl,
       })
       .then(() => {
-        console.log('공유 성공' , surl);
-        
+        console.log('공유 성공' , surl);        
       })
       .catch((error) => {
         // ui.alert('공유 실패:'+ error)

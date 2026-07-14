@@ -25,12 +25,11 @@ export default function ViewCtls({datas,postID, opts, shareLang}: {datas: any, p
     if (navigator.share) {
       navigator.share({
         title: datatitle,
-        // text: `${t.detailinfo.share_txt}`,
+        text: `NEXTIO`,
         url: surl,
       })
       .then(() => {
-        console.log('공유 성공', surl);
-        
+        console.log('공유 성공', surl);        
       })
       .catch((error) => {
         // ui.alert('공유 실패:'+ error)
