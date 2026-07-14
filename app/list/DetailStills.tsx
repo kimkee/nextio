@@ -47,13 +47,7 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
       setTimeout(() => {
         isNavBtn();
       }, 500);
-    }).catch((e)=>{
-      console.error('Failed to fetch stills:', e);
-      setTimeout(() => {
-        isNavBtn();
-        setDataStills([]);
-      }, 500);
-    });
+    }).catch((e)=>{ console.error('Failed to fetch stills:', e); });
   }
   const fetchBackdrops = () => {
     if(opts === 'tv') return;
@@ -64,13 +58,7 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
       setTimeout(() => {
         isNavBtn();
       }, 500);
-    }).catch((e)=>{
-      console.error('Failed to fetch stills:', e);
-      setTimeout(() => {
-        isNavBtn();
-        setDataStills([]);
-      }, 500);
-    });
+    }).catch((e)=>{ console.error('Failed to fetch stills:', e); });
   }
 
   console.log(dataStills);
@@ -83,7 +71,7 @@ export default function ViewStills({opts, postID }: {opts: string, postID: strin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // console.log(props.data); 
-  if(!dataStills ) return null;
+  if(!dataStills || dataStills.length == 0) return <></>;
   return (
     <>
     <div className={`sect post mt-4`}>
