@@ -379,7 +379,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
           {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailinfo.season, css: "season", data: datas.seasons }} /> : ''}
 
-          <DetailStills opts={opts} postID={postID} />
+          <DetailStills opts={opts} postID={postID} props={{ title: t.detailinfo.stills, css: "stills"}}/>
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
