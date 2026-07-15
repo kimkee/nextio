@@ -51,12 +51,15 @@ export default function ViewStills({opts, postID, props }: {opts: string, postID
     fetchStills();
   }, []);
 
-  const StillsImgs = ({data}: {data:any})=>{
-    useEffect(() => {
+  useEffect(() => {
+    if (dataStills && dataStills.length > 0) {
       isNavBtn();
-    }, []);
-    return(
-    <div className={`sect post mt-4`}>
+    }
+  }, [dataStills]);
+
+  if(!dataStills || dataStills.length == 0) return <></>;
+  return (
+    <div className={`sect post mt-4 ${props.css || ''}`}>
       <div className="hbox flex justify-between items-center min-h-8 mb-1.5 leading-none">
         <h4 className="tts text-sm">{props.title} <span className="text-sm text-white/60">: {dataStills.length > 29 ? '30' : dataStills.length}</span></h4>
         <div className={`bt-nav ${isNav ? '' : 'hidden'}`}>
@@ -65,7 +68,7 @@ export default function ViewStills({opts, postID, props }: {opts: string, postID
         </div>
       </div>
       <div ref={scrollBoxRef} className="lst flex flex-nowrap overflow-y-hidden overflow-x-auto -mx-5 px-3 scrollbar-hidden scroll-smooth">
-        { data?.filter( (item: any, i: number) => i < 30 ).map((img: any,idx: number) => {
+        { dataStills.filter( (item: any, i: number) => i < 30 ).map((img: any,idx: number) => {
           return(
           <div key={idx} data-index={idx+1} className='box block w-[calc(46%-1.25rem)] min-w-[calc(46%-1.25rem)] mx-[0.4rem]  break-all'>
             <button type='button' onClick={()=>openStillsModal(idx, opts )} className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(9/16*100%)] mb-1 active:scale-98 transition-all duration-300'>
@@ -80,11 +83,5 @@ export default function ViewStills({opts, postID, props }: {opts: string, postID
         })}
       </div>
     </div>
-    )
-  }
-
-  if(!dataStills || dataStills.length == 0) return <></>;
-  return (
-      <StillsImgs data={dataStills} />
   )
 }
