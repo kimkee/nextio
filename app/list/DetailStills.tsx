@@ -37,24 +37,25 @@ export default function ViewStills({opts, postID, props }: {opts: string, postID
   };
   
   const [dataStills, setDataStills] = useState<any>();
-  let list: string;
-  if(opts === 'movie') { list = `https://api.themoviedb.org/3/movie/${postID}/images?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`; }
-  if(opts === 'tv'){ list = `https://api.themoviedb.org/3/tv/${postID}/season/1/episode/1/images?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`; }
   const fetchStills = () => {
-    axios.get(list).then((res)=>{
+    axios.request({
+      method: 'GET',
+      url: opts === 'movie' ? `https://api.themoviedb.org/3/movie/${postID}/images` : `https://api.themoviedb.org/3/tv/${postID}/season/1/episode/1/images`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    }).then((res)=>{
       setDataStills(res.data.stills || res.data.backdrops);
-      console.log(res.data.stills || res.data.backdrops);
     });
   }
 
   useEffect(() => {
     fetchStills();
   }, []);
-
+  
   useEffect(() => {
-    if (dataStills && dataStills.length > 0) {
-      isNavBtn();
-    }
+    isNavBtn();
   }, [dataStills]);
 
   if(!dataStills || dataStills.length == 0) return <></>;
@@ -72,8 +73,8 @@ export default function ViewStills({opts, postID, props }: {opts: string, postID
           return(
           <div key={idx} data-index={idx+1} className='box block w-[calc(46%-1.25rem)] min-w-[calc(46%-1.25rem)] mx-[0.4rem]  break-all'>
             <button type='button' onClick={()=>openStillsModal(idx, opts )} className='pic block relative rounded-sm overflow-hidden w-full bg-black pb-[calc(9/16*100%)] mb-1 active:scale-98 transition-all duration-300'>
-              <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${img.file_path}`} alt={postID +'-Poster-'+ (idx+1)} 
-                srcerr={'/img/common/non_poster.png'} unoptimized={true} 
+              <Img width={300} height={430} src={`https://image.tmdb.org/t/p/w300${img.file_path}`} alt={`Image_${postID}_${idx+1}`} 
+                srcerr={'/img/common/non_stills.png'} unoptimized={true} 
                 className='img absolute object-cover w-full h-full' loading='eager'
                 classNameErr='opacity-100! border border-white/20! border-2'
               />

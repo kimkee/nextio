@@ -26,13 +26,11 @@ import { useAtom } from 'jotai';
 import { globalLangAtom } from '@/app/store/lang';
 
 export default function Stills() {
-
   
   let params = useParams()
   const router = useRouter();
   const searchParams = useSearchParams();
   const [globalLang] = useAtom(globalLangAtom);
-  
 
   const postID = params.id;
   const vId = searchParams.get('idx')
@@ -40,48 +38,36 @@ export default function Stills() {
   const loopSet = ()=> dataStills?.length > 1 ? true : false;
   const [mounted, setMounted] = useState<boolean>(false);
 
-
-
   const [dataStills, setDataStills] = useState<any>();
-  let list: string;
-  if(opts === 'movie') { list = `https://api.themoviedb.org/3/movie/${postID}/images?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`; }
-  if(opts === 'tv'){ list = `https://api.themoviedb.org/3/tv/${postID}/season/1/episode/1/images?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`; }
   const fetchStills = () => {
-    axios.get(list).then((res)=>{
+    axios.request({
+      method: 'GET',
+      url: opts === 'movie' ? `https://api.themoviedb.org/3/movie/${postID}/images` : `https://api.themoviedb.org/3/tv/${postID}/season/1/episode/1/images`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
+      }
+    }).then((res)=>{
       setDataStills(res.data.stills || res.data.backdrops);
     });
   }
 
-
   useEffect(() => {
-    
-    // fetchDatas();
     fetchStills();
-    // console.log(datas);
-    
     ui.lock.using(true); 
     setMounted(true);
     return () => {
       ui.lock.using(false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-  // if (!datas || !casts || !photos){
-  //   return <div className="m-info"><Loading opts={{type:'glx', cls:'full'}}/></div>
-  // }
+
   return (
   <>
-
     <article className={`pop-layer c popup person fixed left-0 top-0 bottom-0 right-0 flex items-center justify-center pr-(--scrPad) open backdrop-blur-md `}>
       <div className={`pbd w-[calc(100%-0rem)] max-w-180 h-full bg-transparent align-middle relative
           transition-[transform,opacity,translate] ease-out duration-200
           ${mounted ? 'translate-y-0' : 'translate-y-90' }
         `}>
-        {/* <div className="phd relative h-14">
-            <div className="inr">
-                <div className="ptit"></div>
-            </div>
-        </div> */}
         <div className="pct relative w-full h-full">
           <button type="button" aria-label='닫기' onClick={ () => { router.back() } } 
             className="btn-pop-close h-10 w-10 text-white inline-flex items-center justify-center text-3xl z-20 absolute right-2 top-2 rounded-full"
@@ -126,7 +112,7 @@ export default function Stills() {
                       <SwiperSlide tag="li" key={idx} className="swiper-slide h-full flex items-center justify-center pbox">
                         <div className='box w-full h-full'>
                           <div className="pics block overflow-hidden rounded-0 relative w-full h-full">
-                            <img src={`${img}`} alt={`Stills_${postID}_${idx + 1}`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
+                            <img src={`${img}`} alt={`Image_${postID}_${idx+1}`} className='img relative object-contain w-full h-full z-2' onError={ui.error.stills} loading="lazy" />
                             <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: `full` }} /></div>
                           </div>
                         </div>
