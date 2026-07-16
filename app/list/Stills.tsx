@@ -37,36 +37,7 @@ export default function Stills() {
   const postID = params.id;
   const vId = searchParams.get('idx')
   const opts = searchParams.get('stills')
-
-  const [datas, setDatas] = useState<any>(null);
-  const [pstImg, pstImgSet] = useState('');
-  const [title, titleSet] = useState('');
   const loopSet = ()=> dataStills?.length > 1 ? true : false;
-  // const fetchURL = `https://api.themoviedb.org/3/${opts}/${postID}?language=ko&region=kr&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&include_image_language=en,null`;
-  const fetchDatas = () => {
-    const options = {
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/${opts}/${postID}`,
-      params: {
-        include_adult: true,
-        language: globalLang.lang,
-        region: globalLang.region,
-        append_to_response: 'videos,images',
-        include_image_language: 'ko,ja,en,zh,null'
-      },
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
-      }
-    };
-    axios.request(options).then(response => {
-      console.log("영화정보" , response.data);
-      setDatas(response.data);
-      let bgDm = response.data.poster_path ? response.data.poster_path : response.data.backdrop_path;
-      pstImgSet('//image.tmdb.org/t/p/w780'+bgDm);
-      titleSet(response.data.title || response.data.name);
-    }).catch( e => { console.log(e); });
-  };
   const [mounted, setMounted] = useState<boolean>(false);
 
 
@@ -155,7 +126,7 @@ export default function Stills() {
                       <SwiperSlide tag="li" key={idx} className="swiper-slide h-full flex items-center justify-center pbox">
                         <div className='box w-full h-full'>
                           <div className="pics block overflow-hidden rounded-0 relative w-full h-full">
-                            <img src={`${img}`} alt={`${title}_Poster[${idx + 2}]`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
+                            <img src={`${img}`} alt={`Stills_${postID}_${idx + 1}`} className='img relative object-contain w-full h-full z-2' onError={ui.error.poster} loading="lazy" />
                             <div className="lazy-preloader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-1"><Loading opts={{ type: 'glx', cls: `full` }} /></div>
                           </div>
                         </div>
