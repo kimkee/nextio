@@ -3,6 +3,7 @@
 import Videos from '@/app/list/Videos';
 import Person from '@/app/list/Person';
 import Poster from '@/app/list/Poster';
+import Stills from '@/app/list/Stills';
 import { useSearchParams, useParams } from 'next/navigation';
 
 export default function Popup( ) {
@@ -10,6 +11,7 @@ export default function Popup( ) {
   const isVideosModalOpen = searchParams.get('video') !== null;
   const isPersonModalOpen = searchParams.get('person') !== null;
   const isPosterModalOpen = searchParams.get('poster') !== null;
+  const isStillsModalOpen = searchParams.get('stills') !== null;
   const params = useParams();
   const {opts, menu, id} = params;
   return (
@@ -24,6 +26,7 @@ export default function Popup( ) {
       {isVideosModalOpen && <Videos />}
       {isPersonModalOpen && <Person />}
       {isPosterModalOpen && <Poster />}
+      {isStillsModalOpen && <Stills />}
     </div>
     </>
   );

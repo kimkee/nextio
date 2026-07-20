@@ -15,6 +15,7 @@ import DetailVideo from './DetailVideo';
 import DetailPoster from './DetailPoster';
 import DetailCollection from './DetailCollection';
 import DetailSeasons from './DetailSeasons';
+import DetailStills from './DetailStills';
 import DetailRev from './DetailRev';
 import StarPoint from '@/app/components/StarPoint';
 import IconAdult from '@/app/components/IconAdult';
@@ -377,6 +378,8 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
           {collect ? <DetailCollection opts={opts} props={{ title: t.detailinfo.series, css: "collect", data: collect }} /> : ''}
 
           {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailinfo.season, css: "season", data: datas.seasons }} /> : ''}
+
+          <DetailStills opts={opts} postID={postID} props={{ title: t.detailinfo.stills, css: "stills"}}/>
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 

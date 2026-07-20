@@ -189,7 +189,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
           <div className="profile pb-3 pt-5">
             <div className="pics block w-65 h-65 mx-auto relative rounded-full max-h-(--mwide) z-10">
               <div className="w-full h-full bg-rainbow p-3 absolute rounded-full opacity-50 backdrop-blur-xs blur-xl "></div>
-              <Link href={`/person/${personID}`} className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
+              <a href={`/person/${personID}`} className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute left-4 top-4 rounded-full border-12 border-[rgba(0,0,0,0.3)] overflow-hidden z-10">
                 <span className='block w-full h-full bg-black'>
                   <Img
                     src={profileImg || `https://image.tmdb.org/t/p/w400${datas.profile_path}`}
@@ -201,7 +201,7 @@ export default function PersonClient({params}: {params: { opts: string, id: stri
                     height={260}
                   />
                 </span>
-              </Link>
+              </a>
               
             </div>
             <div className="desc text-center z-11 relative -mt-12 px-10">
