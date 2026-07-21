@@ -30,7 +30,7 @@ interface DetailClientProps {
   postID: string;
 }
 
-export default function DetailClient({ opts, postID  }: DetailClientProps) {
+export default function DetailClient({ opts, postID }: DetailClientProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -39,7 +39,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   const t = useTranslation(initLangParams);
   const langParams = t.lang;
   const regionParams = t.region;
-  
+
   const setTitle = useSetAtom(modalTitleAtom);
   const [isPending, startTransition] = useTransition();
   const [data, setData] = useState<{ datas: any; casts: any; moves: any } | null>(null);
@@ -106,9 +106,9 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   };
 
   const [collect, setCollect] = useState<[any] | any>(null);
-  const fetchCollection = (id:number) => {
-    
-    if(!id) return;
+  const fetchCollection = (id: number) => {
+
+    if (!id) return;
     console.log(id);
     axios.request({
       method: 'GET',
@@ -120,15 +120,15 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`
-      } 
-    }).then(res =>{
+      }
+    }).then(res => {
       console.log(res.data);
       setCollect(res.data);
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e);
-    }); 
+    });
   }
-  
+
   useEffect(() => {
     fetchMovieData();
     window.scrollTo(0, 0);
@@ -146,10 +146,10 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
   useEffect(() => {
     getUser().then((d: any) => {
-      if(d?.user?.id){
+      if (d?.user?.id) {
         setUser(d.user);
         setMyinfo(d.myinfo);
-      }else{
+      } else {
         setUser(d);
         setMyinfo(d);
       }
@@ -157,11 +157,11 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
   }, []);
 
   const [isOverTime, setIsOverTime] = useState(false);
-  
+
   useEffect(() => {
     setTimeout(() => setIsOverTime(true), 2000);
   }, []);
-  
+
   const refrashDatas = () => {
     setIsOverTime(false);
     setData(null);
@@ -202,7 +202,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
           {/* 컨트롤 바 영역 */}
           <div className='mt-6 h-8 bg-black rounded animate-pulse' />
-          
+
           {/* 줄거리 영역 */}
           <div className='mt-4 h-21 bg-black rounded animate-pulse' />
 
@@ -245,7 +245,7 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
       </div>
     );
   }
-  const openPosterModal = (idx:string, opts:string) => {
+  const openPosterModal = (idx: string, opts: string) => {
     // scroll: false를 주면 스크롤이 맨 위로 튀는 현상을 방지합니다.
     // 기존 url에  ?person=${idx}만 추가하는방식으로 바꾸자
     const url = new URL(window.location.href);
@@ -254,23 +254,20 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
     const newUrl = url.toString();
     router.push(newUrl, { scroll: false });
   };
-  
+
   const { datas, casts, moves } = data;
-  const bgDm = (datas.backdrop_path ? datas.backdrop_path : datas.poster_path );
+  const bgDm = (datas.backdrop_path ? datas.backdrop_path : datas.poster_path);
   const bgImg = 'https://image.tmdb.org/t/p/w780' + bgDm;
   const videoImg = bgDm ? 'https://image.tmdb.org/t/p/w780' + bgDm : '/img/common/non_video.png';
   // console.log(data);
   return (
     <>
-      <div 
+      <div
         className={`
           bgs fixed  w-full h-full bg-center bg-cover bg-no-repeat max-w-(--mwide) max-h-120 right-0 left-1/2 top-0 transform -translate-x-1/2 opacity-30 blur-[2px]
           after:absolute after:bottom-0 after:left-0 after:right-0 after:z-2 after:h-72 after:bg-linear-to-b after:from-transparent after:to-background
         `}
-        style={{ 
-          backgroundImage: `url(${bgImg})`,
-          // marginLeft: 'calc(0px - var(--scrPad) / 2)' 
-        }}
+        style={{ backgroundImage: `url(${bgImg})` }}
       ></div>
       <div className='movie-detail relative text-white'>
         <div className='m-info relative z-1'>
@@ -288,16 +285,16 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
               </p>
 
               <div className='star text-xl mt-3 leading-none min-h-6'>
-                <StarPoint point={datas.vote_average} opts={{ cls: 'lg' }}/>
+                <StarPoint point={datas.vote_average} opts={{ cls: 'lg' }} />
               </div>
               <div className='cate mt-4 leading-none flex flex-wrap gap-1.5'>
-                {datas.adult && <IconAdult opts={{cls:''}} />}
+                {datas.adult && <IconAdult opts={{ cls: '' }} />}
                 {datas.genres.map((item: any) => (
                   <a href={`/list/${opts}/${item.id}`} className='ico inline-flex justify-center rounded-3xl px-2 py-0.5 bg-primary/40 text-xt text-white' key={item.id} data-genre={item.id}>
                     {item.name}
                   </a>
                 ))}
-                
+
               </div>
               <ul className='lst mt-4 grid gap-1'>
                 <li className='vot text-12 text-primary/90  relative pl-4'>
@@ -309,26 +306,26 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
                     <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
                     <b>{t.detailinfo.release}</b> : {datas.release_date}
                   </li>
-                ):null}
+                ) : null}
                 {datas.first_air_date ? (
                   <li className='opn text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'calendar-days']} className='absolute left-0 top-0.5' />
                     <b>{datas.first_air_date} ~ {datas.last_air_date}</b>
                   </li>
-                ):null}
+                ) : null}
 
                 {datas.runtime ? (
                   <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
                     <b>{t.detailinfo.runtime}</b> : {datas.runtime} {t.detailinfo.runtime_min}
                   </li>
-                ):null}
+                ) : null}
                 {datas.number_of_seasons ? (
                   <li className='tim text-12 text-primary/90  relative pl-4'>
                     <FontAwesomeIcon icon={['far', 'clock']} className='absolute left-0 top-0.5' />
                     <b>{t.detailinfo.seasons}</b> : {datas.number_of_seasons}{t.detailinfo.count} - <b>{t.detailinfo.episode}</b> : {datas.number_of_episodes}{t.detailinfo.count}
                   </li>
-                ):null}
+                ) : null}
                 {datas.homepage ? (
                   <li className='web text-12 text-primary/90  relative pl-4 break-all'>
                     <FontAwesomeIcon icon={['fas', 'globe']} className='absolute left-0 top-0.5' />
@@ -340,11 +337,11 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
                       {datas.homepage}
                     </a>
                   </li>
-                ):null}
+                ) : null}
               </ul>
             </div>
             <div className='thum max-w-[45%] flex-1'>
-              <button type='button' onClick={()=>{openPosterModal('0', opts) }} 
+              <button type='button' onClick={() => { openPosterModal('0', opts) }}
                 className='pics block w-full relative overflow-hidden rounded-sm pb-[calc(450/300*100%)] bg-black active:scale-98 transition-all duration-300
                  mask-[radial-gradient(101%_7%_at_50%_102%,transparent_50%,white_52%)]'
               >
@@ -362,8 +359,8 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
               </button>
             </div>
           </div>
-          
-          <DetailCtls datas={datas} postID={postID} opts={opts} shareLang={t.id}/>
+
+          <DetailCtls datas={datas} postID={postID} opts={opts} shareLang={t.id} />
 
           {datas.overview && <DetailElips overview={datas.overview} />}
 
@@ -379,29 +376,29 @@ export default function DetailClient({ opts, postID  }: DetailClientProps) {
 
           {datas.seasons && datas.seasons.length > 1 ? <DetailSeasons opts={opts} props={{ title: t.detailinfo.season, css: "season", data: datas.seasons }} /> : ''}
 
-          <DetailStills opts={opts} postID={postID} props={{ title: t.detailinfo.stills, css: "stills"}}/>
+          <DetailStills opts={opts} postID={postID} props={{ title: t.detailinfo.stills, css: "stills" }} />
 
           <DetailRev datas={datas} postID={postID} opts={opts} user={user} myinfo={myinfo} />
 
-          {datas.production_companies.length ? 
-          <div className="sect comp flex flex-wrap mt-8 gap-1">
-            {datas.production_companies.map((comp: any) => (
-               
-              <span key={comp.id} className='logo bg-white/20 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
-                {
-                  comp.logo_path
-                  ? <Img 
-                      width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
-                      className='img max-h-3 align-middle max-w-full w-auto h-auto'
-                      alt={comp.name} srcerr='/img/common/non_poster.png'
-                      unoptimized={true}
-                    />
-                  : comp.name
-                }
-              </span> 
-            ))}
-          </div>
-          : null}
+          {datas.production_companies.length ?
+            <div className="sect comp flex flex-wrap mt-8 gap-1">
+              {datas.production_companies.map((comp: any) => (
+
+                <span key={comp.id} className='logo bg-white/20 px-2 py-0.5 rounded-full inline-flex items-center h-7 max-w-full text-10 text-black'>
+                  {
+                    comp.logo_path
+                      ? <Img
+                        width={100} height={100} src={`https://image.tmdb.org/t/p/w92${comp.logo_path}`}
+                        className='img max-h-3 align-middle max-w-full w-auto h-auto'
+                        alt={comp.name} srcerr='/img/common/non_poster.png'
+                        unoptimized={true}
+                      />
+                      : comp.name
+                  }
+                </span>
+              ))}
+            </div>
+            : null}
         </div>
       </div>
     </>
