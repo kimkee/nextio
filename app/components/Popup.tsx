@@ -6,28 +6,28 @@ import Poster from '@/app/list/Poster';
 import Stills from '@/app/list/Stills';
 import { useSearchParams, useParams } from 'next/navigation';
 
-export default function Popup( ) {
+export default function Popup() {
   const searchParams = useSearchParams();
   const isVideosModalOpen = searchParams.get('video') !== null;
   const isPersonModalOpen = searchParams.get('person') !== null;
   const isPosterModalOpen = searchParams.get('poster') !== null;
   const isStillsModalOpen = searchParams.get('stills') !== null;
   const params = useParams();
-  const {opts, menu, id} = params;
+  const { opts, menu, id } = params;
   return (
     <>
-    <div className="fixed left-0 top-0 hidden">
-      <p>{JSON.stringify(params)}</p>
-      <p>{opts}</p>
-      <p>{menu}</p>
-      <p>{id}</p>
-    </div>
-    <div className='fixed z-1500'>
-      {isVideosModalOpen && <Videos />}
-      {isPersonModalOpen && <Person />}
-      {isPosterModalOpen && <Poster />}
-      {isStillsModalOpen && <Stills />}
-    </div>
+      <div className="fixed left-0 top-0 hidden">
+        <p>{JSON.stringify(params)}</p>
+        <p>{opts}</p>
+        <p>{menu}</p>
+        <p>{id}</p>
+      </div>
+      <div className='fixed z-1500'>
+        {isVideosModalOpen && <Videos />}
+        {isPersonModalOpen && <Person />}
+        {isPosterModalOpen && <Poster />}
+        {isStillsModalOpen && <Stills />}
+      </div>
     </>
   );
 }
