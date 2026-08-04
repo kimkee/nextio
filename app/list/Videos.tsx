@@ -4,11 +4,9 @@ import axios from 'axios';
 import { useParams, useRouter, useSearchParams, usePathname } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DetailVideo from './DetailVideo';
-
 
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
+import { Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard} from 'swiper/modules'; //,EffectFade 
 import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
 // Import Swiper styles
 import 'swiper/css';
@@ -31,14 +29,6 @@ export default function Videos() {
   const postID = params.id;
   const vId = searchParams.get('idx')
   const opts = searchParams.get('video')
-
-  // const getMediaType = (pathname:string ) => {
-  //   const parts = pathname.split('/');
-  //   return parts.find(p => p === 'movie' || p === 'tv') || '';
-  // };
-  // const mediaType = getMediaType(pathname);
-  // opts = opts || mediaType
-
 
   const [movs, setMovs] = useState({ results: [] });
   const loopSet = () => movs.results.length > 1 ? true : false;
@@ -99,9 +89,11 @@ export default function Videos() {
 
                 {movs && movs.results.length ?
                   <>
-                    <Swiper className=" swiper-wrapper swiper slide relative h-dvh!"
+                    <Swiper 
+                      className="swiper-wrapper swiper slide relative h-dvh!"
                       // install Swiper modules
-                      modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+                      modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard]}
+                      keyboard={ { enabled: true } }
                       spaceBetween={20}
                       slidesPerView={1}
                       loop={loopSet()}
@@ -122,7 +114,8 @@ export default function Videos() {
                         console.log("initialize swiper", swiper);
                         swiper.slideTo(Number(vId), 0);
                       }}
-                      onSlideChange={() => {/* console.log('slide change') */ }} >
+                      onSlideChange={() => {/* console.log('slide change') */ }}
+                    >
                       {
                         movs.results.filter((item: any, i: number) => i < 100).reverse().map((data: any, idx: number) => {  // .filter( (item, i) => i < 10 )
                           return (
