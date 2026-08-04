@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useParams, useRouter, useSearchParams, usePathname } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
 
-
-
-
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,7 +10,7 @@ import Loading from '@/app/components/Loading';
 import Link from 'next/link';
 
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
+import { Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard } from 'swiper/modules'; //,EffectFade 
 import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
 // Import Swiper styles
 import 'swiper/css';
@@ -26,7 +23,6 @@ import { useAtom } from 'jotai';
 import { globalLangAtom } from '@/app/store/lang';
 
 export default function Poster() {
-
   
   let params = useParams()
   const router = useRouter();
@@ -107,10 +103,11 @@ export default function Poster() {
             <div className="poster-box h-full">
               {datas && datas.images.posters ? 
               <>
-              <Swiper className="swiper relative h-dvh!
-                " 
+              <Swiper 
+                className="swiper relative h-dvh!" 
                 // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+                modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard]}
+                keyboard={ { enabled: true } }
                 spaceBetween={20}
                 slidesPerView={1}
                 // navigation
@@ -131,7 +128,8 @@ export default function Poster() {
                   console.log("initialize swiper", swiper);
                   swiper.slideTo(Number(vId) , 0);
                 }}
-                onSlideChange={() => {/* console.log('slide change') */}} >
+                onSlideChange={() => {/* console.log('slide change') */}}
+              >
                 <SwiperSlide tag="li" key={`first`} className="swiper-slide h-full flex items-center justify-center">
                   <div className='box w-full h-full'>
                     <div className="pics block overflow-hidden rounded-0 relative w-full h-full">

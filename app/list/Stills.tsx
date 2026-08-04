@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useRouter, useSearchParams, usePathname } from 'next/navigation'; //,useOutletContext  , useLocation, Outlet,
 
-
-
-
 import ui from '@/app/lib/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,7 +10,7 @@ import Loading from '@/app/components/Loading';
 import Link from 'next/link';
 
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, Autoplay, A11y } from 'swiper/modules'; //,EffectFade 
+import { Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard } from 'swiper/modules'; //,EffectFade 
 import { Swiper, SwiperSlide } from 'swiper/react'; //, useSwiper 
 // Import Swiper styles
 import 'swiper/css';
@@ -79,9 +76,11 @@ export default function Stills() {
             <div className="poster-box h-full">
               {dataStills ?
                 <>
-                  <Swiper className="swiper relative h-dvh!"
+                  <Swiper 
+                    className="swiper relative h-dvh!"
                     // install Swiper modules
-                    modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+                    modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y, Keyboard]}
+                    keyboard={ { enabled: true } }
                     spaceBetween={20}
                     slidesPerView={1}
                     // navigation
@@ -102,8 +101,8 @@ export default function Stills() {
                       console.log("initialize swiper", swiper);
                       swiper.slideTo(Number(vId), 0);
                     }}
-                    onSlideChange={() => {/* console.log('slide change') */ }} >
-
+                    onSlideChange={() => {/* console.log('slide change') */ }}
+                  >
                     {
                       dataStills?.filter((item: any, i: number) => i < 30).map((item: any, idx: number) => {  // .filter( (item, i) => i < 10 )
                         const img = `//image.tmdb.org/t/p/w780${item.file_path}`;
