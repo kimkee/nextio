@@ -47,17 +47,31 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       return { title: `${t.title} - ${SNAME}` };
     }
 
-    const title = data.title || data.name;
-    const description = data.overview || data.biography || data.known_for_department;
-    const image = `https://image.tmdb.org/t/p/w780${data.backdrop_path || data.poster_path || data.profile_path}`;
+    const title = data.title || data.name || t.title;
+    const description = data.overview || data.biography || data.known_for_department || title;
+    const imagePath = data.backdrop_path || data.poster_path || data.profile_path;
+    const image = imagePath ? `https://image.tmdb.org/t/p/w780${imagePath}` : '';
 
     return {
       title: `${title} - ${SNAME}`,
       description,
       openGraph: {
-        title,
+        title: `${title} - ${SNAME}`,
         description,
-        images: [image],
+        url: `https://nextio.vercel.app/${opts}/${id}${langParams ? `?lang=${langParams}` : ''}`,
+        siteName: SNAME,
+        images: image ? [
+          {
+            url: image,
+          },
+        ] : [],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${title} - ${SNAME}`,
+        description,
+        images: image ? [image] : [],
       },
     };
   } catch (e) {
